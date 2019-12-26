@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <script src="../lib/WeJS.js"></script>
+  <script>
+    const app = new WeJS.App // 새로운 viewport 만들기
+    const scene = new WeJS.Scene // 새로운 씬
+    const objectA = new WeJS.WeJSObject // 씬에 들어갈 객체A
+    const objectB = new WeJS.WeJSObject // 객체A 하위에 들어갈 객체B
+
+
+    const factory = new WeJS.ComponentFactory // 컴포넌트를 만들어주는 인스턴스 객체
+
+    // 객체A의 하위에 객체B를 넣어주기 위해,
+    // 하위 객체를 넣을 수 있는 기능을 가진 'children' 컴포넌트를 추가해야한다.
+    const childrenComponent = factory.create(WeJS.RESERVATION.CHILDREN)
+
+    // 만들어진 컴포넌트를 객체A에 추가한다
+    objectA.component.add(childrenComponent)
+
+
+    // 이제 실제로 객체A에 객체B를 넣어보자
+    objectA.component.children.lists.push(objectB)
+
+    // 객체B에 텍스트 기능을 추가하자.
+    // 텍스트를 출력해주는 기능을 가진 컴포넌트를 객체B에 추가해야한다.
+    const textComponent = factory.create(WeJS.RESERVATION.TEXT)
+
+    // 만들어진 컴포넌트를 객체B에 추가
+    objectB.component.add(textComponent)
+
+    // 객체B의 출력될 텍스트를 지정
+    objectB.component.text.content = 'Hello, World!'
+
+
+    const htmlComponent = factory.create(WeJS.RESERVATION.HTML)
+    objectB.component.add(htmlComponent)
+    objectB.component.html.content = ''
+
+
+    objectA.component.add(factory.create(WeJS.RESERVATION.TEXT))
+
+
+    // 씬에 객체A를 추가한다.
+    // 객체B는 이미 객체A에 속해있으니, 따로 씬에 추가하지 않아도 된다.
+    scene.component.children.lists.push(objectA)
+
+    // 앱이 부착될 element를 지정
+    app.element = '#app'
+    app.setSize(800, 500)
+
+    // 앱에서 씬을 실행
+    app.launch(scene)
+  </script>
+</body>
+
+</html>
