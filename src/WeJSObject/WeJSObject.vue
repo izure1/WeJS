@@ -20,7 +20,7 @@
       필터는 현재 객체의 컴포넌트 ELement만 적용됩니다.
       filter 속성이 주어질 경우, 자식 Element는 transform-origin: preserve-3d 을 사용할 수 없기 때문입니다.
     -->
-    <div :style="{
+    <div class="we-components" :style="{
       transition: `
         all
         ${body.component.filter.duration}ms

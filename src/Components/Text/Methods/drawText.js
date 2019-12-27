@@ -1,4 +1,3 @@
-//import SvgText from 'svg-text'
 import {
   SVG
 } from '@svgdotjs/svg.js'

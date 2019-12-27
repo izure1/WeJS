@@ -1,21 +1,28 @@
 <template>
   <section class="we-viewport" :style="{ 
-    width: getAppWidth,
-    height: getAppHeight,
+    width: `${app.width}px`,
+    height: `${app.height}px`,
     backgroundColor: app.backgroundColor,
     borderColor: app.borderColor,
     borderWidth: `${app.borderWidth}px`,
     perspective: `${app.perspective}px`,
   }">
-    <we-body :body="scene" />
+    <div class="we-screen" :style="{
+      width: `${app.width}px`,
+      height: `${app.height}px`,
+      transform: `scale(${appScale})`,
+      margin: `${-app.height / 2}px 0 0 ${-app.width / 2}px`,
+    }">
+      <we-body :body="scene" />
+    </div>
   </section>
 </template>
 
 <script>
+  import screenfull from 'screenfull'
   import WeBody from '../WeJSObject/WeJSObject.vue'
 
-  import getAppWidth from './Computed/getAppWidth'
-  import getAppHeight from './Computed/getAppHeight'
+  import onScreenChange from './Methods/onScreenChange'
 
   export default {
 
@@ -23,9 +30,22 @@
       WeBody
     },
     props: ['scene', 'app'],
-    computed: {
-      getAppWidth,
-      getAppHeight,
+    data: () => ({
+      resizeObserver: null,
+      appScale: 1
+    }),
+    methods: {
+      onScreenChange
+    },
+    created() {
+      this.resizeObserver = new ResizeObserver(this.onScreenChange)
+    },
+    mounted() {
+      this.resizeObserver.observe(this.$el)
+    },
+    beforeDestroy() {
+      this.resizeObserver.close()
+      this.resizeObserver = null
     }
 
   }
@@ -37,5 +57,12 @@
     overflow: hidden;
     user-select: none;
     border-style: solid;
+  }
+
+  .we-screen {
+    transform-style: preserve-3d;
+    position: absolute;
+    top: 50%;
+    left: 50%;
   }
 </style>

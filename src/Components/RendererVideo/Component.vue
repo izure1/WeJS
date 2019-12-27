@@ -17,9 +17,24 @@
     loop: false,
     autoplay: false,
     muted: false,
+    play() {
+
+    },
+    pause() {
+
+    },
+    setTime(v) {
+
+    },
   }
 
   export default {
     props: ['body']
   }
 </script>
+
+<style scoped>
+  video {
+    outline: none;
+  }
+</style>

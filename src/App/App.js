@@ -1,8 +1,8 @@
-import launch from './Methods/launch'
-import destroy from './Methods/destroy'
-import setSize from './Methods/setSize'
-import fullscreen from './Methods/fullscreen'
-import exitFullscreen from './Methods/existFullscreen'
+import launch from './AppMethods/launch'
+import destroy from './AppMethods/destroy'
+import setSize from './AppMethods/setSize'
+import fullscreen from './AppMethods/fullscreen'
+import exitFullscreen from './AppMethods/existFullscreen'
 
 
 class App {
@@ -18,13 +18,13 @@ class App {
 
   constructor() {
     this._element = null
-    this._app = null
-    this._width = 800
-    this._height = 450
-    this._backgroundColor = 'white'
-    this._borderWidth = 0
-    this._borderColor = 'black'
-    this._perspective = 100
+    this.app = null
+    this.width = 800
+    this.height = 450
+    this.backgroundColor = 'white'
+    this.borderWidth = 0
+    this.borderColor = 'black'
+    this.perspective = 100
   }
 
   get element() {
@@ -32,55 +32,6 @@ class App {
   }
   set element(v) {
     this._element = App.parseElement(v)
-  }
-
-  get app() {
-    return this._app
-  }
-  set app(v) {
-    this._app = v
-  }
-
-  get width() {
-    return this._width
-  }
-  set width(v) {
-    this._width = v
-  }
-
-  get height() {
-    return this._height
-  }
-  set height(v) {
-    this._height = v
-  }
-
-  get borderWidth() {
-    return this._borderWidth
-  }
-  set borderWidth(v) {
-    this._borderWidth = v
-  }
-
-  get borderColor() {
-    return this._borderColor
-  }
-  set borderColor(v) {
-    this._borderColor = v
-  }
-
-  get backgroundColor() {
-    return this._backgroundColor
-  }
-  set backgroundColor(v) {
-    this._backgroundColor = v
-  }
-
-  get perspective() {
-    return this._perspective
-  }
-  set perspective(v) {
-    this._perspective = v
   }
 
 }

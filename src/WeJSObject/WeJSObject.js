@@ -15,7 +15,6 @@ class WeJSObject {
 
     this.id = raw.id
     this.component = new ComponentList(raw.component)
-    this.event = new Map
 
     const factory = new ComponentFactory
     this.component.add(factory.create(RESERVATION.CAMERA))

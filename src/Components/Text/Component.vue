@@ -46,9 +46,3 @@
     }
   }
 </script>
-
-<style scoped>
-  /* .text-svg {
-    paint-order: fill stroke;
-  } */
-</style>
