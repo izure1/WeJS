@@ -22,6 +22,14 @@ module.exports = {
         use: ['vue-style-loader', 'css-loader']
       },
       {
+        test: /\.scss$/,
+        use: ['vue-style-loader', 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.sass$/,
+        use: ['vue-style-loader', 'css-loader', 'sass-loader?indentedSyntax']
+      },
+      {
         test: /.jsx?$/,
         include: [
           path.resolve(__dirname, 'src')
@@ -52,11 +60,11 @@ module.exports = {
           loader: 'vue-loader',
           options: {
             extractCSS: true,
-            // loaders: {
-            //   sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax=1',
-            //   scss: 'vue-style-loader!css-loader!sass-loader',
-            //   less: 'vue-style-loader!css-loader!less-loader'
-            // }
+            loaders: {
+              sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax=1',
+              scss: 'vue-style-loader!css-loader!sass-loader',
+              //less: 'vue-style-loader!css-loader!less-loader'
+            }
           }
         }
       }

@@ -137,12 +137,16 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .we-camera,
   .we-body {
     position: absolute;
     top: 50%;
     left: 50%;
     transform-style: preserve-3d;
+  }
+
+  .we-body:hover {
+    background-color:red;
   }
 </style>
