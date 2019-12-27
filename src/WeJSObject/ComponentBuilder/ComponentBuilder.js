@@ -24,20 +24,21 @@ class ComponentBuilder {
   static COMPONENT = COMPONENT_MAP
 
   constructor(info) {
-    const reservation = ComponentBuilder.copyJSON(info)
-    for (let key in reservation) this[key] = reservation[key]
+    Object.assign(this, info)
   }
 
   build() {
 
     let ref = ComponentBuilder.copyJSON(this)
 
-    if (ComponentBuilder.RESERVATION.has(this.name)) ref = ComponentBuilder.copyJSON({
-      ...ComponentBuilder.RESERVATION.get(this.name),
+    if (ComponentBuilder.RESERVATION.has(this.name)) ref = {
+      ...ComponentBuilder.copyJSON(ComponentBuilder.RESERVATION.get(this.name)),
       ...this,
-    })
+    }
 
     ref.name = ComponentBuilder.convertToCamelCase(ref.name)
+    ref = Object.assign({}, this, ref)
+
     return new Component(ref)
 
   }

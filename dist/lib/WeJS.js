@@ -11844,6 +11844,10 @@ const RESERVATION = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return RESERVATION; });
+/* harmony import */ var _Methods_modifyVideoProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Methods/modifyVideoProperty */ "./src/Components/RendererVideo/Methods/modifyVideoProperty.js");
+/* harmony import */ var _helper_load__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helper/load */ "./src/Components/RendererVideo/helper/load.js");
+/* harmony import */ var _helper_pause__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helper/pause */ "./src/Components/RendererVideo/helper/pause.js");
+/* harmony import */ var _helper_play__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./helper/play */ "./src/Components/RendererVideo/helper/play.js");
 //
 //
 //
@@ -11853,25 +11857,59 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
+
+
+
 const RESERVATION = {
   name: 'renderer-video',
   src: null,
   width: 'auto',
   height: 'auto',
   controls: false,
-  loop: false,
   autoplay: false,
   muted: false,
-
-  play() {},
-
-  pause() {},
-
-  setTime(v) {}
-
+  loop: false,
+  playbackRate: 1,
+  volume: 1,
+  load: _helper_load__WEBPACK_IMPORTED_MODULE_1__["default"],
+  play: _helper_play__WEBPACK_IMPORTED_MODULE_3__["default"],
+  pause: _helper_pause__WEBPACK_IMPORTED_MODULE_2__["default"]
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['body']
+  props: ['body'],
+  data: () => ({
+    element: null
+  }),
+  methods: {
+    modifyVideoProperty: _Methods_modifyVideoProperty__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+
+  mounted() {
+    this.element = this.$el.querySelector('video');
+
+    this.body.component.rendererVideo._resolve(this.element);
+  },
+
+  watch: {
+    element() {
+      // template이 실제 Document에 부착되면 컴포넌트의 element를 수정합니다.
+      this.modifyVideoProperty();
+      Object.defineProperty(this.body.component.rendererVideo, '_element', {
+        value: this.$el.querySelector('video'),
+        configurable: true
+      });
+    },
+
+    'body.component.rendererVideo': {
+      deep: true,
+
+      handler() {
+        this.modifyVideoProperty();
+      }
+
+    }
+  }
 });
 
 /***/ }),
@@ -12128,7 +12166,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".we-camera[data-v-6d3603b4],\n.we-body[data-v-6d3603b4] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform-style: preserve-3d;\n}\n.we-body[data-v-6d3603b4]:hover {\n  background-color: red;\n}\n", ""]);
+exports.push([module.i, ".we-camera[data-v-6d3603b4],\n.we-body[data-v-6d3603b4] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform-style: preserve-3d;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -37179,6 +37217,86 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/Components/RendererVideo/Methods/modifyVideoProperty.js":
+/*!*********************************************************************!*\
+  !*** ./src/Components/RendererVideo/Methods/modifyVideoProperty.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return setVideoProperty; });
+function setVideoProperty() {
+  if (!this.element) return;
+  const {
+    playbackRate,
+    volume
+  } = this.body.component.rendererVideo;
+  this.element.playbackRate = playbackRate;
+  this.element.volume = volume;
+}
+
+/***/ }),
+
+/***/ "./src/Components/RendererVideo/helper/load.js":
+/*!*****************************************************!*\
+  !*** ./src/Components/RendererVideo/helper/load.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return load; });
+function load() {
+  return new Promise(resolve => {
+    Object.defineProperty(this, '_resolve', {
+      value: resolve,
+      configurable: true
+    });
+  });
+}
+
+/***/ }),
+
+/***/ "./src/Components/RendererVideo/helper/pause.js":
+/*!******************************************************!*\
+  !*** ./src/Components/RendererVideo/helper/pause.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return pause; });
+async function pause() {
+  await this.load();
+
+  this._element.pause();
+}
+
+/***/ }),
+
+/***/ "./src/Components/RendererVideo/helper/play.js":
+/*!*****************************************************!*\
+  !*** ./src/Components/RendererVideo/helper/play.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return play; });
+async function play(time) {
+  await this.load();
+  this._element.currentTime = time;
+
+  this._element.play();
+}
+
+/***/ }),
+
 /***/ "./src/Components/Text/Component.vue":
 /*!*******************************************!*\
   !*** ./src/Components/Text/Component.vue ***!
@@ -37752,13 +37870,16 @@ const VERSION = _package_json__WEBPACK_IMPORTED_MODULE_9__.version;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+
+
 class Component {
   constructor(info) {
     this.name = null;
 
     for (let i in info) {
       const value = info[i];
-      this[i] = value && value.call ? value.bind(this) : value;
+      this[i] = value && value.call ? value.bind(this) : vue__WEBPACK_IMPORTED_MODULE_0__["default"].set(this, i, value);
     }
   }
 
@@ -37799,17 +37920,16 @@ class ComponentBuilder {
   }
 
   constructor(info) {
-    const reservation = ComponentBuilder.copyJSON(info);
-
-    for (let key in reservation) this[key] = reservation[key];
+    Object.assign(this, info);
   }
 
   build() {
     let ref = ComponentBuilder.copyJSON(this);
-    if (ComponentBuilder.RESERVATION.has(this.name)) ref = ComponentBuilder.copyJSON({ ...ComponentBuilder.RESERVATION.get(this.name),
+    if (ComponentBuilder.RESERVATION.has(this.name)) ref = { ...ComponentBuilder.copyJSON(ComponentBuilder.RESERVATION.get(this.name)),
       ...this
-    });
+    };
     ref.name = ComponentBuilder.convertToCamelCase(ref.name);
+    ref = Object.assign({}, this, ref);
     return new _Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"](ref);
   }
 
@@ -37836,17 +37956,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class ComponentFactory {
-  static copyJSON(raw) {
-    return JSON.parse(JSON.stringify(raw));
-  }
-
   create(reservation) {
-    const info = {};
-    reservation = ComponentFactory.copyJSON(reservation);
-
-    for (let key in reservation) info[key] = reservation[key];
-
-    return new _ComponentBuilder_ComponentBuilder__WEBPACK_IMPORTED_MODULE_0__["default"](info).build();
+    return new _ComponentBuilder_ComponentBuilder__WEBPACK_IMPORTED_MODULE_0__["default"](reservation).build();
   }
 
   createFromName(name) {
@@ -37870,16 +37981,13 @@ class ComponentFactory {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-
-
 class ComponentList {
   constructor(raw = {}) {
     for (let i in raw) this[i] = raw[i];
   }
 
   add(component) {
-    this[component.name] = vue__WEBPACK_IMPORTED_MODULE_0__["default"].set(this, component.name, component);
+    this[component.name] = component;
   }
 
 }
