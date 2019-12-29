@@ -12,7 +12,7 @@
       all
       ${body.component.transform.duration}ms
       ${body.component.transform.ease}
-      ${body.component.transform.delay}ms`
+      ${body.component.transform.delay}ms`,
   }">
 
     <!-- 
@@ -36,12 +36,12 @@
         saturate(${body.component.filter.saturate})
         sepia(${body.component.filter.sepia})`
     }">
-      <component-physics-world v-if="     hasComponent('physicsWorld')" :body="body" />
-      <component-physics v-if="           hasComponent('physics')" :body="body" />
-      <component-text v-if="              hasComponent('text')" :body="body" />
-      <component-html v-if="              hasComponent('html')" :body="body" />
-      <component-renderer-image v-if="    hasComponent('rendererImage')" :body="body" />
-      <component-renderer-video v-if="    hasComponent('rendererVideo')" :body="body" />
+      <component-physics-world v-if="     hasComponent('physicsWorld')" :app="app" :scene="scene" :body="body" />
+      <component-physics v-if="           hasComponent('physics')" :app="app" :scene="scene" :body="body" />
+      <component-text v-if="              hasComponent('text')" :app="app" :scene="scene" :body="body" />
+      <component-html v-if="              hasComponent('html')" :app="app" :scene="scene" :body="body" />
+      <component-renderer-image v-if="    hasComponent('rendererImage')" :app="app" :scene="scene" :body="body" />
+      <component-renderer-video v-if="    hasComponent('rendererVideo')" :app="app" :scene="scene" :body="body" />
     </div>
 
     <!-- Children 컴포넌트에 있는 하위 자식 객체를 추가합니다. -->
@@ -53,8 +53,8 @@
         rotateX(${-body.component.camera.rotateX}deg)
         rotateY(${body.component.camera.rotateY}deg)
         rotateZ(${-body.component.camera.rotateZ}deg)` }">
-      <we-body v-for="(children, i) in body.component.children.lists" :key="i" :body="children"
-        @onsizechange="onSizeChange" />
+      <we-body v-for="(children, i) in body.component.children.lists" :key="i" :app="app" :scene="scene"
+        :body="children" @onsizechange="onSizeChange" />
     </div>
 
   </div>
@@ -88,7 +88,7 @@
       ComponentRendererImage,
       ComponentRendererVideo,
     },
-    props: ['body'],
+    props: ['app', 'scene', 'body'],
     data: () => ({
       sizeObserver: null,
       sizeSelf: [0, 0],

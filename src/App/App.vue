@@ -13,7 +13,7 @@
       transform: `scale(${appScale})`,
       margin: `${-app.height / 2}px 0 0 ${-app.width / 2}px`,
     }">
-      <we-body :body="scene" />
+      <we-body :app="app" :scene="scene" :body="scene" />
     </div>
   </section>
 </template>

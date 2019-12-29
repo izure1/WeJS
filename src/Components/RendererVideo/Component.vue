@@ -14,10 +14,10 @@
   import modifyVideoProperty from './Methods/modifyVideoProperty'
   import addVideoLoadHandler from './Methods/addVideoLoadHandler'
 
-  import _setCanplayPromise from './helper/_setCanplayPromise'
-  import waitLoading from './helper/waitLoading'
-  import pause from './helper/pause'
-  import play from './helper/play'
+  import _setCanplayPromise from './Helper/_setCanplayPromise'
+  import waitLoading from './Helper/waitLoading'
+  import pause from './Helper/pause'
+  import play from './Helper/play'
 
   export function RESERVATION() {
 

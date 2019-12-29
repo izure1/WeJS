@@ -11849,10 +11849,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Methods_reloadVideo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Methods/reloadVideo */ "./src/Components/RendererVideo/Methods/reloadVideo.js");
 /* harmony import */ var _Methods_modifyVideoProperty__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Methods/modifyVideoProperty */ "./src/Components/RendererVideo/Methods/modifyVideoProperty.js");
 /* harmony import */ var _Methods_addVideoLoadHandler__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Methods/addVideoLoadHandler */ "./src/Components/RendererVideo/Methods/addVideoLoadHandler.js");
-/* harmony import */ var _helper_setCanplayPromise__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./helper/_setCanplayPromise */ "./src/Components/RendererVideo/helper/_setCanplayPromise.js");
-/* harmony import */ var _helper_waitLoading__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./helper/waitLoading */ "./src/Components/RendererVideo/helper/waitLoading.js");
-/* harmony import */ var _helper_pause__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./helper/pause */ "./src/Components/RendererVideo/helper/pause.js");
-/* harmony import */ var _helper_play__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./helper/play */ "./src/Components/RendererVideo/helper/play.js");
+/* harmony import */ var _Helper_setCanplayPromise__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Helper/_setCanplayPromise */ "./src/Components/RendererVideo/Helper/_setCanplayPromise.js");
+/* harmony import */ var _Helper_waitLoading__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Helper/waitLoading */ "./src/Components/RendererVideo/Helper/waitLoading.js");
+/* harmony import */ var _Helper_pause__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Helper/pause */ "./src/Components/RendererVideo/Helper/pause.js");
+/* harmony import */ var _Helper_play__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Helper/play */ "./src/Components/RendererVideo/Helper/play.js");
 //
 //
 //
@@ -11883,10 +11883,10 @@ function RESERVATION() {
     loop: false,
     playbackRate: 1,
     volume: 1,
-    _setCanplayPromise: _helper_setCanplayPromise__WEBPACK_IMPORTED_MODULE_5__["default"],
-    waitLoading: _helper_waitLoading__WEBPACK_IMPORTED_MODULE_6__["default"],
-    play: _helper_play__WEBPACK_IMPORTED_MODULE_8__["default"],
-    pause: _helper_pause__WEBPACK_IMPORTED_MODULE_7__["default"]
+    _setCanplayPromise: _Helper_setCanplayPromise__WEBPACK_IMPORTED_MODULE_5__["default"],
+    waitLoading: _Helper_waitLoading__WEBPACK_IMPORTED_MODULE_6__["default"],
+    play: _Helper_play__WEBPACK_IMPORTED_MODULE_8__["default"],
+    pause: _Helper_pause__WEBPACK_IMPORTED_MODULE_7__["default"]
   }; // 비디오가 이벤트를 발생시키면 그에 맞는 resolve가 호출되고, 프로미스가 resolved됩니다.
   // 이 데이터는 저장되어선 안되므로 enumerable: false 상태입니다.
 
@@ -12149,7 +12149,7 @@ __webpack_require__.r(__webpack_exports__);
     ComponentRendererImage: _Components_RendererImage_Component__WEBPACK_IMPORTED_MODULE_5__["default"],
     ComponentRendererVideo: _Components_RendererVideo_Component__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
-  props: ['body'],
+  props: ['app', 'scene', 'body'],
   data: () => ({
     sizeObserver: null,
     sizeSelf: [0, 0],
@@ -21997,7 +21997,11 @@ var render = function() {
             margin: -_vm.app.height / 2 + "px 0 0 " + -_vm.app.width / 2 + "px"
           }
         },
-        [_c("we-body", { attrs: { body: _vm.scene } })],
+        [
+          _c("we-body", {
+            attrs: { app: _vm.app, scene: _vm.scene, body: _vm.scene }
+          })
+        ],
         1
       )
     ]
@@ -22284,27 +22288,39 @@ var render = function() {
         },
         [
           _vm.hasComponent("physicsWorld")
-            ? _c("component-physics-world", { attrs: { body: _vm.body } })
+            ? _c("component-physics-world", {
+                attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
+              })
             : _vm._e(),
           _vm._v(" "),
           _vm.hasComponent("physics")
-            ? _c("component-physics", { attrs: { body: _vm.body } })
+            ? _c("component-physics", {
+                attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
+              })
             : _vm._e(),
           _vm._v(" "),
           _vm.hasComponent("text")
-            ? _c("component-text", { attrs: { body: _vm.body } })
+            ? _c("component-text", {
+                attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
+              })
             : _vm._e(),
           _vm._v(" "),
           _vm.hasComponent("html")
-            ? _c("component-html", { attrs: { body: _vm.body } })
+            ? _c("component-html", {
+                attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
+              })
             : _vm._e(),
           _vm._v(" "),
           _vm.hasComponent("rendererImage")
-            ? _c("component-renderer-image", { attrs: { body: _vm.body } })
+            ? _c("component-renderer-image", {
+                attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
+              })
             : _vm._e(),
           _vm._v(" "),
           _vm.hasComponent("rendererVideo")
-            ? _c("component-renderer-video", { attrs: { body: _vm.body } })
+            ? _c("component-renderer-video", {
+                attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
+              })
             : _vm._e()
         ],
         1
@@ -22335,7 +22351,7 @@ var render = function() {
             _vm._l(_vm.body.component.children.lists, function(children, i) {
               return _c("we-body", {
                 key: i,
-                attrs: { body: children },
+                attrs: { app: _vm.app, scene: _vm.scene, body: children },
                 on: { onsizechange: _vm.onSizeChange }
               })
             }),
@@ -37257,6 +37273,80 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/Components/RendererVideo/Helper/_setCanplayPromise.js":
+/*!*******************************************************************!*\
+  !*** ./src/Components/RendererVideo/Helper/_setCanplayPromise.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _setCanplayPromise; });
+function _setCanplayPromise() {
+  Object.defineProperty(this, '_canplayPromise', {
+    value: new Promise(resolve => {
+      Object.defineProperty(this, '_canplayResolve', {
+        value: resolve
+      });
+    })
+  });
+}
+
+/***/ }),
+
+/***/ "./src/Components/RendererVideo/Helper/pause.js":
+/*!******************************************************!*\
+  !*** ./src/Components/RendererVideo/Helper/pause.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return pause; });
+async function pause() {
+  await this.waitLoading();
+  return this.element.pause();
+}
+
+/***/ }),
+
+/***/ "./src/Components/RendererVideo/Helper/play.js":
+/*!*****************************************************!*\
+  !*** ./src/Components/RendererVideo/Helper/play.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return play; });
+async function play(time = 0) {
+  // 비디오가 준비될 때 까지 대기
+  await this.waitLoading();
+  this.element.currentTime = time / 1000;
+  this.element.play();
+}
+
+/***/ }),
+
+/***/ "./src/Components/RendererVideo/Helper/waitLoading.js":
+/*!************************************************************!*\
+  !*** ./src/Components/RendererVideo/Helper/waitLoading.js ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return waitLoading; });
+function waitLoading() {
+  return this._canplayPromise;
+}
+
+/***/ }),
+
 /***/ "./src/Components/RendererVideo/Methods/addVideoLoadHandler.js":
 /*!*********************************************************************!*\
   !*** ./src/Components/RendererVideo/Methods/addVideoLoadHandler.js ***!
@@ -37354,80 +37444,6 @@ async function reloadVideo() {
   Object.defineProperty(this.body.component.rendererVideo, 'element', {
     value: this.element
   });
-}
-
-/***/ }),
-
-/***/ "./src/Components/RendererVideo/helper/_setCanplayPromise.js":
-/*!*******************************************************************!*\
-  !*** ./src/Components/RendererVideo/helper/_setCanplayPromise.js ***!
-  \*******************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _setCanplayPromise; });
-function _setCanplayPromise() {
-  Object.defineProperty(this, '_canplayPromise', {
-    value: new Promise(resolve => {
-      Object.defineProperty(this, '_canplayResolve', {
-        value: resolve
-      });
-    })
-  });
-}
-
-/***/ }),
-
-/***/ "./src/Components/RendererVideo/helper/pause.js":
-/*!******************************************************!*\
-  !*** ./src/Components/RendererVideo/helper/pause.js ***!
-  \******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return pause; });
-async function pause() {
-  await this.waitLoading();
-  return this.element.pause();
-}
-
-/***/ }),
-
-/***/ "./src/Components/RendererVideo/helper/play.js":
-/*!*****************************************************!*\
-  !*** ./src/Components/RendererVideo/helper/play.js ***!
-  \*****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return play; });
-async function play(time = 0) {
-  // 비디오가 준비될 때 까지 대기
-  await this.waitLoading();
-  this.element.currentTime = time / 1000;
-  this.element.play();
-}
-
-/***/ }),
-
-/***/ "./src/Components/RendererVideo/helper/waitLoading.js":
-/*!************************************************************!*\
-  !*** ./src/Components/RendererVideo/helper/waitLoading.js ***!
-  \************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return waitLoading; });
-function waitLoading() {
-  return this._canplayPromise;
 }
 
 /***/ }),
