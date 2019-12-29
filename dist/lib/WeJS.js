@@ -11869,21 +11869,33 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const RESERVATION = () => ({
-  name: 'renderer-video',
-  src: null,
-  width: 'auto',
-  height: 'auto',
-  controls: false,
-  autoplay: false,
-  muted: false,
-  loop: false,
-  playbackRate: 1,
-  volume: 1,
-  load: _helper_load__WEBPACK_IMPORTED_MODULE_5__["default"],
-  play: _helper_play__WEBPACK_IMPORTED_MODULE_7__["default"],
-  pause: _helper_pause__WEBPACK_IMPORTED_MODULE_6__["default"]
-});
+function RESERVATION() {
+  const ref = {
+    name: 'renderer-video',
+    src: null,
+    width: 'auto',
+    height: 'auto',
+    controls: false,
+    autoplay: false,
+    muted: false,
+    loop: false,
+    playbackRate: 1,
+    volume: 1,
+    load: _helper_load__WEBPACK_IMPORTED_MODULE_5__["default"],
+    play: _helper_play__WEBPACK_IMPORTED_MODULE_7__["default"],
+    pause: _helper_pause__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }; // 비디오가 canplaythrough 이벤트를 발생시키면 _canplayResolve가 호출되고, _canplayPromise가 resolved됩니다.
+  // 이 데이터는 저장되어선 안되므로 enumerable: false 상태입니다.
+
+  Object.defineProperty(ref, '_canplayPromise', {
+    value: new Promise(resolve => {
+      Object.defineProperty(ref, '_canplayResolve', {
+        value: resolve
+      });
+    })
+  });
+  return ref;
+}
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['body'],
 
@@ -11891,8 +11903,7 @@ const RESERVATION = () => ({
     return {
       element: null,
       mountResolve: null,
-      mountPromise: null,
-      canplayResolve: null
+      mountPromise: null
     };
   },
 
@@ -37298,7 +37309,9 @@ __webpack_require__.r(__webpack_exports__);
 function onCanPlayThrough(e) {
   // 비디오가 재생가능한 시점이 되면 비디오 promise를 resolve합니다.
   // 이렇게 resolve된 promise는 body.component.rendererVideo.load 메서드 내부에서 비디오가 재생가능한지 확인하기 위하여 사용합니다.
-  this.canplayResolve(this.element);
+  console.log('canplay');
+
+  this.body.component.rendererVideo._canplayResolve(this.element);
 }
 
 /***/ }),
@@ -37330,10 +37343,12 @@ async function onChangeVideoSrc() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return reloadVideo; });
 async function reloadVideo() {
-  // template가 마운트되기까지 대기하기
-  await this.mountPromise; // Document에 마운트 되었다면
+  const self = this; // template가 마운트되기까지 대기하기
 
-  this.element = this.$el.querySelector('video'); // 컴포넌트의 변수를 수정합니다.
+  await this.mountPromise;
+  console.log('마운트되었음'); // Document에 마운트 되었다면
+
+  this.element = this.$el.querySelector('video'); // 컴포넌트에 element를 등록합니다.
   // 이 내용은 추후 세이브할 때 컴포넌트 정보와 함께 저장되지 않도록 enumerable하게 생성되지 않습니다.
 
   Object.defineProperty(this.body.component.rendererVideo, 'element', {
@@ -37341,9 +37356,11 @@ async function reloadVideo() {
   }); // 비디오가 새롭게 로드되었으니, 비디오 재생이 가능한지 여부를 알려주는 promise를 새롭게 지정합니다.
   // 이 promise는 비디오가 canplaythrough 이벤트를 발생할 때 resolve됩니다.
 
-  Object.defineProperty(this.body.component.rendererVideo, '_canplay', {
+  Object.defineProperty(this.body.component.rendererVideo, '_canplayPromise', {
     value: new Promise(resolve => {
-      this.canplayResolve = resolve;
+      Object.defineProperty(self.body.component.rendererVideo, '_canplayResolve', {
+        value: resolve
+      });
     })
   });
 }
@@ -37361,12 +37378,7 @@ async function reloadVideo() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return load; });
 function load() {
-  return this._canplay || new Promise(resolve => {
-    Object.defineProperty(this, '_canplay', {
-      value: resolve,
-      configurable: true
-    });
-  });
+  return this._canplayPromise;
 }
 
 /***/ }),
@@ -37400,7 +37412,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return play; });
 async function play(time) {
   await this.load();
-  console.log(1);
+  console.log(this, this.element);
   await this.element.play();
   this.element.currentTime = time;
 }
@@ -37984,13 +37996,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class Component {
+  static getNonEnumProps(obj) {
+    const alls = Object.getOwnPropertyNames(obj);
+    const enums = Object.keys(obj);
+    return alls.filter(t => enums.indexOf(t) === -1);
+  }
+
   constructor(info) {
     this.name = null;
-
-    for (let i in info) {
-      const value = info[i];
-      this[i] = value && value.call ? value.bind(this) : vue__WEBPACK_IMPORTED_MODULE_0__["default"].set(this, i, value);
-    }
+    Object.getOwnPropertyNames(info).forEach(property => {
+      const value = info[property];
+      this[property] = value && value.call ? value.bind(this) : vue__WEBPACK_IMPORTED_MODULE_0__["default"].set(this, property, value);
+    });
   }
 
 }
@@ -38027,14 +38044,15 @@ class ComponentBuilder {
 
   constructor(builder) {
     this.builder = builder;
+    this.name = this.builder().name;
   }
 
   build() {
-    let ref = this.builder();
+    let ref;
     if (ComponentBuilder.RESERVATION.has(this.name)) ref = { ...ComponentBuilder.RESERVATION.get(this.name).call(null),
-      ...ref
+      ...this.builder()
     };
-    ref.name = ComponentBuilder.convertToCamelCase(ref.name);
+    ref.name = ComponentBuilder.convertToCamelCase(this.name);
     return new _Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"](ref);
   }
 

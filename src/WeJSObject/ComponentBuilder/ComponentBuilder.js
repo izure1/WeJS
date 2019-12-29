@@ -21,18 +21,19 @@ class ComponentBuilder {
 
   constructor(builder) {
     this.builder = builder
+    this.name = this.builder().name
   }
 
   build() {
 
-    let ref = this.builder()
+    let ref
 
     if (ComponentBuilder.RESERVATION.has(this.name)) ref = {
       ...ComponentBuilder.RESERVATION.get(this.name).call(null),
-      ...ref,
+      ...this.builder(),
     }
 
-    ref.name = ComponentBuilder.convertToCamelCase(ref.name)
+    ref.name = ComponentBuilder.convertToCamelCase(this.name)
     return new Component(ref)
 
   }

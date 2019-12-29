@@ -3,12 +3,18 @@ import Vue from 'vue'
 
 class Component {
 
+  static getNonEnumProps(obj) {
+    const alls = Object.getOwnPropertyNames(obj)
+    const enums = Object.keys(obj)
+    return alls.filter(t => enums.indexOf(t) === -1)
+  }
+
   constructor(info) {
     this.name = null
-    for (let i in info) {
-      const value = info[i]
-      this[i] = value && value.call ? value.bind(this) : Vue.set(this, i, value)
-    }
+    Object.getOwnPropertyNames(info).forEach(property => {
+      const value = info[property]
+      this[property] = value && value.call ? value.bind(this) : Vue.set(this, property, value)
+    })
   }
 
 }

@@ -18,23 +18,39 @@
   import pause from './helper/pause'
   import play from './helper/play'
 
-  export const RESERVATION = () => ({
-    name: 'renderer-video',
-    src: null,
-    width: 'auto',
-    height: 'auto',
-    controls: false,
-    autoplay: false,
-    muted: false,
-    loop: false,
+  export function RESERVATION() {
 
-    playbackRate: 1,
-    volume: 1,
+    const ref = {
+      name: 'renderer-video',
+      src: null,
+      width: 'auto',
+      height: 'auto',
+      controls: false,
+      autoplay: false,
+      muted: false,
+      loop: false,
 
-    load,
-    play,
-    pause,
-  })
+      playbackRate: 1,
+      volume: 1,
+
+      load,
+      play,
+      pause,
+    }
+
+    // 비디오가 canplaythrough 이벤트를 발생시키면 _canplayResolve가 호출되고, _canplayPromise가 resolved됩니다.
+    // 이 데이터는 저장되어선 안되므로 enumerable: false 상태입니다.
+    Object.defineProperty(ref, '_canplayPromise', {
+      value: new Promise(resolve => {
+        Object.defineProperty(ref, '_canplayResolve', {
+          value: resolve
+        })
+      })
+    })
+
+    return ref
+
+  }
 
   export default {
     props: ['body'],
@@ -43,7 +59,6 @@
         element: null,
         mountResolve: null,
         mountPromise: null,
-        canplayResolve: null,
       }
     },
     methods: {
