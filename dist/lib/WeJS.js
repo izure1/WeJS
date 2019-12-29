@@ -11575,7 +11575,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return RESERVATION; });
-const RESERVATION = {
+const RESERVATION = () => ({
   name: 'camera',
   x: 0,
   y: 0,
@@ -11586,7 +11586,7 @@ const RESERVATION = {
   duration: 0,
   delay: 0,
   ease: 'linear'
-};
+});
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['body']
 });
@@ -11603,10 +11603,10 @@ const RESERVATION = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return RESERVATION; });
-const RESERVATION = {
+const RESERVATION = () => ({
   name: 'children',
   lists: []
-};
+});
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -11621,7 +11621,7 @@ const RESERVATION = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return RESERVATION; });
-const RESERVATION = {
+const RESERVATION = () => ({
   name: 'dataset',
 
   add(p, v) {
@@ -11637,7 +11637,7 @@ const RESERVATION = {
     return this.hasOwnProperty(p);
   }
 
-};
+});
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -11652,7 +11652,7 @@ const RESERVATION = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return RESERVATION; });
-const RESERVATION = {
+const RESERVATION = () => ({
   name: 'filter',
   blur: 0,
   brightness: 1,
@@ -11665,7 +11665,7 @@ const RESERVATION = {
   duration: 0,
   delay: 0,
   ease: 'linear'
-};
+});
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['body']
 });
@@ -11686,10 +11686,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-const RESERVATION = {
+const RESERVATION = () => ({
   name: 'html',
   content: ''
-};
+});
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['body']
 });
@@ -11710,9 +11710,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-const RESERVATION = {
+const RESERVATION = () => ({
   name: 'physics'
-};
+});
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['component']
 });
@@ -11747,11 +11747,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const RESERVATION = {
+const RESERVATION = () => ({
   name: 'physics-world',
   gravityX: 0,
   gravityY: -9.8
-};
+});
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: () => ({
     box2d: Object(_External_Box2D_Box2D__WEBPACK_IMPORTED_MODULE_0__["default"])(_Vars_CONFIG__WEBPACK_IMPORTED_MODULE_1__["default"]),
@@ -11813,7 +11813,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 
-const RESERVATION = {
+const RESERVATION = () => ({
   name: 'renderer-image',
   src: null,
   width: 'auto',
@@ -11821,7 +11821,7 @@ const RESERVATION = {
   duration: 0,
   delay: 0,
   ease: 'linear'
-};
+});
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['body'],
   computed: {
@@ -11869,7 +11869,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const RESERVATION = {
+const RESERVATION = () => ({
   name: 'renderer-video',
   src: null,
   width: 'auto',
@@ -11883,7 +11883,7 @@ const RESERVATION = {
   load: _helper_load__WEBPACK_IMPORTED_MODULE_5__["default"],
   play: _helper_play__WEBPACK_IMPORTED_MODULE_7__["default"],
   pause: _helper_pause__WEBPACK_IMPORTED_MODULE_6__["default"]
-};
+});
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['body'],
 
@@ -11960,7 +11960,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
-const RESERVATION = {
+const RESERVATION = () => ({
   name: 'text',
   content: '',
   width: 'auto',
@@ -11974,7 +11974,7 @@ const RESERVATION = {
   color: 'black',
   textAlign: 'left',
   lineHeight: 1
-};
+});
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['body'],
   data: () => ({
@@ -12015,7 +12015,7 @@ const RESERVATION = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return RESERVATION; });
-const RESERVATION = {
+const RESERVATION = () => ({
   name: 'transform',
   x: 0,
   y: 0,
@@ -12027,7 +12027,7 @@ const RESERVATION = {
   duration: 0,
   delay: 0,
   ease: 'linear'
-};
+});
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['body']
 });
@@ -36948,47 +36948,47 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const PACKAGES = [{
-  name: _Camera_Component_vue__WEBPACK_IMPORTED_MODULE_0__["RESERVATION"].name,
+  name: Object(_Camera_Component_vue__WEBPACK_IMPORTED_MODULE_0__["RESERVATION"])().name,
   reservation: _Camera_Component_vue__WEBPACK_IMPORTED_MODULE_0__["RESERVATION"],
   component: _Camera_Component_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
 }, {
-  name: _Transform_Component_vue__WEBPACK_IMPORTED_MODULE_1__["RESERVATION"].name,
+  name: Object(_Transform_Component_vue__WEBPACK_IMPORTED_MODULE_1__["RESERVATION"])().name,
   reservation: _Transform_Component_vue__WEBPACK_IMPORTED_MODULE_1__["RESERVATION"],
   component: _Transform_Component_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
 }, {
-  name: _Filter_Component__WEBPACK_IMPORTED_MODULE_2__["RESERVATION"].name,
+  name: Object(_Filter_Component__WEBPACK_IMPORTED_MODULE_2__["RESERVATION"])().name,
   reservation: _Filter_Component__WEBPACK_IMPORTED_MODULE_2__["RESERVATION"],
   component: _Filter_Component__WEBPACK_IMPORTED_MODULE_2__["default"]
 }, {
-  name: _Children_Component_vue__WEBPACK_IMPORTED_MODULE_3__["RESERVATION"].name,
+  name: Object(_Children_Component_vue__WEBPACK_IMPORTED_MODULE_3__["RESERVATION"])().name,
   reservation: _Children_Component_vue__WEBPACK_IMPORTED_MODULE_3__["RESERVATION"],
   component: _Children_Component_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
 }, {
-  name: _PhysicsWorld_Component_vue__WEBPACK_IMPORTED_MODULE_4__["RESERVATION"].name,
+  name: Object(_PhysicsWorld_Component_vue__WEBPACK_IMPORTED_MODULE_4__["RESERVATION"])().name,
   reservation: _PhysicsWorld_Component_vue__WEBPACK_IMPORTED_MODULE_4__["RESERVATION"],
   component: _PhysicsWorld_Component_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
-  name: _Physics_Component_vue__WEBPACK_IMPORTED_MODULE_5__["RESERVATION"].name,
+  name: Object(_Physics_Component_vue__WEBPACK_IMPORTED_MODULE_5__["RESERVATION"])().name,
   reservation: _Physics_Component_vue__WEBPACK_IMPORTED_MODULE_5__["RESERVATION"],
   component: _Physics_Component_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
-  name: _Text_Component_vue__WEBPACK_IMPORTED_MODULE_6__["RESERVATION"].name,
+  name: Object(_Text_Component_vue__WEBPACK_IMPORTED_MODULE_6__["RESERVATION"])().name,
   reservation: _Text_Component_vue__WEBPACK_IMPORTED_MODULE_6__["RESERVATION"],
   component: _Text_Component_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
 }, {
-  name: _Html_Component_vue__WEBPACK_IMPORTED_MODULE_7__["RESERVATION"].name,
+  name: Object(_Html_Component_vue__WEBPACK_IMPORTED_MODULE_7__["RESERVATION"])().name,
   reservation: _Html_Component_vue__WEBPACK_IMPORTED_MODULE_7__["RESERVATION"],
   component: _Html_Component_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
 }, {
-  name: _RendererImage_Component_vue__WEBPACK_IMPORTED_MODULE_8__["RESERVATION"].name,
+  name: Object(_RendererImage_Component_vue__WEBPACK_IMPORTED_MODULE_8__["RESERVATION"])().name,
   reservation: _RendererImage_Component_vue__WEBPACK_IMPORTED_MODULE_8__["RESERVATION"],
   component: _RendererImage_Component_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
 }, {
-  name: _RendererVideo_Component_vue__WEBPACK_IMPORTED_MODULE_9__["RESERVATION"].name,
+  name: Object(_RendererVideo_Component_vue__WEBPACK_IMPORTED_MODULE_9__["RESERVATION"])().name,
   reservation: _RendererVideo_Component_vue__WEBPACK_IMPORTED_MODULE_9__["RESERVATION"],
   component: _RendererVideo_Component_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
 }, {
-  name: _Dataset_Component_vue__WEBPACK_IMPORTED_MODULE_10__["RESERVATION"].name,
+  name: Object(_Dataset_Component_vue__WEBPACK_IMPORTED_MODULE_10__["RESERVATION"])().name,
   reservation: _Dataset_Component_vue__WEBPACK_IMPORTED_MODULE_10__["RESERVATION"],
   component: _Dataset_Component_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
 }]; // Map 자료형의 방식으로 받고 싶다면, import { MAP as 변수명 } 의 방식을 이용하십시오.
@@ -38021,25 +38021,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
  */
 
 class ComponentBuilder {
-  static copyJSON(raw) {
-    return JSON.parse(JSON.stringify(raw));
-  }
-
   static convertToCamelCase(raw) {
     return raw.replace(/\-(.?)/g, (matched, character) => character.toUpperCase());
   }
 
-  constructor(info) {
-    Object.assign(this, info);
+  constructor(builder) {
+    this.builder = builder;
   }
 
   build() {
-    let ref = ComponentBuilder.copyJSON(this);
-    if (ComponentBuilder.RESERVATION.has(this.name)) ref = { ...ComponentBuilder.copyJSON(ComponentBuilder.RESERVATION.get(this.name)),
-      ...this
+    let ref = this.builder();
+    if (ComponentBuilder.RESERVATION.has(this.name)) ref = { ...ComponentBuilder.RESERVATION.get(this.name).call(null),
+      ...ref
     };
     ref.name = ComponentBuilder.convertToCamelCase(ref.name);
-    ref = Object.assign({}, this, ref);
     return new _Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"](ref);
   }
 
@@ -38071,9 +38066,9 @@ class ComponentFactory {
   }
 
   createFromName(name) {
-    return this.create({
+    return this.create(() => ({
       name
-    });
+    }));
   }
 
 }

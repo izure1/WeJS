@@ -12,10 +12,6 @@ import {
  */
 class ComponentBuilder {
 
-  static copyJSON(raw) {
-    return JSON.parse(JSON.stringify(raw))
-  }
-
   static convertToCamelCase(raw) {
     return raw.replace(/\-(.?)/g, (matched, character) => character.toUpperCase())
   }
@@ -23,22 +19,20 @@ class ComponentBuilder {
   static RESERVATION = RESERVATION_MAP
   static COMPONENT = COMPONENT_MAP
 
-  constructor(info) {
-    Object.assign(this, info)
+  constructor(builder) {
+    this.builder = builder
   }
 
   build() {
 
-    let ref = ComponentBuilder.copyJSON(this)
+    let ref = this.builder()
 
     if (ComponentBuilder.RESERVATION.has(this.name)) ref = {
-      ...ComponentBuilder.copyJSON(ComponentBuilder.RESERVATION.get(this.name)),
-      ...this,
+      ...ComponentBuilder.RESERVATION.get(this.name).call(null),
+      ...ref,
     }
 
     ref.name = ComponentBuilder.convertToCamelCase(ref.name)
-    ref = Object.assign({}, this, ref)
-
     return new Component(ref)
 
   }

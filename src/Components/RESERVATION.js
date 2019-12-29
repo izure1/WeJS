@@ -45,67 +45,67 @@ import COMPONENT_DATASET, {
 const PACKAGES = [
 
   {
-    name: CAMERA.name,
+    name: CAMERA().name,
     reservation: CAMERA,
     component: COMPONENT_CAMERA,
   },
 
   {
-    name: TRANSFORM.name,
+    name: TRANSFORM().name,
     reservation: TRANSFORM,
     component: COMPONENT_TRANSFORM,
   },
 
   {
-    name: FILTER.name,
+    name: FILTER().name,
     reservation: FILTER,
     component: COMPONENT_FILTER,
   },
 
   {
-    name: CHILDREN.name,
+    name: CHILDREN().name,
     reservation: CHILDREN,
     component: COMPONENT_CHILDREN,
   },
 
   {
-    name: PHYSICS_WORLD.name,
+    name: PHYSICS_WORLD().name,
     reservation: PHYSICS_WORLD,
     component: COMPONENT_PHYSICS_WORLD,
   },
 
   {
-    name: PHYSICS.name,
+    name: PHYSICS().name,
     reservation: PHYSICS,
     component: COMPONENT_PHYSICS,
   },
 
   {
-    name: TEXT.name,
+    name: TEXT().name,
     reservation: TEXT,
     component: COMPONENT_TEXT,
   },
 
   {
-    name: HTML.name,
+    name: HTML().name,
     reservation: HTML,
     component: COMPONENT_HTML,
   },
 
   {
-    name: RENDERER_IMAGE.name,
+    name: RENDERER_IMAGE().name,
     reservation: RENDERER_IMAGE,
     component: COMPONENT_RENDERER_IMAGE,
   },
 
   {
-    name: RENDERER_VIDEO.name,
+    name: RENDERER_VIDEO().name,
     reservation: RENDERER_VIDEO,
     component: COMPONENT_RENDERER_VIDEO,
   },
 
   {
-    name: DATASET.name,
+    name: DATASET().name,
     reservation: DATASET,
     component: COMPONENT_DATASET,
   },
