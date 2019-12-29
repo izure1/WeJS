@@ -3,9 +3,9 @@
 </template>
 
 <script>
-  export const RESERVATION = {
+  export const RESERVATION = () => ({
     name: 'physics'
-  }
+  })
 
   export default {
     props: ['component'],

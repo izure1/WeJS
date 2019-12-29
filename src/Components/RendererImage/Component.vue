@@ -21,7 +21,7 @@
   import blobUri from './Computed/blobUri'
   import parseImageSize from './Methods/parseImageSize'
 
-  export const RESERVATION = {
+  export const RESERVATION = () => ({
     name: 'renderer-image',
     src: null,
     width: 'auto',
@@ -29,7 +29,7 @@
     duration: 0,
     delay: 0,
     ease: 'linear',
-  }
+  })
 
   export default {
     props: ['body'],

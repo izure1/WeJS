@@ -41,12 +41,9 @@
       // 씬에 객체를 추가합니다.
       scene.component.children.lists.push(video)
 
-      // 비디오가 로드될 때 까지 대기합니다.
-      await video.component.rendererVideo.load()
-
-      console.log(video.component.rendererVideo._element, 2)
-      // video.component.rendererVideo.play(100)
-      // video.component.rendererVideo.pause()
+      // load 메서드를 사용하거나, play 메서드를 사용할 경우 비디오가 Document에 완벽히 부착될 때 까지 비동기로 대기합니다.
+      // 비디오를 3초부터 재생합니다.
+      await video.component.rendererVideo.play(3000)
 
     })()
 

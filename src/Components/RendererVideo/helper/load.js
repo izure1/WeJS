@@ -1,7 +1,7 @@
 export default function load() {
 
-  return new Promise(resolve => {
-    Object.defineProperty(this, '_resolve', {
+  return this._canplay || new Promise(resolve => {
+    Object.defineProperty(this, '_canplay', {
       value: resolve,
       configurable: true,
     })

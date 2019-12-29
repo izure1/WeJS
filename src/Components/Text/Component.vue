@@ -6,7 +6,7 @@
   import drawText from './Methods/drawText'
 
 
-  export const RESERVATION = {
+  export const RESERVATION = () => ({
     name: 'text',
     content: '',
     width: 'auto',
@@ -20,7 +20,7 @@
     color: 'black',
     textAlign: 'left',
     lineHeight: 1,
-  }
+  })
 
   export default {
     props: ['body'],

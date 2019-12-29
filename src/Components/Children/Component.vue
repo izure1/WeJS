@@ -1,8 +1,8 @@
 <script>
-  export const RESERVATION = {
+  export const RESERVATION = () => ({
     name: 'children',
     lists: [],
-  }
+  })
 
   export default {}
 </script>

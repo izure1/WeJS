@@ -8,13 +8,17 @@
 </template>
 
 <script>
+  import onChangeVideoSrc from './Methods/onChangeVideoSrc'
+  import onCanPlayThrough from './Methods/onCanPlayThrough'
+  import reloadVideo from './Methods/reloadVideo'
   import modifyVideoProperty from './Methods/modifyVideoProperty'
+  import addVideoLoadHandler from './Methods/addVideoLoadHandler'
 
   import load from './helper/load'
   import pause from './helper/pause'
   import play from './helper/play'
 
-  export const RESERVATION = {
+  export const RESERVATION = () => ({
     name: 'renderer-video',
     src: null,
     width: 'auto',
@@ -30,34 +34,53 @@
     load,
     play,
     pause,
-  }
+  })
 
   export default {
     props: ['body'],
-    data: () => ({
-      element: null
-    }),
+    data() {
+      return {
+        element: null,
+        mountResolve: null,
+        mountPromise: null,
+        canplayResolve: null,
+      }
+    },
     methods: {
-      modifyVideoProperty
+      onChangeVideoSrc,
+      onCanPlayThrough,
+      reloadVideo,
+      modifyVideoProperty,
+      addVideoLoadHandler,
+    },
+    created() {
+      // template가 마운트될 때 resolve되는 promise 객체를 담습니다.
+      // 이후 마운트되었는지 확인하고 싶다면 await this.mountPromise 처럼 이용하십시오.
+      this.mountPromise = new Promise(resolve => {
+        this.mountResolve = resolve
+      })
     },
     mounted() {
-      this.element = this.$el.querySelector('video')
-      this.body.component.rendererVideo._resolve(this.element)
+      // 비디오 element에 oncanplaythrough 이벤트 핸들러 최초 1회 할당합니다.
+      this.addVideoLoadHandler()
+      // 마운트 완료 시점을 알려주는 mouseResolve 호출
+      this.mountResolve()
+      // 비디오를 초기화하기 위해서 onChangeVideoSrc 함수를 호출합니다.
+      this.onChangeVideoSrc()
     },
     watch: {
-      element() {
-        // template이 실제 Document에 부착되면 컴포넌트의 element를 수정합니다.
-        this.modifyVideoProperty()
-        Object.defineProperty(this.body.component.rendererVideo, '_element', {
-          value: this.$el.querySelector('video'),
-          configurable: true,
-        })
+      src() {
+        // 주소가 변경되면 비디오를 새롭게 불러들이고, body.component.rendererVideo._canplay
+        this.onChangeVideoSrc()
       },
-      'body.component.rendererVideo': {
-        deep: true,
-        handler() {
-          this.modifyVideoProperty()
-        }
+      element() {
+        this.modifyVideoProperty()
+      },
+      'body.component.rendererVideo.playbackRate'() {
+        this.modifyVideoProperty()
+      },
+      'body.component.rendererVideo.volume'() {
+        this.modifyVideoProperty()
       }
     }
   }

@@ -1,5 +1,6 @@
 export default async function play(time) {
   await this.load()
-  this._element.currentTime = time
-  this._element.play()
+  console.log(1)
+  await this.element.play()
+  this.element.currentTime = time
 }

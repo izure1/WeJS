@@ -1,5 +1,5 @@
 <script>
-  export const RESERVATION = {
+  export const RESERVATION = () => ({
     name: 'camera',
     x: 0,
     y: 0,
@@ -10,7 +10,7 @@
     duration: 0,
     delay: 0,
     ease: 'linear',
-  }
+  })
 
   export default {
     props: ['body']

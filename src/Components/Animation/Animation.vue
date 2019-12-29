@@ -2,7 +2,7 @@
   import Animation from './Animation.js'
 
 
-  export const RESERVATION = {
+  export const RESERVATION = () => ({
     name: 'animation',
     set(name) {
       this[name] = new Animation
@@ -11,9 +11,9 @@
 
     },
     start(after, duration, ease) {
-      
+
     },
-  }
+  })
 
   export default {
     props: ['body']

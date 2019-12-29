@@ -14,11 +14,11 @@
   import gravityY from './Watch/gravityY'
 
 
-  export const RESERVATION = {
+  export const RESERVATION = () => ({
     name: 'physics-world',
     gravityX: 0,
     gravityY: -9.8,
-  }
+  })
 
   export default {
 

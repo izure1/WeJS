@@ -1,5 +1,5 @@
 <script>
-  export const RESERVATION = {
+  export const RESERVATION = () => ({
     name: 'dataset',
     add(p, v) {
       this[p] = v
@@ -11,7 +11,7 @@
     has(p) {
       return this.hasOwnProperty(p)
     },
-  }
+  })
 
   export default {
 

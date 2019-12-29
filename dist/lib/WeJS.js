@@ -11844,10 +11844,14 @@ const RESERVATION = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return RESERVATION; });
-/* harmony import */ var _Methods_modifyVideoProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Methods/modifyVideoProperty */ "./src/Components/RendererVideo/Methods/modifyVideoProperty.js");
-/* harmony import */ var _helper_load__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helper/load */ "./src/Components/RendererVideo/helper/load.js");
-/* harmony import */ var _helper_pause__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helper/pause */ "./src/Components/RendererVideo/helper/pause.js");
-/* harmony import */ var _helper_play__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./helper/play */ "./src/Components/RendererVideo/helper/play.js");
+/* harmony import */ var _Methods_onChangeVideoSrc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Methods/onChangeVideoSrc */ "./src/Components/RendererVideo/Methods/onChangeVideoSrc.js");
+/* harmony import */ var _Methods_onCanPlayThrough__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Methods/onCanPlayThrough */ "./src/Components/RendererVideo/Methods/onCanPlayThrough.js");
+/* harmony import */ var _Methods_reloadVideo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Methods/reloadVideo */ "./src/Components/RendererVideo/Methods/reloadVideo.js");
+/* harmony import */ var _Methods_modifyVideoProperty__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Methods/modifyVideoProperty */ "./src/Components/RendererVideo/Methods/modifyVideoProperty.js");
+/* harmony import */ var _Methods_addVideoLoadHandler__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Methods/addVideoLoadHandler */ "./src/Components/RendererVideo/Methods/addVideoLoadHandler.js");
+/* harmony import */ var _helper_load__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./helper/load */ "./src/Components/RendererVideo/helper/load.js");
+/* harmony import */ var _helper_pause__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./helper/pause */ "./src/Components/RendererVideo/helper/pause.js");
+/* harmony import */ var _helper_play__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./helper/play */ "./src/Components/RendererVideo/helper/play.js");
 //
 //
 //
@@ -11857,6 +11861,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
+
+
+
 
 
 
@@ -11872,43 +11880,65 @@ const RESERVATION = {
   loop: false,
   playbackRate: 1,
   volume: 1,
-  load: _helper_load__WEBPACK_IMPORTED_MODULE_1__["default"],
-  play: _helper_play__WEBPACK_IMPORTED_MODULE_3__["default"],
-  pause: _helper_pause__WEBPACK_IMPORTED_MODULE_2__["default"]
+  load: _helper_load__WEBPACK_IMPORTED_MODULE_5__["default"],
+  play: _helper_play__WEBPACK_IMPORTED_MODULE_7__["default"],
+  pause: _helper_pause__WEBPACK_IMPORTED_MODULE_6__["default"]
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['body'],
-  data: () => ({
-    element: null
-  }),
+
+  data() {
+    return {
+      element: null,
+      mountResolve: null,
+      mountPromise: null,
+      canplayResolve: null
+    };
+  },
+
   methods: {
-    modifyVideoProperty: _Methods_modifyVideoProperty__WEBPACK_IMPORTED_MODULE_0__["default"]
+    onChangeVideoSrc: _Methods_onChangeVideoSrc__WEBPACK_IMPORTED_MODULE_0__["default"],
+    onCanPlayThrough: _Methods_onCanPlayThrough__WEBPACK_IMPORTED_MODULE_1__["default"],
+    reloadVideo: _Methods_reloadVideo__WEBPACK_IMPORTED_MODULE_2__["default"],
+    modifyVideoProperty: _Methods_modifyVideoProperty__WEBPACK_IMPORTED_MODULE_3__["default"],
+    addVideoLoadHandler: _Methods_addVideoLoadHandler__WEBPACK_IMPORTED_MODULE_4__["default"]
+  },
+
+  created() {
+    // template가 마운트될 때 resolve되는 promise 객체를 담습니다.
+    // 이후 마운트되었는지 확인하고 싶다면 await this.mountPromise 처럼 이용하십시오.
+    this.mountPromise = new Promise(resolve => {
+      this.mountResolve = resolve;
+    });
   },
 
   mounted() {
-    this.element = this.$el.querySelector('video');
+    // 비디오 element에 oncanplaythrough 이벤트 핸들러 최초 1회 할당합니다.
+    this.addVideoLoadHandler(); // 마운트 완료 시점을 알려주는 mouseResolve 호출
 
-    this.body.component.rendererVideo._resolve(this.element);
+    this.mountResolve(); // 비디오를 초기화하기 위해서 onChangeVideoSrc 함수를 호출합니다.
+
+    this.onChangeVideoSrc();
   },
 
   watch: {
-    element() {
-      // template이 실제 Document에 부착되면 컴포넌트의 element를 수정합니다.
-      this.modifyVideoProperty();
-      Object.defineProperty(this.body.component.rendererVideo, '_element', {
-        value: this.$el.querySelector('video'),
-        configurable: true
-      });
+    src() {
+      // 주소가 변경되면 비디오를 새롭게 불러들이고, body.component.rendererVideo._canplay
+      this.onChangeVideoSrc();
     },
 
-    'body.component.rendererVideo': {
-      deep: true,
+    element() {
+      this.modifyVideoProperty();
+    },
 
-      handler() {
-        this.modifyVideoProperty();
-      }
+    'body.component.rendererVideo.playbackRate'() {
+      this.modifyVideoProperty();
+    },
 
+    'body.component.rendererVideo.volume'() {
+      this.modifyVideoProperty();
     }
+
   }
 });
 
@@ -37217,6 +37247,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/Components/RendererVideo/Methods/addVideoLoadHandler.js":
+/*!*********************************************************************!*\
+  !*** ./src/Components/RendererVideo/Methods/addVideoLoadHandler.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return addVideoLoadHandler; });
+function addVideoLoadHandler() {
+  this.$el.querySelector('video').addEventListener('canplaythrough', this.onCanPlayThrough);
+}
+
+/***/ }),
+
 /***/ "./src/Components/RendererVideo/Methods/modifyVideoProperty.js":
 /*!*********************************************************************!*\
   !*** ./src/Components/RendererVideo/Methods/modifyVideoProperty.js ***!
@@ -37239,6 +37285,71 @@ function setVideoProperty() {
 
 /***/ }),
 
+/***/ "./src/Components/RendererVideo/Methods/onCanPlayThrough.js":
+/*!******************************************************************!*\
+  !*** ./src/Components/RendererVideo/Methods/onCanPlayThrough.js ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return onCanPlayThrough; });
+function onCanPlayThrough(e) {
+  // 비디오가 재생가능한 시점이 되면 비디오 promise를 resolve합니다.
+  // 이렇게 resolve된 promise는 body.component.rendererVideo.load 메서드 내부에서 비디오가 재생가능한지 확인하기 위하여 사용합니다.
+  this.canplayResolve(this.element);
+}
+
+/***/ }),
+
+/***/ "./src/Components/RendererVideo/Methods/onChangeVideoSrc.js":
+/*!******************************************************************!*\
+  !*** ./src/Components/RendererVideo/Methods/onChangeVideoSrc.js ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return onChangeVideoSrc; });
+async function onChangeVideoSrc() {
+  await this.reloadVideo();
+}
+
+/***/ }),
+
+/***/ "./src/Components/RendererVideo/Methods/reloadVideo.js":
+/*!*************************************************************!*\
+  !*** ./src/Components/RendererVideo/Methods/reloadVideo.js ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return reloadVideo; });
+async function reloadVideo() {
+  // template가 마운트되기까지 대기하기
+  await this.mountPromise; // Document에 마운트 되었다면
+
+  this.element = this.$el.querySelector('video'); // 컴포넌트의 변수를 수정합니다.
+  // 이 내용은 추후 세이브할 때 컴포넌트 정보와 함께 저장되지 않도록 enumerable하게 생성되지 않습니다.
+
+  Object.defineProperty(this.body.component.rendererVideo, 'element', {
+    value: this.element
+  }); // 비디오가 새롭게 로드되었으니, 비디오 재생이 가능한지 여부를 알려주는 promise를 새롭게 지정합니다.
+  // 이 promise는 비디오가 canplaythrough 이벤트를 발생할 때 resolve됩니다.
+
+  Object.defineProperty(this.body.component.rendererVideo, '_canplay', {
+    value: new Promise(resolve => {
+      this.canplayResolve = resolve;
+    })
+  });
+}
+
+/***/ }),
+
 /***/ "./src/Components/RendererVideo/helper/load.js":
 /*!*****************************************************!*\
   !*** ./src/Components/RendererVideo/helper/load.js ***!
@@ -37250,8 +37361,8 @@ function setVideoProperty() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return load; });
 function load() {
-  return new Promise(resolve => {
-    Object.defineProperty(this, '_resolve', {
+  return this._canplay || new Promise(resolve => {
+    Object.defineProperty(this, '_canplay', {
       value: resolve,
       configurable: true
     });
@@ -37272,8 +37383,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return pause; });
 async function pause() {
   await this.load();
-
-  this._element.pause();
+  return this.element.pause();
 }
 
 /***/ }),
@@ -37290,9 +37400,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return play; });
 async function play(time) {
   await this.load();
-  this._element.currentTime = time;
-
-  this._element.play();
+  console.log(1);
+  await this.element.play();
+  this.element.currentTime = time;
 }
 
 /***/ }),

@@ -3,10 +3,10 @@
 </template>
 
 <script>
-  export const RESERVATION = {
+  export const RESERVATION = () => ({
     name: 'html',
     content: ''
-  }
+  })
 
   export default {
     props: ['body']

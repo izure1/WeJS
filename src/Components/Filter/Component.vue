@@ -1,5 +1,5 @@
 <script>
-  export const RESERVATION = {
+  export const RESERVATION = () => ({
     name: 'filter',
     blur: 0,
     brightness: 1,
@@ -12,7 +12,7 @@
     duration: 0,
     delay: 0,
     ease: 'linear',
-  }
+  })
 
   export default {
     props: ['body']
