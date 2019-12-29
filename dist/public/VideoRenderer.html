@@ -6,6 +6,9 @@
 
 <body>
   <div id="app"></div>
+  <div>
+    <button onclick="play(3000)">Play</button>
+  </div>
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <script src="../lib/WeJS.js"></script>
   <script>
@@ -40,11 +43,6 @@
 
       // 씬에 객체를 추가합니다.
       scene.component.children.lists.push(video)
-      console.log(video.component.rendererVideo._canplayPromise)
-
-      // load 메서드를 사용하거나, play 메서드를 사용할 경우 비디오가 Document에 완벽히 부착될 때 까지 비동기로 대기합니다.
-      // 비디오를 3초부터 재생합니다.
-      await video.component.rendererVideo.play(3000)
 
     })()
 
@@ -55,6 +53,13 @@
 
     // 앱에서 씬을 실행
     app.launch(scene)
+  </script>
+  <script>
+    async function play(time) {
+      // load 메서드를 사용하거나, play 메서드를 사용할 경우 비디오가 Document에 완벽히 부착될 때 까지 비동기로 대기합니다.
+      // 비디오를 3초부터 재생합니다.
+      video.component.rendererVideo.play(time)
+    }
   </script>
 </body>
 

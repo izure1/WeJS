@@ -14,7 +14,8 @@
   import modifyVideoProperty from './Methods/modifyVideoProperty'
   import addVideoLoadHandler from './Methods/addVideoLoadHandler'
 
-  import load from './helper/load'
+  import _setCanplayPromise from './helper/_setCanplayPromise'
+  import waitLoading from './helper/waitLoading'
   import pause from './helper/pause'
   import play from './helper/play'
 
@@ -33,21 +34,15 @@
       playbackRate: 1,
       volume: 1,
 
-      load,
+      _setCanplayPromise,
+      waitLoading,
       play,
       pause,
     }
 
-    // 비디오가 canplaythrough 이벤트를 발생시키면 _canplayResolve가 호출되고, _canplayPromise가 resolved됩니다.
+    // 비디오가 이벤트를 발생시키면 그에 맞는 resolve가 호출되고, 프로미스가 resolved됩니다.
     // 이 데이터는 저장되어선 안되므로 enumerable: false 상태입니다.
-    Object.defineProperty(ref, '_canplayPromise', {
-      value: new Promise(resolve => {
-        Object.defineProperty(ref, '_canplayResolve', {
-          value: resolve
-        })
-      })
-    })
-
+    ref._setCanplayPromise.call(ref)
     return ref
 
   }
@@ -56,6 +51,7 @@
     props: ['body'],
     data() {
       return {
+        start: 0,
         element: null,
         mountResolve: null,
         mountPromise: null,
@@ -76,12 +72,12 @@
       })
     },
     mounted() {
-      // 비디오 element에 oncanplaythrough 이벤트 핸들러 최초 1회 할당합니다.
+      // 비디오 element에 onloadedmetadata, oncanplaythrough 이벤트 핸들러 최초 1회 할당합니다.
       this.addVideoLoadHandler()
       // 마운트 완료 시점을 알려주는 mouseResolve 호출
       this.mountResolve()
       // 비디오를 초기화하기 위해서 onChangeVideoSrc 함수를 호출합니다.
-      this.onChangeVideoSrc()
+      this.reloadVideo()
     },
     watch: {
       src() {

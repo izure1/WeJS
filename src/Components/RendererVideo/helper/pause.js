@@ -1,4 +1,4 @@
 export default async function pause() {
-  await this.load()
+  await this.waitLoading()
   return this.element.pause()
 }
