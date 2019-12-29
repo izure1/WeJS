@@ -16,24 +16,33 @@ class ComponentBuilder {
     return raw.replace(/\-(.?)/g, (matched, character) => character.toUpperCase())
   }
 
+  static getNonEnumProps(obj) {
+    const alls = Object.getOwnPropertyNames(obj)
+    const enums = Object.keys(obj)
+    return alls.filter(t => enums.indexOf(t) === -1)
+  }
+
   static RESERVATION = RESERVATION_MAP
   static COMPONENT = COMPONENT_MAP
 
-  constructor(builder) {
-    this.builder = builder
-    this.name = this.builder().name
+  constructor(reservation) {
+    this.data = reservation
   }
 
   build() {
 
     let ref
 
-    if (ComponentBuilder.RESERVATION.has(this.name)) ref = {
-      ...ComponentBuilder.RESERVATION.get(this.name).call(null),
-      ...this.builder(),
+    if (ComponentBuilder.RESERVATION.has(this.data.name)) ref = {
+      ...ComponentBuilder.RESERVATION.get(this.data.name).call(null),
+      ...this,
     }
 
-    ref.name = ComponentBuilder.convertToCamelCase(this.name)
+
+    const nonEnums = ComponentBuilder.getNonEnumProps(this.data)
+    nonEnums.forEach(property => ref[property] = this.data[property])
+
+    ref.name = ComponentBuilder.convertToCamelCase(this.data.name)
     return new Component(ref)
 
   }

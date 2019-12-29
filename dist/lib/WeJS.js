@@ -37996,12 +37996,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class Component {
-  static getNonEnumProps(obj) {
-    const alls = Object.getOwnPropertyNames(obj);
-    const enums = Object.keys(obj);
-    return alls.filter(t => enums.indexOf(t) === -1);
-  }
-
   constructor(info) {
     this.name = null;
     Object.getOwnPropertyNames(info).forEach(property => {
@@ -38042,17 +38036,24 @@ class ComponentBuilder {
     return raw.replace(/\-(.?)/g, (matched, character) => character.toUpperCase());
   }
 
-  constructor(builder) {
-    this.builder = builder;
-    this.name = this.builder().name;
+  static getNonEnumProps(obj) {
+    const alls = Object.getOwnPropertyNames(obj);
+    const enums = Object.keys(obj);
+    return alls.filter(t => enums.indexOf(t) === -1);
+  }
+
+  constructor(reservation) {
+    this.data = reservation;
   }
 
   build() {
     let ref;
-    if (ComponentBuilder.RESERVATION.has(this.name)) ref = { ...ComponentBuilder.RESERVATION.get(this.name).call(null),
-      ...this.builder()
+    if (ComponentBuilder.RESERVATION.has(this.data.name)) ref = { ...ComponentBuilder.RESERVATION.get(this.data.name).call(null),
+      ...this
     };
-    ref.name = ComponentBuilder.convertToCamelCase(this.name);
+    const nonEnums = ComponentBuilder.getNonEnumProps(this.data);
+    nonEnums.forEach(property => ref[property] = this.data[property]);
+    ref.name = ComponentBuilder.convertToCamelCase(this.data.name);
     return new _Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"](ref);
   }
 
@@ -38080,6 +38081,7 @@ __webpack_require__.r(__webpack_exports__);
 
 class ComponentFactory {
   create(reservation) {
+    reservation = reservation();
     return new _ComponentBuilder_ComponentBuilder__WEBPACK_IMPORTED_MODULE_0__["default"](reservation).build();
   }
 
