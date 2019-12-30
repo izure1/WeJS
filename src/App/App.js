@@ -34,6 +34,11 @@ class App {
     this._element = App.parseElement(v)
   }
 
+  get appElement() {
+    if (!this.app) return null
+    return this.app.$el
+  }
+
 }
 
 App.prototype.launch = launch

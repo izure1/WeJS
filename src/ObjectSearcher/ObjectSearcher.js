@@ -17,11 +17,21 @@ class ObjectSearcher {
     return this._app
   }
   set app(v) {
-    this._app = TagFinder.parseElement(v)
+    this._app = v
   }
 
   getFromTag(v) {
 
+    if (!this.app) throw '초기화되지 않았습니다. app 속성을 지정하십시오.'
+    if (!this.app.element) throw '앱이 초기화되지 않았습니다. app.element 속성을 지정하십시오.'
+    if (!this.app.appElement) throw '앱이 시작되지 않았습니다. app.launch 메서드를 사용하십시오.'
+
+    const lists = this.app.appElement.querySelectorAll(`div[we-body-tag~="${v}"]`)
+    return Array.from(lists)
+
   }
 
 }
+
+
+export default ObjectSearcher

@@ -1,7 +1,10 @@
 <script>
+  import Arrayset from '../../Utils/Arrayset'
+
+
   export const RESERVATION = () => ({
     name: 'tag',
-    lists: []
+    lists: new Arrayset,
   })
 
   export default {
