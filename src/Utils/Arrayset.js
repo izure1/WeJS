@@ -1,7 +1,23 @@
 class Arrayset extends Array {
 
+  static makeReactive(obj) {
+
+    const proto = obj.__proto__
+
+    Object.defineProperty(obj, '__proto__', {
+      get() {
+        return proto
+      },
+      set(newValue) {
+        proto.__proto__ = newValue
+      }
+    })
+
+  }
+
   constructor() {
     super(...arguments)
+    Arrayset.makeReactive(this)
   }
 
   add(v) {
