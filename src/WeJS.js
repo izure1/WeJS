@@ -7,7 +7,7 @@ import AssetLoader from './Asset/AssetLoader/AssetLoader'
 import Asset from './Asset/Asset/Asset'
 import ComponentBuilder from './WeJSObject/ComponentBuilder/ComponentBuilder'
 import ComponentFactory from './WeJSObject/ComponentFactory/ComponentFactory'
-import ObjectSearcher from './ObjectSearcher/ObjectSearcher'
+import Searcher from './Searcher/Searcher'
 
 import RESERVATION, {
   RESERVATION_MAP,
@@ -31,7 +31,7 @@ export default {
   Asset,
   ComponentBuilder,
   ComponentFactory,
-  ObjectSearcher,
+  Searcher,
 
   RESERVATION,
   RESERVATION_MAP,

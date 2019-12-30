@@ -37741,49 +37741,6 @@ b.A,b.B,buffer),Fb=b._emscripten_bind_b2WheelJoint_GetSpringDampingRatio_0=g._em
 
 /***/ }),
 
-/***/ "./src/ObjectSearcher/ObjectSearcher.js":
-/*!**********************************************!*\
-  !*** ./src/ObjectSearcher/ObjectSearcher.js ***!
-  \**********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-class ObjectSearcher {
-  static parseElement(el) {
-    if (el instanceof String || typeof el === 'string') return document.querySelector(el);
-    if (el instanceof NodeList) return Array.from(el)[0];
-    if (el instanceof HTMLElement) return el;
-    return null;
-  }
-
-  constructor() {
-    this._app;
-  }
-
-  get app() {
-    return this._app;
-  }
-
-  set app(v) {
-    this._app = v;
-  }
-
-  getFromTag(v) {
-    if (!this.app) throw '초기화되지 않았습니다. app 속성을 지정하십시오.';
-    if (!this.app.element) throw '앱이 초기화되지 않았습니다. app.element 속성을 지정하십시오.';
-    if (!this.app.appElement) throw '앱이 시작되지 않았습니다. app.launch 메서드를 사용하십시오.';
-    const lists = this.app.appElement.querySelectorAll(`div[we-body-tag~="${v}"]`);
-    return Array.from(lists);
-  }
-
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (ObjectSearcher);
-
-/***/ }),
-
 /***/ "./src/Plugins/vue.js":
 /*!****************************!*\
   !*** ./src/Plugins/vue.js ***!
@@ -37828,6 +37785,49 @@ class Scene extends _WeJSObject_WeJSObject__WEBPACK_IMPORTED_MODULE_0__["default
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Scene);
+
+/***/ }),
+
+/***/ "./src/Searcher/Searcher.js":
+/*!**********************************!*\
+  !*** ./src/Searcher/Searcher.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+class Searcher {
+  static parseElement(el) {
+    if (el instanceof String || typeof el === 'string') return document.querySelector(el);
+    if (el instanceof NodeList) return Array.from(el)[0];
+    if (el instanceof HTMLElement) return el;
+    return null;
+  }
+
+  constructor() {
+    this._app;
+  }
+
+  get app() {
+    return this._app;
+  }
+
+  set app(v) {
+    this._app = v;
+  }
+
+  getFromTag(v) {
+    if (!this.app) throw '초기화되지 않았습니다. app 속성을 지정하십시오.';
+    if (!this.app.element) throw '앱이 초기화되지 않았습니다. app.element 속성을 지정하십시오.';
+    if (!this.app.appElement) throw '앱이 시작되지 않았습니다. app.launch 메서드를 사용하십시오.';
+    const lists = this.app.appElement.querySelectorAll(`div[we-body-tag~="${v}"]`);
+    return Array.from(lists);
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Searcher);
 
 /***/ }),
 
@@ -38171,7 +38171,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Asset_Asset_Asset__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Asset/Asset/Asset */ "./src/Asset/Asset/Asset.js");
 /* harmony import */ var _WeJSObject_ComponentBuilder_ComponentBuilder__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./WeJSObject/ComponentBuilder/ComponentBuilder */ "./src/WeJSObject/ComponentBuilder/ComponentBuilder.js");
 /* harmony import */ var _WeJSObject_ComponentFactory_ComponentFactory__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./WeJSObject/ComponentFactory/ComponentFactory */ "./src/WeJSObject/ComponentFactory/ComponentFactory.js");
-/* harmony import */ var _ObjectSearcher_ObjectSearcher__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./ObjectSearcher/ObjectSearcher */ "./src/ObjectSearcher/ObjectSearcher.js");
+/* harmony import */ var _Searcher_Searcher__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Searcher/Searcher */ "./src/Searcher/Searcher.js");
 /* harmony import */ var _Components_RESERVATION__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Components/RESERVATION */ "./src/Components/RESERVATION.js");
 /* harmony import */ var _package_json__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../package.json */ "./package.json");
 var _package_json__WEBPACK_IMPORTED_MODULE_10___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../package.json */ "./package.json", 1);
@@ -38196,7 +38196,7 @@ const VERSION = _package_json__WEBPACK_IMPORTED_MODULE_10__.version;
   Asset: _Asset_Asset_Asset__WEBPACK_IMPORTED_MODULE_5__["default"],
   ComponentBuilder: _WeJSObject_ComponentBuilder_ComponentBuilder__WEBPACK_IMPORTED_MODULE_6__["default"],
   ComponentFactory: _WeJSObject_ComponentFactory_ComponentFactory__WEBPACK_IMPORTED_MODULE_7__["default"],
-  ObjectSearcher: _ObjectSearcher_ObjectSearcher__WEBPACK_IMPORTED_MODULE_8__["default"],
+  Searcher: _Searcher_Searcher__WEBPACK_IMPORTED_MODULE_8__["default"],
   RESERVATION: _Components_RESERVATION__WEBPACK_IMPORTED_MODULE_9__["default"],
   RESERVATION_MAP: _Components_RESERVATION__WEBPACK_IMPORTED_MODULE_9__["RESERVATION_MAP"],
   COMPONENT_MAP: _Components_RESERVATION__WEBPACK_IMPORTED_MODULE_9__["COMPONENT_MAP"],

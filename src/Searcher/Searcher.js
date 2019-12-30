@@ -1,4 +1,4 @@
-class ObjectSearcher {
+class Searcher {
 
   static parseElement(el) {
 
@@ -34,4 +34,4 @@ class ObjectSearcher {
 }
 
 
-export default ObjectSearcher
+export default Searcher
