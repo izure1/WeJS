@@ -38348,6 +38348,7 @@ class WeJSObject {
     this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_3__["default"].CAMERA));
     this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_3__["default"].TRANSFORM));
     this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_3__["default"].FILTER));
+    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_3__["default"].TAG));
   }
 
 }

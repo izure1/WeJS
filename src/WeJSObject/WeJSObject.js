@@ -20,6 +20,7 @@ class WeJSObject {
     this.component.add(factory.create(RESERVATION.CAMERA))
     this.component.add(factory.create(RESERVATION.TRANSFORM))
     this.component.add(factory.create(RESERVATION.FILTER))
+    this.component.add(factory.create(RESERVATION.TAG))
 
   }
 
