@@ -11965,6 +11965,7 @@ function RESERVATION() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return RESERVATION; });
 const RESERVATION = () => ({
+  name: 'tag',
   lists: []
 });
 /* harmony default export */ __webpack_exports__["default"] = ({

@@ -1,5 +1,6 @@
 <script>
   export const RESERVATION = () => ({
+    name: 'tag',
     lists: []
   })
 

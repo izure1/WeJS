@@ -80,3 +80,10 @@ scene.component.animation.start(100, 10000, 'ease-out') // test { before, after,
 
 
 scene.component.animation.set('test').bind('transform', 'x').start(100, 10000, 'ease-out')
+
+
+
+const searcher = new WeJS.ObjectSearcher
+
+searcher.app = app
+const bodys = searcher.getFromTag('test')
