@@ -22272,7 +22272,7 @@ var render = function() {
       },
       attrs: {
         id: _vm.body.id,
-        "we-body-tag": _vm.body.component.tag.lists,
+        "we-body-tag": _vm.body.component.tag.lists.join(","),
         "we-body-size": _vm.sizeMax
       }
     },
