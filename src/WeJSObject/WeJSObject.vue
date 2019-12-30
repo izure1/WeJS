@@ -1,5 +1,5 @@
 <template>
-  <div :id="body.id" class="we-body" :we-body-size="sizeMax" :style="{ 
+  <div :id="body.id" class="we-body" :we-body-tag="body.component.tag.lists" :we-body-size="sizeMax" :style="{ 
     transform: `translate3d(
       ${centerPointX}px,
       ${centerPointY}px,

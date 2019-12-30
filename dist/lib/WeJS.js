@@ -11954,6 +11954,25 @@ function RESERVATION() {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/Components/Tag/Component.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--3!./node_modules/vue-loader/lib??vue-loader-options!./src/Components/Tag/Component.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************/
+/*! exports provided: RESERVATION, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return RESERVATION; });
+const RESERVATION = () => ({
+  lists: []
+});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['body']
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/Components/Text/Component.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--3!./node_modules/vue-loader/lib??vue-loader-options!./src/Components/Text/Component.vue?vue&type=script&lang=js& ***!
@@ -22250,7 +22269,11 @@ var render = function() {
           _vm.body.component.transform.delay +
           "ms"
       },
-      attrs: { id: _vm.body.id, "we-body-size": _vm.sizeMax }
+      attrs: {
+        id: _vm.body.id,
+        "we-body-tag": _vm.body.component.tag.lists,
+        "we-body-size": _vm.sizeMax
+      }
     },
     [
       _c(
@@ -36954,6 +36977,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _RendererImage_Component_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./RendererImage/Component.vue */ "./src/Components/RendererImage/Component.vue");
 /* harmony import */ var _RendererVideo_Component_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./RendererVideo/Component.vue */ "./src/Components/RendererVideo/Component.vue");
 /* harmony import */ var _Dataset_Component_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Dataset/Component.vue */ "./src/Components/Dataset/Component.vue");
+/* harmony import */ var _Tag_Component_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Tag/Component.vue */ "./src/Components/Tag/Component.vue");
 /**
  * 
  * WeJSObject 내부에서 사용될 모든 컨포넌트의 목록을 선언합니다.
@@ -36962,6 +36986,7 @@ __webpack_require__.r(__webpack_exports__);
  * 컨포넌트는 아래에 MAP에서 관리하십시오.
  * 
  */
+
 
 
 
@@ -37017,6 +37042,10 @@ const PACKAGES = [{
   name: Object(_Dataset_Component_vue__WEBPACK_IMPORTED_MODULE_10__["RESERVATION"])().name,
   reservation: _Dataset_Component_vue__WEBPACK_IMPORTED_MODULE_10__["RESERVATION"],
   component: _Dataset_Component_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
+}, {
+  name: Object(_Tag_Component_vue__WEBPACK_IMPORTED_MODULE_11__["RESERVATION"])().name,
+  reservation: _Tag_Component_vue__WEBPACK_IMPORTED_MODULE_11__["RESERVATION"],
+  component: _Tag_Component_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
 }]; // Map 자료형의 방식으로 받고 싶다면, import { MAP as 변수명 } 의 방식을 이용하십시오.
 
 const RESERVATION_MAP = (() => {
@@ -37445,6 +37474,60 @@ async function reloadVideo() {
     value: this.element
   });
 }
+
+/***/ }),
+
+/***/ "./src/Components/Tag/Component.vue":
+/*!******************************************!*\
+  !*** ./src/Components/Tag/Component.vue ***!
+  \******************************************/
+/*! exports provided: default, RESERVATION */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Component.vue?vue&type=script&lang=js& */ "./src/Components/Tag/Component.vue?vue&type=script&lang=js&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["RESERVATION"]; });
+
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "src/Components/Tag/Component.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./src/Components/Tag/Component.vue?vue&type=script&lang=js&":
+/*!*******************************************************************!*\
+  !*** ./src/Components/Tag/Component.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************/
+/*! exports provided: default, RESERVATION */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--3!../../../node_modules/vue-loader/lib??vue-loader-options!./Component.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/Components/Tag/Component.vue?vue&type=script&lang=js&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["RESERVATION"]; });
+
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 

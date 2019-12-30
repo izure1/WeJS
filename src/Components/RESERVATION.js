@@ -39,6 +39,9 @@ import COMPONENT_RENDERER_VIDEO, {
 import COMPONENT_DATASET, {
   RESERVATION as DATASET
 } from './Dataset/Component.vue'
+import COMPONENT_TAG, {
+  RESERVATION as TAG
+} from './Tag/Component.vue'
 
 
 
@@ -108,6 +111,12 @@ const PACKAGES = [
     name: DATASET().name,
     reservation: DATASET,
     component: COMPONENT_DATASET,
+  },
+
+  {
+    name: TAG().name,
+    reservation: TAG,
+    component: COMPONENT_TAG,
   },
 
 ]
