@@ -1,5 +1,5 @@
 <template>
-  <div :id="body.id" class="we-body" :we-body-tag="body.component.tag.lists.join(' ')" :we-body-size="sizeMax" :style="{ 
+  <div :id="body.id" class="we-body" :we-body-size="sizeMax" :style="{ 
     transform: `translate3d(
       ${centerPointX}px,
       ${centerPointY}px,
@@ -42,6 +42,7 @@
       <component-html v-if="              hasComponent('html')" :app="app" :scene="scene" :body="body" />
       <component-renderer-image v-if="    hasComponent('rendererImage')" :app="app" :scene="scene" :body="body" />
       <component-renderer-video v-if="    hasComponent('rendererVideo')" :app="app" :scene="scene" :body="body" />
+      <component-tag v-if="               hasComponent('tag')" :app="app" :scene="scene" :body="body" />
     </div>
 
     <!-- Children 컴포넌트에 있는 하위 자식 객체를 추가합니다. -->
@@ -68,6 +69,7 @@
   import ComponentHtml from '../Components/Html/Component'
   import ComponentRendererImage from '../Components/RendererImage/Component'
   import ComponentRendererVideo from '../Components/RendererVideo/Component'
+  import ComponentTag from '../Components/Tag/Component'
 
   import hasComponent from './Methods/hasComponent'
   import onSizeChange from './Methods/onSizeChange'
@@ -87,6 +89,7 @@
       ComponentHtml,
       ComponentRendererImage,
       ComponentRendererVideo,
+      ComponentTag,
     },
     props: ['app', 'scene', 'body'],
     data: () => ({
