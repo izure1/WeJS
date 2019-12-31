@@ -1,5 +1,3 @@
-import Vue from 'vue'
-
 import ComponentList from './ComponentList/ComponentList'
 import ComponentFactory from './ComponentFactory/ComponentFactory'
 
@@ -20,6 +18,7 @@ class WeJSObject {
     this.component.add(factory.create(RESERVATION.CAMERA))
     this.component.add(factory.create(RESERVATION.TRANSFORM))
     this.component.add(factory.create(RESERVATION.FILTER))
+    
   }
 
 }

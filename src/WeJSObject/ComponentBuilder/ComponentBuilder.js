@@ -35,7 +35,7 @@ class ComponentBuilder {
 
     if (ComponentBuilder.RESERVATION.has(this.data.name)) ref = {
       ...ComponentBuilder.RESERVATION.get(this.data.name).call(null),
-      ...this,
+      ...this.data,
     }
 
 

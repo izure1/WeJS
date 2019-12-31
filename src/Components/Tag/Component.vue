@@ -1,5 +1,5 @@
 <template>
-  <div :we-body-tag="body.component.tag.lists.join(' ')"></div>
+  <div>{{ body.component.tag.lists.join(' ') }}</div>
 </template>
 
 <script>
@@ -9,13 +9,9 @@
   export const RESERVATION = () => ({
     name: 'tag',
     lists: new Arrayset,
-    
   })
 
   export default {
-    props: ['body'],
-    created() {
-      this.$set(this.body.component.tag, 'lists', this.body.component.tag.lists)
-    }
+    props: ['body']
   }
 </script>

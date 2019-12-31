@@ -11607,7 +11607,9 @@ const RESERVATION = () => ({
   name: 'children',
   lists: []
 });
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['body']
+});
 
 /***/ }),
 
@@ -11975,12 +11977,7 @@ const RESERVATION = () => ({
   lists: new _Utils_Arrayset__WEBPACK_IMPORTED_MODULE_0__["default"]()
 });
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['body'],
-
-  created() {
-    this.$set(this.body.component.tag, 'lists', this.body.component.tag.lists);
-  }
-
+  props: ['body']
 });
 
 /***/ }),
@@ -22229,9 +22226,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", {
-    attrs: { "we-body-tag": _vm.body.component.tag.lists.join(" ") }
-  })
+  return _c("div", [_vm._v(_vm._s(_vm.body.component.tag.lists.join(" ")))])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -37911,14 +37906,15 @@ class Arrayset extends Array {
       },
 
       set(newValue) {
+        console.log(newValue);
         proto.__proto__ = newValue;
       }
 
     });
   }
 
-  constructor() {
-    super(...arguments);
+  constructor(...args) {
+    super(...args);
     Arrayset.makeReactive(this);
   }
 
@@ -38333,7 +38329,7 @@ class ComponentBuilder {
   build() {
     let ref;
     if (ComponentBuilder.RESERVATION.has(this.data.name)) ref = { ...ComponentBuilder.RESERVATION.get(this.data.name).call(null),
-      ...this
+      ...this.data
     };
     const nonEnums = ComponentBuilder.getNonEnumProps(this.data);
     nonEnums.forEach(property => ref[property] = this.data[property]);
@@ -38390,13 +38386,16 @@ class ComponentFactory {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+
+
 class ComponentList {
   constructor(raw = {}) {
     for (let i in raw) this[i] = raw[i];
   }
 
   add(component) {
-    this[component.name] = component;
+    this[component.name] = vue__WEBPACK_IMPORTED_MODULE_0__["default"].set(this, component.name, component);
   }
 
 }
@@ -38499,11 +38498,9 @@ function onSizeChange(size) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var _ComponentList_ComponentList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ComponentList/ComponentList */ "./src/WeJSObject/ComponentList/ComponentList.js");
-/* harmony import */ var _ComponentFactory_ComponentFactory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ComponentFactory/ComponentFactory */ "./src/WeJSObject/ComponentFactory/ComponentFactory.js");
-/* harmony import */ var _Components_RESERVATION__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Components/RESERVATION */ "./src/Components/RESERVATION.js");
-
+/* harmony import */ var _ComponentList_ComponentList__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ComponentList/ComponentList */ "./src/WeJSObject/ComponentList/ComponentList.js");
+/* harmony import */ var _ComponentFactory_ComponentFactory__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ComponentFactory/ComponentFactory */ "./src/WeJSObject/ComponentFactory/ComponentFactory.js");
+/* harmony import */ var _Components_RESERVATION__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Components/RESERVATION */ "./src/Components/RESERVATION.js");
 
 
 
@@ -38511,14 +38508,14 @@ __webpack_require__.r(__webpack_exports__);
 class WeJSObject {
   constructor(raw = {
     id: null,
-    component: new _ComponentList_ComponentList__WEBPACK_IMPORTED_MODULE_1__["default"]()
+    component: new _ComponentList_ComponentList__WEBPACK_IMPORTED_MODULE_0__["default"]()
   }) {
     this.id = raw.id;
-    this.component = new _ComponentList_ComponentList__WEBPACK_IMPORTED_MODULE_1__["default"](raw.component);
-    const factory = new _ComponentFactory_ComponentFactory__WEBPACK_IMPORTED_MODULE_2__["default"]();
-    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_3__["default"].CAMERA));
-    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_3__["default"].TRANSFORM));
-    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_3__["default"].FILTER));
+    this.component = new _ComponentList_ComponentList__WEBPACK_IMPORTED_MODULE_0__["default"](raw.component);
+    const factory = new _ComponentFactory_ComponentFactory__WEBPACK_IMPORTED_MODULE_1__["default"]();
+    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_2__["default"].CAMERA));
+    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_2__["default"].TRANSFORM));
+    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_2__["default"].FILTER));
   }
 
 }

@@ -4,5 +4,7 @@
     lists: [],
   })
 
-  export default {}
+  export default {
+    props: ['body']
+  }
 </script>
