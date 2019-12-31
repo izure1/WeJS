@@ -1,5 +1,5 @@
 <template>
-  <div>{{ body.component.tag.lists.join(' ') }}</div>
+  <div :we-body-tag="body.component.tag.lists.join(' ')"></div>
 </template>
 
 <script>
