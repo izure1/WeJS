@@ -16,34 +16,23 @@ class ComponentBuilder {
     return raw.replace(/\-(.?)/g, (matched, character) => character.toUpperCase())
   }
 
-  static getNonEnumProps(obj) {
-    const alls = Object.getOwnPropertyNames(obj)
-    const enums = Object.keys(obj)
-    return alls.filter(t => enums.indexOf(t) === -1)
-  }
-
   static RESERVATION = RESERVATION_MAP
   static COMPONENT = COMPONENT_MAP
 
   constructor(reservation) {
-    this.data = reservation
+    this.cache = reservation
   }
 
   build() {
 
-    let ref
-
-    if (ComponentBuilder.RESERVATION.has(this.data.name)) ref = {
-      ...ComponentBuilder.RESERVATION.get(this.data.name).call(null),
-      ...this.data,
-    }
-
-
-    const nonEnums = ComponentBuilder.getNonEnumProps(this.data)
-    nonEnums.forEach(property => ref[property] = this.data[property])
-
-    ref.name = ComponentBuilder.convertToCamelCase(this.data.name)
-    return new Component(ref)
+    const componentName = ComponentBuilder.convertToCamelCase(this.cache.name)
+    const ComponentConstructor = ComponentBuilder.RESERVATION.get(this.cache.name)
+    
+    // cache로 넘겨받은 데이터와, 신규 클래스의 데이터를 병합한 ref 변수를 생성합니다
+    // ref변수로부터 Component를 생성합니다.
+    const ref = new ComponentConstructor(this.cache)
+    ref.name = componentName
+    return ref
 
   }
 

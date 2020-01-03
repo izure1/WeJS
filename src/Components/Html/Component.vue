@@ -3,10 +3,17 @@
 </template>
 
 <script>
-  export const RESERVATION = () => ({
-    name: 'html',
-    content: ''
-  })
+  import Component from '../../WeJSObject/Component/Component'
+
+
+  export class RESERVATION extends Component {
+    name = 'html'
+    content = ''
+
+    constructor(...args) {
+      super(...args)
+    }
+  }
 
   export default {
     props: ['body']

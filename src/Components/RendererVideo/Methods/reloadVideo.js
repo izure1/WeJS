@@ -12,8 +12,6 @@ export default async function reloadVideo() {
   // 컴포넌트에 element를 등록합니다.
   // 이 내용은 추후 세이브할 때 컴포넌트 정보와 함께 저장되지 않도록 enumerable하게 생성되지 않습니다.
 
-  Object.defineProperty(this.body.component.rendererVideo, 'element', {
-    value: this.element
-  })
+  this.body.component.rendererVideo.element = this.element
 
 }

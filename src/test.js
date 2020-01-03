@@ -82,8 +82,12 @@ scene.component.animation.start(100, 10000, 'ease-out') // test { before, after,
 scene.component.animation.set('test').bind('transform', 'x').start(100, 10000, 'ease-out')
 
 
+audio.component.audio.play // 컴포넌트에서 함수가 있다?? 컴포넌트에서 함수를 쓰기엔 조금.
+audio.play() // rendererVideo, audio 컴포넌트에서 중복된다.
+audio.component.audio.f.play() // f는 vue template를 참조하고 있어야 한다. 또한 내부에서 component의 변수를 참조가능해야한다. (이것은 body.component 를 이용하여 가능)
 
-const searcher = new WeJS.ObjectSearcher
+
+const searcher = new WeJS.Searcher
 
 searcher.app = app
 const bodys = searcher.getFromTag('test')

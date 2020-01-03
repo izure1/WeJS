@@ -9,7 +9,6 @@ class Arrayset extends Array {
         return proto
       },
       set(newValue) {
-        console.log(newValue)
         proto.__proto__ = newValue
       }
     })

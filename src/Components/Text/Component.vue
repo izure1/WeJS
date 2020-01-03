@@ -3,24 +3,30 @@
 </template>
 
 <script>
+  import Component from '../../WeJSObject/Component/Component'
+
   import drawText from './Methods/drawText'
 
 
-  export const RESERVATION = () => ({
-    name: 'text',
-    content: '',
-    width: 'auto',
-    height: 'auto',
-    fontSize: 30,
-    fontFamily: 'arial',
-    fontWeight: 'normal',
-    fontStyle: 'normal',
-    borderWidth: 0,
-    borderColor: 'red',
-    color: 'black',
-    textAlign: 'left',
-    lineHeight: 1,
-  })
+  export class RESERVATION extends Component {
+    name = 'text'
+    content = ''
+    width = 'auto'
+    height = 'auto'
+    fontSize = 30
+    fontFamily = 'arial'
+    fontWeight = 'normal'
+    fontStyle = 'normal'
+    borderWidth = 0
+    borderColor = 'red'
+    color = 'black'
+    textAlign = 'left'
+    lineHeight = 1
+
+    constructor(...args) {
+      super(...args)
+    }
+  }
 
   export default {
     props: ['body'],

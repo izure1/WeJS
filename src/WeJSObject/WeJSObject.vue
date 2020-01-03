@@ -43,6 +43,7 @@
       <component-renderer-image v-if="    hasComponent('rendererImage')" :app="app" :scene="scene" :body="body" />
       <component-renderer-video v-if="    hasComponent('rendererVideo')" :app="app" :scene="scene" :body="body" />
       <component-tag v-if="               hasComponent('tag')" :app="app" :scene="scene" :body="body" />
+      <component-audio v-if="             hasComponent('audio')" :app="app" :scene="scene" :body="body" />
     </div>
 
     <!-- Children 컴포넌트에 있는 하위 자식 객체를 추가합니다. -->
@@ -70,6 +71,7 @@
   import ComponentRendererImage from '../Components/RendererImage/Component'
   import ComponentRendererVideo from '../Components/RendererVideo/Component'
   import ComponentTag from '../Components/Tag/Component'
+  import ComponentAudio from '../Components/Audio/Component'
 
   import hasComponent from './Methods/hasComponent'
   import onSizeChange from './Methods/onSizeChange'
@@ -90,8 +92,9 @@
       ComponentRendererImage,
       ComponentRendererVideo,
       ComponentTag,
+      ComponentAudio,
     },
-    props: ['app', 'scene', 'body'],
+    props: ['app', 'scene', 'body', 'coords'],
     data: () => ({
       sizeObserver: null,
       sizeSelf: [0, 0],
@@ -134,7 +137,7 @@
     },
 
     beforeDestroy() {
-      this.sizeObserver.close()
+      this.sizeObserver.disconnect()
     }
 
   }

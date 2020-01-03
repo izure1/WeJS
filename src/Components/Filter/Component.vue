@@ -1,18 +1,25 @@
 <script>
-  export const RESERVATION = () => ({
-    name: 'filter',
-    blur: 0,
-    brightness: 1,
-    contrast: 1,
-    grayscale: 0,
-    invert: 0,
-    opacity: 1,
-    saturate: 1,
-    sepia: 0,
-    duration: 0,
-    delay: 0,
-    ease: 'linear',
-  })
+  import Component from '../../WeJSObject/Component/Component'
+
+
+  export class RESERVATION extends Component {
+    name = 'filter'
+    blur = 0
+    brightness = 1
+    contrast = 1
+    grayscale = 0
+    invert = 0
+    opacity = 1
+    saturate = 1
+    sepia = 0
+    duration = 0
+    delay = 0
+    ease = 'linear'
+
+    constructor(...args) {
+      super(...args)
+    }
+  }
 
   export default {
     props: ['body']

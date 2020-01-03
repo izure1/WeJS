@@ -3,9 +3,16 @@
 </template>
 
 <script>
-  export const RESERVATION = () => ({
-    name: 'physics'
-  })
+  import Component from '../../WeJSObject/Component/Component'
+
+
+  export class RESERVATION extends Component {
+    name = 'physics'
+
+    constructor(...args) {
+      super(...args)
+    }
+  }
 
   export default {
     props: ['component'],

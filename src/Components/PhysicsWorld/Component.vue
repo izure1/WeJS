@@ -3,6 +3,7 @@
 </template>
 
 <script>
+  import Component from '../../WeJSObject/Component/Component'
   import Box2D from '../../External/Box2D/Box2D'
   import CONFIG from './Vars/CONFIG'
 
@@ -14,11 +15,15 @@
   import gravityY from './Watch/gravityY'
 
 
-  export const RESERVATION = () => ({
-    name: 'physics-world',
-    gravityX: 0,
-    gravityY: -9.8,
-  })
+  export class RESERVATION extends Component {
+    name = 'physics-world'
+    gravityX = 0
+    gravityY = -9.8
+
+    constructor(...args) {
+      super(...args)
+    }
+  }
 
   export default {
 

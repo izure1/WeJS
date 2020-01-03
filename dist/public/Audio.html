@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <script src="../lib/WeJS.js"></script>
+  <script>
+    const app = new WeJS.App // 새로운 viewport 만들기
+    const scene = new WeJS.Scene // 새로운 씬
+    const audio = new WeJS.WeJSObject // 오디오 객체
+
+
+    const factory = new WeJS.ComponentFactory // 컴포넌트를 만들어주는 인스턴스 객체
+
+    // 오디오 컴포넌트를 생성합니다.
+    const audioComponent = factory.create(WeJS.RESERVATION.AUDIO)
+
+    // 만들어진 컴포넌트를 객체에 추가한다
+    audio.component.add(audioComponent)
+    // 오디오의 경로를 기입한다.
+    audio.component.audio.src = './assets/audio/sample.mp3'
+
+    // 씬에 객체를 추가한다.
+    scene.component.children.lists.add(audio)
+
+    // 오디오 재생
+    audio.component.audio.play()
+    audio.component.audio.loop = true
+
+    // 앱이 부착될 element를 지정
+    app.element = '#app'
+    app.setSize(800, 500)
+
+    // 앱에서 씬을 실행
+    app.launch(scene)
+  </script>
+</body>
+
+</html>

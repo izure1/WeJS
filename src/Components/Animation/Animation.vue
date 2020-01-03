@@ -1,19 +1,23 @@
 <script>
+  import Component from '../../WeJSObject/Component/Component'
   import Animation from './Animation.js'
 
 
-  export const RESERVATION = () => ({
-    name: 'animation',
+  export class RESERVATION extends Component {
+
+    name = 'animation'
+
     set(name) {
       this[name] = new Animation
-    },
-    bind(component, target) {
+    }
 
-    },
-    start(after, duration, ease) {
+    bind(component, target) {}
+    start(after, duration, ease) {}
 
-    },
-  })
+    constructor(...args) {
+      super(...args)
+    }
+  }
 
   export default {
     props: ['body']

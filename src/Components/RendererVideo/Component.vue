@@ -8,6 +8,8 @@
 </template>
 
 <script>
+  import Component from '../../WeJSObject/Component/Component'
+
   import onChangeVideoSrc from './Methods/onChangeVideoSrc'
   import onCanPlayThrough from './Methods/onCanPlayThrough'
   import reloadVideo from './Methods/reloadVideo'
@@ -19,33 +21,31 @@
   import pause from './Helper/pause'
   import play from './Helper/play'
 
-  export function RESERVATION() {
 
-    const ref = {
-      name: 'renderer-video',
-      src: null,
-      width: 'auto',
-      height: 'auto',
-      controls: false,
-      autoplay: false,
-      muted: false,
-      loop: false,
+  export class RESERVATION extends Component {
 
-      playbackRate: 1,
-      volume: 1,
+    name = 'renderer-video'
+    width = 'auto'
+    height = 'auto'
+    src = null
+    controls = false
+    autoplay = false
+    muted = false
+    loop = false
 
-      _setCanplayPromise,
-      waitLoading,
-      play,
-      pause,
+    playbackRate = 1
+    volume = 1
+
+    constructor(...args) {
+      super(...args)
+      this._setCanplayPromise()
     }
-
-    // 비디오가 이벤트를 발생시키면 그에 맞는 resolve가 호출되고, 프로미스가 resolved됩니다.
-    // 이 데이터는 저장되어선 안되므로 enumerable: false 상태입니다.
-    ref._setCanplayPromise.call(ref)
-    return ref
-
   }
+
+  RESERVATION.prototype._setCanplayPromise = _setCanplayPromise
+  RESERVATION.prototype.waitLoading = waitLoading
+  RESERVATION.prototype.play = play
+  RESERVATION.prototype.pause = pause
 
   export default {
     props: ['body'],

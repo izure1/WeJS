@@ -4,7 +4,7 @@ import ComponentBuilder from '../ComponentBuilder/ComponentBuilder'
 class ComponentFactory {
 
   create(reservation) {
-    reservation = reservation()
+    reservation = new reservation
     return new ComponentBuilder(reservation).build()
   }
 

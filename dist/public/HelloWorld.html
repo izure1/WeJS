@@ -26,7 +26,7 @@
 
 
     // 이제 실제로 객체A에 객체B를 넣어보자
-    objectA.component.children.lists.push(objectB)
+    objectA.component.children.lists.add(objectB)
 
     // 객체B에 텍스트 기능을 추가하자.
     // 텍스트를 출력해주는 기능을 가진 컴포넌트를 객체B에 추가해야한다.
@@ -49,7 +49,7 @@
 
     // 씬에 객체A를 추가한다.
     // 객체B는 이미 객체A에 속해있으니, 따로 씬에 추가하지 않아도 된다.
-    scene.component.children.lists.push(objectA)
+    scene.component.children.lists.add(objectA)
 
     // 앱이 부착될 element를 지정
     app.element = '#app'

@@ -18,18 +18,24 @@
 </template>
 
 <script>
+  import Component from '../../WeJSObject/Component/Component'
   import blobUri from './Computed/blobUri'
   import parseImageSize from './Methods/parseImageSize'
 
-  export const RESERVATION = () => ({
-    name: 'renderer-image',
-    src: null,
-    width: 'auto',
-    height: 'auto',
-    duration: 0,
-    delay: 0,
-    ease: 'linear',
-  })
+  export class RESERVATION extends Component {
+
+    name = 'renderer-image'
+    src = null
+    width = 'auto'
+    height = 'auto'
+    duration = 0
+    delay = 0
+    ease = 'linear'
+
+    constructor(...args) {
+      super(...args)
+    }
+  }
 
   export default {
     props: ['body'],

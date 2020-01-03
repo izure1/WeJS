@@ -44,7 +44,7 @@
       this.resizeObserver.observe(this.$el)
     },
     beforeDestroy() {
-      this.resizeObserver.close()
+      this.resizeObserver.disconnect()
       this.resizeObserver = null
     }
 

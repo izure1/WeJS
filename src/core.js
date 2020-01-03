@@ -1,6 +1,8 @@
 import WeJS from './WeJS'
 import setVuePlugin from './Plugins/vue'
 
+import 'howler/dist/howler.spatial.min.js'
+
 
 'use strict'
 

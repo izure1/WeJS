@@ -42,81 +42,90 @@ import COMPONENT_DATASET, {
 import COMPONENT_TAG, {
   RESERVATION as TAG
 } from './Tag/Component.vue'
+import COMPONENT_AUDIO, {
+  RESERVATION as AUDIO
+} from './Audio/Component.vue'
 
 
 
 const PACKAGES = [
 
   {
-    name: CAMERA().name,
+    name: (new CAMERA).name,
     reservation: CAMERA,
     component: COMPONENT_CAMERA,
   },
 
   {
-    name: TRANSFORM().name,
+    name: (new TRANSFORM).name,
     reservation: TRANSFORM,
     component: COMPONENT_TRANSFORM,
   },
 
   {
-    name: FILTER().name,
+    name: (new FILTER).name,
     reservation: FILTER,
     component: COMPONENT_FILTER,
   },
 
   {
-    name: CHILDREN().name,
+    name: (new CHILDREN).name,
     reservation: CHILDREN,
     component: COMPONENT_CHILDREN,
   },
 
   {
-    name: PHYSICS_WORLD().name,
+    name: (new PHYSICS_WORLD).name,
     reservation: PHYSICS_WORLD,
     component: COMPONENT_PHYSICS_WORLD,
   },
 
   {
-    name: PHYSICS().name,
+    name: (new PHYSICS).name,
     reservation: PHYSICS,
     component: COMPONENT_PHYSICS,
   },
 
   {
-    name: TEXT().name,
+    name: (new TEXT).name,
     reservation: TEXT,
     component: COMPONENT_TEXT,
   },
 
   {
-    name: HTML().name,
+    name: (new HTML).name,
     reservation: HTML,
     component: COMPONENT_HTML,
   },
 
   {
-    name: RENDERER_IMAGE().name,
+    name: (new RENDERER_IMAGE).name,
     reservation: RENDERER_IMAGE,
     component: COMPONENT_RENDERER_IMAGE,
   },
 
   {
-    name: RENDERER_VIDEO().name,
+    name: (new RENDERER_VIDEO).name,
     reservation: RENDERER_VIDEO,
     component: COMPONENT_RENDERER_VIDEO,
   },
 
   {
-    name: DATASET().name,
+    name: (new DATASET).name,
     reservation: DATASET,
     component: COMPONENT_DATASET,
   },
 
   {
-    name: TAG().name,
+    name: (new TAG).name,
     reservation: TAG,
     component: COMPONENT_TAG,
+  },
+
+  {
+    name: (new AUDIO).name,
+    reservation: AUDIO,
+    component: COMPONENT_AUDIO,
   },
 
 ]
