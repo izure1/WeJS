@@ -6,7 +6,7 @@
   import Component from '../../WeJSObject/Component/Component'
 
 
-  export class RESERVATION extends Component {
+  export class Reservation extends Component {
     name = 'html'
     content = ''
 

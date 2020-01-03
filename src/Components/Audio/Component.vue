@@ -15,7 +15,7 @@
   import modifyAudioProperty from './Methods/modifyAudioProperty'
 
 
-  export class RESERVATION extends Component {
+  export class Reservation extends Component {
 
     name = 'audio'
     src = null
@@ -31,10 +31,10 @@
 
   }
 
-  RESERVATION.prototype._setLoadedPromise = _setLoadedPromise
-  RESERVATION.prototype.play = play
-  RESERVATION.prototype.pause = pause
-  RESERVATION.prototype.waitLoading = waitLoading
+  Reservation.prototype._setLoadedPromise = _setLoadedPromise
+  Reservation.prototype.play = play
+  Reservation.prototype.pause = pause
+  Reservation.prototype.waitLoading = waitLoading
 
   export default {
 

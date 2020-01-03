@@ -22,7 +22,7 @@
   import play from './Helper/play'
 
 
-  export class RESERVATION extends Component {
+  export class Reservation extends Component {
 
     name = 'renderer-video'
     width = 'auto'
@@ -42,10 +42,10 @@
     }
   }
 
-  RESERVATION.prototype._setCanplayPromise = _setCanplayPromise
-  RESERVATION.prototype.waitLoading = waitLoading
-  RESERVATION.prototype.play = play
-  RESERVATION.prototype.pause = pause
+  Reservation.prototype._setCanplayPromise = _setCanplayPromise
+  Reservation.prototype.waitLoading = waitLoading
+  Reservation.prototype.play = play
+  Reservation.prototype.pause = pause
 
   export default {
     props: ['body'],

@@ -2,7 +2,7 @@
   import Component from '../../WeJSObject/Component/Component'
 
 
-  export class RESERVATION extends Component {
+  export class Reservation extends Component {
     name = 'filter'
     blur = 0
     brightness = 1

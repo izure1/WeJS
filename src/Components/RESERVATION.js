@@ -7,43 +7,43 @@
  * 
  */
 import COMPONENT_CAMERA, {
-  RESERVATION as CAMERA
+  Reservation as CAMERA
 } from './Camera/Component.vue'
 import COMPONENT_TRANSFORM, {
-  RESERVATION as TRANSFORM
+  Reservation as TRANSFORM
 } from './Transform/Component.vue'
 import COMPONENT_FILTER, {
-  RESERVATION as FILTER
+  Reservation as FILTER
 } from './Filter/Component'
 import COMPONENT_CHILDREN, {
-  RESERVATION as CHILDREN
+  Reservation as CHILDREN
 } from './Children/Component.vue'
 import COMPONENT_PHYSICS_WORLD, {
-  RESERVATION as PHYSICS_WORLD
+  Reservation as PHYSICS_WORLD
 } from './PhysicsWorld/Component.vue'
 import COMPONENT_PHYSICS, {
-  RESERVATION as PHYSICS
+  Reservation as PHYSICS
 } from './Physics/Component.vue'
 import COMPONENT_TEXT, {
-  RESERVATION as TEXT
+  Reservation as TEXT
 } from './Text/Component.vue'
 import COMPONENT_HTML, {
-  RESERVATION as HTML
+  Reservation as HTML
 } from './Html/Component.vue'
 import COMPONENT_RENDERER_IMAGE, {
-  RESERVATION as RENDERER_IMAGE
+  Reservation as RENDERER_IMAGE
 } from './RendererImage/Component.vue'
 import COMPONENT_RENDERER_VIDEO, {
-  RESERVATION as RENDERER_VIDEO
+  Reservation as RENDERER_VIDEO
 } from './RendererVideo/Component.vue'
 import COMPONENT_DATASET, {
-  RESERVATION as DATASET
+  Reservation as DATASET
 } from './Dataset/Component.vue'
 import COMPONENT_TAG, {
-  RESERVATION as TAG
+  Reservation as TAG
 } from './Tag/Component.vue'
 import COMPONENT_AUDIO, {
-  RESERVATION as AUDIO
+  Reservation as AUDIO
 } from './Audio/Component.vue'
 
 

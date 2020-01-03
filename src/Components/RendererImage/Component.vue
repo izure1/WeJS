@@ -22,7 +22,7 @@
   import blobUri from './Computed/blobUri'
   import parseImageSize from './Methods/parseImageSize'
 
-  export class RESERVATION extends Component {
+  export class Reservation extends Component {
 
     name = 'renderer-image'
     src = null

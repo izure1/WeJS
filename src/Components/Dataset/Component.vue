@@ -3,7 +3,7 @@
   import Arrayset from '../../Utils/Arrayset'
 
 
-  export class RESERVATION extends Component {
+  export class Reservation extends Component {
     name = 'dataset'
     lists = new Arrayset
 

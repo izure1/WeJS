@@ -8,7 +8,7 @@
   import drawText from './Methods/drawText'
 
 
-  export class RESERVATION extends Component {
+  export class Reservation extends Component {
     name = 'text'
     content = ''
     width = 'auto'

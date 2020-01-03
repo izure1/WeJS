@@ -11569,12 +11569,12 @@ __webpack_require__.r(__webpack_exports__);
 /*!***************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--3!./node_modules/vue-loader/lib??vue-loader-options!./src/Components/Audio/Component.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************************************************************************************/
-/*! exports provided: RESERVATION, default */
+/*! exports provided: Reservation, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return RESERVATION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return Reservation; });
 /* harmony import */ var _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../WeJSObject/Component/Component */ "./src/WeJSObject/Component/Component.js");
 /* harmony import */ var _Helper_setLoadedPromise__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Helper/_setLoadedPromise */ "./src/Components/Audio/Helper/_setLoadedPromise.js");
 /* harmony import */ var _Helper_play__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Helper/play */ "./src/Components/Audio/Helper/play.js");
@@ -11597,7 +11597,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-class RESERVATION extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
+class Reservation extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
   constructor(...args) {
     super(...args);
 
@@ -11617,10 +11617,10 @@ class RESERVATION extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODU
   }
 
 }
-RESERVATION.prototype._setLoadedPromise = _Helper_setLoadedPromise__WEBPACK_IMPORTED_MODULE_1__["default"];
-RESERVATION.prototype.play = _Helper_play__WEBPACK_IMPORTED_MODULE_2__["default"];
-RESERVATION.prototype.pause = _Helper_pause__WEBPACK_IMPORTED_MODULE_3__["default"];
-RESERVATION.prototype.waitLoading = _Helper_waitLoading__WEBPACK_IMPORTED_MODULE_4__["default"];
+Reservation.prototype._setLoadedPromise = _Helper_setLoadedPromise__WEBPACK_IMPORTED_MODULE_1__["default"];
+Reservation.prototype.play = _Helper_play__WEBPACK_IMPORTED_MODULE_2__["default"];
+Reservation.prototype.pause = _Helper_pause__WEBPACK_IMPORTED_MODULE_3__["default"];
+Reservation.prototype.waitLoading = _Helper_waitLoading__WEBPACK_IMPORTED_MODULE_4__["default"];
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['body'],
   data: () => ({
@@ -11666,17 +11666,17 @@ RESERVATION.prototype.waitLoading = _Helper_waitLoading__WEBPACK_IMPORTED_MODULE
 /*!****************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--3!./node_modules/vue-loader/lib??vue-loader-options!./src/Components/Camera/Component.vue?vue&type=script&lang=js& ***!
   \****************************************************************************************************************************************************************/
-/*! exports provided: RESERVATION, default */
+/*! exports provided: Reservation, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return RESERVATION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return Reservation; });
 /* harmony import */ var _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../WeJSObject/Component/Component */ "./src/WeJSObject/Component/Component.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
-class RESERVATION extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
+class Reservation extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
   constructor(...args) {
     super(...args);
 
@@ -11712,19 +11712,19 @@ class RESERVATION extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODU
 /*!******************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--3!./node_modules/vue-loader/lib??vue-loader-options!./src/Components/Children/Component.vue?vue&type=script&lang=js& ***!
   \******************************************************************************************************************************************************************/
-/*! exports provided: RESERVATION, default */
+/*! exports provided: Reservation, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return RESERVATION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return Reservation; });
 /* harmony import */ var _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../WeJSObject/Component/Component */ "./src/WeJSObject/Component/Component.js");
 /* harmony import */ var _Utils_Arrayset__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Utils/Arrayset */ "./src/Utils/Arrayset.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
-class RESERVATION extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
+class Reservation extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
   constructor(...args) {
     super(...args);
 
@@ -11744,19 +11744,19 @@ class RESERVATION extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODU
 /*!*****************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--3!./node_modules/vue-loader/lib??vue-loader-options!./src/Components/Dataset/Component.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************************************************************************************************/
-/*! exports provided: RESERVATION, default */
+/*! exports provided: Reservation, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return RESERVATION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return Reservation; });
 /* harmony import */ var _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../WeJSObject/Component/Component */ "./src/WeJSObject/Component/Component.js");
 /* harmony import */ var _Utils_Arrayset__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Utils/Arrayset */ "./src/Utils/Arrayset.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
-class RESERVATION extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
+class Reservation extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
   constructor(...args) {
     super(...args);
 
@@ -11774,17 +11774,17 @@ class RESERVATION extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODU
 /*!****************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--3!./node_modules/vue-loader/lib??vue-loader-options!./src/Components/Filter/Component.vue?vue&type=script&lang=js& ***!
   \****************************************************************************************************************************************************************/
-/*! exports provided: RESERVATION, default */
+/*! exports provided: Reservation, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return RESERVATION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return Reservation; });
 /* harmony import */ var _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../WeJSObject/Component/Component */ "./src/WeJSObject/Component/Component.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
-class RESERVATION extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
+class Reservation extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
   constructor(...args) {
     super(...args);
 
@@ -11824,12 +11824,12 @@ class RESERVATION extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODU
 /*!**************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--3!./node_modules/vue-loader/lib??vue-loader-options!./src/Components/Html/Component.vue?vue&type=script&lang=js& ***!
   \**************************************************************************************************************************************************************/
-/*! exports provided: RESERVATION, default */
+/*! exports provided: Reservation, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return RESERVATION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return Reservation; });
 /* harmony import */ var _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../WeJSObject/Component/Component */ "./src/WeJSObject/Component/Component.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -11838,7 +11838,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 
-class RESERVATION extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
+class Reservation extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
   constructor(...args) {
     super(...args);
 
@@ -11858,12 +11858,12 @@ class RESERVATION extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODU
 /*!*****************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--3!./node_modules/vue-loader/lib??vue-loader-options!./src/Components/Physics/Component.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************************************************************************************************/
-/*! exports provided: RESERVATION, default */
+/*! exports provided: Reservation, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return RESERVATION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return Reservation; });
 /* harmony import */ var _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../WeJSObject/Component/Component */ "./src/WeJSObject/Component/Component.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -11872,7 +11872,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 
-class RESERVATION extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
+class Reservation extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
   constructor(...args) {
     super(...args);
 
@@ -11890,12 +11890,12 @@ class RESERVATION extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODU
 /*!**********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--3!./node_modules/vue-loader/lib??vue-loader-options!./src/Components/PhysicsWorld/Component.vue?vue&type=script&lang=js& ***!
   \**********************************************************************************************************************************************************************/
-/*! exports provided: RESERVATION, default */
+/*! exports provided: Reservation, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return RESERVATION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return Reservation; });
 /* harmony import */ var _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../WeJSObject/Component/Component */ "./src/WeJSObject/Component/Component.js");
 /* harmony import */ var _External_Box2D_Box2D__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../External/Box2D/Box2D */ "./src/External/Box2D/Box2D.js");
 /* harmony import */ var _Vars_CONFIG__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Vars/CONFIG */ "./src/Components/PhysicsWorld/Vars/CONFIG.js");
@@ -11918,7 +11918,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-class RESERVATION extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
+class Reservation extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
   constructor(...args) {
     super(...args);
 
@@ -11962,12 +11962,12 @@ class RESERVATION extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODU
 /*!***********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--3!./node_modules/vue-loader/lib??vue-loader-options!./src/Components/RendererImage/Component.vue?vue&type=script&lang=js& ***!
   \***********************************************************************************************************************************************************************/
-/*! exports provided: RESERVATION, default */
+/*! exports provided: Reservation, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return RESERVATION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return Reservation; });
 /* harmony import */ var _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../WeJSObject/Component/Component */ "./src/WeJSObject/Component/Component.js");
 /* harmony import */ var _Computed_blobUri__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Computed/blobUri */ "./src/Components/RendererImage/Computed/blobUri.js");
 /* harmony import */ var _Methods_parseImageSize__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Methods/parseImageSize */ "./src/Components/RendererImage/Methods/parseImageSize.js");
@@ -11995,7 +11995,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-class RESERVATION extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
+class Reservation extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
   constructor(...args) {
     super(...args);
 
@@ -12031,12 +12031,12 @@ class RESERVATION extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODU
 /*!***********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--3!./node_modules/vue-loader/lib??vue-loader-options!./src/Components/RendererVideo/Component.vue?vue&type=script&lang=js& ***!
   \***********************************************************************************************************************************************************************/
-/*! exports provided: RESERVATION, default */
+/*! exports provided: Reservation, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return RESERVATION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return Reservation; });
 /* harmony import */ var _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../WeJSObject/Component/Component */ "./src/WeJSObject/Component/Component.js");
 /* harmony import */ var _Methods_onChangeVideoSrc__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Methods/onChangeVideoSrc */ "./src/Components/RendererVideo/Methods/onChangeVideoSrc.js");
 /* harmony import */ var _Methods_onCanPlayThrough__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Methods/onCanPlayThrough */ "./src/Components/RendererVideo/Methods/onCanPlayThrough.js");
@@ -12068,7 +12068,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-class RESERVATION extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
+class Reservation extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
   constructor(...args) {
     super(...args);
 
@@ -12096,10 +12096,10 @@ class RESERVATION extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODU
   }
 
 }
-RESERVATION.prototype._setCanplayPromise = _Helper_setCanplayPromise__WEBPACK_IMPORTED_MODULE_6__["default"];
-RESERVATION.prototype.waitLoading = _Helper_waitLoading__WEBPACK_IMPORTED_MODULE_7__["default"];
-RESERVATION.prototype.play = _Helper_play__WEBPACK_IMPORTED_MODULE_9__["default"];
-RESERVATION.prototype.pause = _Helper_pause__WEBPACK_IMPORTED_MODULE_8__["default"];
+Reservation.prototype._setCanplayPromise = _Helper_setCanplayPromise__WEBPACK_IMPORTED_MODULE_6__["default"];
+Reservation.prototype.waitLoading = _Helper_waitLoading__WEBPACK_IMPORTED_MODULE_7__["default"];
+Reservation.prototype.play = _Helper_play__WEBPACK_IMPORTED_MODULE_9__["default"];
+Reservation.prototype.pause = _Helper_pause__WEBPACK_IMPORTED_MODULE_8__["default"];
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['body'],
 
@@ -12164,12 +12164,12 @@ RESERVATION.prototype.pause = _Helper_pause__WEBPACK_IMPORTED_MODULE_8__["defaul
 /*!*************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--3!./node_modules/vue-loader/lib??vue-loader-options!./src/Components/Tag/Component.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************************************************************************************/
-/*! exports provided: RESERVATION, default */
+/*! exports provided: Reservation, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return RESERVATION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return Reservation; });
 /* harmony import */ var _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../WeJSObject/Component/Component */ "./src/WeJSObject/Component/Component.js");
 /* harmony import */ var _Utils_Arrayset__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Utils/Arrayset */ "./src/Utils/Arrayset.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -12180,7 +12180,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 
-class RESERVATION extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
+class Reservation extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
   constructor(...args) {
     super(...args);
 
@@ -12200,12 +12200,12 @@ class RESERVATION extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODU
 /*!**************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--3!./node_modules/vue-loader/lib??vue-loader-options!./src/Components/Text/Component.vue?vue&type=script&lang=js& ***!
   \**************************************************************************************************************************************************************/
-/*! exports provided: RESERVATION, default */
+/*! exports provided: Reservation, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return RESERVATION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return Reservation; });
 /* harmony import */ var _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../WeJSObject/Component/Component */ "./src/WeJSObject/Component/Component.js");
 /* harmony import */ var _Methods_drawText__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Methods/drawText */ "./src/Components/Text/Methods/drawText.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -12216,7 +12216,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 
-class RESERVATION extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
+class Reservation extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
   constructor(...args) {
     super(...args);
 
@@ -12282,17 +12282,17 @@ class RESERVATION extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODU
 /*!*******************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--3!./node_modules/vue-loader/lib??vue-loader-options!./src/Components/Transform/Component.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************************************************************************************************/
-/*! exports provided: RESERVATION, default */
+/*! exports provided: Reservation, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return RESERVATION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return Reservation; });
 /* harmony import */ var _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../WeJSObject/Component/Component */ "./src/WeJSObject/Component/Component.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
-class RESERVATION extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
+class Reservation extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
   constructor(...args) {
     super(...args);
 
@@ -39942,14 +39942,14 @@ async function load() {
 /*!********************************************!*\
   !*** ./src/Components/Audio/Component.vue ***!
   \********************************************/
-/*! exports provided: default, RESERVATION */
+/*! exports provided: default, Reservation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Component_vue_vue_type_template_id_a07ee3f8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Component.vue?vue&type=template&id=a07ee3f8& */ "./src/Components/Audio/Component.vue?vue&type=template&id=a07ee3f8&");
 /* harmony import */ var _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Component.vue?vue&type=script&lang=js& */ "./src/Components/Audio/Component.vue?vue&type=script&lang=js&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["RESERVATION"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["Reservation"]; });
 
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
@@ -39981,13 +39981,13 @@ component.options.__file = "src/Components/Audio/Component.vue"
 /*!*********************************************************************!*\
   !*** ./src/Components/Audio/Component.vue?vue&type=script&lang=js& ***!
   \*********************************************************************/
-/*! exports provided: default, RESERVATION */
+/*! exports provided: default, Reservation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--3!../../../node_modules/vue-loader/lib??vue-loader-options!./Component.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/Components/Audio/Component.vue?vue&type=script&lang=js&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["RESERVATION"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["Reservation"]; });
 
  /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
@@ -40170,13 +40170,13 @@ function reloadAudio() {
 /*!*********************************************!*\
   !*** ./src/Components/Camera/Component.vue ***!
   \*********************************************/
-/*! exports provided: default, RESERVATION */
+/*! exports provided: default, Reservation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Component.vue?vue&type=script&lang=js& */ "./src/Components/Camera/Component.vue?vue&type=script&lang=js&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["RESERVATION"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["Reservation"]; });
 
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 var render, staticRenderFns
@@ -40208,13 +40208,13 @@ component.options.__file = "src/Components/Camera/Component.vue"
 /*!**********************************************************************!*\
   !*** ./src/Components/Camera/Component.vue?vue&type=script&lang=js& ***!
   \**********************************************************************/
-/*! exports provided: default, RESERVATION */
+/*! exports provided: default, Reservation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--3!../../../node_modules/vue-loader/lib??vue-loader-options!./Component.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/Components/Camera/Component.vue?vue&type=script&lang=js&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["RESERVATION"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["Reservation"]; });
 
  /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
@@ -40224,13 +40224,13 @@ __webpack_require__.r(__webpack_exports__);
 /*!***********************************************!*\
   !*** ./src/Components/Children/Component.vue ***!
   \***********************************************/
-/*! exports provided: default, RESERVATION */
+/*! exports provided: default, Reservation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Component.vue?vue&type=script&lang=js& */ "./src/Components/Children/Component.vue?vue&type=script&lang=js&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["RESERVATION"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["Reservation"]; });
 
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 var render, staticRenderFns
@@ -40262,13 +40262,13 @@ component.options.__file = "src/Components/Children/Component.vue"
 /*!************************************************************************!*\
   !*** ./src/Components/Children/Component.vue?vue&type=script&lang=js& ***!
   \************************************************************************/
-/*! exports provided: default, RESERVATION */
+/*! exports provided: default, Reservation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--3!../../../node_modules/vue-loader/lib??vue-loader-options!./Component.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/Components/Children/Component.vue?vue&type=script&lang=js&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["RESERVATION"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["Reservation"]; });
 
  /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
@@ -40278,13 +40278,13 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************************************!*\
   !*** ./src/Components/Dataset/Component.vue ***!
   \**********************************************/
-/*! exports provided: default, RESERVATION */
+/*! exports provided: default, Reservation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Component.vue?vue&type=script&lang=js& */ "./src/Components/Dataset/Component.vue?vue&type=script&lang=js&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["RESERVATION"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["Reservation"]; });
 
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 var render, staticRenderFns
@@ -40316,13 +40316,13 @@ component.options.__file = "src/Components/Dataset/Component.vue"
 /*!***********************************************************************!*\
   !*** ./src/Components/Dataset/Component.vue?vue&type=script&lang=js& ***!
   \***********************************************************************/
-/*! exports provided: default, RESERVATION */
+/*! exports provided: default, Reservation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--3!../../../node_modules/vue-loader/lib??vue-loader-options!./Component.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/Components/Dataset/Component.vue?vue&type=script&lang=js&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["RESERVATION"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["Reservation"]; });
 
  /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
@@ -40332,13 +40332,13 @@ __webpack_require__.r(__webpack_exports__);
 /*!*********************************************!*\
   !*** ./src/Components/Filter/Component.vue ***!
   \*********************************************/
-/*! exports provided: default, RESERVATION */
+/*! exports provided: default, Reservation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Component.vue?vue&type=script&lang=js& */ "./src/Components/Filter/Component.vue?vue&type=script&lang=js&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["RESERVATION"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["Reservation"]; });
 
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 var render, staticRenderFns
@@ -40370,13 +40370,13 @@ component.options.__file = "src/Components/Filter/Component.vue"
 /*!**********************************************************************!*\
   !*** ./src/Components/Filter/Component.vue?vue&type=script&lang=js& ***!
   \**********************************************************************/
-/*! exports provided: default, RESERVATION */
+/*! exports provided: default, Reservation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--3!../../../node_modules/vue-loader/lib??vue-loader-options!./Component.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/Components/Filter/Component.vue?vue&type=script&lang=js&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["RESERVATION"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["Reservation"]; });
 
  /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
@@ -40386,14 +40386,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!*******************************************!*\
   !*** ./src/Components/Html/Component.vue ***!
   \*******************************************/
-/*! exports provided: default, RESERVATION */
+/*! exports provided: default, Reservation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Component_vue_vue_type_template_id_ac116dee___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Component.vue?vue&type=template&id=ac116dee& */ "./src/Components/Html/Component.vue?vue&type=template&id=ac116dee&");
 /* harmony import */ var _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Component.vue?vue&type=script&lang=js& */ "./src/Components/Html/Component.vue?vue&type=script&lang=js&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["RESERVATION"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["Reservation"]; });
 
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
@@ -40425,13 +40425,13 @@ component.options.__file = "src/Components/Html/Component.vue"
 /*!********************************************************************!*\
   !*** ./src/Components/Html/Component.vue?vue&type=script&lang=js& ***!
   \********************************************************************/
-/*! exports provided: default, RESERVATION */
+/*! exports provided: default, Reservation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--3!../../../node_modules/vue-loader/lib??vue-loader-options!./Component.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/Components/Html/Component.vue?vue&type=script&lang=js&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["RESERVATION"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["Reservation"]; });
 
  /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
@@ -40459,14 +40459,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************************************!*\
   !*** ./src/Components/Physics/Component.vue ***!
   \**********************************************/
-/*! exports provided: default, RESERVATION */
+/*! exports provided: default, Reservation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Component_vue_vue_type_template_id_4b597cb5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Component.vue?vue&type=template&id=4b597cb5& */ "./src/Components/Physics/Component.vue?vue&type=template&id=4b597cb5&");
 /* harmony import */ var _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Component.vue?vue&type=script&lang=js& */ "./src/Components/Physics/Component.vue?vue&type=script&lang=js&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["RESERVATION"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["Reservation"]; });
 
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
@@ -40498,13 +40498,13 @@ component.options.__file = "src/Components/Physics/Component.vue"
 /*!***********************************************************************!*\
   !*** ./src/Components/Physics/Component.vue?vue&type=script&lang=js& ***!
   \***********************************************************************/
-/*! exports provided: default, RESERVATION */
+/*! exports provided: default, Reservation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--3!../../../node_modules/vue-loader/lib??vue-loader-options!./Component.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/Components/Physics/Component.vue?vue&type=script&lang=js&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["RESERVATION"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["Reservation"]; });
 
  /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
@@ -40532,14 +40532,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!***************************************************!*\
   !*** ./src/Components/PhysicsWorld/Component.vue ***!
   \***************************************************/
-/*! exports provided: default, RESERVATION */
+/*! exports provided: default, Reservation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Component_vue_vue_type_template_id_051f9ae9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Component.vue?vue&type=template&id=051f9ae9& */ "./src/Components/PhysicsWorld/Component.vue?vue&type=template&id=051f9ae9&");
 /* harmony import */ var _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Component.vue?vue&type=script&lang=js& */ "./src/Components/PhysicsWorld/Component.vue?vue&type=script&lang=js&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["RESERVATION"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["Reservation"]; });
 
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
@@ -40571,13 +40571,13 @@ component.options.__file = "src/Components/PhysicsWorld/Component.vue"
 /*!****************************************************************************!*\
   !*** ./src/Components/PhysicsWorld/Component.vue?vue&type=script&lang=js& ***!
   \****************************************************************************/
-/*! exports provided: default, RESERVATION */
+/*! exports provided: default, Reservation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--3!../../../node_modules/vue-loader/lib??vue-loader-options!./Component.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/Components/PhysicsWorld/Component.vue?vue&type=script&lang=js&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["RESERVATION"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["Reservation"]; });
 
  /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
@@ -40745,56 +40745,56 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const PACKAGES = [{
-  name: new _Camera_Component_vue__WEBPACK_IMPORTED_MODULE_0__["RESERVATION"]().name,
-  reservation: _Camera_Component_vue__WEBPACK_IMPORTED_MODULE_0__["RESERVATION"],
+  name: new _Camera_Component_vue__WEBPACK_IMPORTED_MODULE_0__["Reservation"]().name,
+  reservation: _Camera_Component_vue__WEBPACK_IMPORTED_MODULE_0__["Reservation"],
   component: _Camera_Component_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
 }, {
-  name: new _Transform_Component_vue__WEBPACK_IMPORTED_MODULE_1__["RESERVATION"]().name,
-  reservation: _Transform_Component_vue__WEBPACK_IMPORTED_MODULE_1__["RESERVATION"],
+  name: new _Transform_Component_vue__WEBPACK_IMPORTED_MODULE_1__["Reservation"]().name,
+  reservation: _Transform_Component_vue__WEBPACK_IMPORTED_MODULE_1__["Reservation"],
   component: _Transform_Component_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
 }, {
-  name: new _Filter_Component__WEBPACK_IMPORTED_MODULE_2__["RESERVATION"]().name,
-  reservation: _Filter_Component__WEBPACK_IMPORTED_MODULE_2__["RESERVATION"],
+  name: new _Filter_Component__WEBPACK_IMPORTED_MODULE_2__["Reservation"]().name,
+  reservation: _Filter_Component__WEBPACK_IMPORTED_MODULE_2__["Reservation"],
   component: _Filter_Component__WEBPACK_IMPORTED_MODULE_2__["default"]
 }, {
-  name: new _Children_Component_vue__WEBPACK_IMPORTED_MODULE_3__["RESERVATION"]().name,
-  reservation: _Children_Component_vue__WEBPACK_IMPORTED_MODULE_3__["RESERVATION"],
+  name: new _Children_Component_vue__WEBPACK_IMPORTED_MODULE_3__["Reservation"]().name,
+  reservation: _Children_Component_vue__WEBPACK_IMPORTED_MODULE_3__["Reservation"],
   component: _Children_Component_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
 }, {
-  name: new _PhysicsWorld_Component_vue__WEBPACK_IMPORTED_MODULE_4__["RESERVATION"]().name,
-  reservation: _PhysicsWorld_Component_vue__WEBPACK_IMPORTED_MODULE_4__["RESERVATION"],
+  name: new _PhysicsWorld_Component_vue__WEBPACK_IMPORTED_MODULE_4__["Reservation"]().name,
+  reservation: _PhysicsWorld_Component_vue__WEBPACK_IMPORTED_MODULE_4__["Reservation"],
   component: _PhysicsWorld_Component_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
-  name: new _Physics_Component_vue__WEBPACK_IMPORTED_MODULE_5__["RESERVATION"]().name,
-  reservation: _Physics_Component_vue__WEBPACK_IMPORTED_MODULE_5__["RESERVATION"],
+  name: new _Physics_Component_vue__WEBPACK_IMPORTED_MODULE_5__["Reservation"]().name,
+  reservation: _Physics_Component_vue__WEBPACK_IMPORTED_MODULE_5__["Reservation"],
   component: _Physics_Component_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
-  name: new _Text_Component_vue__WEBPACK_IMPORTED_MODULE_6__["RESERVATION"]().name,
-  reservation: _Text_Component_vue__WEBPACK_IMPORTED_MODULE_6__["RESERVATION"],
+  name: new _Text_Component_vue__WEBPACK_IMPORTED_MODULE_6__["Reservation"]().name,
+  reservation: _Text_Component_vue__WEBPACK_IMPORTED_MODULE_6__["Reservation"],
   component: _Text_Component_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
 }, {
-  name: new _Html_Component_vue__WEBPACK_IMPORTED_MODULE_7__["RESERVATION"]().name,
-  reservation: _Html_Component_vue__WEBPACK_IMPORTED_MODULE_7__["RESERVATION"],
+  name: new _Html_Component_vue__WEBPACK_IMPORTED_MODULE_7__["Reservation"]().name,
+  reservation: _Html_Component_vue__WEBPACK_IMPORTED_MODULE_7__["Reservation"],
   component: _Html_Component_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
 }, {
-  name: new _RendererImage_Component_vue__WEBPACK_IMPORTED_MODULE_8__["RESERVATION"]().name,
-  reservation: _RendererImage_Component_vue__WEBPACK_IMPORTED_MODULE_8__["RESERVATION"],
+  name: new _RendererImage_Component_vue__WEBPACK_IMPORTED_MODULE_8__["Reservation"]().name,
+  reservation: _RendererImage_Component_vue__WEBPACK_IMPORTED_MODULE_8__["Reservation"],
   component: _RendererImage_Component_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
 }, {
-  name: new _RendererVideo_Component_vue__WEBPACK_IMPORTED_MODULE_9__["RESERVATION"]().name,
-  reservation: _RendererVideo_Component_vue__WEBPACK_IMPORTED_MODULE_9__["RESERVATION"],
+  name: new _RendererVideo_Component_vue__WEBPACK_IMPORTED_MODULE_9__["Reservation"]().name,
+  reservation: _RendererVideo_Component_vue__WEBPACK_IMPORTED_MODULE_9__["Reservation"],
   component: _RendererVideo_Component_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
 }, {
-  name: new _Dataset_Component_vue__WEBPACK_IMPORTED_MODULE_10__["RESERVATION"]().name,
-  reservation: _Dataset_Component_vue__WEBPACK_IMPORTED_MODULE_10__["RESERVATION"],
+  name: new _Dataset_Component_vue__WEBPACK_IMPORTED_MODULE_10__["Reservation"]().name,
+  reservation: _Dataset_Component_vue__WEBPACK_IMPORTED_MODULE_10__["Reservation"],
   component: _Dataset_Component_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
 }, {
-  name: new _Tag_Component_vue__WEBPACK_IMPORTED_MODULE_11__["RESERVATION"]().name,
-  reservation: _Tag_Component_vue__WEBPACK_IMPORTED_MODULE_11__["RESERVATION"],
+  name: new _Tag_Component_vue__WEBPACK_IMPORTED_MODULE_11__["Reservation"]().name,
+  reservation: _Tag_Component_vue__WEBPACK_IMPORTED_MODULE_11__["Reservation"],
   component: _Tag_Component_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
 }, {
-  name: new _Audio_Component_vue__WEBPACK_IMPORTED_MODULE_12__["RESERVATION"]().name,
-  reservation: _Audio_Component_vue__WEBPACK_IMPORTED_MODULE_12__["RESERVATION"],
+  name: new _Audio_Component_vue__WEBPACK_IMPORTED_MODULE_12__["Reservation"]().name,
+  reservation: _Audio_Component_vue__WEBPACK_IMPORTED_MODULE_12__["Reservation"],
   component: _Audio_Component_vue__WEBPACK_IMPORTED_MODULE_12__["default"]
 }]; // Map 자료형의 방식으로 받고 싶다면, import { MAP as 변수명 } 의 방식을 이용하십시오.
 
@@ -40838,14 +40838,14 @@ const DEFAULT_JSON = (() => {
 /*!****************************************************!*\
   !*** ./src/Components/RendererImage/Component.vue ***!
   \****************************************************/
-/*! exports provided: default, RESERVATION */
+/*! exports provided: default, Reservation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Component_vue_vue_type_template_id_646c4df4_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Component.vue?vue&type=template&id=646c4df4&scoped=true& */ "./src/Components/RendererImage/Component.vue?vue&type=template&id=646c4df4&scoped=true&");
 /* harmony import */ var _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Component.vue?vue&type=script&lang=js& */ "./src/Components/RendererImage/Component.vue?vue&type=script&lang=js&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["RESERVATION"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["Reservation"]; });
 
 /* harmony import */ var _Component_vue_vue_type_style_index_0_id_646c4df4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Component.vue?vue&type=style&index=0&id=646c4df4&scoped=true&lang=css& */ "./src/Components/RendererImage/Component.vue?vue&type=style&index=0&id=646c4df4&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
@@ -40879,13 +40879,13 @@ component.options.__file = "src/Components/RendererImage/Component.vue"
 /*!*****************************************************************************!*\
   !*** ./src/Components/RendererImage/Component.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************/
-/*! exports provided: default, RESERVATION */
+/*! exports provided: default, Reservation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--3!../../../node_modules/vue-loader/lib??vue-loader-options!./Component.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/Components/RendererImage/Component.vue?vue&type=script&lang=js&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["RESERVATION"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["Reservation"]; });
 
  /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
@@ -40965,14 +40965,14 @@ function parseImageSize(v) {
 /*!****************************************************!*\
   !*** ./src/Components/RendererVideo/Component.vue ***!
   \****************************************************/
-/*! exports provided: default, RESERVATION */
+/*! exports provided: default, Reservation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Component_vue_vue_type_template_id_42d567b4_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Component.vue?vue&type=template&id=42d567b4&scoped=true& */ "./src/Components/RendererVideo/Component.vue?vue&type=template&id=42d567b4&scoped=true&");
 /* harmony import */ var _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Component.vue?vue&type=script&lang=js& */ "./src/Components/RendererVideo/Component.vue?vue&type=script&lang=js&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["RESERVATION"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["Reservation"]; });
 
 /* harmony import */ var _Component_vue_vue_type_style_index_0_id_42d567b4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Component.vue?vue&type=style&index=0&id=42d567b4&scoped=true&lang=css& */ "./src/Components/RendererVideo/Component.vue?vue&type=style&index=0&id=42d567b4&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
@@ -41006,13 +41006,13 @@ component.options.__file = "src/Components/RendererVideo/Component.vue"
 /*!*****************************************************************************!*\
   !*** ./src/Components/RendererVideo/Component.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************/
-/*! exports provided: default, RESERVATION */
+/*! exports provided: default, Reservation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--3!../../../node_modules/vue-loader/lib??vue-loader-options!./Component.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/Components/RendererVideo/Component.vue?vue&type=script&lang=js&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["RESERVATION"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["Reservation"]; });
 
  /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
@@ -41225,14 +41225,14 @@ async function reloadVideo() {
 /*!******************************************!*\
   !*** ./src/Components/Tag/Component.vue ***!
   \******************************************/
-/*! exports provided: default, RESERVATION */
+/*! exports provided: default, Reservation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Component_vue_vue_type_template_id_8087e670___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Component.vue?vue&type=template&id=8087e670& */ "./src/Components/Tag/Component.vue?vue&type=template&id=8087e670&");
 /* harmony import */ var _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Component.vue?vue&type=script&lang=js& */ "./src/Components/Tag/Component.vue?vue&type=script&lang=js&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["RESERVATION"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["Reservation"]; });
 
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
@@ -41264,13 +41264,13 @@ component.options.__file = "src/Components/Tag/Component.vue"
 /*!*******************************************************************!*\
   !*** ./src/Components/Tag/Component.vue?vue&type=script&lang=js& ***!
   \*******************************************************************/
-/*! exports provided: default, RESERVATION */
+/*! exports provided: default, Reservation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--3!../../../node_modules/vue-loader/lib??vue-loader-options!./Component.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/Components/Tag/Component.vue?vue&type=script&lang=js&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["RESERVATION"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["Reservation"]; });
 
  /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
@@ -41298,14 +41298,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!*******************************************!*\
   !*** ./src/Components/Text/Component.vue ***!
   \*******************************************/
-/*! exports provided: default, RESERVATION */
+/*! exports provided: default, Reservation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Component_vue_vue_type_template_id_b20c89ea___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Component.vue?vue&type=template&id=b20c89ea& */ "./src/Components/Text/Component.vue?vue&type=template&id=b20c89ea&");
 /* harmony import */ var _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Component.vue?vue&type=script&lang=js& */ "./src/Components/Text/Component.vue?vue&type=script&lang=js&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["RESERVATION"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["Reservation"]; });
 
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
@@ -41337,13 +41337,13 @@ component.options.__file = "src/Components/Text/Component.vue"
 /*!********************************************************************!*\
   !*** ./src/Components/Text/Component.vue?vue&type=script&lang=js& ***!
   \********************************************************************/
-/*! exports provided: default, RESERVATION */
+/*! exports provided: default, Reservation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--3!../../../node_modules/vue-loader/lib??vue-loader-options!./Component.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/Components/Text/Component.vue?vue&type=script&lang=js&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["RESERVATION"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["Reservation"]; });
 
  /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
@@ -41428,13 +41428,13 @@ function drawText() {
 /*!************************************************!*\
   !*** ./src/Components/Transform/Component.vue ***!
   \************************************************/
-/*! exports provided: default, RESERVATION */
+/*! exports provided: default, Reservation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Component.vue?vue&type=script&lang=js& */ "./src/Components/Transform/Component.vue?vue&type=script&lang=js&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["RESERVATION"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["Reservation"]; });
 
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 var render, staticRenderFns
@@ -41466,13 +41466,13 @@ component.options.__file = "src/Components/Transform/Component.vue"
 /*!*************************************************************************!*\
   !*** ./src/Components/Transform/Component.vue?vue&type=script&lang=js& ***!
   \*************************************************************************/
-/*! exports provided: default, RESERVATION */
+/*! exports provided: default, Reservation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--3!../../../node_modules/vue-loader/lib??vue-loader-options!./Component.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/Components/Transform/Component.vue?vue&type=script&lang=js&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RESERVATION", function() { return _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["RESERVATION"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["Reservation"]; });
 
  /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 

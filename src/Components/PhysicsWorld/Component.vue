@@ -15,7 +15,7 @@
   import gravityY from './Watch/gravityY'
 
 
-  export class RESERVATION extends Component {
+  export class Reservation extends Component {
     name = 'physics-world'
     gravityX = 0
     gravityY = -9.8

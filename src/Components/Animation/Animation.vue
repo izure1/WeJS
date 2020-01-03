@@ -3,7 +3,7 @@
   import Animation from './Animation.js'
 
 
-  export class RESERVATION extends Component {
+  export class Reservation extends Component {
 
     name = 'animation'
 
