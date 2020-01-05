@@ -8,10 +8,6 @@ class Component {
     Object.assign(this, info)
   }
 
-  _restore(info) {
-    
-  }
-
 }
 
 

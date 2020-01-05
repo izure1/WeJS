@@ -3,9 +3,10 @@ import ComponentBuilder from '../ComponentBuilder/ComponentBuilder'
 
 class ComponentFactory {
 
-  create(reservation) {
-    reservation = new reservation
-    return new ComponentBuilder(reservation).build()
+  create(Reservation) {
+    const data = new Reservation
+    const builder = new ComponentBuilder
+    return builder.setName(data.name).setCache(data).build()
   }
 
   createFromName(name) {

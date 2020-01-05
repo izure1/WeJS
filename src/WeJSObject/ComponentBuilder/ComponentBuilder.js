@@ -19,18 +19,29 @@ class ComponentBuilder {
   static RESERVATION = RESERVATION_MAP
   static COMPONENT = COMPONENT_MAP
 
-  constructor(reservation) {
-    this.cache = reservation
+  constructor(name) {
+    this.name = name
+    this.data = {}
+  }
+
+  setName(name) {
+    this.name = name
+    return this
+  }
+
+  setData(data) {
+    Object.assign(this.data, data)
+    return this
   }
 
   build() {
 
-    const componentName = ComponentBuilder.convertToCamelCase(this.cache.name)
-    const ComponentConstructor = ComponentBuilder.RESERVATION.get(this.cache.name)
-    
-    // cache로 넘겨받은 데이터와, 신규 클래스의 데이터를 병합한 ref 변수를 생성합니다
+    const componentName = ComponentBuilder.convertToCamelCase(this.name)
+    const ComponentConstructor = ComponentBuilder.RESERVATION.get(this.name)
+
+    // data로 넘겨받은 데이터와, 신규 클래스의 데이터를 병합한 ref 변수를 생성합니다
     // ref변수로부터 Component를 생성합니다.
-    const ref = new ComponentConstructor(this.cache)
+    const ref = new ComponentConstructor(this.data)
     ref.name = componentName
     return ref
 
