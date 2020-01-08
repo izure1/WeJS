@@ -11,6 +11,7 @@ export default function launch(scene) {
   }
 
   this.destroy()
+  this.scene = scene
   this.app = new Vue({
     el: this.element,
     template: '<App :scene="scene" :app="app" />',

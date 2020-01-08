@@ -11582,13 +11582,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Helper_waitLoading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Helper/waitLoading */ "./src/Components/Audio/Helper/waitLoading.js");
 /* harmony import */ var _Methods_onChangeAudioSrc__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Methods/onChangeAudioSrc */ "./src/Components/Audio/Methods/onChangeAudioSrc.js");
 /* harmony import */ var _Methods_reloadAudio__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Methods/reloadAudio */ "./src/Components/Audio/Methods/reloadAudio.js");
-/* harmony import */ var _Methods_modifyAudioProperty__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Methods/modifyAudioProperty */ "./src/Components/Audio/Methods/modifyAudioProperty.js");
+/* harmony import */ var _Methods_setAudioProperty__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Methods/setAudioProperty */ "./src/Components/Audio/Methods/setAudioProperty.js");
+/* harmony import */ var _Methods_setAudioPosition__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Methods/setAudioPosition */ "./src/Components/Audio/Methods/setAudioPosition.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
 //
 //
 //
+
 
 
 
@@ -11622,14 +11624,15 @@ Reservation.prototype.play = _Helper_play__WEBPACK_IMPORTED_MODULE_2__["default"
 Reservation.prototype.pause = _Helper_pause__WEBPACK_IMPORTED_MODULE_3__["default"];
 Reservation.prototype.waitLoading = _Helper_waitLoading__WEBPACK_IMPORTED_MODULE_4__["default"];
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['body'],
+  props: ['body', 'app'],
   data: () => ({
     audio: null
   }),
   methods: {
     onChangeAudioSrc: _Methods_onChangeAudioSrc__WEBPACK_IMPORTED_MODULE_5__["default"],
     reloadAudio: _Methods_reloadAudio__WEBPACK_IMPORTED_MODULE_6__["default"],
-    modifyAudioProperty: _Methods_modifyAudioProperty__WEBPACK_IMPORTED_MODULE_7__["default"]
+    setAudioProperty: _Methods_setAudioProperty__WEBPACK_IMPORTED_MODULE_7__["default"],
+    setAudioPosition: _Methods_setAudioPosition__WEBPACK_IMPORTED_MODULE_8__["default"]
   },
 
   created() {
@@ -11641,19 +11644,40 @@ Reservation.prototype.waitLoading = _Helper_waitLoading__WEBPACK_IMPORTED_MODULE
   },
 
   watch: {
+    // 앱의 메인씬의 카메라나 위치가 변경될 경우, 이를 감지합니다.
+    // 변경된 위치를 기반으로 오디오의 위치를 수정해야 합니다.
+    'app.scene.component.transform': {
+      deep: true,
+
+      handler() {
+        this.setAudioPosition();
+      }
+
+    },
+    'app.scene.component.camera': {
+      deep: true,
+
+      handler() {
+        this.setAudioPosition();
+      }
+
+    },
+
     'body.component.audio.src'() {
       this.onChangeAudioSrc();
     },
 
     audio() {
-      this.modifyAudioProperty();
+      this.setAudioProperty();
+      this.setAudioPosition();
     },
 
     'body.component.audio': {
       deep: true,
 
       handler() {
-        this.modifyAudioProperty();
+        this.setAudioProperty();
+        this.setAudioPosition();
       }
 
     }
@@ -39479,6 +39503,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AppMethods_setSize__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AppMethods/setSize */ "./src/App/AppMethods/setSize.js");
 /* harmony import */ var _AppMethods_fullscreen__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AppMethods/fullscreen */ "./src/App/AppMethods/fullscreen.js");
 /* harmony import */ var _AppMethods_existFullscreen__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./AppMethods/existFullscreen */ "./src/App/AppMethods/existFullscreen.js");
+/* harmony import */ var _Camera__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Camera */ "./src/App/Camera.js");
+
 
 
 
@@ -39515,6 +39541,22 @@ class App {
   get appElement() {
     if (!this.app) return null;
     return this.app.$el;
+  }
+
+  get mainCamera() {
+    if (!this.scene) return null;
+    const camera = new _Camera__WEBPACK_IMPORTED_MODULE_5__["default"]();
+    const {
+      x,
+      y,
+      z
+    } = this.scene.component.camera;
+    camera.pos = {
+      x,
+      y,
+      z
+    };
+    return camera;
   }
 
 }
@@ -39627,6 +39669,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return destroy; });
 function destroy() {
   if (!this.app) return;
+  this.scene = null;
   this.app.$destroy();
 }
 
@@ -39693,6 +39736,7 @@ function launch(scene) {
   }
 
   this.destroy();
+  this.scene = scene;
   this.app = new vue__WEBPACK_IMPORTED_MODULE_1__["default"]({
     el: this.element,
     template: '<App :scene="scene" :app="app" />',
@@ -39723,6 +39767,45 @@ function setSize(width, height) {
   this.width = width;
   this.height = height;
 }
+
+/***/ }),
+
+/***/ "./src/App/Camera.js":
+/*!***************************!*\
+  !*** ./src/App/Camera.js ***!
+  \***************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+class Camera {
+  constructor() {
+    this._pos = {
+      x: 0,
+      y: 0,
+      z: 0
+    };
+  }
+
+  get pos() {
+    return this._pos;
+  }
+
+  set pos(_pos) {
+    const {
+      x,
+      y,
+      z
+    } = _pos;
+    this._pos.x = x;
+    this._pos.y = y;
+    this._pos.z = z;
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Camera);
 
 /***/ }),
 
@@ -40081,32 +40164,6 @@ function waitLoading() {
 
 /***/ }),
 
-/***/ "./src/Components/Audio/Methods/modifyAudioProperty.js":
-/*!*************************************************************!*\
-  !*** ./src/Components/Audio/Methods/modifyAudioProperty.js ***!
-  \*************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return setAudioProperty; });
-function setAudioProperty() {
-  if (!this.audio) return;
-  const {
-    playbackRate,
-    volume,
-    loop,
-    muted
-  } = this.body.component.audio;
-  this.audio.rate(playbackRate);
-  this.audio.mute(muted);
-  this.audio.loop(loop);
-  this.audio.volume(volume);
-}
-
-/***/ }),
-
 /***/ "./src/Components/Audio/Methods/onChangeAudioSrc.js":
 /*!**********************************************************!*\
   !*** ./src/Components/Audio/Methods/onChangeAudioSrc.js ***!
@@ -40162,6 +40219,51 @@ function reloadAudio() {
       reject();
     });
   });
+}
+
+/***/ }),
+
+/***/ "./src/Components/Audio/Methods/setAudioPosition.js":
+/*!**********************************************************!*\
+  !*** ./src/Components/Audio/Methods/setAudioPosition.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return setAudioPosition; });
+function setAudioPosition() {
+  if (!this.audio) return;
+  if (!this.app.mainCamera) return;
+  const camera = this.app.mainCamera;
+  console.log(camera.pos); //this.audio.pos(cmera.)
+}
+
+/***/ }),
+
+/***/ "./src/Components/Audio/Methods/setAudioProperty.js":
+/*!**********************************************************!*\
+  !*** ./src/Components/Audio/Methods/setAudioProperty.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return setAudioProperty; });
+function setAudioProperty() {
+  if (!this.audio) return;
+  const {
+    playbackRate,
+    volume,
+    loop,
+    muted
+  } = this.body.component.audio;
+  this.audio.rate(playbackRate);
+  this.audio.mute(muted);
+  this.audio.loop(loop);
+  this.audio.volume(volume);
 }
 
 /***/ }),
@@ -41982,9 +42084,6 @@ const VERSION = _package_json__WEBPACK_IMPORTED_MODULE_10__.version;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-
-
 class Component {
   constructor(info) {
     this.name = null;
@@ -42074,7 +42173,7 @@ class ComponentFactory {
   create(Reservation) {
     const data = new Reservation();
     const builder = new _ComponentBuilder_ComponentBuilder__WEBPACK_IMPORTED_MODULE_0__["default"]();
-    return builder.setName(data.name).setCache(data).build();
+    return builder.setName(data.name).setData(data).build();
   }
 
   createFromName(name) {

@@ -4,6 +4,8 @@ import setSize from './AppMethods/setSize'
 import fullscreen from './AppMethods/fullscreen'
 import exitFullscreen from './AppMethods/existFullscreen'
 
+import Camera from './Camera'
+
 
 class App {
 
@@ -37,6 +39,14 @@ class App {
   get appElement() {
     if (!this.app) return null
     return this.app.$el
+  }
+
+  get mainCamera() {
+    if (!this.scene) return null
+    const camera = new Camera
+    const { x, y, z } = this.scene.component.camera
+    camera.pos = { x, y, z }
+    return camera
   }
 
 }
