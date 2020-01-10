@@ -40242,7 +40242,6 @@ function observeAudioPosition() {
     const centerY = parseFloat(appStyle.height) / 2;
     const x = relX - centerX;
     const y = centerY - relY; // 현재 객체의 z좌표를 계산하기 위해 객체의 상위 body를 모두 구해 배열에 담습니다.
-    // 이후 body의 z좌표를 누산기로 계산하여 최종 z좌표를 얻어냅니다.
 
     let bodys = [];
     let body = el;
@@ -40251,7 +40250,8 @@ function observeAudioPosition() {
       body = searcher.getElementFromChildren(body);
       if (!body) break;
       bodys.push(body);
-    } while (body.classList.contains('we-body'));
+    } while (body.classList.contains('we-body')); // 이후 body의 z좌표를 누산기로 계산하여 최종 z좌표를 얻어냅니다.
+
 
     const z = bodys.reduce((perspAcc, body) => {
       perspAcc -= getComputedTranslateZ(body); // 만일 children 컴포넌트로 인해 자식 객체도 존재한다면 카메라의 Z좌표만큼을 추가합니다.
