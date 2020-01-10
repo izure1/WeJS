@@ -12365,8 +12365,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Methods_onSizeChange__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Methods/onSizeChange */ "./src/View/Methods/onSizeChange.js");
 /* harmony import */ var _Methods_calcSizeMax__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Methods/calcSizeMax */ "./src/View/Methods/calcSizeMax.js");
 /* harmony import */ var _Methods_isNeedFromScene__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Methods/isNeedFromScene */ "./src/View/Methods/isNeedFromScene.js");
-/* harmony import */ var _Computed_centerPointX__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Computed/centerPointX */ "./src/View/Computed/centerPointX.js");
-/* harmony import */ var _Computed_centerPointY__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Computed/centerPointY */ "./src/View/Computed/centerPointY.js");
+/* harmony import */ var _Methods_startResizeObserve__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Methods/startResizeObserve */ "./src/View/Methods/startResizeObserve.js");
+/* harmony import */ var _Methods_destroyResizeObserve__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Methods/destroyResizeObserve */ "./src/View/Methods/destroyResizeObserve.js");
+/* harmony import */ var _Computed_centerPointX__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./Computed/centerPointX */ "./src/View/Computed/centerPointX.js");
+/* harmony import */ var _Computed_centerPointY__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./Computed/centerPointY */ "./src/View/Computed/centerPointY.js");
 //
 //
 //
@@ -12445,6 +12447,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
+
 
 
 
@@ -12480,14 +12484,16 @@ __webpack_require__.r(__webpack_exports__);
     sizeMax: [0, 0]
   }),
   computed: {
-    centerPointX: _Computed_centerPointX__WEBPACK_IMPORTED_MODULE_13__["default"],
-    centerPointY: _Computed_centerPointY__WEBPACK_IMPORTED_MODULE_14__["default"]
+    centerPointX: _Computed_centerPointX__WEBPACK_IMPORTED_MODULE_15__["default"],
+    centerPointY: _Computed_centerPointY__WEBPACK_IMPORTED_MODULE_16__["default"]
   },
   methods: {
     hasComponent: _Methods_hasComponent__WEBPACK_IMPORTED_MODULE_9__["default"],
     onSizeChange: _Methods_onSizeChange__WEBPACK_IMPORTED_MODULE_10__["default"],
     calcSizeMax: _Methods_calcSizeMax__WEBPACK_IMPORTED_MODULE_11__["default"],
-    isNeedFromScene: _Methods_isNeedFromScene__WEBPACK_IMPORTED_MODULE_12__["default"]
+    isNeedFromScene: _Methods_isNeedFromScene__WEBPACK_IMPORTED_MODULE_12__["default"],
+    startResizeObserve: _Methods_startResizeObserve__WEBPACK_IMPORTED_MODULE_13__["default"],
+    destroyResizeObserve: _Methods_destroyResizeObserve__WEBPACK_IMPORTED_MODULE_14__["default"]
   },
   watch: {
     sizeSelf() {
@@ -12501,21 +12507,11 @@ __webpack_require__.r(__webpack_exports__);
   },
 
   mounted() {
-    if (!this.$el) return;
-
-    const onResize = () => {
-      if (this.$el) return;
-      const style = getComputedStyle(this.$el);
-      this.sizeSelf = [style.width, style.height].map(n => parseFloat(n));
-      this.$emit('onsizechange', this.sizeSelf);
-    };
-
-    this.sizeObserver = new ResizeObserver(onResize);
-    this.sizeObserver.observe(this.$el);
+    this.startResizeObserve();
   },
 
   beforeDestroy() {
-    if (this.sizeObserver) this.sizeObserver.disconnect();
+    this.destroyResizeObserve();
   }
 
 });
@@ -42423,6 +42419,22 @@ function calcSizeMax() {
 
 /***/ }),
 
+/***/ "./src/View/Methods/destroyResizeObserve.js":
+/*!**************************************************!*\
+  !*** ./src/View/Methods/destroyResizeObserve.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return destroyResizeObserve; });
+function destroyResizeObserve() {
+  if (this.sizeObserver instanceof ResizeObserver) this.sizeObserver.disconnect();
+}
+
+/***/ }),
+
 /***/ "./src/View/Methods/hasComponent.js":
 /*!******************************************!*\
   !*** ./src/View/Methods/hasComponent.js ***!
@@ -42467,6 +42479,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return onSizeChange; });
 function onSizeChange(size) {
   this.sizeChild = size;
+}
+
+/***/ }),
+
+/***/ "./src/View/Methods/startResizeObserve.js":
+/*!************************************************!*\
+  !*** ./src/View/Methods/startResizeObserve.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return startResizeObserve; });
+function startResizeObserve() {
+  if (!this.$el) return;
+
+  const onResize = () => {
+    if (this.$el) return;
+    const style = getComputedStyle(this.$el);
+    this.sizeSelf = [style.width, style.height].map(n => parseFloat(n));
+    this.$emit('onsizechange', this.sizeSelf);
+  };
+
+  this.sizeObserver = new ResizeObserver(onResize);
+  this.sizeObserver.observe(this.$el);
 }
 
 /***/ }),

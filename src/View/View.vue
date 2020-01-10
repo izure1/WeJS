@@ -91,6 +91,8 @@
   import onSizeChange from './Methods/onSizeChange'
   import calcSizeMax from './Methods/calcSizeMax'
   import isNeedFromScene from './Methods/isNeedFromScene'
+  import startResizeObserve from './Methods/startResizeObserve'
+  import destroyResizeObserve from './Methods/destroyResizeObserve'
 
   import centerPointX from './Computed/centerPointX'
   import centerPointY from './Computed/centerPointY'
@@ -126,6 +128,8 @@
       onSizeChange,
       calcSizeMax,
       isNeedFromScene,
+      startResizeObserve,
+      destroyResizeObserve,
     },
 
     watch: {
@@ -140,23 +144,11 @@
     },
 
     mounted() {
-
-      if (!this.$el) return
-
-      const onResize = () => {
-        if (this.$el) return
-        const style = getComputedStyle(this.$el)
-        this.sizeSelf = [style.width, style.height].map(n => parseFloat(n))
-        this.$emit('onsizechange', this.sizeSelf)
-      }
-
-      this.sizeObserver = new ResizeObserver(onResize)
-      this.sizeObserver.observe(this.$el)
-
+      this.startResizeObserve()
     },
 
     beforeDestroy() {
-      if (this.sizeObserver) this.sizeObserver.disconnect()
+      this.destroyResizeObserve()
     }
 
   }
