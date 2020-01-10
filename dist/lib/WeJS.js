@@ -11511,7 +11511,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var screenfull__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! screenfull */ "./node_modules/screenfull/dist/screenfull.js");
 /* harmony import */ var screenfull__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(screenfull__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _View_View_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../View/View.vue */ "./src/View/View.vue");
-/* harmony import */ var _Methods_onScreenChange__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Methods/onScreenChange */ "./src/App/Methods/onScreenChange.js");
+/* harmony import */ var _View_LevelDesign_LevelDesign__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../View/LevelDesign/LevelDesign */ "./src/View/LevelDesign/LevelDesign.js");
+/* harmony import */ var _Methods_onScreenChange__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Methods/onScreenChange */ "./src/App/Methods/onScreenChange.js");
 //
 //
 //
@@ -11532,6 +11533,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 
@@ -11542,10 +11544,11 @@ __webpack_require__.r(__webpack_exports__);
   props: ['scene', 'app'],
   data: () => ({
     resizeObserver: null,
-    appScale: 1
+    appScale: 1,
+    persistentLevel: [_View_LevelDesign_LevelDesign__WEBPACK_IMPORTED_MODULE_2__["default"].PERSISTENT_LEVEL]
   }),
   methods: {
-    onScreenChange: _Methods_onScreenChange__WEBPACK_IMPORTED_MODULE_2__["default"]
+    onScreenChange: _Methods_onScreenChange__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
 
   created() {
@@ -12361,8 +12364,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Methods_hasComponent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Methods/hasComponent */ "./src/View/Methods/hasComponent.js");
 /* harmony import */ var _Methods_onSizeChange__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Methods/onSizeChange */ "./src/View/Methods/onSizeChange.js");
 /* harmony import */ var _Methods_calcSizeMax__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Methods/calcSizeMax */ "./src/View/Methods/calcSizeMax.js");
-/* harmony import */ var _Computed_centerPointX__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Computed/centerPointX */ "./src/View/Computed/centerPointX.js");
-/* harmony import */ var _Computed_centerPointY__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Computed/centerPointY */ "./src/View/Computed/centerPointY.js");
+/* harmony import */ var _Methods_isNeedFromScene__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Methods/isNeedFromScene */ "./src/View/Methods/isNeedFromScene.js");
+/* harmony import */ var _Computed_centerPointX__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Computed/centerPointX */ "./src/View/Computed/centerPointX.js");
+/* harmony import */ var _Computed_centerPointY__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Computed/centerPointY */ "./src/View/Computed/centerPointY.js");
 //
 //
 //
@@ -12441,6 +12445,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 
@@ -12467,7 +12472,7 @@ __webpack_require__.r(__webpack_exports__);
     ComponentTag: _Components_Tag_Component__WEBPACK_IMPORTED_MODULE_7__["default"],
     ComponentAudio: _Components_Audio_Component__WEBPACK_IMPORTED_MODULE_8__["default"]
   },
-  props: ['app', 'scene', 'body', 'coords'],
+  props: ['app', 'scene', 'body', 'coords', 'requiredLevel'],
   data: () => ({
     sizeObserver: null,
     sizeSelf: [0, 0],
@@ -12475,13 +12480,14 @@ __webpack_require__.r(__webpack_exports__);
     sizeMax: [0, 0]
   }),
   computed: {
-    centerPointX: _Computed_centerPointX__WEBPACK_IMPORTED_MODULE_12__["default"],
-    centerPointY: _Computed_centerPointY__WEBPACK_IMPORTED_MODULE_13__["default"]
+    centerPointX: _Computed_centerPointX__WEBPACK_IMPORTED_MODULE_13__["default"],
+    centerPointY: _Computed_centerPointY__WEBPACK_IMPORTED_MODULE_14__["default"]
   },
   methods: {
     hasComponent: _Methods_hasComponent__WEBPACK_IMPORTED_MODULE_9__["default"],
     onSizeChange: _Methods_onSizeChange__WEBPACK_IMPORTED_MODULE_10__["default"],
-    calcSizeMax: _Methods_calcSizeMax__WEBPACK_IMPORTED_MODULE_11__["default"]
+    calcSizeMax: _Methods_calcSizeMax__WEBPACK_IMPORTED_MODULE_11__["default"],
+    isNeedFromScene: _Methods_isNeedFromScene__WEBPACK_IMPORTED_MODULE_12__["default"]
   },
   watch: {
     sizeSelf() {
@@ -12495,7 +12501,10 @@ __webpack_require__.r(__webpack_exports__);
   },
 
   mounted() {
+    if (!this.$el) return;
+
     const onResize = () => {
+      if (this.$el) return;
       const style = getComputedStyle(this.$el);
       this.sizeSelf = [style.width, style.height].map(n => parseFloat(n));
       this.$emit('onsizechange', this.sizeSelf);
@@ -12506,7 +12515,7 @@ __webpack_require__.r(__webpack_exports__);
   },
 
   beforeDestroy() {
-    this.sizeObserver.disconnect();
+    if (this.sizeObserver) this.sizeObserver.disconnect();
   }
 
 });
@@ -25498,7 +25507,12 @@ var render = function() {
         },
         [
           _c("we-body", {
-            attrs: { app: _vm.app, scene: _vm.scene, body: _vm.scene }
+            attrs: {
+              app: _vm.app,
+              scene: _vm.scene,
+              body: _vm.scene,
+              requiredLevel: _vm.persistentLevel
+            }
           })
         ],
         1
@@ -25769,171 +25783,215 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "we-body",
-      style: {
-        transform:
-          "translate3d(\n    " +
-          _vm.centerPointX +
-          "px,\n    " +
-          _vm.centerPointY +
-          "px,\n    " +
-          -_vm.body.component.transform.z +
-          "px) \n    rotateX(" +
-          _vm.body.component.transform.rotateX +
-          "deg)\n    rotateY(" +
-          -_vm.body.component.transform.rotateY +
-          "deg)\n    rotateZ(" +
-          _vm.body.component.transform.rotateZ +
-          "deg)\n    scale(" +
-          _vm.body.component.transform.scale +
-          ")",
-        transition:
-          "\n    all\n    " +
-          _vm.body.component.transform.duration +
-          "ms\n    " +
-          _vm.body.component.transform.ease +
-          "\n    " +
-          _vm.body.component.transform.delay +
-          "ms"
-      },
-      attrs: { id: _vm.body.id, "we-body-size": _vm.sizeMax }
-    },
-    [
-      _c(
+  return _vm.isNeedFromScene(_vm.requiredLevel, _vm.body.level)
+    ? _c(
         "div",
         {
-          staticClass: "we-components",
+          staticClass: "we-body",
           style: {
+            transform:
+              "translate3d(\n    " +
+              _vm.centerPointX +
+              "px,\n    " +
+              _vm.centerPointY +
+              "px,\n    " +
+              -_vm.body.component.transform.z +
+              "px) \n    rotateX(" +
+              _vm.body.component.transform.rotateX +
+              "deg)\n    rotateY(" +
+              -_vm.body.component.transform.rotateY +
+              "deg)\n    rotateZ(" +
+              _vm.body.component.transform.rotateZ +
+              "deg)\n    scale(" +
+              _vm.body.component.transform.scale +
+              ")",
             transition:
-              "\n      all\n      " +
-              _vm.body.component.filter.duration +
-              "ms\n      " +
-              _vm.body.component.filter.ease +
-              "\n      " +
-              _vm.body.component.filter.delay +
-              "ms",
-            filter:
-              "\n      blur(" +
-              _vm.body.component.filter.blur +
-              "px)\n      brightness(" +
-              _vm.body.component.filter.brightness +
-              ")\n      contrast(" +
-              _vm.body.component.filter.contrast +
-              ")\n      grayscale(" +
-              _vm.body.component.filter.grayscale +
-              ")\n      invert(" +
-              _vm.body.component.filter.invert +
-              ")\n      opacity(" +
-              _vm.body.component.filter.opacity +
-              ")\n      saturate(" +
-              _vm.body.component.filter.saturate +
-              ")\n      sepia(" +
-              _vm.body.component.filter.sepia +
-              ")"
-          }
+              "\n    all\n    " +
+              _vm.body.component.transform.duration +
+              "ms\n    " +
+              _vm.body.component.transform.ease +
+              "\n    " +
+              _vm.body.component.transform.delay +
+              "ms"
+          },
+          attrs: { id: _vm.body.id, "we-body-size": _vm.sizeMax }
         },
         [
           _c(
             "div",
-            { staticClass: "we-components-visible" },
-            [
-              _vm.hasComponent("text")
-                ? _c("component-text", {
-                    attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
-                  })
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.hasComponent("html")
-                ? _c("component-html", {
-                    attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
-                  })
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.hasComponent("rendererImage")
-                ? _c("component-renderer-image", {
-                    attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
-                  })
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.hasComponent("rendererVideo")
-                ? _c("component-renderer-video", {
-                    attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
-                  })
-                : _vm._e()
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "we-components-hidden" },
-            [
-              _vm.hasComponent("physicsWorld")
-                ? _c("component-physics-world", {
-                    attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
-                  })
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.hasComponent("physics")
-                ? _c("component-physics", {
-                    attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
-                  })
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.hasComponent("tag")
-                ? _c("component-tag", {
-                    attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
-                  })
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.hasComponent("audio")
-                ? _c("component-audio", {
-                    attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
-                  })
-                : _vm._e()
-            ],
-            1
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _vm.hasComponent("children")
-        ? _c(
-            "div",
             {
-              staticClass: "we-camera",
+              staticClass: "we-components",
               style: {
-                transform:
-                  "translate3d(\n      " +
-                  -_vm.body.component.camera.x +
-                  "px,\n      " +
-                  _vm.body.component.camera.y +
-                  "px,\n      " +
-                  _vm.body.component.camera.z +
-                  "px) \n      rotateX(" +
-                  -_vm.body.component.camera.rotateX +
-                  "deg)\n      rotateY(" +
-                  _vm.body.component.camera.rotateY +
-                  "deg)\n      rotateZ(" +
-                  -_vm.body.component.camera.rotateZ +
-                  "deg)"
+                transition:
+                  "\n      all\n      " +
+                  _vm.body.component.filter.duration +
+                  "ms\n      " +
+                  _vm.body.component.filter.ease +
+                  "\n      " +
+                  _vm.body.component.filter.delay +
+                  "ms",
+                filter:
+                  "\n      blur(" +
+                  _vm.body.component.filter.blur +
+                  "px)\n      brightness(" +
+                  _vm.body.component.filter.brightness +
+                  ")\n      contrast(" +
+                  _vm.body.component.filter.contrast +
+                  ")\n      grayscale(" +
+                  _vm.body.component.filter.grayscale +
+                  ")\n      invert(" +
+                  _vm.body.component.filter.invert +
+                  ")\n      opacity(" +
+                  _vm.body.component.filter.opacity +
+                  ")\n      saturate(" +
+                  _vm.body.component.filter.saturate +
+                  ")\n      sepia(" +
+                  _vm.body.component.filter.sepia +
+                  ")"
               }
             },
-            _vm._l(_vm.body.component.children.lists, function(children, i) {
-              return _c("we-body", {
-                key: i,
-                attrs: { app: _vm.app, scene: _vm.scene, body: children },
-                on: { onsizechange: _vm.onSizeChange }
-              })
-            }),
-            1
-          )
-        : _vm._e()
-    ]
-  )
+            [
+              _c(
+                "div",
+                { staticClass: "we-components-visible" },
+                [
+                  _vm.hasComponent("text")
+                    ? _c("component-text", {
+                        attrs: {
+                          app: _vm.app,
+                          scene: _vm.scene,
+                          body: _vm.body
+                        }
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.hasComponent("html")
+                    ? _c("component-html", {
+                        attrs: {
+                          app: _vm.app,
+                          scene: _vm.scene,
+                          body: _vm.body
+                        }
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.hasComponent("rendererImage")
+                    ? _c("component-renderer-image", {
+                        attrs: {
+                          app: _vm.app,
+                          scene: _vm.scene,
+                          body: _vm.body
+                        }
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.hasComponent("rendererVideo")
+                    ? _c("component-renderer-video", {
+                        attrs: {
+                          app: _vm.app,
+                          scene: _vm.scene,
+                          body: _vm.body
+                        }
+                      })
+                    : _vm._e()
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "we-components-hidden" },
+                [
+                  _vm.hasComponent("physicsWorld")
+                    ? _c("component-physics-world", {
+                        attrs: {
+                          app: _vm.app,
+                          scene: _vm.scene,
+                          body: _vm.body
+                        }
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.hasComponent("physics")
+                    ? _c("component-physics", {
+                        attrs: {
+                          app: _vm.app,
+                          scene: _vm.scene,
+                          body: _vm.body
+                        }
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.hasComponent("tag")
+                    ? _c("component-tag", {
+                        attrs: {
+                          app: _vm.app,
+                          scene: _vm.scene,
+                          body: _vm.body
+                        }
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.hasComponent("audio")
+                    ? _c("component-audio", {
+                        attrs: {
+                          app: _vm.app,
+                          scene: _vm.scene,
+                          body: _vm.body
+                        }
+                      })
+                    : _vm._e()
+                ],
+                1
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _vm.hasComponent("children")
+            ? _c(
+                "div",
+                {
+                  staticClass: "we-camera",
+                  style: {
+                    transform:
+                      "translate3d(\n      " +
+                      -_vm.body.component.camera.x +
+                      "px,\n      " +
+                      _vm.body.component.camera.y +
+                      "px,\n      " +
+                      _vm.body.component.camera.z +
+                      "px) \n      rotateX(" +
+                      -_vm.body.component.camera.rotateX +
+                      "deg)\n      rotateY(" +
+                      _vm.body.component.camera.rotateY +
+                      "deg)\n      rotateZ(" +
+                      -_vm.body.component.camera.rotateZ +
+                      "deg)"
+                  }
+                },
+                _vm._l(_vm.body.component.children.lists, function(
+                  children,
+                  i
+                ) {
+                  return _c("we-body", {
+                    key: i,
+                    attrs: {
+                      app: _vm.app,
+                      scene: _vm.scene,
+                      body: children,
+                      requiredLevel: _vm.body.levelDesign.getRequired(
+                        _vm.body.level
+                      )
+                    },
+                    on: { onsizechange: _vm.onSizeChange }
+                  })
+                }),
+                1
+              )
+            : _vm._e()
+        ]
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -42301,6 +42359,8 @@ function centerPointY() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 class LevelDesign {
   constructor(raw) {
     Object.assign(this, raw);
@@ -42335,6 +42395,8 @@ class LevelDesign {
   }
 
 }
+
+_defineProperty(LevelDesign, "PERSISTENT_LEVEL", 'main');
 
 /* harmony default export */ __webpack_exports__["default"] = (LevelDesign);
 
@@ -42377,6 +42439,22 @@ function hasComponent(name) {
 
 /***/ }),
 
+/***/ "./src/View/Methods/isNeedFromScene.js":
+/*!*********************************************!*\
+  !*** ./src/View/Methods/isNeedFromScene.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return isNeedFromScene; });
+function isNeedFromScene(requiredLevel, current) {
+  return this.requiredLevel.indexOf(current) !== -1;
+}
+
+/***/ }),
+
 /***/ "./src/View/Methods/onSizeChange.js":
 /*!******************************************!*\
   !*** ./src/View/Methods/onSizeChange.js ***!
@@ -42414,11 +42492,13 @@ __webpack_require__.r(__webpack_exports__);
 class View {
   constructor(raw = {
     id: null,
-    level: 'main',
+    level: _LevelDesign_LevelDesign__WEBPACK_IMPORTED_MODULE_2__["default"].PERSISTENT_LEVEL,
     levelDesign: new _LevelDesign_LevelDesign__WEBPACK_IMPORTED_MODULE_2__["default"](),
     component: new _ComponentList_ComponentList__WEBPACK_IMPORTED_MODULE_0__["default"]()
   }) {
     this.id = raw.id;
+    this.level = raw.level;
+    this.levelDesign = raw.levelDesign;
     this.component = new _ComponentList_ComponentList__WEBPACK_IMPORTED_MODULE_0__["default"](raw.component);
     const factory = new _ComponentFactory_ComponentFactory__WEBPACK_IMPORTED_MODULE_1__["default"]();
     this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_3__["default"].CAMERA));

@@ -1,5 +1,5 @@
 <template>
-  <div :id="body.id" class="we-body" :we-body-size="sizeMax" :style="{ 
+  <div v-if="isNeedFromScene(requiredLevel, body.level)" :id="body.id" class="we-body" :we-body-size="sizeMax" :style="{ 
     transform: `translate3d(
       ${centerPointX}px,
       ${centerPointY}px,
@@ -70,7 +70,7 @@
         rotateY(${body.component.camera.rotateY}deg)
         rotateZ(${-body.component.camera.rotateZ}deg)` }">
       <we-body v-for="(children, i) in body.component.children.lists" :key="i" :app="app" :scene="scene"
-        :body="children" @onsizechange="onSizeChange" />
+        :body="children" :requiredLevel="body.levelDesign.getRequired(body.level)" @onsizechange="onSizeChange" />
     </div>
 
   </div>
@@ -90,6 +90,7 @@
   import hasComponent from './Methods/hasComponent'
   import onSizeChange from './Methods/onSizeChange'
   import calcSizeMax from './Methods/calcSizeMax'
+  import isNeedFromScene from './Methods/isNeedFromScene'
 
   import centerPointX from './Computed/centerPointX'
   import centerPointY from './Computed/centerPointY'
@@ -108,7 +109,7 @@
       ComponentTag,
       ComponentAudio,
     },
-    props: ['app', 'scene', 'body', 'coords'],
+    props: ['app', 'scene', 'body', 'coords', 'requiredLevel'],
     data: () => ({
       sizeObserver: null,
       sizeSelf: [0, 0],
@@ -124,6 +125,7 @@
       hasComponent,
       onSizeChange,
       calcSizeMax,
+      isNeedFromScene,
     },
 
     watch: {
@@ -139,7 +141,10 @@
 
     mounted() {
 
+      if (!this.$el) return
+
       const onResize = () => {
+        if (this.$el) return
         const style = getComputedStyle(this.$el)
         this.sizeSelf = [style.width, style.height].map(n => parseFloat(n))
         this.$emit('onsizechange', this.sizeSelf)
@@ -151,7 +156,7 @@
     },
 
     beforeDestroy() {
-      this.sizeObserver.disconnect()
+      if (this.sizeObserver) this.sizeObserver.disconnect()
     }
 
   }

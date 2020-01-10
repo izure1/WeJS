@@ -1,5 +1,7 @@
 class LevelDesign {
 
+  static PERSISTENT_LEVEL = 'main'
+
   constructor(raw) {
     Object.assign(this, raw)
   }

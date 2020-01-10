@@ -13,7 +13,7 @@
       transform: `scale(${appScale})`,
       margin: `${-app.height / 2}px 0 0 ${-app.width / 2}px`,
     }">
-      <we-body :app="app" :scene="scene" :body="scene" />
+      <we-body :app="app" :scene="scene" :body="scene" :requiredLevel="persistentLevel" />
     </div>
   </section>
 </template>
@@ -21,6 +21,7 @@
 <script>
   import screenfull from 'screenfull'
   import WeBody from '../View/View.vue'
+  import LevelDesign from '../View/LevelDesign/LevelDesign'
 
   import onScreenChange from './Methods/onScreenChange'
 
@@ -32,7 +33,8 @@
     props: ['scene', 'app'],
     data: () => ({
       resizeObserver: null,
-      appScale: 1
+      appScale: 1,
+      persistentLevel: [LevelDesign.PERSISTENT_LEVEL],
     }),
     methods: {
       onScreenChange
