@@ -9,7 +9,7 @@ class View {
 
   constructor(raw = {
     id: null,
-    level: 'null',
+    level: 'main',
     levelDesign: new LevelDesign,
     component: new ComponentList
   }) {

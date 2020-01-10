@@ -42414,7 +42414,7 @@ __webpack_require__.r(__webpack_exports__);
 class View {
   constructor(raw = {
     id: null,
-    level: 'null',
+    level: 'main',
     levelDesign: new _LevelDesign_LevelDesign__WEBPACK_IMPORTED_MODULE_2__["default"](),
     component: new _ComponentList_ComponentList__WEBPACK_IMPORTED_MODULE_0__["default"]()
   }) {
