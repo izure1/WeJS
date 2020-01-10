@@ -11584,12 +11584,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Methods_reloadAudio__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Methods/reloadAudio */ "./src/Components/Audio/Methods/reloadAudio.js");
 /* harmony import */ var _Methods_setAudioProperty__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Methods/setAudioProperty */ "./src/Components/Audio/Methods/setAudioProperty.js");
 /* harmony import */ var _Methods_setAudioPosition__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Methods/setAudioPosition */ "./src/Components/Audio/Methods/setAudioPosition.js");
+/* harmony import */ var _Methods_observeAudioPosition__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Methods/observeAudioPosition */ "./src/Components/Audio/Methods/observeAudioPosition.js");
+/* harmony import */ var _Methods_destroyObserve__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Methods/destroyObserve */ "./src/Components/Audio/Methods/destroyObserve.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
 //
 //
 //
+
+
 
 
 
@@ -11615,6 +11619,8 @@ class Reservation extends _WeJSObject_Component_Component__WEBPACK_IMPORTED_MODU
 
     _defineProperty(this, "volume", 1);
 
+    _defineProperty(this, "recaching", 150);
+
     this._setLoadedPromise();
   }
 
@@ -11626,50 +11632,38 @@ Reservation.prototype.waitLoading = _Helper_waitLoading__WEBPACK_IMPORTED_MODULE
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['body', 'app'],
   data: () => ({
-    audio: null
+    audio: null,
+    intervalIndex: null
   }),
   methods: {
     onChangeAudioSrc: _Methods_onChangeAudioSrc__WEBPACK_IMPORTED_MODULE_5__["default"],
     reloadAudio: _Methods_reloadAudio__WEBPACK_IMPORTED_MODULE_6__["default"],
     setAudioProperty: _Methods_setAudioProperty__WEBPACK_IMPORTED_MODULE_7__["default"],
-    setAudioPosition: _Methods_setAudioPosition__WEBPACK_IMPORTED_MODULE_8__["default"]
+    setAudioPosition: _Methods_setAudioPosition__WEBPACK_IMPORTED_MODULE_8__["default"],
+    observeAudioPosition: _Methods_observeAudioPosition__WEBPACK_IMPORTED_MODULE_9__["default"],
+    destroyObserve: _Methods_destroyObserve__WEBPACK_IMPORTED_MODULE_10__["default"]
   },
 
   created() {
     this.reloadAudio();
   },
 
+  mounted() {
+    this.observeAudioPosition();
+  },
+
   beforeDestroy() {
     if (this.audio) this.audio.unload();
+    this.destroyObserve();
   },
 
   watch: {
-    // 앱의 메인씬의 카메라나 위치가 변경될 경우, 이를 감지합니다.
-    // 변경된 위치를 기반으로 오디오의 위치를 수정해야 합니다.
-    'app.scene.component.transform': {
-      deep: true,
-
-      handler() {
-        this.setAudioPosition();
-      }
-
-    },
-    'app.scene.component.camera': {
-      deep: true,
-
-      handler() {
-        this.setAudioPosition();
-      }
-
+    audio() {
+      this.setAudioProperty();
     },
 
     'body.component.audio.src'() {
       this.onChangeAudioSrc();
-    },
-
-    audio() {
-      this.setAudioProperty();
-      this.setAudioPosition();
     },
 
     'body.component.audio': {
@@ -11677,7 +11671,6 @@ Reservation.prototype.waitLoading = _Helper_waitLoading__WEBPACK_IMPORTED_MODULE
 
       handler() {
         this.setAudioProperty();
-        this.setAudioPosition();
       }
 
     }
@@ -12437,6 +12430,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -12520,7 +12527,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".we-camera[data-v-6d3603b4],\n.we-body[data-v-6d3603b4] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform-style: preserve-3d;\n}\n", ""]);
+exports.push([module.i, ".we-camera[data-v-6d3603b4],\n.we-body[data-v-6d3603b4] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform-style: preserve-3d;\n}\n.we-components[data-v-6d3603b4] {\n  position: relative;\n}\n.we-components-hidden[data-v-6d3603b4] {\n  width: 0;\n  height: 0;\n  visibility: none;\n  position: absolute;\n  left: 50%;\n  top: 50%;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -13136,7 +13143,7 @@ function unwrapListeners(arr) {
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- *  howler.js v2.1.2
+ *  howler.js v2.1.3
  *  howlerjs.com
  *
  *  (c) 2013-2019, James Simpson of GoldFire Studios
@@ -13933,7 +13940,6 @@ function unwrapListeners(arr) {
       var timeout = (duration * 1000) / Math.abs(sound._rate);
       var start = self._sprite[sprite][0] / 1000;
       var stop = (self._sprite[sprite][0] + self._sprite[sprite][1]) / 1000;
-      var loop = !!(sound._loop || self._sprite[sprite][2]);
       sound._sprite = sprite;
 
       // Mark the sound as ended instantly so that this async playback
@@ -13946,7 +13952,7 @@ function unwrapListeners(arr) {
         sound._seek = seek;
         sound._start = start;
         sound._stop = stop;
-        sound._loop = loop;
+        sound._loop = !!(sound._loop || self._sprite[sprite][2]);
       };
 
       // End the sound instantly if seek is at the end.
@@ -14388,7 +14394,7 @@ function unwrapListeners(arr) {
     },
 
     /**
-     * Fade a currently playing sound between two volumes (if no id is passsed, all sounds will fade).
+     * Fade a currently playing sound between two volumes (if no id is passed, all sounds will fade).
      * @param  {Number} from The value to fade from (0.0 to 1.0).
      * @param  {Number} to   The volume to fade to (0.0 to 1.0).
      * @param  {Number} len  Time in milliseconds to fade.
@@ -15339,7 +15345,7 @@ function unwrapListeners(arr) {
         self._node.gain.setValueAtTime(volume, Howler.ctx.currentTime);
         self._node.paused = true;
         self._node.connect(Howler.masterGain);
-      } else {
+      } else if (!Howler.noAudio) {
         // Get an unlocked Audio object from the pool.
         self._node = Howler._obtainHtml5Audio();
 
@@ -15596,7 +15602,7 @@ function unwrapListeners(arr) {
     // Create and expose the master GainNode when using Web Audio (useful for plugins or advanced usage).
     if (Howler.usingWebAudio) {
       Howler.masterGain = (typeof Howler.ctx.createGain === 'undefined') ? Howler.ctx.createGainNode() : Howler.ctx.createGain();
-      Howler.masterGain.gain.setValueAtTime(Howler._muted ? 0 : 1, Howler.ctx.currentTime);
+      Howler.masterGain.gain.setValueAtTime(Howler._muted ? 0 : Howler._volume, Howler.ctx.currentTime);
       Howler.masterGain.connect(Howler.ctx.destination);
     }
 
@@ -15639,7 +15645,7 @@ function unwrapListeners(arr) {
 /*!
  *  Spatial Plugin - Adds support for stereo and 3D audio where Web Audio is supported.
  *  
- *  howler.js v2.1.2
+ *  howler.js v2.1.3
  *  howlerjs.com
  *
  *  (c) 2013-2019, James Simpson of GoldFire Studios
@@ -15755,9 +15761,9 @@ function unwrapListeners(arr) {
         self.ctx.listener.forwardX.setTargetAtTime(x, Howler.ctx.currentTime, 0.1);
         self.ctx.listener.forwardY.setTargetAtTime(y, Howler.ctx.currentTime, 0.1);
         self.ctx.listener.forwardZ.setTargetAtTime(z, Howler.ctx.currentTime, 0.1);
-        self.ctx.listener.upX.setTargetAtTime(x, Howler.ctx.currentTime, 0.1);
-        self.ctx.listener.upY.setTargetAtTime(y, Howler.ctx.currentTime, 0.1);
-        self.ctx.listener.upZ.setTargetAtTime(z, Howler.ctx.currentTime, 0.1);
+        self.ctx.listener.upX.setTargetAtTime(xUp, Howler.ctx.currentTime, 0.1);
+        self.ctx.listener.upY.setTargetAtTime(yUp, Howler.ctx.currentTime, 0.1);
+        self.ctx.listener.upZ.setTargetAtTime(zUp, Howler.ctx.currentTime, 0.1);
       } else {
         self.ctx.listener.setOrientation(x, y, z, xUp, yUp, zUp);
       }
@@ -16305,8 +16311,8 @@ function unwrapListeners(arr) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-/*! howler.js v2.1.2 | Spatial Plugin | (c) 2013-2019, James Simpson of GoldFire Studios | MIT License | howlerjs.com */
-!function(){"use strict";HowlerGlobal.prototype._pos=[0,0,0],HowlerGlobal.prototype._orientation=[0,0,-1,0,1,0],HowlerGlobal.prototype.stereo=function(e){var n=this;if(!n.ctx||!n.ctx.listener)return n;for(var t=n._howls.length-1;t>=0;t--)n._howls[t].stereo(e);return n},HowlerGlobal.prototype.pos=function(e,n,t){var r=this;return r.ctx&&r.ctx.listener?(n="number"!=typeof n?r._pos[1]:n,t="number"!=typeof t?r._pos[2]:t,"number"!=typeof e?r._pos:(r._pos=[e,n,t],void 0!==r.ctx.listener.positionX?(r.ctx.listener.positionX.setTargetAtTime(r._pos[0],Howler.ctx.currentTime,.1),r.ctx.listener.positionY.setTargetAtTime(r._pos[1],Howler.ctx.currentTime,.1),r.ctx.listener.positionZ.setTargetAtTime(r._pos[2],Howler.ctx.currentTime,.1)):r.ctx.listener.setPosition(r._pos[0],r._pos[1],r._pos[2]),r)):r},HowlerGlobal.prototype.orientation=function(e,n,t,r,o,i){var a=this;if(!a.ctx||!a.ctx.listener)return a;var s=a._orientation;return n="number"!=typeof n?s[1]:n,t="number"!=typeof t?s[2]:t,r="number"!=typeof r?s[3]:r,o="number"!=typeof o?s[4]:o,i="number"!=typeof i?s[5]:i,"number"!=typeof e?s:(a._orientation=[e,n,t,r,o,i],void 0!==a.ctx.listener.forwardX?(a.ctx.listener.forwardX.setTargetAtTime(e,Howler.ctx.currentTime,.1),a.ctx.listener.forwardY.setTargetAtTime(n,Howler.ctx.currentTime,.1),a.ctx.listener.forwardZ.setTargetAtTime(t,Howler.ctx.currentTime,.1),a.ctx.listener.upX.setTargetAtTime(e,Howler.ctx.currentTime,.1),a.ctx.listener.upY.setTargetAtTime(n,Howler.ctx.currentTime,.1),a.ctx.listener.upZ.setTargetAtTime(t,Howler.ctx.currentTime,.1)):a.ctx.listener.setOrientation(e,n,t,r,o,i),a)},Howl.prototype.init=function(e){return function(n){var t=this;return t._orientation=n.orientation||[1,0,0],t._stereo=n.stereo||null,t._pos=n.pos||null,t._pannerAttr={coneInnerAngle:void 0!==n.coneInnerAngle?n.coneInnerAngle:360,coneOuterAngle:void 0!==n.coneOuterAngle?n.coneOuterAngle:360,coneOuterGain:void 0!==n.coneOuterGain?n.coneOuterGain:0,distanceModel:void 0!==n.distanceModel?n.distanceModel:"inverse",maxDistance:void 0!==n.maxDistance?n.maxDistance:1e4,panningModel:void 0!==n.panningModel?n.panningModel:"HRTF",refDistance:void 0!==n.refDistance?n.refDistance:1,rolloffFactor:void 0!==n.rolloffFactor?n.rolloffFactor:1},t._onstereo=n.onstereo?[{fn:n.onstereo}]:[],t._onpos=n.onpos?[{fn:n.onpos}]:[],t._onorientation=n.onorientation?[{fn:n.onorientation}]:[],e.call(this,n)}}(Howl.prototype.init),Howl.prototype.stereo=function(n,t){var r=this;if(!r._webAudio)return r;if("loaded"!==r._state)return r._queue.push({event:"stereo",action:function(){r.stereo(n,t)}}),r;var o=void 0===Howler.ctx.createStereoPanner?"spatial":"stereo";if(void 0===t){if("number"!=typeof n)return r._stereo;r._stereo=n,r._pos=[n,0,0]}for(var i=r._getSoundIds(t),a=0;a<i.length;a++){var s=r._soundById(i[a]);if(s){if("number"!=typeof n)return s._stereo;s._stereo=n,s._pos=[n,0,0],s._node&&(s._pannerAttr.panningModel="equalpower",s._panner&&s._panner.pan||e(s,o),"spatial"===o?void 0!==s._panner.positionX?(s._panner.positionX.setValueAtTime(n,Howler.ctx.currentTime),s._panner.positionY.setValueAtTime(0,Howler.ctx.currentTime),s._panner.positionZ.setValueAtTime(0,Howler.ctx.currentTime)):s._panner.setPosition(n,0,0):s._panner.pan.setValueAtTime(n,Howler.ctx.currentTime)),r._emit("stereo",s._id)}}return r},Howl.prototype.pos=function(n,t,r,o){var i=this;if(!i._webAudio)return i;if("loaded"!==i._state)return i._queue.push({event:"pos",action:function(){i.pos(n,t,r,o)}}),i;if(t="number"!=typeof t?0:t,r="number"!=typeof r?-.5:r,void 0===o){if("number"!=typeof n)return i._pos;i._pos=[n,t,r]}for(var a=i._getSoundIds(o),s=0;s<a.length;s++){var p=i._soundById(a[s]);if(p){if("number"!=typeof n)return p._pos;p._pos=[n,t,r],p._node&&(p._panner&&!p._panner.pan||e(p,"spatial"),void 0!==p._panner.positionX?(p._panner.positionX.setValueAtTime(n,Howler.ctx.currentTime),p._panner.positionY.setValueAtTime(t,Howler.ctx.currentTime),p._panner.positionZ.setValueAtTime(r,Howler.ctx.currentTime)):p._panner.setPosition(n,t,r)),i._emit("pos",p._id)}}return i},Howl.prototype.orientation=function(n,t,r,o){var i=this;if(!i._webAudio)return i;if("loaded"!==i._state)return i._queue.push({event:"orientation",action:function(){i.orientation(n,t,r,o)}}),i;if(t="number"!=typeof t?i._orientation[1]:t,r="number"!=typeof r?i._orientation[2]:r,void 0===o){if("number"!=typeof n)return i._orientation;i._orientation=[n,t,r]}for(var a=i._getSoundIds(o),s=0;s<a.length;s++){var p=i._soundById(a[s]);if(p){if("number"!=typeof n)return p._orientation;p._orientation=[n,t,r],p._node&&(p._panner||(p._pos||(p._pos=i._pos||[0,0,-.5]),e(p,"spatial")),void 0!==p._panner.orientationX?(p._panner.orientationX.setValueAtTime(n,Howler.ctx.currentTime),p._panner.orientationY.setValueAtTime(t,Howler.ctx.currentTime),p._panner.orientationZ.setValueAtTime(r,Howler.ctx.currentTime)):p._panner.setOrientation(n,t,r)),i._emit("orientation",p._id)}}return i},Howl.prototype.pannerAttr=function(){var n,t,r,o=this,i=arguments;if(!o._webAudio)return o;if(0===i.length)return o._pannerAttr;if(1===i.length){if("object"!=typeof i[0])return r=o._soundById(parseInt(i[0],10)),r?r._pannerAttr:o._pannerAttr;n=i[0],void 0===t&&(n.pannerAttr||(n.pannerAttr={coneInnerAngle:n.coneInnerAngle,coneOuterAngle:n.coneOuterAngle,coneOuterGain:n.coneOuterGain,distanceModel:n.distanceModel,maxDistance:n.maxDistance,refDistance:n.refDistance,rolloffFactor:n.rolloffFactor,panningModel:n.panningModel}),o._pannerAttr={coneInnerAngle:void 0!==n.pannerAttr.coneInnerAngle?n.pannerAttr.coneInnerAngle:o._coneInnerAngle,coneOuterAngle:void 0!==n.pannerAttr.coneOuterAngle?n.pannerAttr.coneOuterAngle:o._coneOuterAngle,coneOuterGain:void 0!==n.pannerAttr.coneOuterGain?n.pannerAttr.coneOuterGain:o._coneOuterGain,distanceModel:void 0!==n.pannerAttr.distanceModel?n.pannerAttr.distanceModel:o._distanceModel,maxDistance:void 0!==n.pannerAttr.maxDistance?n.pannerAttr.maxDistance:o._maxDistance,refDistance:void 0!==n.pannerAttr.refDistance?n.pannerAttr.refDistance:o._refDistance,rolloffFactor:void 0!==n.pannerAttr.rolloffFactor?n.pannerAttr.rolloffFactor:o._rolloffFactor,panningModel:void 0!==n.pannerAttr.panningModel?n.pannerAttr.panningModel:o._panningModel})}else 2===i.length&&(n=i[0],t=parseInt(i[1],10));for(var a=o._getSoundIds(t),s=0;s<a.length;s++)if(r=o._soundById(a[s])){var p=r._pannerAttr;p={coneInnerAngle:void 0!==n.coneInnerAngle?n.coneInnerAngle:p.coneInnerAngle,coneOuterAngle:void 0!==n.coneOuterAngle?n.coneOuterAngle:p.coneOuterAngle,coneOuterGain:void 0!==n.coneOuterGain?n.coneOuterGain:p.coneOuterGain,distanceModel:void 0!==n.distanceModel?n.distanceModel:p.distanceModel,maxDistance:void 0!==n.maxDistance?n.maxDistance:p.maxDistance,refDistance:void 0!==n.refDistance?n.refDistance:p.refDistance,rolloffFactor:void 0!==n.rolloffFactor?n.rolloffFactor:p.rolloffFactor,panningModel:void 0!==n.panningModel?n.panningModel:p.panningModel};var c=r._panner;c?(c.coneInnerAngle=p.coneInnerAngle,c.coneOuterAngle=p.coneOuterAngle,c.coneOuterGain=p.coneOuterGain,c.distanceModel=p.distanceModel,c.maxDistance=p.maxDistance,c.refDistance=p.refDistance,c.rolloffFactor=p.rolloffFactor,c.panningModel=p.panningModel):(r._pos||(r._pos=o._pos||[0,0,-.5]),e(r,"spatial"))}return o},Sound.prototype.init=function(e){return function(){var n=this,t=n._parent;n._orientation=t._orientation,n._stereo=t._stereo,n._pos=t._pos,n._pannerAttr=t._pannerAttr,e.call(this),n._stereo?t.stereo(n._stereo):n._pos&&t.pos(n._pos[0],n._pos[1],n._pos[2],n._id)}}(Sound.prototype.init),Sound.prototype.reset=function(e){return function(){var n=this,t=n._parent;return n._orientation=t._orientation,n._stereo=t._stereo,n._pos=t._pos,n._pannerAttr=t._pannerAttr,n._stereo?t.stereo(n._stereo):n._pos?t.pos(n._pos[0],n._pos[1],n._pos[2],n._id):n._panner&&(n._panner.disconnect(0),n._panner=void 0,t._refreshBuffer(n)),e.call(this)}}(Sound.prototype.reset);var e=function(e,n){n=n||"spatial","spatial"===n?(e._panner=Howler.ctx.createPanner(),e._panner.coneInnerAngle=e._pannerAttr.coneInnerAngle,e._panner.coneOuterAngle=e._pannerAttr.coneOuterAngle,e._panner.coneOuterGain=e._pannerAttr.coneOuterGain,e._panner.distanceModel=e._pannerAttr.distanceModel,e._panner.maxDistance=e._pannerAttr.maxDistance,e._panner.refDistance=e._pannerAttr.refDistance,e._panner.rolloffFactor=e._pannerAttr.rolloffFactor,e._panner.panningModel=e._pannerAttr.panningModel,void 0!==e._panner.positionX?(e._panner.positionX.setValueAtTime(e._pos[0],Howler.ctx.currentTime),e._panner.positionY.setValueAtTime(e._pos[1],Howler.ctx.currentTime),e._panner.positionZ.setValueAtTime(e._pos[2],Howler.ctx.currentTime)):e._panner.setPosition(e._pos[0],e._pos[1],e._pos[2]),void 0!==e._panner.orientationX?(e._panner.orientationX.setValueAtTime(e._orientation[0],Howler.ctx.currentTime),e._panner.orientationY.setValueAtTime(e._orientation[1],Howler.ctx.currentTime),e._panner.orientationZ.setValueAtTime(e._orientation[2],Howler.ctx.currentTime)):e._panner.setOrientation(e._orientation[0],e._orientation[1],e._orientation[2])):(e._panner=Howler.ctx.createStereoPanner(),e._panner.pan.setValueAtTime(e._stereo,Howler.ctx.currentTime)),e._panner.connect(e._node),e._paused||e._parent.pause(e._id,!0).play(e._id,!0)}}();
+/*! howler.js v2.1.3 | Spatial Plugin | (c) 2013-2019, James Simpson of GoldFire Studios | MIT License | howlerjs.com */
+!function(){"use strict";HowlerGlobal.prototype._pos=[0,0,0],HowlerGlobal.prototype._orientation=[0,0,-1,0,1,0],HowlerGlobal.prototype.stereo=function(e){var n=this;if(!n.ctx||!n.ctx.listener)return n;for(var t=n._howls.length-1;t>=0;t--)n._howls[t].stereo(e);return n},HowlerGlobal.prototype.pos=function(e,n,t){var r=this;return r.ctx&&r.ctx.listener?(n="number"!=typeof n?r._pos[1]:n,t="number"!=typeof t?r._pos[2]:t,"number"!=typeof e?r._pos:(r._pos=[e,n,t],void 0!==r.ctx.listener.positionX?(r.ctx.listener.positionX.setTargetAtTime(r._pos[0],Howler.ctx.currentTime,.1),r.ctx.listener.positionY.setTargetAtTime(r._pos[1],Howler.ctx.currentTime,.1),r.ctx.listener.positionZ.setTargetAtTime(r._pos[2],Howler.ctx.currentTime,.1)):r.ctx.listener.setPosition(r._pos[0],r._pos[1],r._pos[2]),r)):r},HowlerGlobal.prototype.orientation=function(e,n,t,r,o,i){var a=this;if(!a.ctx||!a.ctx.listener)return a;var s=a._orientation;return n="number"!=typeof n?s[1]:n,t="number"!=typeof t?s[2]:t,r="number"!=typeof r?s[3]:r,o="number"!=typeof o?s[4]:o,i="number"!=typeof i?s[5]:i,"number"!=typeof e?s:(a._orientation=[e,n,t,r,o,i],void 0!==a.ctx.listener.forwardX?(a.ctx.listener.forwardX.setTargetAtTime(e,Howler.ctx.currentTime,.1),a.ctx.listener.forwardY.setTargetAtTime(n,Howler.ctx.currentTime,.1),a.ctx.listener.forwardZ.setTargetAtTime(t,Howler.ctx.currentTime,.1),a.ctx.listener.upX.setTargetAtTime(r,Howler.ctx.currentTime,.1),a.ctx.listener.upY.setTargetAtTime(o,Howler.ctx.currentTime,.1),a.ctx.listener.upZ.setTargetAtTime(i,Howler.ctx.currentTime,.1)):a.ctx.listener.setOrientation(e,n,t,r,o,i),a)},Howl.prototype.init=function(e){return function(n){var t=this;return t._orientation=n.orientation||[1,0,0],t._stereo=n.stereo||null,t._pos=n.pos||null,t._pannerAttr={coneInnerAngle:void 0!==n.coneInnerAngle?n.coneInnerAngle:360,coneOuterAngle:void 0!==n.coneOuterAngle?n.coneOuterAngle:360,coneOuterGain:void 0!==n.coneOuterGain?n.coneOuterGain:0,distanceModel:void 0!==n.distanceModel?n.distanceModel:"inverse",maxDistance:void 0!==n.maxDistance?n.maxDistance:1e4,panningModel:void 0!==n.panningModel?n.panningModel:"HRTF",refDistance:void 0!==n.refDistance?n.refDistance:1,rolloffFactor:void 0!==n.rolloffFactor?n.rolloffFactor:1},t._onstereo=n.onstereo?[{fn:n.onstereo}]:[],t._onpos=n.onpos?[{fn:n.onpos}]:[],t._onorientation=n.onorientation?[{fn:n.onorientation}]:[],e.call(this,n)}}(Howl.prototype.init),Howl.prototype.stereo=function(n,t){var r=this;if(!r._webAudio)return r;if("loaded"!==r._state)return r._queue.push({event:"stereo",action:function(){r.stereo(n,t)}}),r;var o=void 0===Howler.ctx.createStereoPanner?"spatial":"stereo";if(void 0===t){if("number"!=typeof n)return r._stereo;r._stereo=n,r._pos=[n,0,0]}for(var i=r._getSoundIds(t),a=0;a<i.length;a++){var s=r._soundById(i[a]);if(s){if("number"!=typeof n)return s._stereo;s._stereo=n,s._pos=[n,0,0],s._node&&(s._pannerAttr.panningModel="equalpower",s._panner&&s._panner.pan||e(s,o),"spatial"===o?void 0!==s._panner.positionX?(s._panner.positionX.setValueAtTime(n,Howler.ctx.currentTime),s._panner.positionY.setValueAtTime(0,Howler.ctx.currentTime),s._panner.positionZ.setValueAtTime(0,Howler.ctx.currentTime)):s._panner.setPosition(n,0,0):s._panner.pan.setValueAtTime(n,Howler.ctx.currentTime)),r._emit("stereo",s._id)}}return r},Howl.prototype.pos=function(n,t,r,o){var i=this;if(!i._webAudio)return i;if("loaded"!==i._state)return i._queue.push({event:"pos",action:function(){i.pos(n,t,r,o)}}),i;if(t="number"!=typeof t?0:t,r="number"!=typeof r?-.5:r,void 0===o){if("number"!=typeof n)return i._pos;i._pos=[n,t,r]}for(var a=i._getSoundIds(o),s=0;s<a.length;s++){var p=i._soundById(a[s]);if(p){if("number"!=typeof n)return p._pos;p._pos=[n,t,r],p._node&&(p._panner&&!p._panner.pan||e(p,"spatial"),void 0!==p._panner.positionX?(p._panner.positionX.setValueAtTime(n,Howler.ctx.currentTime),p._panner.positionY.setValueAtTime(t,Howler.ctx.currentTime),p._panner.positionZ.setValueAtTime(r,Howler.ctx.currentTime)):p._panner.setPosition(n,t,r)),i._emit("pos",p._id)}}return i},Howl.prototype.orientation=function(n,t,r,o){var i=this;if(!i._webAudio)return i;if("loaded"!==i._state)return i._queue.push({event:"orientation",action:function(){i.orientation(n,t,r,o)}}),i;if(t="number"!=typeof t?i._orientation[1]:t,r="number"!=typeof r?i._orientation[2]:r,void 0===o){if("number"!=typeof n)return i._orientation;i._orientation=[n,t,r]}for(var a=i._getSoundIds(o),s=0;s<a.length;s++){var p=i._soundById(a[s]);if(p){if("number"!=typeof n)return p._orientation;p._orientation=[n,t,r],p._node&&(p._panner||(p._pos||(p._pos=i._pos||[0,0,-.5]),e(p,"spatial")),void 0!==p._panner.orientationX?(p._panner.orientationX.setValueAtTime(n,Howler.ctx.currentTime),p._panner.orientationY.setValueAtTime(t,Howler.ctx.currentTime),p._panner.orientationZ.setValueAtTime(r,Howler.ctx.currentTime)):p._panner.setOrientation(n,t,r)),i._emit("orientation",p._id)}}return i},Howl.prototype.pannerAttr=function(){var n,t,r,o=this,i=arguments;if(!o._webAudio)return o;if(0===i.length)return o._pannerAttr;if(1===i.length){if("object"!=typeof i[0])return r=o._soundById(parseInt(i[0],10)),r?r._pannerAttr:o._pannerAttr;n=i[0],void 0===t&&(n.pannerAttr||(n.pannerAttr={coneInnerAngle:n.coneInnerAngle,coneOuterAngle:n.coneOuterAngle,coneOuterGain:n.coneOuterGain,distanceModel:n.distanceModel,maxDistance:n.maxDistance,refDistance:n.refDistance,rolloffFactor:n.rolloffFactor,panningModel:n.panningModel}),o._pannerAttr={coneInnerAngle:void 0!==n.pannerAttr.coneInnerAngle?n.pannerAttr.coneInnerAngle:o._coneInnerAngle,coneOuterAngle:void 0!==n.pannerAttr.coneOuterAngle?n.pannerAttr.coneOuterAngle:o._coneOuterAngle,coneOuterGain:void 0!==n.pannerAttr.coneOuterGain?n.pannerAttr.coneOuterGain:o._coneOuterGain,distanceModel:void 0!==n.pannerAttr.distanceModel?n.pannerAttr.distanceModel:o._distanceModel,maxDistance:void 0!==n.pannerAttr.maxDistance?n.pannerAttr.maxDistance:o._maxDistance,refDistance:void 0!==n.pannerAttr.refDistance?n.pannerAttr.refDistance:o._refDistance,rolloffFactor:void 0!==n.pannerAttr.rolloffFactor?n.pannerAttr.rolloffFactor:o._rolloffFactor,panningModel:void 0!==n.pannerAttr.panningModel?n.pannerAttr.panningModel:o._panningModel})}else 2===i.length&&(n=i[0],t=parseInt(i[1],10));for(var a=o._getSoundIds(t),s=0;s<a.length;s++)if(r=o._soundById(a[s])){var p=r._pannerAttr;p={coneInnerAngle:void 0!==n.coneInnerAngle?n.coneInnerAngle:p.coneInnerAngle,coneOuterAngle:void 0!==n.coneOuterAngle?n.coneOuterAngle:p.coneOuterAngle,coneOuterGain:void 0!==n.coneOuterGain?n.coneOuterGain:p.coneOuterGain,distanceModel:void 0!==n.distanceModel?n.distanceModel:p.distanceModel,maxDistance:void 0!==n.maxDistance?n.maxDistance:p.maxDistance,refDistance:void 0!==n.refDistance?n.refDistance:p.refDistance,rolloffFactor:void 0!==n.rolloffFactor?n.rolloffFactor:p.rolloffFactor,panningModel:void 0!==n.panningModel?n.panningModel:p.panningModel};var c=r._panner;c?(c.coneInnerAngle=p.coneInnerAngle,c.coneOuterAngle=p.coneOuterAngle,c.coneOuterGain=p.coneOuterGain,c.distanceModel=p.distanceModel,c.maxDistance=p.maxDistance,c.refDistance=p.refDistance,c.rolloffFactor=p.rolloffFactor,c.panningModel=p.panningModel):(r._pos||(r._pos=o._pos||[0,0,-.5]),e(r,"spatial"))}return o},Sound.prototype.init=function(e){return function(){var n=this,t=n._parent;n._orientation=t._orientation,n._stereo=t._stereo,n._pos=t._pos,n._pannerAttr=t._pannerAttr,e.call(this),n._stereo?t.stereo(n._stereo):n._pos&&t.pos(n._pos[0],n._pos[1],n._pos[2],n._id)}}(Sound.prototype.init),Sound.prototype.reset=function(e){return function(){var n=this,t=n._parent;return n._orientation=t._orientation,n._stereo=t._stereo,n._pos=t._pos,n._pannerAttr=t._pannerAttr,n._stereo?t.stereo(n._stereo):n._pos?t.pos(n._pos[0],n._pos[1],n._pos[2],n._id):n._panner&&(n._panner.disconnect(0),n._panner=void 0,t._refreshBuffer(n)),e.call(this)}}(Sound.prototype.reset);var e=function(e,n){n=n||"spatial","spatial"===n?(e._panner=Howler.ctx.createPanner(),e._panner.coneInnerAngle=e._pannerAttr.coneInnerAngle,e._panner.coneOuterAngle=e._pannerAttr.coneOuterAngle,e._panner.coneOuterGain=e._pannerAttr.coneOuterGain,e._panner.distanceModel=e._pannerAttr.distanceModel,e._panner.maxDistance=e._pannerAttr.maxDistance,e._panner.refDistance=e._pannerAttr.refDistance,e._panner.rolloffFactor=e._pannerAttr.rolloffFactor,e._panner.panningModel=e._pannerAttr.panningModel,void 0!==e._panner.positionX?(e._panner.positionX.setValueAtTime(e._pos[0],Howler.ctx.currentTime),e._panner.positionY.setValueAtTime(e._pos[1],Howler.ctx.currentTime),e._panner.positionZ.setValueAtTime(e._pos[2],Howler.ctx.currentTime)):e._panner.setPosition(e._pos[0],e._pos[1],e._pos[2]),void 0!==e._panner.orientationX?(e._panner.orientationX.setValueAtTime(e._orientation[0],Howler.ctx.currentTime),e._panner.orientationY.setValueAtTime(e._orientation[1],Howler.ctx.currentTime),e._panner.orientationZ.setValueAtTime(e._orientation[2],Howler.ctx.currentTime)):e._panner.setOrientation(e._orientation[0],e._orientation[1],e._orientation[2])):(e._panner=Howler.ctx.createStereoPanner(),e._panner.pan.setValueAtTime(e._stereo,Howler.ctx.currentTime)),e._panner.connect(e._node),e._paused||e._parent.pause(e._id,!0).play(e._id,!0)}}();
 
 /***/ }),
 
@@ -25833,55 +25839,68 @@ var render = function() {
           }
         },
         [
-          _vm.hasComponent("physicsWorld")
-            ? _c("component-physics-world", {
-                attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
-              })
-            : _vm._e(),
+          _c(
+            "div",
+            { staticClass: "we-components-visible" },
+            [
+              _vm.hasComponent("text")
+                ? _c("component-text", {
+                    attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
+                  })
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.hasComponent("html")
+                ? _c("component-html", {
+                    attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
+                  })
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.hasComponent("rendererImage")
+                ? _c("component-renderer-image", {
+                    attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
+                  })
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.hasComponent("rendererVideo")
+                ? _c("component-renderer-video", {
+                    attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
+                  })
+                : _vm._e()
+            ],
+            1
+          ),
           _vm._v(" "),
-          _vm.hasComponent("physics")
-            ? _c("component-physics", {
-                attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
-              })
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.hasComponent("text")
-            ? _c("component-text", {
-                attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
-              })
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.hasComponent("html")
-            ? _c("component-html", {
-                attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
-              })
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.hasComponent("rendererImage")
-            ? _c("component-renderer-image", {
-                attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
-              })
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.hasComponent("rendererVideo")
-            ? _c("component-renderer-video", {
-                attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
-              })
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.hasComponent("tag")
-            ? _c("component-tag", {
-                attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
-              })
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.hasComponent("audio")
-            ? _c("component-audio", {
-                attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
-              })
-            : _vm._e()
-        ],
-        1
+          _c(
+            "div",
+            { staticClass: "we-components-hidden" },
+            [
+              _vm.hasComponent("physicsWorld")
+                ? _c("component-physics-world", {
+                    attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
+                  })
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.hasComponent("physics")
+                ? _c("component-physics", {
+                    attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
+                  })
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.hasComponent("tag")
+                ? _c("component-tag", {
+                    attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
+                  })
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.hasComponent("audio")
+                ? _c("component-audio", {
+                    attrs: { app: _vm.app, scene: _vm.scene, body: _vm.body }
+                  })
+                : _vm._e()
+            ],
+            1
+          )
+        ]
       ),
       _vm._v(" "),
       _vm.hasComponent("children")
@@ -39434,7 +39453,7 @@ module.exports.formatError = function(err) {
 /*! exports provided: name, version, description, main, directories, scripts, keywords, dependencies, devDependencies, author, license, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"name\":\"wejs\",\"version\":\"0.0.1\",\"description\":\"Vuejs Visualnovel Engine\",\"main\":\"/dist/lib/WeJS.js\",\"directories\":{\"test\":\"test\"},\"scripts\":{\"build\":\"webpack --config webpack.config.js\",\"dev\":\"webpack-dev-server --open\",\"test\":\"echo \\\"Error: no test specified\\\" && exit 1\"},\"keywords\":[\"visual\",\"novel\",\"game\",\"svg\"],\"dependencies\":{\"screenfull\":\"^5.0.0\",\"vue\":\"2.6.11\",\"@svgdotjs/svg.js\":\"^3.0.16\",\"howler\":\"2.1.2\"},\"devDependencies\":{\"webpack\":\"^4.41.4\",\"webpack-dev-server\":\"3.10.1\",\"webpack-cli\":\"^3.3.10\",\"file-loader\":\"5.0.2\",\"url-loader\":\"3.0.0\",\"babel-loader\":\"^8.0.6\",\"circular-dependency-plugin\":\"^5.2.0\",\"vue-loader\":\"15.8.3\",\"vue-template-compiler\":\"2.6.11\",\"vue-style-loader\":\"4.1.2\",\"css-loader\":\"^3.4.0\",\"node-sass\":\"4.13.0\",\"sass-loader\":\"8.0.0\",\"@babel/core\":\"^7.7.7\",\"@babel/polyfill\":\"7.7.0\",\"@babel/preset-env\":\"^7.7.7\",\"@babel/plugin-proposal-class-properties\":\"7.7.4\"},\"author\":\"admin@izure.org\",\"license\":\"MIT\"}");
+module.exports = JSON.parse("{\"name\":\"wejs\",\"version\":\"0.0.1\",\"description\":\"Vuejs Visualnovel Engine\",\"main\":\"/dist/lib/WeJS.js\",\"directories\":{\"test\":\"test\"},\"scripts\":{\"build\":\"webpack --config webpack.config.js\",\"dev\":\"webpack-dev-server --open\",\"test\":\"echo \\\"Error: no test specified\\\" && exit 1\"},\"keywords\":[\"visual\",\"novel\",\"game\",\"svg\"],\"dependencies\":{\"screenfull\":\"^5.0.0\",\"vue\":\"2.6.11\",\"@svgdotjs/svg.js\":\"^3.0.16\",\"howler\":\"2.1.3\"},\"devDependencies\":{\"webpack\":\"^4.41.4\",\"webpack-dev-server\":\"3.10.1\",\"webpack-cli\":\"^3.3.10\",\"file-loader\":\"5.0.2\",\"url-loader\":\"3.0.0\",\"babel-loader\":\"^8.0.6\",\"circular-dependency-plugin\":\"^5.2.0\",\"vue-loader\":\"15.8.3\",\"vue-template-compiler\":\"2.6.11\",\"vue-style-loader\":\"4.1.2\",\"css-loader\":\"^3.4.0\",\"node-sass\":\"4.13.0\",\"sass-loader\":\"8.0.0\",\"@babel/core\":\"^7.7.7\",\"@babel/polyfill\":\"7.7.0\",\"@babel/preset-env\":\"^7.7.7\",\"@babel/plugin-proposal-class-properties\":\"7.7.4\"},\"author\":\"admin@izure.org\",\"license\":\"MIT\"}");
 
 /***/ }),
 
@@ -40164,6 +40183,64 @@ function waitLoading() {
 
 /***/ }),
 
+/***/ "./src/Components/Audio/Methods/destroyObserve.js":
+/*!********************************************************!*\
+  !*** ./src/Components/Audio/Methods/destroyObserve.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return destroyObserve; });
+function destroyObserve() {
+  clearInterval(this.intervalIndex);
+}
+
+/***/ }),
+
+/***/ "./src/Components/Audio/Methods/observeAudioPosition.js":
+/*!**************************************************************!*\
+  !*** ./src/Components/Audio/Methods/observeAudioPosition.js ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return observeAudioPosition; });
+function observeAudioPosition() {
+  this.intervalIndex = setInterval(() => {
+    const el = this.$el;
+    const app = this.app;
+    if (!this.audio) return;
+    if (!app.appElement) return;
+    const appStyle = getComputedStyle(app.appElement);
+    const appRect = app.appElement.getBoundingClientRect();
+    const elRect = el.getBoundingClientRect();
+    const relX = elRect.x - appRect.x;
+    const relY = elRect.y - appRect.y;
+    const centerX = parseFloat(appStyle.width) / 2;
+    const centerY = parseFloat(appStyle.height) / 2;
+    const x = relX - centerX;
+    const y = centerY - relY;
+    this.audio.pannerAttr({
+      coneInnerAngle: 360,
+      coneOuterAngle: 360,
+      coneOuterGain: 0,
+      distanceModel: 'inverse',
+      maxDistance: 10000,
+      rolloffFactor: 1,
+      refDistance: 100,
+      panningModel: 'HRTF'
+    });
+    this.audio.orientation(0, 0, 1);
+    this.audio.pos(x, y, 0);
+  }, this.body.component.audio.recaching);
+}
+
+/***/ }),
+
 /***/ "./src/Components/Audio/Methods/onChangeAudioSrc.js":
 /*!**********************************************************!*\
   !*** ./src/Components/Audio/Methods/onChangeAudioSrc.js ***!
@@ -40235,9 +40312,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return setAudioPosition; });
 function setAudioPosition() {
   if (!this.audio) return;
-  if (!this.app.mainCamera) return;
-  const camera = this.app.mainCamera;
-  console.log(camera.pos); //this.audio.pos(cmera.)
+  this.audio.pos(this.x, this.y, this.z);
+  console.log(this.x, this.y); // this.audio.pannerAttr({
+  //   panningModel: 'HRTF',
+  //   refDistance: 0.8,
+  //   rolloffFactor: 2.5,
+  //   distanceModel: 'exponential'
+  // })
 }
 
 /***/ }),

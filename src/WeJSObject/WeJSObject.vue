@@ -36,14 +36,28 @@
         saturate(${body.component.filter.saturate})
         sepia(${body.component.filter.sepia})`
     }">
-      <component-physics-world v-if="     hasComponent('physicsWorld')" :app="app" :scene="scene" :body="body" />
-      <component-physics v-if="           hasComponent('physics')" :app="app" :scene="scene" :body="body" />
-      <component-text v-if="              hasComponent('text')" :app="app" :scene="scene" :body="body" />
-      <component-html v-if="              hasComponent('html')" :app="app" :scene="scene" :body="body" />
-      <component-renderer-image v-if="    hasComponent('rendererImage')" :app="app" :scene="scene" :body="body" />
-      <component-renderer-video v-if="    hasComponent('rendererVideo')" :app="app" :scene="scene" :body="body" />
-      <component-tag v-if="               hasComponent('tag')" :app="app" :scene="scene" :body="body" />
-      <component-audio v-if="             hasComponent('audio')" :app="app" :scene="scene" :body="body" />
+
+      <!-- 
+        화면에 시각적으로 보이는 컴포넌트를 이곳에 넣습니다.
+        이 컴포넌트들은 position: static이므로, 위에서 아래로 순차대로 쌓입니다.
+      -->
+      <div class="we-components-visible">
+        <component-text v-if="              hasComponent('text')" :app="app" :scene="scene" :body="body" />
+        <component-html v-if="              hasComponent('html')" :app="app" :scene="scene" :body="body" />
+        <component-renderer-image v-if="    hasComponent('rendererImage')" :app="app" :scene="scene" :body="body" />
+        <component-renderer-video v-if="    hasComponent('rendererVideo')" :app="app" :scene="scene" :body="body" />
+      </div>
+
+      <!-- 
+        화면에 시각적으로 보이지 않는 컴포넌트를 이곳에 넣습니다.
+      -->
+      <div class="we-components-hidden">
+        <component-physics-world v-if="     hasComponent('physicsWorld')" :app="app" :scene="scene" :body="body" />
+        <component-physics v-if="           hasComponent('physics')" :app="app" :scene="scene" :body="body" />
+        <component-tag v-if="               hasComponent('tag')" :app="app" :scene="scene" :body="body" />
+        <component-audio v-if="             hasComponent('audio')" :app="app" :scene="scene" :body="body" />
+      </div>
+
     </div>
 
     <!-- Children 컴포넌트에 있는 하위 자식 객체를 추가합니다. -->
@@ -150,5 +164,18 @@
     top: 50%;
     left: 50%;
     transform-style: preserve-3d;
+  }
+
+  .we-components {
+    position: relative;
+  }
+
+  .we-components-hidden {
+    width: 0;
+    height: 0;
+    visibility: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
   }
 </style>
