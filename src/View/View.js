@@ -8,6 +8,8 @@ class View {
 
   constructor(raw = {
     id: null,
+    level: 'null',
+    levelDesign: {},
     component: new ComponentList
   }) {
 

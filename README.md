@@ -41,6 +41,8 @@ export default {
 
 `오브젝트`가 가지고 있어야 할 기본 데이터 목록은 다음과 같다.
 * id : `String`
+* level : `String`
+* levelDesign : `Object`
 * component : `ComponentList`
 
 `오브젝트`는 메서드 단위로 스크립트가 실행된다. `beforeCreate`, `created`, `update`, `beforeDestroy`, `destroyed`는 `vue`의 실행단위를 상속받고, 별개로 window.requestAnimationFrame 마다 실행될 `updateFrame` 실행단위를 받는다.

@@ -42366,6 +42366,8 @@ __webpack_require__.r(__webpack_exports__);
 class View {
   constructor(raw = {
     id: null,
+    level: 'null',
+    levelDesign: {},
     component: new _ComponentList_ComponentList__WEBPACK_IMPORTED_MODULE_0__["default"]()
   }) {
     this.id = raw.id;
