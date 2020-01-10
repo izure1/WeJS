@@ -144,7 +144,6 @@
     },
 
     mounted() {
-      console.log(this.requiredLevel, this.body.level)
       this.startResizeObserve()
     },
 
