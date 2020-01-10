@@ -41842,9 +41842,7 @@ class Searcher {
     const bodyClassName = 'we-body';
     if (!v instanceof HTMLElement) return null;
 
-    do {
-      v = v.parentElement;
-    } while (v && !v.classList.contains(bodyClassName));
+    do v = v.parentElement; while (v && !v.classList.contains(bodyClassName));
 
     return v;
   }
