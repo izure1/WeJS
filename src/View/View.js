@@ -1,5 +1,6 @@
 import ComponentList from './ComponentList/ComponentList'
 import ComponentFactory from './ComponentFactory/ComponentFactory'
+import LevelDesign from './LevelDesign/LevelDesign'
 
 import RESERVATION from '../Components/RESERVATION'
 
@@ -9,7 +10,7 @@ class View {
   constructor(raw = {
     id: null,
     level: 'null',
-    levelDesign: {},
+    levelDesign: new LevelDesign,
     component: new ComponentList
   }) {
 

@@ -42292,6 +42292,54 @@ function centerPointY() {
 
 /***/ }),
 
+/***/ "./src/View/LevelDesign/LevelDesign.js":
+/*!*********************************************!*\
+  !*** ./src/View/LevelDesign/LevelDesign.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+class LevelDesign {
+  constructor(raw) {
+    Object.assign(this, raw);
+  }
+
+  set(name, ...args) {
+    this[name] = [...args];
+  }
+
+  has(name) {
+    return this.hasOwnProperty(name);
+  }
+
+  get(name) {
+    return this[name] || null;
+  }
+
+  _getRequired(name, _lists) {
+    if (_lists.has(name)) return _lists;
+
+    _lists.add(name);
+
+    if (!this.has(name)) return _lists;
+
+    for (const level of this.get(name)) this._getRequired(level, _lists);
+
+    return _lists;
+  }
+
+  getRequired(name, _lists = new Set()) {
+    return Array.from(this._getRequired(name, new Set())).sort();
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (LevelDesign);
+
+/***/ }),
+
 /***/ "./src/View/Methods/calcSizeMax.js":
 /*!*****************************************!*\
   !*** ./src/View/Methods/calcSizeMax.js ***!
@@ -42356,7 +42404,9 @@ function onSizeChange(size) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ComponentList_ComponentList__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ComponentList/ComponentList */ "./src/View/ComponentList/ComponentList.js");
 /* harmony import */ var _ComponentFactory_ComponentFactory__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ComponentFactory/ComponentFactory */ "./src/View/ComponentFactory/ComponentFactory.js");
-/* harmony import */ var _Components_RESERVATION__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Components/RESERVATION */ "./src/Components/RESERVATION.js");
+/* harmony import */ var _LevelDesign_LevelDesign__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LevelDesign/LevelDesign */ "./src/View/LevelDesign/LevelDesign.js");
+/* harmony import */ var _Components_RESERVATION__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Components/RESERVATION */ "./src/Components/RESERVATION.js");
+
 
 
 
@@ -42365,15 +42415,15 @@ class View {
   constructor(raw = {
     id: null,
     level: 'null',
-    levelDesign: {},
+    levelDesign: new _LevelDesign_LevelDesign__WEBPACK_IMPORTED_MODULE_2__["default"](),
     component: new _ComponentList_ComponentList__WEBPACK_IMPORTED_MODULE_0__["default"]()
   }) {
     this.id = raw.id;
     this.component = new _ComponentList_ComponentList__WEBPACK_IMPORTED_MODULE_0__["default"](raw.component);
     const factory = new _ComponentFactory_ComponentFactory__WEBPACK_IMPORTED_MODULE_1__["default"]();
-    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_2__["default"].CAMERA));
-    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_2__["default"].TRANSFORM));
-    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_2__["default"].FILTER));
+    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_3__["default"].CAMERA));
+    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_3__["default"].TRANSFORM));
+    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_3__["default"].FILTER));
   }
 
 }
