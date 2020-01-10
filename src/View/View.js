@@ -4,7 +4,7 @@ import ComponentFactory from './ComponentFactory/ComponentFactory'
 import RESERVATION from '../Components/RESERVATION'
 
 
-class WeJSObject {
+class View {
 
   constructor(raw = {
     id: null,
@@ -24,4 +24,4 @@ class WeJSObject {
 }
 
 
-export default WeJSObject
+export default View

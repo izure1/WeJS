@@ -3,7 +3,7 @@
 </template>
 
 <script>
-  import Component from '../../WeJSObject/Component/Component'
+  import Component from '../../View/Component/Component'
 
   import drawText from './Methods/drawText'
 

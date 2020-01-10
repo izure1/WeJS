@@ -77,7 +77,7 @@
 </template>
 
 <script>
-  import WeJSObject from './WeJSObject.js'
+  import View from './View.js'
   import ComponentPhysicsWorld from '../Components/PhysicsWorld/Component'
   import ComponentPhysics from '../Components/Physics/Component'
   import ComponentText from '../Components/Text/Component'

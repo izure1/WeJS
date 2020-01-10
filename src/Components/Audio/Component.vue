@@ -3,7 +3,7 @@
 </template>
 
 <script>
-  import Component from '../../WeJSObject/Component/Component'
+  import Component from '../../View/Component/Component'
 
   import _setLoadedPromise from './Helper/_setLoadedPromise'
   import play from './Helper/play'
@@ -13,7 +13,6 @@
   import onChangeAudioSrc from './Methods/onChangeAudioSrc'
   import reloadAudio from './Methods/reloadAudio'
   import setAudioProperty from './Methods/setAudioProperty'
-  import setAudioPosition from './Methods/setAudioPosition'
   import observeAudioPosition from './Methods/observeAudioPosition'
   import destroyObserve from './Methods/destroyObserve'
 
@@ -51,7 +50,6 @@
       onChangeAudioSrc,
       reloadAudio,
       setAudioProperty,
-      setAudioPosition,
       observeAudioPosition,
       destroyObserve,
     },

@@ -1,13 +1,13 @@
 import App from './App/App'
 import Scene from './Scene/Scene'
-import WeJSObject from './WeJSObject/WeJSObject'
+import View from './View/View'
 
 import Animation from './Animation/Animation'
 import AssetLoader from './Asset/AssetLoader/AssetLoader'
 import Asset from './Asset/Asset/Asset'
-import ComponentBuilder from './WeJSObject/ComponentBuilder/ComponentBuilder'
-import ComponentFactory from './WeJSObject/ComponentFactory/ComponentFactory'
-import Searcher from './Searcher/Searcher'
+import ComponentBuilder from './View/ComponentBuilder/ComponentBuilder'
+import ComponentFactory from './View/ComponentFactory/ComponentFactory'
+import Searcher from './Utils/Searcher'
 
 import RESERVATION, {
   RESERVATION_MAP,
@@ -24,7 +24,7 @@ export default {
 
   App,
   Scene,
-  WeJSObject,
+  View,
 
   Animation,
   AssetLoader,

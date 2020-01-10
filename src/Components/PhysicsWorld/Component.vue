@@ -3,7 +3,7 @@
 </template>
 
 <script>
-  import Component from '../../WeJSObject/Component/Component'
+  import Component from '../../View/Component/Component'
   import Box2D from '../../External/Box2D/Box2D'
   import CONFIG from './Vars/CONFIG'
 

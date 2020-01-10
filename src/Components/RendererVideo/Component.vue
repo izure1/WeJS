@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import Component from '../../WeJSObject/Component/Component'
+  import Component from '../../View/Component/Component'
 
   import onChangeVideoSrc from './Methods/onChangeVideoSrc'
   import onCanPlayThrough from './Methods/onCanPlayThrough'

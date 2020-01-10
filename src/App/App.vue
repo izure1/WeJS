@@ -20,7 +20,7 @@
 
 <script>
   import screenfull from 'screenfull'
-  import WeBody from '../WeJSObject/WeJSObject.vue'
+  import WeBody from '../View/View.vue'
 
   import onScreenChange from './Methods/onScreenChange'
 

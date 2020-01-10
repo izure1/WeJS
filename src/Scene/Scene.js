@@ -1,10 +1,10 @@
-import WeJSObject from '../WeJSObject/WeJSObject'
-import ComponentFactory from '../WeJSObject/ComponentFactory/ComponentFactory'
+import View from '../View/View'
+import ComponentFactory from '../View/ComponentFactory/ComponentFactory'
 
 import RESERVATION from '../Components/RESERVATION'
 
 
-class Scene extends WeJSObject {
+class Scene extends View {
 
   constructor() {
 

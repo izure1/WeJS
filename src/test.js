@@ -3,9 +3,9 @@ const scene = new WeJS.Scene
 
 
 // WeJS.RESERVATION.XXX => reservation 정보가 담겨있는 Object
-// scene = WeJSObject Class object (vue singlefile component 아님)
+// scene = View Class object (vue singlefile component 아님)
 
-// WeJSObject의 component map에 vue template 등록...?
+// View의 component map에 vue template 등록...?
 
 
 const factory = new WeJS.ComponentFactory

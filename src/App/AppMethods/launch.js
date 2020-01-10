@@ -1,4 +1,4 @@
-import WeJSObject from '../../WeJSObject/WeJSObject'
+import View from '../../View/View'
 
 import Vue from 'vue'
 import App from '../App.vue'
@@ -6,8 +6,8 @@ import App from '../App.vue'
 
 export default function launch(scene) {
 
-  if (!(scene instanceof WeJSObject)) {
-    throw 'The scene argument must be WeJSObject instance.'
+  if (!(scene instanceof View)) {
+    throw 'The scene argument must be View instance.'
   }
 
   this.destroy()

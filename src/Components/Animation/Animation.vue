@@ -1,5 +1,5 @@
 <script>
-  import Component from '../../WeJSObject/Component/Component'
+  import Component from '../../View/Component/Component'
   import Animation from './Animation.js'
 
 
