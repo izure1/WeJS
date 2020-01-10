@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <script src="../lib/WeJS.js"></script>
+  <script>
+    const app = new WeJS.App // 새로운 viewport 만들기
+    const scene = new WeJS.Scene // 새로운 씬
+
+    const factory = new WeJS.ComponentFactory // 컴포넌트를 만들어주는 인스턴스 객체
+    const objectA = new WeJS.View
+    const objectB = new WeJS.View
+    const objectC = new WeJS.View
+
+    // 객체를 보여주기 위해 렌더러 컴포넌트를 생성합니다.
+    const rendererComponentA = factory.create(WeJS.RESERVATION.TEXT)
+    const rendererComponentB = factory.create(WeJS.RESERVATION.TEXT)
+    const rendererComponentC = factory.create(WeJS.RESERVATION.TEXT)
+    objectA.component.add(rendererComponentA)
+    objectB.component.add(rendererComponentB)
+    objectC.component.add(rendererComponentC)
+
+    // 각 객체가 소속된 레벨을 설정합니다.
+    // 씬의 레벨디자인에서 요구하는 레벨과 다른 객체는 화면에 보여지지 않을 것입니다.
+    objectA.level = 'A'
+    objectB.level = 'B'
+    objectC.level = 'C'
+
+    objectA.component.text.content = 'A'
+    objectB.component.text.content = 'B'
+    objectC.component.text.content = 'C'
+
+    objectA.component.transform.x = -100
+    objectC.component.transform.x = 100
+
+    scene.levelDesign.set('A', 'B') // 씬의 레벨 A는 B레벨을 상속받습니다.
+    scene.levelDesign.set('B') // 씬의 레벨이 B일 경우, 어떤 레벨도 상속받지 않습니다.
+    scene.levelDesign.set('C', 'A') // 씬의 레벨이 C일 경우, A레벨을 상속받습니다. 하지만 위에서 A레벨은 B레벨을 상속받았기에, 결론적으로 A와 B 레벨 둘 다 상속받았습니다.
+
+    /*
+     *  이 구조를 그림으로 설명하자면 아래와 같습니다.
+     *
+     * 
+     *   Required Objects Map
+     * 
+     *      C level (B, A, C)
+     * 
+     *      └─→    A level (B, A)
+     * 
+     *              └─→ B level (B)
+     * 
+     * 
+     *  씬의 레벨들은 필요하다면 서로 상속받으며 화면에 보여질 객체 목록을 공유합니다.
+     * 
+     */
+
+
+    scene.component.children.lists.add(objectA)
+    scene.component.children.lists.add(objectB)
+    scene.component.children.lists.add(objectC)
+
+
+    // 씬의 레벨을 A로 설정합니다.
+    // A레벨은 B레벨을 상속받습니다. C레벨은 연결되는 상속 관계가 없습니다. 따라서 C레벨을 가지고 있는 objectC의 객체는 화면에 보이지 않을 것입니다.
+    scene.level = 'A'
+
+    // 앱이 부착될 element를 지정
+    app.element = '#app'
+    app.setSize(800, 500)
+
+    // 앱에서 씬을 실행
+    app.launch(scene)
+  </script>
+</body>
+
+</html>

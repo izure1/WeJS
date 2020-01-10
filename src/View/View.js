@@ -14,10 +14,17 @@ class View {
     component: new ComponentList
   }) {
 
-    this.id = raw.id
-    this.level = raw.level
-    this.levelDesign = raw.levelDesign
-    this.component = new ComponentList(raw.component)
+    const {
+      id,
+      level,
+      levelDesign,
+      component,
+    } = raw
+
+    this.id = id
+    this.level = level
+    this.levelDesign = levelDesign
+    this.component = new ComponentList(component)
 
     const factory = new ComponentFactory
     this.component.add(factory.create(RESERVATION.CAMERA))

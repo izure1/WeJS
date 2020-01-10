@@ -8,6 +8,7 @@
   import CONFIG from './Vars/CONFIG'
 
   import createWorld from './Methods/createWorld'
+  import destroyWorld from './Methods/destroyWorld'
   import getGravity from './Methods/getGravity'
   import setGravity from './Methods/setGravity'
 
@@ -34,6 +35,7 @@
     props: ['body'],
     methods: {
       createWorld,
+      destroyWorld,
       getGravity,
       setGravity,
     },

@@ -11544,8 +11544,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['scene', 'app'],
   data: () => ({
     resizeObserver: null,
-    appScale: 1,
-    persistentLevel: [_View_LevelDesign_LevelDesign__WEBPACK_IMPORTED_MODULE_2__["default"].PERSISTENT_LEVEL]
+    appScale: 1
   }),
   methods: {
     onScreenChange: _Methods_onScreenChange__WEBPACK_IMPORTED_MODULE_3__["default"]
@@ -11917,16 +11916,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _External_Box2D_Box2D__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../External/Box2D/Box2D */ "./src/External/Box2D/Box2D.js");
 /* harmony import */ var _Vars_CONFIG__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Vars/CONFIG */ "./src/Components/PhysicsWorld/Vars/CONFIG.js");
 /* harmony import */ var _Methods_createWorld__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Methods/createWorld */ "./src/Components/PhysicsWorld/Methods/createWorld.js");
-/* harmony import */ var _Methods_getGravity__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Methods/getGravity */ "./src/Components/PhysicsWorld/Methods/getGravity.js");
-/* harmony import */ var _Methods_setGravity__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Methods/setGravity */ "./src/Components/PhysicsWorld/Methods/setGravity.js");
-/* harmony import */ var _Watch_gravityX__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Watch/gravityX */ "./src/Components/PhysicsWorld/Watch/gravityX.js");
-/* harmony import */ var _Watch_gravityY__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Watch/gravityY */ "./src/Components/PhysicsWorld/Watch/gravityY.js");
+/* harmony import */ var _Methods_destroyWorld__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Methods/destroyWorld */ "./src/Components/PhysicsWorld/Methods/destroyWorld.js");
+/* harmony import */ var _Methods_getGravity__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Methods/getGravity */ "./src/Components/PhysicsWorld/Methods/getGravity.js");
+/* harmony import */ var _Methods_setGravity__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Methods/setGravity */ "./src/Components/PhysicsWorld/Methods/setGravity.js");
+/* harmony import */ var _Watch_gravityX__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Watch/gravityX */ "./src/Components/PhysicsWorld/Watch/gravityX.js");
+/* harmony import */ var _Watch_gravityY__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Watch/gravityY */ "./src/Components/PhysicsWorld/Watch/gravityY.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
 //
 //
 //
+
 
 
 
@@ -11955,8 +11956,9 @@ class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__
   props: ['body'],
   methods: {
     createWorld: _Methods_createWorld__WEBPACK_IMPORTED_MODULE_3__["default"],
-    getGravity: _Methods_getGravity__WEBPACK_IMPORTED_MODULE_4__["default"],
-    setGravity: _Methods_setGravity__WEBPACK_IMPORTED_MODULE_5__["default"]
+    destroyWorld: _Methods_destroyWorld__WEBPACK_IMPORTED_MODULE_4__["default"],
+    getGravity: _Methods_getGravity__WEBPACK_IMPORTED_MODULE_5__["default"],
+    setGravity: _Methods_setGravity__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
 
   created() {
@@ -11968,8 +11970,8 @@ class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__
   },
 
   watch: {
-    gravityX: _Watch_gravityX__WEBPACK_IMPORTED_MODULE_6__["default"],
-    gravityY: _Watch_gravityY__WEBPACK_IMPORTED_MODULE_7__["default"]
+    gravityX: _Watch_gravityX__WEBPACK_IMPORTED_MODULE_7__["default"],
+    gravityY: _Watch_gravityY__WEBPACK_IMPORTED_MODULE_8__["default"]
   }
 });
 
@@ -12507,6 +12509,7 @@ __webpack_require__.r(__webpack_exports__);
   },
 
   mounted() {
+    console.log(this.requiredLevel, this.body.level);
     this.startResizeObserve();
   },
 
@@ -25507,7 +25510,9 @@ var render = function() {
               app: _vm.app,
               scene: _vm.scene,
               body: _vm.scene,
-              requiredLevel: _vm.persistentLevel
+              requiredLevel: this.scene.levelDesign.getRequired(
+                this.scene.level
+              )
             }
           })
         ],
@@ -40861,6 +40866,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/Components/PhysicsWorld/Methods/destroyWorld.js":
+/*!*************************************************************!*\
+  !*** ./src/Components/PhysicsWorld/Methods/destroyWorld.js ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return destroyWorld; });
+function destroyWorld() {
+  if (!this.world) return;
+}
+
+/***/ }),
+
 /***/ "./src/Components/PhysicsWorld/Methods/getGravity.js":
 /*!***********************************************************!*\
   !*** ./src/Components/PhysicsWorld/Methods/getGravity.js ***!
@@ -42431,6 +42452,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return destroyResizeObserve; });
 function destroyResizeObserve() {
   if (this.sizeObserver instanceof ResizeObserver) this.sizeObserver.disconnect();
+  this.sizeObserver = null;
 }
 
 /***/ }),
@@ -42462,7 +42484,7 @@ function hasComponent(name) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return isNeedFromScene; });
 function isNeedFromScene(requiredLevel, current) {
-  return this.requiredLevel.indexOf(current) !== -1;
+  return requiredLevel.indexOf(current) !== -1;
 }
 
 /***/ }),
@@ -42494,7 +42516,7 @@ function onSizeChange(size) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return startResizeObserve; });
 function startResizeObserve() {
-  if (!this.$el) return;
+  if (!(this.$el instanceof HTMLElement)) return;
 
   const onResize = () => {
     if (this.$el) return;
@@ -42534,10 +42556,16 @@ class View {
     levelDesign: new _LevelDesign_LevelDesign__WEBPACK_IMPORTED_MODULE_2__["default"](),
     component: new _ComponentList_ComponentList__WEBPACK_IMPORTED_MODULE_0__["default"]()
   }) {
-    this.id = raw.id;
-    this.level = raw.level;
-    this.levelDesign = raw.levelDesign;
-    this.component = new _ComponentList_ComponentList__WEBPACK_IMPORTED_MODULE_0__["default"](raw.component);
+    const {
+      id,
+      level,
+      levelDesign,
+      component
+    } = raw;
+    this.id = id;
+    this.level = level;
+    this.levelDesign = levelDesign;
+    this.component = new _ComponentList_ComponentList__WEBPACK_IMPORTED_MODULE_0__["default"](component);
     const factory = new _ComponentFactory_ComponentFactory__WEBPACK_IMPORTED_MODULE_1__["default"]();
     this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_3__["default"].CAMERA));
     this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_3__["default"].TRANSFORM));

@@ -13,7 +13,7 @@
       transform: `scale(${appScale})`,
       margin: `${-app.height / 2}px 0 0 ${-app.width / 2}px`,
     }">
-      <we-body :app="app" :scene="scene" :body="scene" :requiredLevel="persistentLevel" />
+      <we-body :app="app" :scene="scene" :body="scene" :requiredLevel="this.scene.levelDesign.getRequired(this.scene.level)" />
     </div>
   </section>
 </template>
@@ -34,7 +34,6 @@
     data: () => ({
       resizeObserver: null,
       appScale: 1,
-      persistentLevel: [LevelDesign.PERSISTENT_LEVEL],
     }),
     methods: {
       onScreenChange

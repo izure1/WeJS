@@ -1,6 +1,6 @@
 export default function startResizeObserve() {
 
-  if (!this.$el) return
+  if (!(this.$el instanceof HTMLElement)) return
 
   const onResize = () => {
     if (this.$el) return
