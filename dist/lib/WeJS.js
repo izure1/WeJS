@@ -41879,27 +41879,14 @@ class Searcher {
     return null;
   }
 
-  constructor() {
-    this._app;
-  }
-
-  get app() {
-    return this._app;
-  }
-
-  set app(v) {
-    this._app = v;
-  }
-
-  get appReady() {
-    if (!this.app) throw '초기화되지 않았습니다. app 속성을 지정하십시오.';
-    if (!this.app.element) throw '앱이 초기화되지 않았습니다. app.element 속성을 지정하십시오.';
-    if (!this.app.appElement) throw '앱이 시작되지 않았습니다. app.launch 메서드를 사용하십시오.';
+  isAppReady(app) {
+    if (!app.element) throw '앱이 초기화되지 않았습니다. app.element 속성을 지정하십시오.';
+    if (!app.appElement) throw '앱이 시작되지 않았습니다. app.launch 메서드를 사용하십시오.';
     return true;
   }
 
-  getElementFromTag(v) {
-    if (!this.appReady) return [];
+  getElementFromTag(app, v) {
+    if (!this.isAppReady(app)) return [];
     let lists;
     lists = this.app.appElement.querySelectorAll(`div[we-body-tag~="${v}"]`);
     lists = Array.from(lists);
@@ -41907,8 +41894,8 @@ class Searcher {
     return lists;
   }
 
-  getElementFromId(v) {
-    if (!this.appReady) return null;
+  getElementFromId(app, v) {
+    if (!this.isAppReady(app)) return null;
     return this.app.appElement.querySelector(`#${v}`);
   }
 
