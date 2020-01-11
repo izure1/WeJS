@@ -170,7 +170,7 @@
   .we-components-hidden {
     width: 0;
     height: 0;
-    visibility: none;
+    visibility: hidden;
     position: absolute;
     left: 50%;
     top: 50%;

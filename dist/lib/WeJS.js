@@ -12531,7 +12531,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".we-camera[data-v-5dc5b8c6],\n.we-body[data-v-5dc5b8c6] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform-style: preserve-3d;\n}\n.we-components[data-v-5dc5b8c6] {\n  position: relative;\n}\n.we-components-hidden[data-v-5dc5b8c6] {\n  width: 0;\n  height: 0;\n  visibility: none;\n  position: absolute;\n  left: 50%;\n  top: 50%;\n}\n", ""]);
+exports.push([module.i, ".we-camera[data-v-5dc5b8c6],\n.we-body[data-v-5dc5b8c6] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform-style: preserve-3d;\n}\n.we-components[data-v-5dc5b8c6] {\n  position: relative;\n}\n.we-components-hidden[data-v-5dc5b8c6] {\n  width: 0;\n  height: 0;\n  visibility: hidden;\n  position: absolute;\n  left: 50%;\n  top: 50%;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -39599,7 +39599,7 @@ class App {
     this.width = 800;
     this.height = 450;
     this.backgroundColor = 'white';
-    this.borderWidth = 0;
+    this.borderWidth = 1;
     this.borderColor = 'black';
     this.perspective = 100;
   }
@@ -42505,7 +42505,7 @@ function startResizeObserve() {
   if (!(this.$el instanceof HTMLElement)) return;
 
   const onResize = () => {
-    if (this.$el) return;
+    if (!(this.$el instanceof HTMLElement)) return;
     const style = getComputedStyle(this.$el);
     this.sizeSelf = [style.width, style.height].map(n => parseFloat(n));
     this.$emit('onsizechange', this.sizeSelf);

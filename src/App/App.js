@@ -24,7 +24,7 @@ class App {
     this.width = 800
     this.height = 450
     this.backgroundColor = 'white'
-    this.borderWidth = 0
+    this.borderWidth = 1
     this.borderColor = 'black'
     this.perspective = 100
   }
