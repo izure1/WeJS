@@ -12498,12 +12498,22 @@ __webpack_require__.r(__webpack_exports__);
     destroyResizeObserve: _Methods_destroyResizeObserve__WEBPACK_IMPORTED_MODULE_14__["default"]
   },
   watch: {
-    sizeSelf() {
+    'sizeSelf'() {
       this.calcSizeMax();
     },
 
-    sizeChild() {
+    'sizeChild'() {
       this.calcSizeMax();
+    },
+
+    'requiredLevel'() {
+      this.destroyResizeObserve();
+      this.startResizeObserve();
+    },
+
+    'body.level'() {
+      this.destroyResizeObserve();
+      this.startResizeObserve();
     }
 
   },
@@ -39599,7 +39609,7 @@ class App {
     this.width = 800;
     this.height = 450;
     this.backgroundColor = 'white';
-    this.borderWidth = 1;
+    this.borderWidth = 0;
     this.borderColor = 'black';
     this.perspective = 100;
   }

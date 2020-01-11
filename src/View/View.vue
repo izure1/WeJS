@@ -134,11 +134,20 @@
 
     watch: {
 
-      sizeSelf() {
+      'sizeSelf'() {
         this.calcSizeMax()
       },
-      sizeChild() {
+      'sizeChild'() {
         this.calcSizeMax()
+      },
+
+      'requiredLevel'() {
+        this.destroyResizeObserve()
+        this.startResizeObserve()
+      },
+      'body.level'() {
+        this.destroyResizeObserve()
+        this.startResizeObserve()
       },
 
     },
