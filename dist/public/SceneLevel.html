@@ -6,11 +6,6 @@
 
 <body>
   <div id="app"></div>
-  <div>
-    <button onclick="scene.level = 'A'">Scene level = A</button>
-    <button onclick="scene.level = 'B'">Scene level = B</button>
-    <button onclick="scene.level = 'C'">Scene level = C</button>
-  </div>
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <script src="../lib/WeJS.js"></script>
   <script>
@@ -61,6 +56,10 @@
      * 
      * 
      *  씬의 레벨들은 필요하다면 서로 상속받으며 화면에 보여질 객체 목록을 공유합니다.
+     * 
+     *  주의!
+     *  씬/객체의 레벨 속성은 앱에 부착하기 전에 설정되어야 하고, 앱에 부착한 이후에는 수정되어선 안됩니다.
+     *  성능저하와 객체의 올바른 크기와 좌표를 추적하지 못합니다.
      * 
      */
 

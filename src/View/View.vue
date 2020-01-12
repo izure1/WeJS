@@ -141,15 +141,6 @@
         this.calcSizeMax()
       },
 
-      'requiredLevel'() {
-        this.destroyResizeObserve()
-        this.startResizeObserve()
-      },
-      'body.level'() {
-        this.destroyResizeObserve()
-        this.startResizeObserve()
-      },
-
     },
 
     mounted() {

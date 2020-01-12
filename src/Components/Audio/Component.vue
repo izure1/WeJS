@@ -3,6 +3,7 @@
 </template>
 
 <script>
+  import AssetLoader from '../../Asset/AssetLoader/AssetLoader'
   import Component from '../../View/Component/Component'
 
   import _setLoadedPromise from './Helper/_setLoadedPromise'
@@ -43,6 +44,7 @@
 
     props: ['body', 'app'],
     data: () => ({
+      loader: new AssetLoader,
       audio: null,
       intervalIndex: null,
     }),

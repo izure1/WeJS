@@ -1,6 +1,6 @@
 <template>
   <div :style="{
-    backgroundImage: `url(${blobUri})`,
+    backgroundImage: `url(${loader.getUri(body.component.rendererImage.src)})`,
     backgroundSize: `
       ${parseImageSize(body.component.rendererImage.width)}
       ${parseImageSize(body.component.rendererImage.height)}`,
@@ -10,7 +10,7 @@
       ${body.component.rendererImage.ease}
       ${body.component.rendererImage.delay}ms`
   }" class="image-background">
-    <img :src="blobUri" :style="{ 
+    <img :src="loader.getUri(body.component.rendererImage.src)" :style="{ 
       width: parseImageSize(body.component.rendererImage.width),
       height: parseImageSize(body.component.rendererImage.height),
     }" class="image-fake" />
@@ -18,8 +18,8 @@
 </template>
 
 <script>
+  import AssetLoader from '../../Asset/AssetLoader/AssetLoader'
   import Component from '../../View/Component/Component'
-  import blobUri from './Computed/blobUri'
   import parseImageSize from './Methods/parseImageSize'
 
   export class Reservation extends Component {
@@ -39,9 +39,9 @@
 
   export default {
     props: ['body'],
-    computed: {
-      blobUri
-    },
+    data: () => ({
+      loader: new AssetLoader
+    }),
     methods: {
       parseImageSize
     }

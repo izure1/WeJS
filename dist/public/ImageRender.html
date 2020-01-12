@@ -39,7 +39,7 @@
       console.log(`${loader.assets.map(t => t.uri).join(', ')} assets loaded!`)
 
       // 객체에 이미지 경로를 추가합니다.
-      image.component.rendererImage.src = loader.list.get('assets/image/transition_before.png').uri
+      image.component.rendererImage.src = 'assets/image/transition_before.png'
 
       // 객체의 이미지 넓이를 지정합니다.
       image.component.rendererImage.width = 300
@@ -61,7 +61,7 @@
     function change() {
       // 이미지의 변경 속도를 지정합니다. 지정된 속도만큼 천천히 트렌지션되며 변경됩니다.
       image.component.rendererImage.duration = 1000
-      image.component.rendererImage.src = loader.list.get('assets/image/transition_after.png').uri
+      image.component.rendererImage.src = 'assets/image/transition_after.png'
     }
   </script>
 </body>

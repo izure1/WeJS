@@ -1,6 +1,6 @@
 <template>
   <div>
-    <video :src="body.component.rendererVideo.src" :width="body.component.rendererVideo.width"
+    <video :src="loader.getUri(body.component.rendererVideo.src)" :width="body.component.rendererVideo.width"
       :height="body.component.rendererVideo.height" :controls="body.component.rendererVideo.controls"
       :loop="body.component.rendererVideo.loop" :autoplay="body.component.rendererVideo.autoplay"
       :muted="body.component.rendererVideo.muted" />
@@ -8,6 +8,7 @@
 </template>
 
 <script>
+  import AssetLoader from '../../Asset/AssetLoader/AssetLoader'
   import Component from '../../View/Component/Component'
 
   import onChangeVideoSrc from './Methods/onChangeVideoSrc'
@@ -51,6 +52,7 @@
     props: ['body'],
     data() {
       return {
+        loader: new AssetLoader,
         start: 0,
         element: null,
         mountResolve: null,

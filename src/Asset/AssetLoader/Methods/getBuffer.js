@@ -12,7 +12,7 @@ export default function getBuffer(uri, mime = 'application/octet-stream') {
       if (xml.status !== 200) reject()
       else {
         const blob = new Blob([xml.response], { type: mime })
-        const asset = new Asset(blob)
+        const asset = new Asset(blob, mime)
         resolve([uri, asset])
       }
 

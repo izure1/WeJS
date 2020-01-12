@@ -33,6 +33,11 @@ class AssetLoader {
     return Array.from(this.list.values())
   }
 
+  getUri(uri) {
+    const asset = this.list.get(uri)
+    return asset ? asset.uri : uri
+  }
+
 }
 
 AssetLoader.prototype.add = add
