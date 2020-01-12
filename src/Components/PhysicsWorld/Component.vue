@@ -5,7 +5,7 @@
 <script>
   import Component from '../../View/Component/Component'
   import Box2D from '../../External/Box2D/Box2D'
-  import CONFIG from './Vars/CONFIG'
+  //import CONFIG from './Vars/CONFIG'
 
   import createWorld from './Methods/createWorld'
   import destroyWorld from './Methods/destroyWorld'
@@ -29,7 +29,7 @@
   export default {
 
     data: () => ({
-      box2d: Box2D(CONFIG),
+      //box2d: Box2D(CONFIG),
       world: null
     }),
     props: ['body'],

@@ -18,9 +18,6 @@ import COMPONENT_FILTER, {
 import COMPONENT_CHILDREN, {
   Reservation as CHILDREN
 } from './Children/Component.vue'
-import COMPONENT_PHYSICS_WORLD, {
-  Reservation as PHYSICS_WORLD
-} from './PhysicsWorld/Component.vue'
 import COMPONENT_PHYSICS, {
   Reservation as PHYSICS
 } from './Physics/Component.vue'
@@ -72,12 +69,6 @@ const PACKAGES = [
     name: (new CHILDREN).name,
     reservation: CHILDREN,
     component: COMPONENT_CHILDREN,
-  },
-
-  {
-    name: (new PHYSICS_WORLD).name,
-    reservation: PHYSICS_WORLD,
-    component: COMPONENT_PHYSICS_WORLD,
   },
 
   {

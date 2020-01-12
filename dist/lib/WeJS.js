@@ -11896,11 +11896,27 @@ class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__
     super(...args);
 
     _defineProperty(this, "name", 'physics');
+
+    _defineProperty(this, "type", 'dynamic');
+
+    _defineProperty(this, "density", 1);
+
+    _defineProperty(this, "friction", 1);
+
+    _defineProperty(this, "restitution", 0.3);
   }
 
 }
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['component']
+  props: ['component', 'app', 'scene', 'body'],
+  data: () => ({
+    body: null
+  }),
+
+  created() {},
+
+  beforeDestroy() {}
+
 });
 
 /***/ }),
@@ -11917,13 +11933,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return Reservation; });
 /* harmony import */ var _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../View/Component/Component */ "./src/View/Component/Component.js");
 /* harmony import */ var _External_Box2D_Box2D__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../External/Box2D/Box2D */ "./src/External/Box2D/Box2D.js");
-/* harmony import */ var _Vars_CONFIG__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Vars/CONFIG */ "./src/Components/PhysicsWorld/Vars/CONFIG.js");
-/* harmony import */ var _Methods_createWorld__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Methods/createWorld */ "./src/Components/PhysicsWorld/Methods/createWorld.js");
-/* harmony import */ var _Methods_destroyWorld__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Methods/destroyWorld */ "./src/Components/PhysicsWorld/Methods/destroyWorld.js");
-/* harmony import */ var _Methods_getGravity__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Methods/getGravity */ "./src/Components/PhysicsWorld/Methods/getGravity.js");
-/* harmony import */ var _Methods_setGravity__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Methods/setGravity */ "./src/Components/PhysicsWorld/Methods/setGravity.js");
-/* harmony import */ var _Watch_gravityX__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Watch/gravityX */ "./src/Components/PhysicsWorld/Watch/gravityX.js");
-/* harmony import */ var _Watch_gravityY__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Watch/gravityY */ "./src/Components/PhysicsWorld/Watch/gravityY.js");
+/* harmony import */ var _Methods_createWorld__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Methods/createWorld */ "./src/Components/PhysicsWorld/Methods/createWorld.js");
+/* harmony import */ var _Methods_destroyWorld__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Methods/destroyWorld */ "./src/Components/PhysicsWorld/Methods/destroyWorld.js");
+/* harmony import */ var _Methods_getGravity__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Methods/getGravity */ "./src/Components/PhysicsWorld/Methods/getGravity.js");
+/* harmony import */ var _Methods_setGravity__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Methods/setGravity */ "./src/Components/PhysicsWorld/Methods/setGravity.js");
+/* harmony import */ var _Watch_gravityX__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Watch/gravityX */ "./src/Components/PhysicsWorld/Watch/gravityX.js");
+/* harmony import */ var _Watch_gravityY__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Watch/gravityY */ "./src/Components/PhysicsWorld/Watch/gravityY.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
@@ -11931,7 +11946,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 
-
+ //import CONFIG from './Vars/CONFIG'
 
 
 
@@ -11953,15 +11968,15 @@ class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__
 }
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: () => ({
-    box2d: Object(_External_Box2D_Box2D__WEBPACK_IMPORTED_MODULE_1__["default"])(_Vars_CONFIG__WEBPACK_IMPORTED_MODULE_2__["default"]),
+    //box2d: Box2D(CONFIG),
     world: null
   }),
   props: ['body'],
   methods: {
-    createWorld: _Methods_createWorld__WEBPACK_IMPORTED_MODULE_3__["default"],
-    destroyWorld: _Methods_destroyWorld__WEBPACK_IMPORTED_MODULE_4__["default"],
-    getGravity: _Methods_getGravity__WEBPACK_IMPORTED_MODULE_5__["default"],
-    setGravity: _Methods_setGravity__WEBPACK_IMPORTED_MODULE_6__["default"]
+    createWorld: _Methods_createWorld__WEBPACK_IMPORTED_MODULE_2__["default"],
+    destroyWorld: _Methods_destroyWorld__WEBPACK_IMPORTED_MODULE_3__["default"],
+    getGravity: _Methods_getGravity__WEBPACK_IMPORTED_MODULE_4__["default"],
+    setGravity: _Methods_setGravity__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
 
   created() {
@@ -11973,8 +11988,8 @@ class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__
   },
 
   watch: {
-    gravityX: _Watch_gravityX__WEBPACK_IMPORTED_MODULE_7__["default"],
-    gravityY: _Watch_gravityY__WEBPACK_IMPORTED_MODULE_8__["default"]
+    gravityX: _Watch_gravityX__WEBPACK_IMPORTED_MODULE_6__["default"],
+    gravityY: _Watch_gravityY__WEBPACK_IMPORTED_MODULE_7__["default"]
   }
 });
 
@@ -40941,21 +40956,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/Components/PhysicsWorld/Vars/CONFIG.js":
-/*!****************************************************!*\
-  !*** ./src/Components/PhysicsWorld/Vars/CONFIG.js ***!
-  \****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ({
-  TOTAL_MEMORY: 256 * 1024 * 1024
-});
-
-/***/ }),
-
 /***/ "./src/Components/PhysicsWorld/Watch/gravityX.js":
 /*!*******************************************************!*\
   !*** ./src/Components/PhysicsWorld/Watch/gravityX.js ***!
@@ -41002,15 +41002,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Transform_Component_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Transform/Component.vue */ "./src/Components/Transform/Component.vue");
 /* harmony import */ var _Filter_Component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Filter/Component */ "./src/Components/Filter/Component.vue");
 /* harmony import */ var _Children_Component_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Children/Component.vue */ "./src/Components/Children/Component.vue");
-/* harmony import */ var _PhysicsWorld_Component_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./PhysicsWorld/Component.vue */ "./src/Components/PhysicsWorld/Component.vue");
-/* harmony import */ var _Physics_Component_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Physics/Component.vue */ "./src/Components/Physics/Component.vue");
-/* harmony import */ var _Text_Component_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Text/Component.vue */ "./src/Components/Text/Component.vue");
-/* harmony import */ var _Html_Component_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Html/Component.vue */ "./src/Components/Html/Component.vue");
-/* harmony import */ var _RendererImage_Component_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./RendererImage/Component.vue */ "./src/Components/RendererImage/Component.vue");
-/* harmony import */ var _RendererVideo_Component_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./RendererVideo/Component.vue */ "./src/Components/RendererVideo/Component.vue");
-/* harmony import */ var _Dataset_Component_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Dataset/Component.vue */ "./src/Components/Dataset/Component.vue");
-/* harmony import */ var _Tag_Component_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Tag/Component.vue */ "./src/Components/Tag/Component.vue");
-/* harmony import */ var _Audio_Component_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Audio/Component.vue */ "./src/Components/Audio/Component.vue");
+/* harmony import */ var _Physics_Component_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Physics/Component.vue */ "./src/Components/Physics/Component.vue");
+/* harmony import */ var _Text_Component_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Text/Component.vue */ "./src/Components/Text/Component.vue");
+/* harmony import */ var _Html_Component_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Html/Component.vue */ "./src/Components/Html/Component.vue");
+/* harmony import */ var _RendererImage_Component_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./RendererImage/Component.vue */ "./src/Components/RendererImage/Component.vue");
+/* harmony import */ var _RendererVideo_Component_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./RendererVideo/Component.vue */ "./src/Components/RendererVideo/Component.vue");
+/* harmony import */ var _Dataset_Component_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Dataset/Component.vue */ "./src/Components/Dataset/Component.vue");
+/* harmony import */ var _Tag_Component_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Tag/Component.vue */ "./src/Components/Tag/Component.vue");
+/* harmony import */ var _Audio_Component_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Audio/Component.vue */ "./src/Components/Audio/Component.vue");
 /**
  * 
  * View 내부에서 사용될 모든 컨포넌트의 목록을 선언합니다.
@@ -41019,7 +41018,6 @@ __webpack_require__.r(__webpack_exports__);
  * 컨포넌트는 아래에 MAP에서 관리하십시오.
  * 
  */
-
 
 
 
@@ -41049,41 +41047,37 @@ const PACKAGES = [{
   reservation: _Children_Component_vue__WEBPACK_IMPORTED_MODULE_3__["Reservation"],
   component: _Children_Component_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
 }, {
-  name: new _PhysicsWorld_Component_vue__WEBPACK_IMPORTED_MODULE_4__["Reservation"]().name,
-  reservation: _PhysicsWorld_Component_vue__WEBPACK_IMPORTED_MODULE_4__["Reservation"],
-  component: _PhysicsWorld_Component_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+  name: new _Physics_Component_vue__WEBPACK_IMPORTED_MODULE_4__["Reservation"]().name,
+  reservation: _Physics_Component_vue__WEBPACK_IMPORTED_MODULE_4__["Reservation"],
+  component: _Physics_Component_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
-  name: new _Physics_Component_vue__WEBPACK_IMPORTED_MODULE_5__["Reservation"]().name,
-  reservation: _Physics_Component_vue__WEBPACK_IMPORTED_MODULE_5__["Reservation"],
-  component: _Physics_Component_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
+  name: new _Text_Component_vue__WEBPACK_IMPORTED_MODULE_5__["Reservation"]().name,
+  reservation: _Text_Component_vue__WEBPACK_IMPORTED_MODULE_5__["Reservation"],
+  component: _Text_Component_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
-  name: new _Text_Component_vue__WEBPACK_IMPORTED_MODULE_6__["Reservation"]().name,
-  reservation: _Text_Component_vue__WEBPACK_IMPORTED_MODULE_6__["Reservation"],
-  component: _Text_Component_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+  name: new _Html_Component_vue__WEBPACK_IMPORTED_MODULE_6__["Reservation"]().name,
+  reservation: _Html_Component_vue__WEBPACK_IMPORTED_MODULE_6__["Reservation"],
+  component: _Html_Component_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
 }, {
-  name: new _Html_Component_vue__WEBPACK_IMPORTED_MODULE_7__["Reservation"]().name,
-  reservation: _Html_Component_vue__WEBPACK_IMPORTED_MODULE_7__["Reservation"],
-  component: _Html_Component_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
+  name: new _RendererImage_Component_vue__WEBPACK_IMPORTED_MODULE_7__["Reservation"]().name,
+  reservation: _RendererImage_Component_vue__WEBPACK_IMPORTED_MODULE_7__["Reservation"],
+  component: _RendererImage_Component_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
 }, {
-  name: new _RendererImage_Component_vue__WEBPACK_IMPORTED_MODULE_8__["Reservation"]().name,
-  reservation: _RendererImage_Component_vue__WEBPACK_IMPORTED_MODULE_8__["Reservation"],
-  component: _RendererImage_Component_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
+  name: new _RendererVideo_Component_vue__WEBPACK_IMPORTED_MODULE_8__["Reservation"]().name,
+  reservation: _RendererVideo_Component_vue__WEBPACK_IMPORTED_MODULE_8__["Reservation"],
+  component: _RendererVideo_Component_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
 }, {
-  name: new _RendererVideo_Component_vue__WEBPACK_IMPORTED_MODULE_9__["Reservation"]().name,
-  reservation: _RendererVideo_Component_vue__WEBPACK_IMPORTED_MODULE_9__["Reservation"],
-  component: _RendererVideo_Component_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
+  name: new _Dataset_Component_vue__WEBPACK_IMPORTED_MODULE_9__["Reservation"]().name,
+  reservation: _Dataset_Component_vue__WEBPACK_IMPORTED_MODULE_9__["Reservation"],
+  component: _Dataset_Component_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
 }, {
-  name: new _Dataset_Component_vue__WEBPACK_IMPORTED_MODULE_10__["Reservation"]().name,
-  reservation: _Dataset_Component_vue__WEBPACK_IMPORTED_MODULE_10__["Reservation"],
-  component: _Dataset_Component_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
+  name: new _Tag_Component_vue__WEBPACK_IMPORTED_MODULE_10__["Reservation"]().name,
+  reservation: _Tag_Component_vue__WEBPACK_IMPORTED_MODULE_10__["Reservation"],
+  component: _Tag_Component_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
 }, {
-  name: new _Tag_Component_vue__WEBPACK_IMPORTED_MODULE_11__["Reservation"]().name,
-  reservation: _Tag_Component_vue__WEBPACK_IMPORTED_MODULE_11__["Reservation"],
-  component: _Tag_Component_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
-}, {
-  name: new _Audio_Component_vue__WEBPACK_IMPORTED_MODULE_12__["Reservation"]().name,
-  reservation: _Audio_Component_vue__WEBPACK_IMPORTED_MODULE_12__["Reservation"],
-  component: _Audio_Component_vue__WEBPACK_IMPORTED_MODULE_12__["default"]
+  name: new _Audio_Component_vue__WEBPACK_IMPORTED_MODULE_11__["Reservation"]().name,
+  reservation: _Audio_Component_vue__WEBPACK_IMPORTED_MODULE_11__["Reservation"],
+  component: _Audio_Component_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
 }]; // Map 자료형의 방식으로 받고 싶다면, import { MAP as 변수명 } 의 방식을 이용하십시오.
 
 const RESERVATION_MAP = (() => {
@@ -41790,24 +41784,64 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _View_View__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../View/View */ "./src/View/View.js");
-/* harmony import */ var _View_ComponentFactory_ComponentFactory__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../View/ComponentFactory/ComponentFactory */ "./src/View/ComponentFactory/ComponentFactory.js");
-/* harmony import */ var _Components_RESERVATION__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Components/RESERVATION */ "./src/Components/RESERVATION.js");
+/* harmony import */ var _External_Box2D_Box2D__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../External/Box2D/Box2D */ "./src/External/Box2D/Box2D.js");
+/* harmony import */ var _Vars_PHYSICS_CONFIG__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Vars/PHYSICS_CONFIG */ "./src/Scene/Vars/PHYSICS_CONFIG.js");
+/* harmony import */ var _Utils_Definer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Utils/Definer */ "./src/Utils/Definer.js");
+/* harmony import */ var _View_View__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../View/View */ "./src/View/View.js");
+/* harmony import */ var _View_ComponentFactory_ComponentFactory__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../View/ComponentFactory/ComponentFactory */ "./src/View/ComponentFactory/ComponentFactory.js");
+/* harmony import */ var _Components_RESERVATION__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Components/RESERVATION */ "./src/Components/RESERVATION.js");
 
 
 
 
-class Scene extends _View_View__WEBPACK_IMPORTED_MODULE_0__["default"] {
+
+
+
+class Scene extends _View_View__WEBPACK_IMPORTED_MODULE_3__["default"] {
   constructor() {
     super();
-    const factory = new _View_ComponentFactory_ComponentFactory__WEBPACK_IMPORTED_MODULE_1__["default"]();
-    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_2__["default"].PHYSICS_WORLD));
-    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_2__["default"].CHILDREN));
+    this.gravityX = 0;
+    this.gravityY = -9.8;
+    /*
+     *  씬 객체는 내부적으로 컴포넌트가 아닌, 물리 세계(physics-world)를 가지고 있습니다.
+     *  씬의 children 컴포넌트로 추가된 하위 객체들은, physics 컴포넌트로 물리효과를 만들 시 물리 세계를 참조합니다.
+     *  Ex) scene.physicsWorld.yourJob
+     * 
+     *  씬의 물리세계는 수정하거나 파괴할 수 없습니다.
+     * 
+     */
+    // 물리 객체 만들기
+
+    _Utils_Definer__WEBPACK_IMPORTED_MODULE_2__["default"].create('physics', Object(_External_Box2D_Box2D__WEBPACK_IMPORTED_MODULE_0__["default"])(_Vars_PHYSICS_CONFIG__WEBPACK_IMPORTED_MODULE_1__["default"])).seal(true).hidden(true).final(true).to(this); // 물리 세계 만들기
+
+    _Utils_Definer__WEBPACK_IMPORTED_MODULE_2__["default"].create('physicsWorld', new this.physics.b2World(this.gravity, false)).seal(true).hidden(true).final(true).to(this);
+    const factory = new _View_ComponentFactory_ComponentFactory__WEBPACK_IMPORTED_MODULE_4__["default"]();
+    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_5__["default"].CHILDREN));
+  }
+
+  get gravity() {
+    return new this.physics.b2Vec2(this.gravityX, this.gravityY);
   }
 
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Scene);
+
+/***/ }),
+
+/***/ "./src/Scene/Vars/PHYSICS_CONFIG.js":
+/*!******************************************!*\
+  !*** ./src/Scene/Vars/PHYSICS_CONFIG.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  TOTAL_MEMORY: 256 * 1024 * 1024 // 256MB
+
+});
 
 /***/ }),
 
@@ -41864,6 +41898,53 @@ class Arrayset extends Array {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Arrayset);
+
+/***/ }),
+
+/***/ "./src/Utils/Definer.js":
+/*!******************************!*\
+  !*** ./src/Utils/Definer.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+class Definer {
+  static create(name, value) {
+    return new Definer(name, value);
+  }
+
+  constructor(name, value) {
+    this.configurable = true;
+    this.enumerable = true;
+    this.writable = true;
+    this.name = name;
+    this.value = value;
+  }
+
+  seal(v) {
+    this.configurable = !v;
+    return this;
+  }
+
+  hidden(v) {
+    this.enumerable = !v;
+    return this;
+  }
+
+  final(v) {
+    this.writable = !v;
+    return this;
+  }
+
+  to(obj) {
+    Object.defineProperty(obj, this.name, this);
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Definer);
 
 /***/ }),
 
@@ -42531,10 +42612,16 @@ function startResizeObserve() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ComponentList_ComponentList__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ComponentList/ComponentList */ "./src/View/ComponentList/ComponentList.js");
-/* harmony import */ var _ComponentFactory_ComponentFactory__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ComponentFactory/ComponentFactory */ "./src/View/ComponentFactory/ComponentFactory.js");
-/* harmony import */ var _LevelDesign_LevelDesign__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LevelDesign/LevelDesign */ "./src/View/LevelDesign/LevelDesign.js");
-/* harmony import */ var _Components_RESERVATION__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Components/RESERVATION */ "./src/Components/RESERVATION.js");
+/* harmony import */ var _Utils_Definer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Utils/Definer */ "./src/Utils/Definer.js");
+/* harmony import */ var _WeJSEvent_WeJSEventPlan__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./WeJSEvent/WeJSEventPlan */ "./src/View/WeJSEvent/WeJSEventPlan.js");
+/* harmony import */ var _WeJSEvent_WeJSEvent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./WeJSEvent/WeJSEvent */ "./src/View/WeJSEvent/WeJSEvent.js");
+/* harmony import */ var _ComponentList_ComponentList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ComponentList/ComponentList */ "./src/View/ComponentList/ComponentList.js");
+/* harmony import */ var _ComponentFactory_ComponentFactory__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ComponentFactory/ComponentFactory */ "./src/View/ComponentFactory/ComponentFactory.js");
+/* harmony import */ var _LevelDesign_LevelDesign__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./LevelDesign/LevelDesign */ "./src/View/LevelDesign/LevelDesign.js");
+/* harmony import */ var _Components_RESERVATION__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Components/RESERVATION */ "./src/Components/RESERVATION.js");
+
+
+
 
 
 
@@ -42543,9 +42630,9 @@ __webpack_require__.r(__webpack_exports__);
 class View {
   constructor(raw = {
     id: null,
-    level: _LevelDesign_LevelDesign__WEBPACK_IMPORTED_MODULE_2__["default"].PERSISTENT_LEVEL,
-    levelDesign: new _LevelDesign_LevelDesign__WEBPACK_IMPORTED_MODULE_2__["default"](),
-    component: new _ComponentList_ComponentList__WEBPACK_IMPORTED_MODULE_0__["default"]()
+    level: _LevelDesign_LevelDesign__WEBPACK_IMPORTED_MODULE_5__["default"].PERSISTENT_LEVEL,
+    levelDesign: new _LevelDesign_LevelDesign__WEBPACK_IMPORTED_MODULE_5__["default"](),
+    component: new _ComponentList_ComponentList__WEBPACK_IMPORTED_MODULE_3__["default"]()
   }) {
     const {
       id,
@@ -42556,11 +42643,46 @@ class View {
     this.id = id;
     this.level = level;
     this.levelDesign = levelDesign;
-    this.component = new _ComponentList_ComponentList__WEBPACK_IMPORTED_MODULE_0__["default"](component);
-    const factory = new _ComponentFactory_ComponentFactory__WEBPACK_IMPORTED_MODULE_1__["default"]();
-    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_3__["default"].CAMERA));
-    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_3__["default"].TRANSFORM));
-    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_3__["default"].FILTER));
+    this.component = new _ComponentList_ComponentList__WEBPACK_IMPORTED_MODULE_3__["default"](component);
+    const factory = new _ComponentFactory_ComponentFactory__WEBPACK_IMPORTED_MODULE_4__["default"]();
+    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_6__["default"].CAMERA));
+    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_6__["default"].TRANSFORM));
+    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_6__["default"].FILTER)); // 이벤트를 담을 공간을 추가합니다
+
+    _Utils_Definer__WEBPACK_IMPORTED_MODULE_0__["default"].create('_events', new Map()).seal(true).hidden(true).final(true).to(this);
+  }
+
+  _registHandler(e, handler, once) {
+    if (!this._events.has(e)) {
+      this._events.set(e, new Set());
+    }
+
+    const plan = new _WeJSEvent_WeJSEventPlan__WEBPACK_IMPORTED_MODULE_1__["default"]();
+    plan.once = once;
+    plan.handler = handler.bind(this);
+
+    this._events.get(e).add(plan);
+  }
+
+  on(e, handler) {
+    this._registHandler(e, handler, false);
+  }
+
+  once(e, handler) {
+    this._registHandler(e, handler, true);
+  }
+
+  emit(e, detail) {
+    if (!this._events.has(e)) return;
+
+    for (const plan of this._events.get(e)) {
+      const event = new _WeJSEvent_WeJSEvent__WEBPACK_IMPORTED_MODULE_2__["default"]();
+      event.type = e;
+      event.target = this;
+      event.detail = detail;
+      plan.handler(event);
+      if (plan.once) this._events.get(e).delete(plan);
+    }
   }
 
 }
@@ -42653,6 +42775,56 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_View_vue_vue_type_template_id_5dc5b8c6_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./src/View/WeJSEvent/WeJSEvent.js":
+/*!*****************************************!*\
+  !*** ./src/View/WeJSEvent/WeJSEvent.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+class WeJSEvent {
+  constructor() {
+    _defineProperty(this, "type", null);
+
+    _defineProperty(this, "target", null);
+
+    _defineProperty(this, "detail", {});
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (WeJSEvent);
+
+/***/ }),
+
+/***/ "./src/View/WeJSEvent/WeJSEventPlan.js":
+/*!*********************************************!*\
+  !*** ./src/View/WeJSEvent/WeJSEventPlan.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+class WeJSEventPlan {
+  constructor() {
+    _defineProperty(this, "once", false);
+
+    _defineProperty(this, "handler", function () {});
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (WeJSEventPlan);
 
 /***/ }),
 
