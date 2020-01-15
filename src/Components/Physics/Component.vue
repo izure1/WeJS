@@ -3,6 +3,7 @@
 </template>
 
 <script>
+  import AnimationFrame from '../../Utils/AnimationFrame'
   import Searcher from '../../Utils/Searcher'
   import Component from '../../View/Component/Component'
 
@@ -29,6 +30,7 @@
   export default {
     props: ['scene', 'body'],
     data: () => ({
+      updateRequestId: null,
       searcher: new Searcher,
       bodySize: [0, 0],
       object: null,
@@ -42,8 +44,20 @@
     created() {
       this.body.on('changesize', this.onChangeSize)
     },
+    mounted() {
+      this.updateRequestId = AnimationFrame.request((step, deltaTime) => {
+        if (!this.object) return
+        const pos = this.object.GetPosition()
+        const x = pos.get_x()
+        const y = pos.get_y()
+        const transform = this.body.component.transform
+        transform.x = x
+        transform.y = y
+      })
+    },
     beforeDestroy() {
       this.body.off('changesize', this.onChangeSize)
+      AnimationFrame.cancelRequest(this.updateRequestId)
     },
 
     watch: {

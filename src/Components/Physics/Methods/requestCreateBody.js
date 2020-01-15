@@ -16,6 +16,4 @@ export default function requestCreateBody() {
   const position = this.object.GetPosition()
   const transform = this.object.GetTransform()
 
-  console.log(this.object, position.get_x(), position.get_y(), transform)
-
 }

@@ -1,6 +1,7 @@
 import Box2D from '../External/Box2D/Box2D'
 import PHYSICS_CONFIG from './Vars/PHYSICS_CONFIG'
 
+import AnimationFrame from '../Utils/AnimationFrame'
 import Definer from '../Utils/Definer'
 import View from '../View/View'
 import ComponentFactory from '../View/ComponentFactory/ComponentFactory'
@@ -46,6 +47,9 @@ class Scene extends View {
     const factory = new ComponentFactory
     this.component.add(factory.create(RESERVATION.CHILDREN))
 
+    // 물리 업데이트를 실행합니다.
+    this.startPhysicsSimulation()
+
   }
 
   get gravity() {
@@ -53,12 +57,25 @@ class Scene extends View {
   }
 
   startPhysicsSimulation() {
+
+    const id = AnimationFrame.request((step, deltaTime) => {
+      this.updatePhysicsSimulation()
+    })
+
+    Definer
+      .create('physicsId', id)
+      .seal(true).hidden(true).final(true)
+      .to(this)
+
+  }
+
+  updatePhysicsSimulation() {
     this.physicsWorld.ClearForces()
     this.physicsWorld.Step(this.physicsInterval)
   }
 
   stopPhysicsSimulation() {
-
+    AnimationFrame.cancelRequest(this.physicsId)
   }
 
 }
