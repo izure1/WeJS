@@ -42171,7 +42171,9 @@ class Scene extends _View_View__WEBPACK_IMPORTED_MODULE_3__["default"] {
 
     _Utils_Definer__WEBPACK_IMPORTED_MODULE_2__["default"].create('physics', Object(_External_Box2D_Box2D__WEBPACK_IMPORTED_MODULE_0__["default"])(_Vars_PHYSICS_CONFIG__WEBPACK_IMPORTED_MODULE_1__["default"])).seal(true).hidden(true).final(true).to(this); // 물리 세계 만들기
 
-    _Utils_Definer__WEBPACK_IMPORTED_MODULE_2__["default"].create('physicsWorld', new this.physics.b2World(this.gravity, false)).seal(true).hidden(true).final(true).to(this);
+    _Utils_Definer__WEBPACK_IMPORTED_MODULE_2__["default"].create('physicsWorld', new this.physics.b2World(this.gravity, false)).seal(true).hidden(true).final(true).to(this); // 물리 업데이트 시간 만들기
+
+    _Utils_Definer__WEBPACK_IMPORTED_MODULE_2__["default"].create('physicsInterval', 1000 / 60).seal(true).hidden(false).final(false).to(this);
     const factory = new _View_ComponentFactory_ComponentFactory__WEBPACK_IMPORTED_MODULE_4__["default"]();
     this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_5__["default"].CHILDREN));
   }
@@ -42179,6 +42181,13 @@ class Scene extends _View_View__WEBPACK_IMPORTED_MODULE_3__["default"] {
   get gravity() {
     return new this.physics.b2Vec2(this.gravityX, this.gravityY);
   }
+
+  startPhysicsSimulation() {
+    this.physicsWorld.ClearForces();
+    this.physicsWorld.Step(this.physicsInterval);
+  }
+
+  stopPhysicsSimulation() {}
 
 }
 

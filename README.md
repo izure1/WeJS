@@ -46,7 +46,7 @@ export default {
 * component : `ComponentList`
 * script : `Function`
 
-`오브젝트`는 메서드 단위로 스크립트가 실행된다. `beforeCreate`, `created`, `update`, `beforeDestroy`, `destroyed`는 `vue`의 실행단위를 상속받고, 별개로 window.requestAnimationFrame 마다 실행될 `updateFrame` 실행단위를 받는다.
+`오브젝트`는 생존주기가 존재한다. `start(mounted : Vue.lifecycle)`, `update(requestAnimationFrame)`, `destroy(beforeDestroy : Vue.lifecycle)` 등을 `vue`의 생존주기를 상속받는다.
 
 `오브젝트` 자체에서 변수를 관리하지 않는다. 다만 `component(ComponentList)`에 담겨있는 `컴포넌트(Component)` 객체에서 데이터를 보관한다. 따라서, `컴포넌트` 삽입 전에 무의미하게 메모리 공간을 낭비하는 일이 없고, `컴포넌트`를 삭제할 때, 변수도 함께 삭제된다.
 

@@ -37,13 +37,28 @@ class Scene extends View {
       .seal(true).hidden(true).final(true)
       .to(this)
 
+    // 물리 업데이트 시간 만들기
+    Definer
+      .create('physicsInterval', 1000 / 60)
+      .seal(true).hidden(false).final(false)
+      .to(this)
+
     const factory = new ComponentFactory
     this.component.add(factory.create(RESERVATION.CHILDREN))
 
   }
 
-  get gravity(){
+  get gravity() {
     return new this.physics.b2Vec2(this.gravityX, this.gravityY)
+  }
+
+  startPhysicsSimulation() {
+    this.physicsWorld.ClearForces()
+    this.physicsWorld.Step(this.physicsInterval)
+  }
+
+  stopPhysicsSimulation() {
+
   }
 
 }
