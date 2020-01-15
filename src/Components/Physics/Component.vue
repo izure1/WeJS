@@ -3,7 +3,13 @@
 </template>
 
 <script>
+  import Searcher from '../../Utils/Searcher'
   import Component from '../../View/Component/Component'
+
+  import onChangeSize from './Methods/onChangeSize'
+  import createFixture from './Methods/createFixture'
+  import createBody from './Methods/createBody'
+  import requestCreateBody from './Methods/requestCreateBody'
 
 
   export class Reservation extends Component {
@@ -13,6 +19,7 @@
     density = 1
     friction = 1
     restitution = 0.3
+    fixedRotation = false
 
     constructor(...args) {
       super(...args)
@@ -20,15 +27,39 @@
   }
 
   export default {
-    props: ['component', 'app', 'scene', 'body'],
+    props: ['scene', 'body'],
     data: () => ({
-      body: null,
+      searcher: new Searcher,
+      bodySize: [0, 0],
+      object: null,
     }),
-    created(){
+    methods: {
+      onChangeSize,
+      createFixture,
+      createBody,
+      requestCreateBody,
+    },
+    created() {
+      this.body.on('changesize', this.onChangeSize)
+    },
+    beforeDestroy() {
+      this.body.off('changesize', this.onChangeSize)
+    },
 
-    },
-    beforeDestroy(){
-    },
+    watch: {
+      'body.component.physics.density'() {
+        this.requestCreateBody()
+      },
+      'body.component.physics.friction'() {
+        this.requestCreateBody()
+      },
+      'body.component.physics.restitution'() {
+        this.requestCreateBody()
+      },
+      bodySize() {
+        this.requestCreateBody()
+      }
+    }
 
   }
 </script>

@@ -2,7 +2,7 @@ class WeJSEvent {
 
   type = null
   target = null
-  detail = {}
+  detail = null
 
 }
 

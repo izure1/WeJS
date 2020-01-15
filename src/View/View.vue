@@ -52,7 +52,6 @@
         화면에 시각적으로 보이지 않는 컴포넌트를 이곳에 넣습니다.
       -->
       <div class="we-components-hidden">
-        <component-physics-world v-if="     hasComponent('physicsWorld')" :app="app" :scene="scene" :body="body" />
         <component-physics v-if="           hasComponent('physics')" :app="app" :scene="scene" :body="body" />
         <component-tag v-if="               hasComponent('tag')" :app="app" :scene="scene" :body="body" />
         <component-audio v-if="             hasComponent('audio')" :app="app" :scene="scene" :body="body" />
@@ -70,7 +69,7 @@
         rotateY(${body.component.camera.rotateY}deg)
         rotateZ(${-body.component.camera.rotateZ}deg)` }">
       <we-body v-for="(children, i) in body.component.children.lists" :key="i" :app="app" :scene="scene"
-        :body="children" :requiredLevel="body.levelDesign.getRequired(body.level)" @onsizechange="onSizeChange" />
+        :body="children" :requiredLevel="body.levelDesign.getRequired(body.level)" @onchangesize="onChangeSize" />
     </div>
 
   </div>
@@ -78,7 +77,6 @@
 
 <script>
   import View from './View.js'
-  import ComponentPhysicsWorld from '../Components/PhysicsWorld/Component'
   import ComponentPhysics from '../Components/Physics/Component'
   import ComponentText from '../Components/Text/Component'
   import ComponentHtml from '../Components/Html/Component'
@@ -88,11 +86,14 @@
   import ComponentAudio from '../Components/Audio/Component'
 
   import hasComponent from './Methods/hasComponent'
-  import onSizeChange from './Methods/onSizeChange'
+  import onChangeSize from './Methods/onChangeSize'
   import calcSizeMax from './Methods/calcSizeMax'
   import isNeedFromScene from './Methods/isNeedFromScene'
   import startResizeObserve from './Methods/startResizeObserve'
   import destroyResizeObserve from './Methods/destroyResizeObserve'
+  import cycleStart from './Methods/cycleStart'
+  import cycleUpdate from './Methods/cycleUpdate'
+  import cycleDestroy from './Methods/cycleDestroy'
 
   import centerPointX from './Computed/centerPointX'
   import centerPointY from './Computed/centerPointY'
@@ -102,7 +103,6 @@
 
     name: 'WeBody',
     components: {
-      ComponentPhysicsWorld,
       ComponentPhysics,
       ComponentText,
       ComponentHtml,
@@ -113,6 +113,7 @@
     },
     props: ['app', 'scene', 'body', 'coords', 'requiredLevel'],
     data: () => ({
+      updateRequestId: null,
       sizeObserver: null,
       sizeSelf: [0, 0],
       sizeChild: [0, 0],
@@ -125,11 +126,14 @@
     },
     methods: {
       hasComponent,
-      onSizeChange,
+      onChangeSize,
       calcSizeMax,
       isNeedFromScene,
       startResizeObserve,
       destroyResizeObserve,
+      cycleStart,
+      cycleUpdate,
+      cycleDestroy,
     },
 
     watch: {
@@ -139,16 +143,19 @@
       },
       'sizeChild'() {
         this.calcSizeMax()
-      },
+      }
 
     },
 
     mounted() {
       this.startResizeObserve()
+      this.cycleStart()
+      this.cycleUpdate()
     },
 
     beforeDestroy() {
       this.destroyResizeObserve()
+      this.cycleDestroy()
     }
 
   }

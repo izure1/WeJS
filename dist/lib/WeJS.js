@@ -11883,7 +11883,12 @@ class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return Reservation; });
-/* harmony import */ var _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../View/Component/Component */ "./src/View/Component/Component.js");
+/* harmony import */ var _Utils_Searcher__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Utils/Searcher */ "./src/Utils/Searcher.js");
+/* harmony import */ var _View_Component_Component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../View/Component/Component */ "./src/View/Component/Component.js");
+/* harmony import */ var _Methods_onChangeSize__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Methods/onChangeSize */ "./src/Components/Physics/Methods/onChangeSize.js");
+/* harmony import */ var _Methods_createFixture__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Methods/createFixture */ "./src/Components/Physics/Methods/createFixture.js");
+/* harmony import */ var _Methods_createBody__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Methods/createBody */ "./src/Components/Physics/Methods/createBody.js");
+/* harmony import */ var _Methods_requestCreateBody__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Methods/requestCreateBody */ "./src/Components/Physics/Methods/requestCreateBody.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
@@ -11891,7 +11896,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 
-class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
+
+
+
+
+
+class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_1__["default"] {
   constructor(...args) {
     super(...args);
 
@@ -11904,92 +11914,50 @@ class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__
     _defineProperty(this, "friction", 1);
 
     _defineProperty(this, "restitution", 0.3);
+
+    _defineProperty(this, "fixedRotation", false);
   }
 
 }
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['component', 'app', 'scene', 'body'],
+  props: ['scene', 'body'],
   data: () => ({
-    body: null
+    searcher: new _Utils_Searcher__WEBPACK_IMPORTED_MODULE_0__["default"](),
+    bodySize: [0, 0],
+    object: null
   }),
-
-  created() {},
-
-  beforeDestroy() {}
-
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/Components/PhysicsWorld/Component.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--3!./node_modules/vue-loader/lib??vue-loader-options!./src/Components/PhysicsWorld/Component.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************/
-/*! exports provided: Reservation, default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return Reservation; });
-/* harmony import */ var _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../View/Component/Component */ "./src/View/Component/Component.js");
-/* harmony import */ var _External_Box2D_Box2D__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../External/Box2D/Box2D */ "./src/External/Box2D/Box2D.js");
-/* harmony import */ var _Methods_createWorld__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Methods/createWorld */ "./src/Components/PhysicsWorld/Methods/createWorld.js");
-/* harmony import */ var _Methods_destroyWorld__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Methods/destroyWorld */ "./src/Components/PhysicsWorld/Methods/destroyWorld.js");
-/* harmony import */ var _Methods_getGravity__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Methods/getGravity */ "./src/Components/PhysicsWorld/Methods/getGravity.js");
-/* harmony import */ var _Methods_setGravity__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Methods/setGravity */ "./src/Components/PhysicsWorld/Methods/setGravity.js");
-/* harmony import */ var _Watch_gravityX__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Watch/gravityX */ "./src/Components/PhysicsWorld/Watch/gravityX.js");
-/* harmony import */ var _Watch_gravityY__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Watch/gravityY */ "./src/Components/PhysicsWorld/Watch/gravityY.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-
- //import CONFIG from './Vars/CONFIG'
-
-
-
-
-
-
-
-class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
-  constructor(...args) {
-    super(...args);
-
-    _defineProperty(this, "name", 'physics-world');
-
-    _defineProperty(this, "gravityX", 0);
-
-    _defineProperty(this, "gravityY", -9.8);
-  }
-
-}
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: () => ({
-    //box2d: Box2D(CONFIG),
-    world: null
-  }),
-  props: ['body'],
   methods: {
-    createWorld: _Methods_createWorld__WEBPACK_IMPORTED_MODULE_2__["default"],
-    destroyWorld: _Methods_destroyWorld__WEBPACK_IMPORTED_MODULE_3__["default"],
-    getGravity: _Methods_getGravity__WEBPACK_IMPORTED_MODULE_4__["default"],
-    setGravity: _Methods_setGravity__WEBPACK_IMPORTED_MODULE_5__["default"]
+    onChangeSize: _Methods_onChangeSize__WEBPACK_IMPORTED_MODULE_2__["default"],
+    createFixture: _Methods_createFixture__WEBPACK_IMPORTED_MODULE_3__["default"],
+    createBody: _Methods_createBody__WEBPACK_IMPORTED_MODULE_4__["default"],
+    requestCreateBody: _Methods_requestCreateBody__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
 
   created() {
-    this.createWorld();
+    this.body.on('changesize', this.onChangeSize);
   },
 
   beforeDestroy() {
-    this.destroyWorld();
+    this.body.off('changesize', this.onChangeSize);
   },
 
   watch: {
-    gravityX: _Watch_gravityX__WEBPACK_IMPORTED_MODULE_6__["default"],
-    gravityY: _Watch_gravityY__WEBPACK_IMPORTED_MODULE_7__["default"]
+    'body.component.physics.density'() {
+      this.requestCreateBody();
+    },
+
+    'body.component.physics.friction'() {
+      this.requestCreateBody();
+    },
+
+    'body.component.physics.restitution'() {
+      this.requestCreateBody();
+    },
+
+    bodySize() {
+      this.requestCreateBody();
+    }
+
   }
 });
 
@@ -12376,22 +12344,24 @@ class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _View_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./View.js */ "./src/View/View.js");
-/* harmony import */ var _Components_PhysicsWorld_Component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Components/PhysicsWorld/Component */ "./src/Components/PhysicsWorld/Component.vue");
-/* harmony import */ var _Components_Physics_Component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Components/Physics/Component */ "./src/Components/Physics/Component.vue");
-/* harmony import */ var _Components_Text_Component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Components/Text/Component */ "./src/Components/Text/Component.vue");
-/* harmony import */ var _Components_Html_Component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Components/Html/Component */ "./src/Components/Html/Component.vue");
-/* harmony import */ var _Components_RendererImage_Component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Components/RendererImage/Component */ "./src/Components/RendererImage/Component.vue");
-/* harmony import */ var _Components_RendererVideo_Component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Components/RendererVideo/Component */ "./src/Components/RendererVideo/Component.vue");
-/* harmony import */ var _Components_Tag_Component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Components/Tag/Component */ "./src/Components/Tag/Component.vue");
-/* harmony import */ var _Components_Audio_Component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../Components/Audio/Component */ "./src/Components/Audio/Component.vue");
-/* harmony import */ var _Methods_hasComponent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Methods/hasComponent */ "./src/View/Methods/hasComponent.js");
-/* harmony import */ var _Methods_onSizeChange__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Methods/onSizeChange */ "./src/View/Methods/onSizeChange.js");
-/* harmony import */ var _Methods_calcSizeMax__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Methods/calcSizeMax */ "./src/View/Methods/calcSizeMax.js");
-/* harmony import */ var _Methods_isNeedFromScene__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Methods/isNeedFromScene */ "./src/View/Methods/isNeedFromScene.js");
-/* harmony import */ var _Methods_startResizeObserve__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Methods/startResizeObserve */ "./src/View/Methods/startResizeObserve.js");
-/* harmony import */ var _Methods_destroyResizeObserve__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Methods/destroyResizeObserve */ "./src/View/Methods/destroyResizeObserve.js");
-/* harmony import */ var _Computed_centerPointX__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./Computed/centerPointX */ "./src/View/Computed/centerPointX.js");
-/* harmony import */ var _Computed_centerPointY__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./Computed/centerPointY */ "./src/View/Computed/centerPointY.js");
+/* harmony import */ var _Components_Physics_Component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Components/Physics/Component */ "./src/Components/Physics/Component.vue");
+/* harmony import */ var _Components_Text_Component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Components/Text/Component */ "./src/Components/Text/Component.vue");
+/* harmony import */ var _Components_Html_Component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Components/Html/Component */ "./src/Components/Html/Component.vue");
+/* harmony import */ var _Components_RendererImage_Component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Components/RendererImage/Component */ "./src/Components/RendererImage/Component.vue");
+/* harmony import */ var _Components_RendererVideo_Component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Components/RendererVideo/Component */ "./src/Components/RendererVideo/Component.vue");
+/* harmony import */ var _Components_Tag_Component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Components/Tag/Component */ "./src/Components/Tag/Component.vue");
+/* harmony import */ var _Components_Audio_Component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Components/Audio/Component */ "./src/Components/Audio/Component.vue");
+/* harmony import */ var _Methods_hasComponent__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Methods/hasComponent */ "./src/View/Methods/hasComponent.js");
+/* harmony import */ var _Methods_onChangeSize__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Methods/onChangeSize */ "./src/View/Methods/onChangeSize.js");
+/* harmony import */ var _Methods_calcSizeMax__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Methods/calcSizeMax */ "./src/View/Methods/calcSizeMax.js");
+/* harmony import */ var _Methods_isNeedFromScene__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Methods/isNeedFromScene */ "./src/View/Methods/isNeedFromScene.js");
+/* harmony import */ var _Methods_startResizeObserve__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Methods/startResizeObserve */ "./src/View/Methods/startResizeObserve.js");
+/* harmony import */ var _Methods_destroyResizeObserve__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Methods/destroyResizeObserve */ "./src/View/Methods/destroyResizeObserve.js");
+/* harmony import */ var _Methods_cycleStart__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Methods/cycleStart */ "./src/View/Methods/cycleStart.js");
+/* harmony import */ var _Methods_cycleUpdate__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./Methods/cycleUpdate */ "./src/View/Methods/cycleUpdate.js");
+/* harmony import */ var _Methods_cycleDestroy__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./Methods/cycleDestroy */ "./src/View/Methods/cycleDestroy.js");
+/* harmony import */ var _Computed_centerPointX__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./Computed/centerPointX */ "./src/View/Computed/centerPointX.js");
+/* harmony import */ var _Computed_centerPointY__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./Computed/centerPointY */ "./src/View/Computed/centerPointY.js");
 //
 //
 //
@@ -12469,7 +12439,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
+
+
 
 
 
@@ -12490,33 +12461,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'WeBody',
   components: {
-    ComponentPhysicsWorld: _Components_PhysicsWorld_Component__WEBPACK_IMPORTED_MODULE_1__["default"],
-    ComponentPhysics: _Components_Physics_Component__WEBPACK_IMPORTED_MODULE_2__["default"],
-    ComponentText: _Components_Text_Component__WEBPACK_IMPORTED_MODULE_3__["default"],
-    ComponentHtml: _Components_Html_Component__WEBPACK_IMPORTED_MODULE_4__["default"],
-    ComponentRendererImage: _Components_RendererImage_Component__WEBPACK_IMPORTED_MODULE_5__["default"],
-    ComponentRendererVideo: _Components_RendererVideo_Component__WEBPACK_IMPORTED_MODULE_6__["default"],
-    ComponentTag: _Components_Tag_Component__WEBPACK_IMPORTED_MODULE_7__["default"],
-    ComponentAudio: _Components_Audio_Component__WEBPACK_IMPORTED_MODULE_8__["default"]
+    ComponentPhysics: _Components_Physics_Component__WEBPACK_IMPORTED_MODULE_1__["default"],
+    ComponentText: _Components_Text_Component__WEBPACK_IMPORTED_MODULE_2__["default"],
+    ComponentHtml: _Components_Html_Component__WEBPACK_IMPORTED_MODULE_3__["default"],
+    ComponentRendererImage: _Components_RendererImage_Component__WEBPACK_IMPORTED_MODULE_4__["default"],
+    ComponentRendererVideo: _Components_RendererVideo_Component__WEBPACK_IMPORTED_MODULE_5__["default"],
+    ComponentTag: _Components_Tag_Component__WEBPACK_IMPORTED_MODULE_6__["default"],
+    ComponentAudio: _Components_Audio_Component__WEBPACK_IMPORTED_MODULE_7__["default"]
   },
   props: ['app', 'scene', 'body', 'coords', 'requiredLevel'],
   data: () => ({
+    updateRequestId: null,
     sizeObserver: null,
     sizeSelf: [0, 0],
     sizeChild: [0, 0],
     sizeMax: [0, 0]
   }),
   computed: {
-    centerPointX: _Computed_centerPointX__WEBPACK_IMPORTED_MODULE_15__["default"],
-    centerPointY: _Computed_centerPointY__WEBPACK_IMPORTED_MODULE_16__["default"]
+    centerPointX: _Computed_centerPointX__WEBPACK_IMPORTED_MODULE_17__["default"],
+    centerPointY: _Computed_centerPointY__WEBPACK_IMPORTED_MODULE_18__["default"]
   },
   methods: {
-    hasComponent: _Methods_hasComponent__WEBPACK_IMPORTED_MODULE_9__["default"],
-    onSizeChange: _Methods_onSizeChange__WEBPACK_IMPORTED_MODULE_10__["default"],
-    calcSizeMax: _Methods_calcSizeMax__WEBPACK_IMPORTED_MODULE_11__["default"],
-    isNeedFromScene: _Methods_isNeedFromScene__WEBPACK_IMPORTED_MODULE_12__["default"],
-    startResizeObserve: _Methods_startResizeObserve__WEBPACK_IMPORTED_MODULE_13__["default"],
-    destroyResizeObserve: _Methods_destroyResizeObserve__WEBPACK_IMPORTED_MODULE_14__["default"]
+    hasComponent: _Methods_hasComponent__WEBPACK_IMPORTED_MODULE_8__["default"],
+    onChangeSize: _Methods_onChangeSize__WEBPACK_IMPORTED_MODULE_9__["default"],
+    calcSizeMax: _Methods_calcSizeMax__WEBPACK_IMPORTED_MODULE_10__["default"],
+    isNeedFromScene: _Methods_isNeedFromScene__WEBPACK_IMPORTED_MODULE_11__["default"],
+    startResizeObserve: _Methods_startResizeObserve__WEBPACK_IMPORTED_MODULE_12__["default"],
+    destroyResizeObserve: _Methods_destroyResizeObserve__WEBPACK_IMPORTED_MODULE_13__["default"],
+    cycleStart: _Methods_cycleStart__WEBPACK_IMPORTED_MODULE_14__["default"],
+    cycleUpdate: _Methods_cycleUpdate__WEBPACK_IMPORTED_MODULE_15__["default"],
+    cycleDestroy: _Methods_cycleDestroy__WEBPACK_IMPORTED_MODULE_16__["default"]
   },
   watch: {
     'sizeSelf'() {
@@ -12531,10 +12505,13 @@ __webpack_require__.r(__webpack_exports__);
 
   mounted() {
     this.startResizeObserve();
+    this.cycleStart();
+    this.cycleUpdate();
   },
 
   beforeDestroy() {
     this.destroyResizeObserve();
+    this.cycleDestroy();
   }
 
 });
@@ -17162,6 +17139,31 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
 
 /***/ }),
 
+/***/ "./node_modules/nanoid/format.browser.js":
+/*!***********************************************!*\
+  !*** ./node_modules/nanoid/format.browser.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = function (random, alphabet, size) {
+  var mask = (2 << Math.log(alphabet.length - 1) / Math.LN2) - 1
+  var step = -~(1.6 * mask * size / alphabet.length)
+  var id = ''
+
+  while (true) {
+    var i = step
+    var bytes = random(i)
+    while (i--) {
+      id += alphabet[bytes[i] & mask] || ''
+      if (id.length === +size) return id
+    }
+  }
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/node-libs-browser/mock/empty.js":
 /*!******************************************************!*\
   !*** ./node_modules/node-libs-browser/mock/empty.js ***!
@@ -18804,6 +18806,412 @@ exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ "./node
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../process/browser.js */ "./node_modules/process/browser.js")))
+
+/***/ }),
+
+/***/ "./node_modules/shortid/index.js":
+/*!***************************************!*\
+  !*** ./node_modules/shortid/index.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+module.exports = __webpack_require__(/*! ./lib/index */ "./node_modules/shortid/lib/index.js");
+
+
+/***/ }),
+
+/***/ "./node_modules/shortid/lib/alphabet.js":
+/*!**********************************************!*\
+  !*** ./node_modules/shortid/lib/alphabet.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var randomFromSeed = __webpack_require__(/*! ./random/random-from-seed */ "./node_modules/shortid/lib/random/random-from-seed.js");
+
+var ORIGINAL = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-';
+var alphabet;
+var previousSeed;
+
+var shuffled;
+
+function reset() {
+    shuffled = false;
+}
+
+function setCharacters(_alphabet_) {
+    if (!_alphabet_) {
+        if (alphabet !== ORIGINAL) {
+            alphabet = ORIGINAL;
+            reset();
+        }
+        return;
+    }
+
+    if (_alphabet_ === alphabet) {
+        return;
+    }
+
+    if (_alphabet_.length !== ORIGINAL.length) {
+        throw new Error('Custom alphabet for shortid must be ' + ORIGINAL.length + ' unique characters. You submitted ' + _alphabet_.length + ' characters: ' + _alphabet_);
+    }
+
+    var unique = _alphabet_.split('').filter(function(item, ind, arr){
+       return ind !== arr.lastIndexOf(item);
+    });
+
+    if (unique.length) {
+        throw new Error('Custom alphabet for shortid must be ' + ORIGINAL.length + ' unique characters. These characters were not unique: ' + unique.join(', '));
+    }
+
+    alphabet = _alphabet_;
+    reset();
+}
+
+function characters(_alphabet_) {
+    setCharacters(_alphabet_);
+    return alphabet;
+}
+
+function setSeed(seed) {
+    randomFromSeed.seed(seed);
+    if (previousSeed !== seed) {
+        reset();
+        previousSeed = seed;
+    }
+}
+
+function shuffle() {
+    if (!alphabet) {
+        setCharacters(ORIGINAL);
+    }
+
+    var sourceArray = alphabet.split('');
+    var targetArray = [];
+    var r = randomFromSeed.nextValue();
+    var characterIndex;
+
+    while (sourceArray.length > 0) {
+        r = randomFromSeed.nextValue();
+        characterIndex = Math.floor(r * sourceArray.length);
+        targetArray.push(sourceArray.splice(characterIndex, 1)[0]);
+    }
+    return targetArray.join('');
+}
+
+function getShuffled() {
+    if (shuffled) {
+        return shuffled;
+    }
+    shuffled = shuffle();
+    return shuffled;
+}
+
+/**
+ * lookup shuffled letter
+ * @param index
+ * @returns {string}
+ */
+function lookup(index) {
+    var alphabetShuffled = getShuffled();
+    return alphabetShuffled[index];
+}
+
+function get () {
+  return alphabet || ORIGINAL;
+}
+
+module.exports = {
+    get: get,
+    characters: characters,
+    seed: setSeed,
+    lookup: lookup,
+    shuffled: getShuffled
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/shortid/lib/build.js":
+/*!*******************************************!*\
+  !*** ./node_modules/shortid/lib/build.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var generate = __webpack_require__(/*! ./generate */ "./node_modules/shortid/lib/generate.js");
+var alphabet = __webpack_require__(/*! ./alphabet */ "./node_modules/shortid/lib/alphabet.js");
+
+// Ignore all milliseconds before a certain time to reduce the size of the date entropy without sacrificing uniqueness.
+// This number should be updated every year or so to keep the generated id short.
+// To regenerate `new Date() - 0` and bump the version. Always bump the version!
+var REDUCE_TIME = 1567752802062;
+
+// don't change unless we change the algos or REDUCE_TIME
+// must be an integer and less than 16
+var version = 7;
+
+// Counter is used when shortid is called multiple times in one second.
+var counter;
+
+// Remember the last time shortid was called in case counter is needed.
+var previousSeconds;
+
+/**
+ * Generate unique id
+ * Returns string id
+ */
+function build(clusterWorkerId) {
+    var str = '';
+
+    var seconds = Math.floor((Date.now() - REDUCE_TIME) * 0.001);
+
+    if (seconds === previousSeconds) {
+        counter++;
+    } else {
+        counter = 0;
+        previousSeconds = seconds;
+    }
+
+    str = str + generate(version);
+    str = str + generate(clusterWorkerId);
+    if (counter > 0) {
+        str = str + generate(counter);
+    }
+    str = str + generate(seconds);
+    return str;
+}
+
+module.exports = build;
+
+
+/***/ }),
+
+/***/ "./node_modules/shortid/lib/generate.js":
+/*!**********************************************!*\
+  !*** ./node_modules/shortid/lib/generate.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var alphabet = __webpack_require__(/*! ./alphabet */ "./node_modules/shortid/lib/alphabet.js");
+var random = __webpack_require__(/*! ./random/random-byte */ "./node_modules/shortid/lib/random/random-byte-browser.js");
+var format = __webpack_require__(/*! nanoid/format */ "./node_modules/nanoid/format.browser.js");
+
+function generate(number) {
+    var loopCounter = 0;
+    var done;
+
+    var str = '';
+
+    while (!done) {
+        str = str + format(random, alphabet.get(), 1);
+        done = number < (Math.pow(16, loopCounter + 1 ) );
+        loopCounter++;
+    }
+    return str;
+}
+
+module.exports = generate;
+
+
+/***/ }),
+
+/***/ "./node_modules/shortid/lib/index.js":
+/*!*******************************************!*\
+  !*** ./node_modules/shortid/lib/index.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var alphabet = __webpack_require__(/*! ./alphabet */ "./node_modules/shortid/lib/alphabet.js");
+var build = __webpack_require__(/*! ./build */ "./node_modules/shortid/lib/build.js");
+var isValid = __webpack_require__(/*! ./is-valid */ "./node_modules/shortid/lib/is-valid.js");
+
+// if you are using cluster or multiple servers use this to make each instance
+// has a unique value for worker
+// Note: I don't know if this is automatically set when using third
+// party cluster solutions such as pm2.
+var clusterWorkerId = __webpack_require__(/*! ./util/cluster-worker-id */ "./node_modules/shortid/lib/util/cluster-worker-id-browser.js") || 0;
+
+/**
+ * Set the seed.
+ * Highly recommended if you don't want people to try to figure out your id schema.
+ * exposed as shortid.seed(int)
+ * @param seed Integer value to seed the random alphabet.  ALWAYS USE THE SAME SEED or you might get overlaps.
+ */
+function seed(seedValue) {
+    alphabet.seed(seedValue);
+    return module.exports;
+}
+
+/**
+ * Set the cluster worker or machine id
+ * exposed as shortid.worker(int)
+ * @param workerId worker must be positive integer.  Number less than 16 is recommended.
+ * returns shortid module so it can be chained.
+ */
+function worker(workerId) {
+    clusterWorkerId = workerId;
+    return module.exports;
+}
+
+/**
+ *
+ * sets new characters to use in the alphabet
+ * returns the shuffled alphabet
+ */
+function characters(newCharacters) {
+    if (newCharacters !== undefined) {
+        alphabet.characters(newCharacters);
+    }
+
+    return alphabet.shuffled();
+}
+
+/**
+ * Generate unique id
+ * Returns string id
+ */
+function generate() {
+  return build(clusterWorkerId);
+}
+
+// Export all other functions as properties of the generate function
+module.exports = generate;
+module.exports.generate = generate;
+module.exports.seed = seed;
+module.exports.worker = worker;
+module.exports.characters = characters;
+module.exports.isValid = isValid;
+
+
+/***/ }),
+
+/***/ "./node_modules/shortid/lib/is-valid.js":
+/*!**********************************************!*\
+  !*** ./node_modules/shortid/lib/is-valid.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var alphabet = __webpack_require__(/*! ./alphabet */ "./node_modules/shortid/lib/alphabet.js");
+
+function isShortId(id) {
+    if (!id || typeof id !== 'string' || id.length < 6 ) {
+        return false;
+    }
+
+    var nonAlphabetic = new RegExp('[^' +
+      alphabet.get().replace(/[|\\{}()[\]^$+*?.-]/g, '\\$&') +
+    ']');
+    return !nonAlphabetic.test(id);
+}
+
+module.exports = isShortId;
+
+
+/***/ }),
+
+/***/ "./node_modules/shortid/lib/random/random-byte-browser.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/shortid/lib/random/random-byte-browser.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var crypto = typeof window === 'object' && (window.crypto || window.msCrypto); // IE 11 uses window.msCrypto
+
+var randomByte;
+
+if (!crypto || !crypto.getRandomValues) {
+    randomByte = function(size) {
+        var bytes = [];
+        for (var i = 0; i < size; i++) {
+            bytes.push(Math.floor(Math.random() * 256));
+        }
+        return bytes;
+    };
+} else {
+    randomByte = function(size) {
+        return crypto.getRandomValues(new Uint8Array(size));
+    };
+}
+
+module.exports = randomByte;
+
+
+/***/ }),
+
+/***/ "./node_modules/shortid/lib/random/random-from-seed.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/shortid/lib/random/random-from-seed.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+// Found this seed-based random generator somewhere
+// Based on The Central Randomizer 1.3 (C) 1997 by Paul Houle (houle@msc.cornell.edu)
+
+var seed = 1;
+
+/**
+ * return a random number based on a seed
+ * @param seed
+ * @returns {number}
+ */
+function getNextValue() {
+    seed = (seed * 9301 + 49297) % 233280;
+    return seed/(233280.0);
+}
+
+function setSeed(_seed_) {
+    seed = _seed_;
+}
+
+module.exports = {
+    nextValue: getNextValue,
+    seed: setSeed
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/shortid/lib/util/cluster-worker-id-browser.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/shortid/lib/util/cluster-worker-id-browser.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = 0;
+
 
 /***/ }),
 
@@ -25622,30 +26030,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/Components/PhysicsWorld/Component.vue?vue&type=template&id=051f9ae9&":
-/*!****************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/Components/PhysicsWorld/Component.vue?vue&type=template&id=051f9ae9& ***!
-  \****************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div")
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/Components/RendererImage/Component.vue?vue&type=template&id=646c4df4&scoped=true&":
 /*!*****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/Components/RendererImage/Component.vue?vue&type=template&id=646c4df4&scoped=true& ***!
@@ -25926,16 +26310,6 @@ var render = function() {
                 "div",
                 { staticClass: "we-components-hidden" },
                 [
-                  _vm.hasComponent("physicsWorld")
-                    ? _c("component-physics-world", {
-                        attrs: {
-                          app: _vm.app,
-                          scene: _vm.scene,
-                          body: _vm.body
-                        }
-                      })
-                    : _vm._e(),
-                  _vm._v(" "),
                   _vm.hasComponent("physics")
                     ? _c("component-physics", {
                         attrs: {
@@ -26007,7 +26381,7 @@ var render = function() {
                         _vm.body.level
                       )
                     },
-                    on: { onsizechange: _vm.onSizeChange }
+                    on: { onchangesize: _vm.onChangeSize }
                   })
                 }),
                 1
@@ -39532,7 +39906,7 @@ module.exports.formatError = function(err) {
 /*! exports provided: name, version, description, main, directories, scripts, keywords, dependencies, devDependencies, author, license, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"name\":\"wejs\",\"version\":\"0.0.1\",\"description\":\"Vuejs Visualnovel Engine\",\"main\":\"/dist/lib/WeJS.js\",\"directories\":{\"test\":\"test\"},\"scripts\":{\"build\":\"webpack --config webpack.config.js\",\"dev\":\"webpack-dev-server --open\",\"test\":\"echo \\\"Error: no test specified\\\" && exit 1\"},\"keywords\":[\"visual\",\"novel\",\"game\",\"svg\"],\"dependencies\":{\"screenfull\":\"^5.0.0\",\"vue\":\"2.6.11\",\"@svgdotjs/svg.js\":\"^3.0.16\",\"howler\":\"2.1.3\"},\"devDependencies\":{\"webpack\":\"^4.41.4\",\"webpack-dev-server\":\"3.10.1\",\"webpack-cli\":\"^3.3.10\",\"file-loader\":\"5.0.2\",\"url-loader\":\"3.0.0\",\"babel-loader\":\"^8.0.6\",\"circular-dependency-plugin\":\"^5.2.0\",\"vue-loader\":\"15.8.3\",\"vue-template-compiler\":\"2.6.11\",\"vue-style-loader\":\"4.1.2\",\"css-loader\":\"^3.4.0\",\"node-sass\":\"4.13.0\",\"sass-loader\":\"8.0.0\",\"@babel/core\":\"^7.7.7\",\"@babel/polyfill\":\"7.7.0\",\"@babel/preset-env\":\"^7.7.7\",\"@babel/plugin-proposal-class-properties\":\"7.7.4\"},\"author\":\"admin@izure.org\",\"license\":\"MIT\"}");
+module.exports = JSON.parse("{\"name\":\"wejs\",\"version\":\"0.0.1\",\"description\":\"Vuejs Visualnovel Engine\",\"main\":\"/dist/lib/WeJS.js\",\"directories\":{\"test\":\"test\"},\"scripts\":{\"build\":\"webpack --config webpack.config.js\",\"dev\":\"webpack-dev-server --open\",\"test\":\"echo \\\"Error: no test specified\\\" && exit 1\"},\"keywords\":[\"visual\",\"novel\",\"game\",\"svg\"],\"dependencies\":{\"screenfull\":\"^5.0.0\",\"vue\":\"2.6.11\",\"@svgdotjs/svg.js\":\"^3.0.16\",\"howler\":\"2.1.3\"},\"devDependencies\":{\"webpack\":\"^4.41.4\",\"webpack-dev-server\":\"3.10.1\",\"webpack-cli\":\"^3.3.10\",\"file-loader\":\"5.0.2\",\"url-loader\":\"3.0.0\",\"babel-loader\":\"^8.0.6\",\"circular-dependency-plugin\":\"^5.2.0\",\"vue-loader\":\"15.8.3\",\"vue-template-compiler\":\"2.6.11\",\"vue-style-loader\":\"4.1.2\",\"css-loader\":\"^3.4.0\",\"node-sass\":\"4.13.0\",\"sass-loader\":\"8.0.0\",\"@babel/core\":\"^7.7.7\",\"@babel/polyfill\":\"7.7.0\",\"@babel/preset-env\":\"^7.7.7\",\"@babel/plugin-proposal-class-properties\":\"7.7.4\",\"shortid\":\"2.2.15\"},\"author\":\"admin@izure.org\",\"license\":\"MIT\"}");
 
 /***/ }),
 
@@ -40815,174 +41189,157 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/Components/PhysicsWorld/Component.vue":
-/*!***************************************************!*\
-  !*** ./src/Components/PhysicsWorld/Component.vue ***!
-  \***************************************************/
-/*! exports provided: default, Reservation */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Component_vue_vue_type_template_id_051f9ae9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Component.vue?vue&type=template&id=051f9ae9& */ "./src/Components/PhysicsWorld/Component.vue?vue&type=template&id=051f9ae9&");
-/* harmony import */ var _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Component.vue?vue&type=script&lang=js& */ "./src/Components/PhysicsWorld/Component.vue?vue&type=script&lang=js&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["Reservation"]; });
-
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Component_vue_vue_type_template_id_051f9ae9___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Component_vue_vue_type_template_id_051f9ae9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "src/Components/PhysicsWorld/Component.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./src/Components/PhysicsWorld/Component.vue?vue&type=script&lang=js&":
-/*!****************************************************************************!*\
-  !*** ./src/Components/PhysicsWorld/Component.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************/
-/*! exports provided: default, Reservation */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--3!../../../node_modules/vue-loader/lib??vue-loader-options!./Component.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/Components/PhysicsWorld/Component.vue?vue&type=script&lang=js&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return _node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["Reservation"]; });
-
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./src/Components/PhysicsWorld/Component.vue?vue&type=template&id=051f9ae9&":
-/*!**********************************************************************************!*\
-  !*** ./src/Components/PhysicsWorld/Component.vue?vue&type=template&id=051f9ae9& ***!
-  \**********************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_template_id_051f9ae9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Component.vue?vue&type=template&id=051f9ae9& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/Components/PhysicsWorld/Component.vue?vue&type=template&id=051f9ae9&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_template_id_051f9ae9___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Component_vue_vue_type_template_id_051f9ae9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./src/Components/PhysicsWorld/Methods/createWorld.js":
-/*!************************************************************!*\
-  !*** ./src/Components/PhysicsWorld/Methods/createWorld.js ***!
-  \************************************************************/
+/***/ "./src/Components/Physics/Methods/createBody.js":
+/*!******************************************************!*\
+  !*** ./src/Components/Physics/Methods/createBody.js ***!
+  \******************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (function () {
-  const b = this.box2d;
-  const gravity = this.getGravity();
-  this.world = new b.b2World(gravity, false);
-});
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return createBody; });
+let DEF_BODY = null;
+
+function GET_BODY_DEF(B) {
+  if (!DEF_BODY) {
+    DEF_BODY = new B.b2BodyDef();
+  }
+
+  return DEF_BODY;
+}
+
+function createBody() {
+  const B = this.scene.physics;
+  const body = GET_BODY_DEF(B);
+  let type;
+
+  switch (this.body.component.physics.type) {
+    case 'static':
+      type = B.b2_staticBody;
+      break;
+
+    case 'dynamic':
+      type = B.b2_dynamicBody;
+      break;
+
+    default:
+      type = B.b2_dynamicBody;
+      break;
+  }
+
+  body.set_type(type);
+  return body;
+}
 
 /***/ }),
 
-/***/ "./src/Components/PhysicsWorld/Methods/destroyWorld.js":
+/***/ "./src/Components/Physics/Methods/createFixture.js":
+/*!*********************************************************!*\
+  !*** ./src/Components/Physics/Methods/createFixture.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return createFixture; });
+const UNIT_SCALE = 100; // Box2d에서 사용하는 바디(body)크기비율입니다. px과 100:1 비율입니다.
+
+const MINSIZE = 0.001; // Box2d에서 사용할 수 있는 바디(body)의 최소 크기입니다.
+
+let DEF_FIXTURE = null;
+let DEF_SHAPE = null;
+
+function GET_FIXTURE_DEF(B) {
+  if (!DEF_FIXTURE) {
+    DEF_FIXTURE = new B.b2FixtureDef();
+  }
+
+  return DEF_FIXTURE;
+}
+
+function GET_SHAPE_DEF(B) {
+  if (!DEF_SHAPE) {
+    DEF_SHAPE = new B.b2PolygonShape();
+  }
+
+  return DEF_SHAPE;
+}
+
+function createFixture() {
+  const B = this.scene.physics;
+  const size = this.bodySize; // Box2d 메모리 누수 오류 처리를 위해 Def 객체를 재활용하여 사용합니다.
+
+  const fixture = GET_FIXTURE_DEF(B);
+  const shape = GET_SHAPE_DEF(B);
+  let boxWidth = size[0] / 2 / UNIT_SCALE;
+  let boxHeight = size[1] / 2 / UNIT_SCALE;
+  if (boxWidth < MINSIZE) boxWidth = MINSIZE;
+  if (boxHeight < MINSIZE) boxHeight = MINSIZE; // 바디의 기준점이 되는 위치(0~1)를 지정합니다. 0.5는 정중앙을 의미합니다.
+
+  const boxCenterX = 0.5;
+  const boxCenterY = 0.5; // 중앙 좌표와 설정을 이용하여 Def 빌더 객체를 이용하여 실제 바디를 만듭니다.
+
+  const position = new B.b2Vec2(boxWidth * boxCenterX, boxHeight * boxCenterY);
+  const {
+    density,
+    friction,
+    restitution
+  } = this.body;
+  shape.SetAsBox(boxWidth, boxHeight, position, 0);
+  fixture.set_density(density);
+  fixture.set_friction(friction);
+  fixture.set_restitution(restitution);
+  fixture.set_shape(shape);
+  return fixture;
+}
+
+/***/ }),
+
+/***/ "./src/Components/Physics/Methods/onChangeSize.js":
+/*!********************************************************!*\
+  !*** ./src/Components/Physics/Methods/onChangeSize.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return onChangeSize; });
+function onChangeSize(e) {
+  // 객체의 크기를 수정합니다.
+  this.bodySize = e.detail.size;
+}
+
+/***/ }),
+
+/***/ "./src/Components/Physics/Methods/requestCreateBody.js":
 /*!*************************************************************!*\
-  !*** ./src/Components/PhysicsWorld/Methods/destroyWorld.js ***!
+  !*** ./src/Components/Physics/Methods/requestCreateBody.js ***!
   \*************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return destroyWorld; });
-function destroyWorld() {
-  if (!this.world) return;
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return requestCreateBody; });
+function requestCreateBody() {
+  // 크기에 오류가 있을 시 바디를 만들지 않습니다.
+  if (this.bodySize.filter(t => isNaN(t)).length) return;
+
+  if (!this.object) {
+    const body = this.createBody();
+    this.object = this.scene.physicsWorld.CreateBody(body);
+  }
+
+  const fixture = this.createFixture();
+  this.object.CreateFixture(fixture);
+  this.object.SetSleepingAllowed(false);
+  const position = this.object.GetPosition();
+  const transform = this.object.GetTransform();
+  console.log(this.object, position.get_x(), position.get_y(), transform);
 }
-
-/***/ }),
-
-/***/ "./src/Components/PhysicsWorld/Methods/getGravity.js":
-/*!***********************************************************!*\
-  !*** ./src/Components/PhysicsWorld/Methods/getGravity.js ***!
-  \***********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (function () {
-  const b = this.box2d;
-  const {
-    gravityX,
-    gravityY
-  } = this.body.component.physicsWorld;
-  return new b.b2Vec2(gravityX, gravityY);
-});
-
-/***/ }),
-
-/***/ "./src/Components/PhysicsWorld/Methods/setGravity.js":
-/*!***********************************************************!*\
-  !*** ./src/Components/PhysicsWorld/Methods/setGravity.js ***!
-  \***********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (function () {
-  this.world.SetGravity(this.getGravity());
-});
-
-/***/ }),
-
-/***/ "./src/Components/PhysicsWorld/Watch/gravityX.js":
-/*!*******************************************************!*\
-  !*** ./src/Components/PhysicsWorld/Watch/gravityX.js ***!
-  \*******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (function () {
-  this.setGravity();
-});
-
-/***/ }),
-
-/***/ "./src/Components/PhysicsWorld/Watch/gravityY.js":
-/*!*******************************************************!*\
-  !*** ./src/Components/PhysicsWorld/Watch/gravityY.js ***!
-  \*******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (function () {
-  this.setGravity();
-});
 
 /***/ }),
 
@@ -41845,6 +42202,66 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/Utils/AnimationFrame.js":
+/*!*************************************!*\
+  !*** ./src/Utils/AnimationFrame.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var shortid__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! shortid */ "./node_modules/shortid/index.js");
+/* harmony import */ var shortid__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(shortid__WEBPACK_IMPORTED_MODULE_0__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+class AnimationFrame {
+  /**
+   * 
+   * @param {Function} callback  매 프레임이 업데이트 될 때 마다 실행될 콜백함수를 등록합니다. requestAnimationFrame과 달리 1회용이 아니라, 저장되어 지속적으로 실행됩니다.
+   * @returns {String}  콜백함수의 ID값을 반환합니다. 이후에 AnimationFrame.cancelRequest 함수의 인수로 ID값을 넘겨 제거할 수 있습니다.
+   */
+  static request(callback) {
+    const id = shortid__WEBPACK_IMPORTED_MODULE_0___default.a.generate();
+    AnimationFrame.callback.set(id, callback);
+    return id;
+  }
+  /**
+   * 
+   * @param {String} id  삭제할 콜백함수의 ID값입니다.
+   */
+
+
+  static cancelRequest(id) {
+    AnimationFrame.callback.delete(id);
+  }
+
+  static update() {
+    window.requestAnimationFrame(step => {
+      if (!Animation.lastUpdate) AnimationFrame.lastUpdate = step;
+
+      for (const callback of AnimationFrame.callback.values()) {
+        callback(step, step - AnimationFrame.lastUpdate);
+      }
+
+      AnimationFrame.lastUpdate = step;
+      AnimationFrame.update();
+    });
+  }
+
+}
+
+_defineProperty(AnimationFrame, "lastUpdate", null);
+
+_defineProperty(AnimationFrame, "callback", new Map());
+
+AnimationFrame.update();
+/* harmony default export */ __webpack_exports__["default"] = (AnimationFrame);
+
+/***/ }),
+
 /***/ "./src/Utils/Arrayset.js":
 /*!*******************************!*\
   !*** ./src/Utils/Arrayset.js ***!
@@ -41911,6 +42328,11 @@ class Arrayset extends Array {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 class Definer {
+  /**
+   * 
+   * @param {String} name  변수명입니다
+   * @param {*} value  변수값입니다
+   */
   static create(name, value) {
     return new Definer(name, value);
   }
@@ -41922,21 +42344,45 @@ class Definer {
     this.name = name;
     this.value = value;
   }
+  /**
+   * 
+   * @param {Boolean} v 
+   * @description  이 변수를 삭제할 수 없도록 만듭니다.
+   */
+
 
   seal(v) {
     this.configurable = !v;
     return this;
   }
+  /**
+   * 
+   * @param {Boolean} v 
+   * @description  이 변수를 열거할 수 없도록 숨깁니다.
+   */
+
 
   hidden(v) {
     this.enumerable = !v;
     return this;
   }
+  /**
+   * 
+   * @param {Boolean} v
+   * @description  이 변수를 수정할 수 없도록 상수화합니다. 
+   */
+
 
   final(v) {
     this.writable = !v;
     return this;
   }
+  /**
+   * 
+   * @param {*} obj 
+   * @description  이 변수를 부착합니다.
+   */
+
 
   to(obj) {
     Object.defineProperty(obj, this.name, this);
@@ -42507,7 +42953,66 @@ function getBiggerNumber(a, b) {
 
 function calcSizeMax() {
   this.sizeMax = [getBiggerNumber(this.sizeSelf[0], this.sizeChild[0]), getBiggerNumber(this.sizeSelf[1], this.sizeChild[1])];
-  this.$emit('onsizechange', this.sizeMax);
+  this.$emit('onchangesize', this.sizeMax);
+  this.body.emit('changesize', {
+    size: this.sizeMax
+  });
+}
+
+/***/ }),
+
+/***/ "./src/View/Methods/cycleDestroy.js":
+/*!******************************************!*\
+  !*** ./src/View/Methods/cycleDestroy.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return cycleDestroy; });
+/* harmony import */ var _Utils_AnimationFrame__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Utils/AnimationFrame */ "./src/Utils/AnimationFrame.js");
+
+function cycleDestroy() {
+  _Utils_AnimationFrame__WEBPACK_IMPORTED_MODULE_0__["default"].cancelRequest(this.updateRequestId);
+
+  for (const fn of this.body.lifecycle.destroy) fn();
+}
+
+/***/ }),
+
+/***/ "./src/View/Methods/cycleStart.js":
+/*!****************************************!*\
+  !*** ./src/View/Methods/cycleStart.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return cycleStart; });
+function cycleStart() {
+  for (const fn of this.body.lifecycle.start) fn();
+}
+
+/***/ }),
+
+/***/ "./src/View/Methods/cycleUpdate.js":
+/*!*****************************************!*\
+  !*** ./src/View/Methods/cycleUpdate.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return cycleUpdate; });
+/* harmony import */ var _Utils_AnimationFrame__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Utils/AnimationFrame */ "./src/Utils/AnimationFrame.js");
+
+function cycleUpdate() {
+  this.updateRequestId = _Utils_AnimationFrame__WEBPACK_IMPORTED_MODULE_0__["default"].request((step, deltaTime) => {
+    for (const fn of this.body.lifecycle.update) fn(deltaTime);
+  });
 }
 
 /***/ }),
@@ -42561,17 +43066,17 @@ function isNeedFromScene(requiredLevel, current) {
 
 /***/ }),
 
-/***/ "./src/View/Methods/onSizeChange.js":
+/***/ "./src/View/Methods/onChangeSize.js":
 /*!******************************************!*\
-  !*** ./src/View/Methods/onSizeChange.js ***!
+  !*** ./src/View/Methods/onChangeSize.js ***!
   \******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return onSizeChange; });
-function onSizeChange(size) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return onChangeSize; });
+function onChangeSize(size) {
   this.sizeChild = size;
 }
 
@@ -42647,41 +43152,126 @@ class View {
     const factory = new _ComponentFactory_ComponentFactory__WEBPACK_IMPORTED_MODULE_4__["default"]();
     this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_6__["default"].CAMERA));
     this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_6__["default"].TRANSFORM));
-    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_6__["default"].FILTER)); // 이벤트를 담을 공간을 추가합니다
+    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_6__["default"].FILTER));
+    /*
+     *
+     *  이벤트를 담을 공간을 추가합니다.
+     *  이벤트 종류마다 새로운 Set 객체를 만들어 보관합니다.
+     * 
+     *  Ex)
+     *  _event : new Map {
+     *    type : new Set [ WeJSEventPlan, WeJSEventPlan, ... ]
+     *  }
+     * 
+     */
 
-    _Utils_Definer__WEBPACK_IMPORTED_MODULE_0__["default"].create('_events', new Map()).seal(true).hidden(true).final(true).to(this);
+    _Utils_Definer__WEBPACK_IMPORTED_MODULE_0__["default"].create('_event', new Map()).seal(true).hidden(true).final(true).to(this);
+    /**
+     * 
+     *  객체의 라이프사이클을 담을 공간을 추가합니다.
+     *  여기에서 선언된 라이프사이클은, vue 라이프사이클과 함께 동작합니다.
+     * 
+     */
+
+    _Utils_Definer__WEBPACK_IMPORTED_MODULE_0__["default"].create('_lifecycle', new Map()).seal(true).hidden(true).final(true).to(this);
+    this._lifecycle.startFns = [];
+    this._lifecycle.updateFns = [];
+    this._lifecycle.destroyFns = [];
+  }
+
+  get lifecycle() {
+    return {
+      start: this._lifecycle.startFns,
+      update: this._lifecycle.updateFns,
+      destroy: this._lifecycle.destroyFns
+    };
+  }
+
+  start(fn) {
+    this._lifecycle.startFns.push(fn.bind(this));
+
+    return this;
+  }
+
+  update(fn) {
+    this._lifecycle.updateFns.push(fn.bind(this));
+
+    return this;
+  }
+
+  destroy(fn) {
+    this._lifecycle.destroyFns.push(fn.bind(this));
+
+    return this;
   }
 
   _registHandler(e, handler, once) {
-    if (!this._events.has(e)) {
-      this._events.set(e, new Set());
+    if (!this._event.has(e)) {
+      this._event.set(e, new Set());
     }
 
     const plan = new _WeJSEvent_WeJSEventPlan__WEBPACK_IMPORTED_MODULE_1__["default"]();
     plan.once = once;
-    plan.handler = handler.bind(this);
+    plan.handler = handler;
 
-    this._events.get(e).add(plan);
+    this._event.get(e).add(plan);
   }
+  /**
+   * 
+   * @param {String} e  이벤트 타입
+   * @param {Function} handler  이벤트를 처리할 핸들러 함수
+   */
+
 
   on(e, handler) {
     this._registHandler(e, handler, false);
   }
+  /**
+   * 
+   * @param {String} e  이벤트 타입
+   * @param {Function} handler  이벤트를 처리할 핸들러 함수
+   */
+
 
   once(e, handler) {
     this._registHandler(e, handler, true);
   }
+  /**
+   * 
+   * @param {String} e  이벤트 타입
+   * @param {Function} handler  이벤트를 처리하는 핸들러 함수
+   */
+
+
+  off(e, handler) {
+    if (!this._event.has(e)) return;
+
+    const plans = this._event.get(e);
+
+    if (!handler) plans.clear();else {
+      for (const plan of plans) {
+        if (plan.handler !== handler) continue;
+        plans.delete(plan);
+      }
+    }
+  }
+  /**
+   * 
+   * @param {String} e  이벤트 타입
+   * @param {Object} detail  이벤트의 상세 정보
+   */
+
 
   emit(e, detail) {
-    if (!this._events.has(e)) return;
+    if (!this._event.has(e)) return;
 
-    for (const plan of this._events.get(e)) {
+    for (const plan of this._event.get(e)) {
       const event = new _WeJSEvent_WeJSEvent__WEBPACK_IMPORTED_MODULE_2__["default"]();
       event.type = e;
       event.target = this;
       event.detail = detail;
       plan.handler(event);
-      if (plan.once) this._events.get(e).delete(plan);
+      if (plan.once) this._event.get(e).delete(plan);
     }
   }
 
@@ -42795,7 +43385,7 @@ class WeJSEvent {
 
     _defineProperty(this, "target", null);
 
-    _defineProperty(this, "detail", {});
+    _defineProperty(this, "detail", null);
   }
 
 }

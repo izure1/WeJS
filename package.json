@@ -40,7 +40,8 @@
     "@babel/core": "^7.7.7",
     "@babel/polyfill": "7.7.0",
     "@babel/preset-env": "^7.7.7",
-    "@babel/plugin-proposal-class-properties": "7.7.4"
+    "@babel/plugin-proposal-class-properties": "7.7.4",
+    "shortid": "2.2.15"
   },
   "author": "admin@izure.org",
   "license": "MIT"

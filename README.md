@@ -10,7 +10,7 @@
 
 
 ## 오브젝트 (View)
-x, y, z 좌표와 데이터(vue)를 가질 수 있고, 자신이 속해있는 `씬`으로부터 좌표에 배치되어 보여진다.  
+x, y, z 좌표와 데이터(vue)를 가질 수 있고, 이벤트를 등록/발생할 수 있다. 자신이 속해있는 `씬`으로부터 좌표에 배치되어 보여진다.  
 `오브젝트`가 배치될 수 있다. `오브젝트`의 HTML 구조는 아래와 같다.
 
 ```
@@ -44,6 +44,7 @@ export default {
 * level : `String`
 * levelDesign : `LevelDesign`
 * component : `ComponentList`
+* script : `Function`
 
 `오브젝트`는 메서드 단위로 스크립트가 실행된다. `beforeCreate`, `created`, `update`, `beforeDestroy`, `destroyed`는 `vue`의 실행단위를 상속받고, 별개로 window.requestAnimationFrame 마다 실행될 `updateFrame` 실행단위를 받는다.
 
@@ -104,8 +105,8 @@ export default {
 * lists : `Array`
   하위에 삽입될 `오브젝트`를 담을 배열입니다.
 
-### 렌더러 (component-x-renderer)
-`오브젝트`에 `x`에 해당하는 요소를 보여줌. 실제 씬에서 이 오브젝트를 볼 수 있게 됨. `오브젝트`에서 상대좌표를 이용하여 위치를 보정할 수 있다.  
+### 렌더러 (component-renderer-xxx)
+`오브젝트`에 `xxx`에 해당하는 요소를 보여줌. 실제 씬에서 이 오브젝트를 볼 수 있게 됨. `오브젝트`에서 상대좌표를 이용하여 위치를 보정할 수 있다.  
 `오브젝트`의 `transform` 컴포넌트를 참조한다.  
 해당 컴포넌트에서 예약된 변수는 아래와 같다.
 * src : `String`
