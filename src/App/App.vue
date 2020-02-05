@@ -13,7 +13,7 @@
       transform: `scale(${appScale})`,
       margin: `${-app.height / 2}px 0 0 ${-app.width / 2}px`,
     }">
-      <we-body :app="app" :scene="scene" :body="scene" :requiredLevel="this.scene.levelDesign.getRequired(this.scene.level)" />
+      <we-body v-for="(scene, index) in scenes" :key="index" :app="app" :scene="scene" :body="scene" :requiredLevel="scene.levelDesign.getRequired(scene.level)" :style="{ zIndex: index }" />
     </div>
   </section>
 </template>
@@ -30,7 +30,7 @@
     components: {
       WeBody
     },
-    props: ['scene', 'app'],
+    props: ['scenes', 'app'],
     data: () => ({
       resizeObserver: null,
       appScale: 1,

@@ -1,10 +1,12 @@
+import Arrayset from '../Utils/Arrayset'
+
+import addScene from './AppMethods/addScene'
+import dropScene from './AppMethods/dropScene'
 import launch from './AppMethods/launch'
 import destroy from './AppMethods/destroy'
 import setSize from './AppMethods/setSize'
 import fullscreen from './AppMethods/fullscreen'
 import exitFullscreen from './AppMethods/existFullscreen'
-
-import Camera from './Camera'
 
 
 class App {
@@ -21,6 +23,7 @@ class App {
   constructor() {
     this._element = null
     this.app = null
+    this.scenes = new Arrayset
     this.width = 800
     this.height = 450
     this.backgroundColor = 'white'
@@ -41,16 +44,10 @@ class App {
     return this.app.$el
   }
 
-  get mainCamera() {
-    if (!this.scene) return null
-    const camera = new Camera
-    const { x, y, z } = this.scene.component.camera
-    camera.pos = { x, y, z }
-    return camera
-  }
-
 }
 
+App.prototype.addScene = addScene
+App.prototype.dropScene = dropScene
 App.prototype.launch = launch
 App.prototype.destroy = destroy
 App.prototype.setSize = setSize

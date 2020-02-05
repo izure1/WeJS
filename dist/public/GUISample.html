@@ -6,14 +6,12 @@
 
 <body>
   <div id="app"></div>
-  <div>
-    <button onclick="change()">Change</button>
-  </div>
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <script src="../lib/WeJS.js"></script>
   <script>
     const app = new WeJS.App // 새로운 viewport 만들기
     const scene = new WeJS.Scene3d // 새로운 씬
+    const gui = new WeJS.Scene2d // GUI 씬. 2D씬은 좌표의 기준점이 좌측상단을 기준으로 작동합니다. 따라서 GUI를 구현하기에 적합합니다.
 
     const factory = new WeJS.ComponentFactory // 컴포넌트를 만들어주는 인스턴스 객체
     const loader = new WeJS.AssetLoader // 에셋을 관리해주는 인스턴스 객체
@@ -50,12 +48,30 @@
     })()
 
 
+    // GUI를 표현하기 위해 버튼을 만듭니다.
+    const button = new WeJS.View
+
+    button.component.add(factory.create(WeJS.RESERVATION.TEXT))
+
+    button.component.text.content = 'BUTTON'
+    button.component.text.fontFamily = 'consolas'
+    button.component.text.color = 'white'
+    button.component.text.borderColor = 'black'
+    button.component.text.borderWidth = 5
+
+    button.component.transform.x = 100
+    button.component.transform.y = -50
+
+    // 버튼을 gui 씬에 넣습니다.
+    gui.component.children.lists.add(button)
+
     // 앱이 부착될 element를 지정
     app.element = '#app'
     app.setSize(800, 500)
 
     // 앱에서 씬을 실행
-    app.launch(scene)
+    // 두 가지 씬을 동시에 실행합니다. 배열의 뒤에 있을수록, 높은 zIndex 값을 갖습니다.
+    app.launch([scene, gui])
   </script>
   <script>
     function change() {

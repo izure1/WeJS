@@ -15,6 +15,7 @@
     duration = 0
     delay = 0
     ease = 'linear'
+    cursor = 'default'
 
     constructor(...args) {
       super(...args)

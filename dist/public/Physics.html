@@ -9,34 +9,62 @@
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <script src="../lib/WeJS.js"></script>
   <script>
+    function getRandomNumber(a, b) {
+      return Math.random() * (b - a) + a
+    }
+  </script>
+  <script>
     const app = new WeJS.App // 새로운 viewport 만들기
-    const scene = new WeJS.Scene // 새로운 씬
+    const scene = new WeJS.Scene3d // 새로운 씬
+    const collider = new WeJS.Collider // 씬에 부착될 충돌기입니다. 이 규칙에 의거하여 강체 간 충돌을 결정지을 것입니다.
 
     const factory = new WeJS.ComponentFactory // 컴포넌트를 만들어주는 인스턴스 객체
 
-    const text = new WeJS.View
+    const objectA = new WeJS.View
+    const objectB = new WeJS.View
+    const ground = new WeJS.View
 
-    // 텍스트를 보여주기 위해 텍스트 컴포넌트를 생성합니다.
-    const textComponent = factory.create(WeJS.RESERVATION.TEXT);
-    text.component.add(textComponent)
-    // 물리 효과를 주기 위해 물리 컴포넌트를 생성합니다
-    const physicsComponent = factory.create(WeJS.RESERVATION.PHYSICS)
-    text.component.add(physicsComponent)
 
-    // 객체의 텍스트를 설정합니다
-    text.component.text.content = 'Hello, World!'
-    text.component.text.color = 'yellow'
-    text.component.text.borderWidth = 10
-    text.component.text.fontSize = 50
+    for (let i = 0; i < 100; i++) {
+
+      const object = new WeJS.View
+
+      // 물리 효과를 주기 위해 물리 컴포넌트를 생성합니다
+      object.component.add(factory.create(WeJS.RESERVATION.RECT))
+      object.component.add(factory.create(WeJS.RESERVATION.PHYSICS))
+
+      object.component.rect.color = `rgb(${getRandomNumber(0, 255)}, ${getRandomNumber(0, 255)}, ${getRandomNumber(0, 255)})`
+      object.component.rect.width = 35
+      object.component.rect.height = 35
+      object.component.physics.static = false
+      object.component.filter.cursor = 'pointer'
+      object.component.transform.x = getRandomNumber(-300, 300)
+      object.component.transform.y = getRandomNumber(300, 500)
+
+      scene.component.children.lists.add(object)
+
+    }
+
+    ground.component.add(factory.create(WeJS.RESERVATION.RECT))
+    ground.component.add(factory.create(WeJS.RESERVATION.PHYSICS))
+
+    ground.component.rect.width = 800
+    ground.component.rect.height = 30
+    ground.component.rect.color = 'grey'
+    ground.component.physics.static = true
+    ground.component.transform.y = -250
 
     // 씬에 객체를 추가합니다.
-    scene.component.children.lists.add(text)
+    scene.component.children.lists.add(ground)
+
+    // 충돌기를 설정합니다
+    //scene.physicsWorld.colliders.add( collider.setBetween(objectA, objectB).createListener() )
 
     // 앱이 부착될 element를 지정
     app.element = '#app'
     app.setSize(800, 500)
 
-    // 앱에서 씬을 실행
+    // 앱에서 씬을 실행0
     app.launch(scene)
   </script>
 </body>

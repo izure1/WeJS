@@ -23,8 +23,8 @@ x, y, z 좌표와 데이터(vue)를 가질 수 있고, 이벤트를 등록/발�
     <component-audio v-if="component.audio"></component-audio>
     <component-script v-if="component.script"></component-script>
     <component-react v-if="component.react"></component-react>
-    <component-image-renderer v-if="component.imageRenderer"></component-image-renderer>
-    <component-video-renderer v-if="component.videoRenderer"></component-video-renderer>
+    <component-image v-if="component.image"></component-image>
+    <component-video v-if="component.video"></component-video>
   </div>
 </template>
 
@@ -43,6 +43,7 @@ export default {
 * id : `String`
 * level : `String`
 * levelDesign : `LevelDesign`
+* tags : `Arrayset`
 * component : `ComponentList`
 * script : `Function`
 
@@ -105,7 +106,7 @@ export default {
 * lists : `Array`
   하위에 삽입될 `오브젝트`를 담을 배열입니다.
 
-### 렌더러 (component-renderer-xxx)
+### 렌더러 (component-xxx-renderer)
 `오브젝트`에 `xxx`에 해당하는 요소를 보여줌. 실제 씬에서 이 오브젝트를 볼 수 있게 됨. `오브젝트`에서 상대좌표를 이용하여 위치를 보정할 수 있다.  
 `오브젝트`의 `transform` 컴포넌트를 참조한다.  
 해당 컴포넌트에서 예약된 변수는 아래와 같다.

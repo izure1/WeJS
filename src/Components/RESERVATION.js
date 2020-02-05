@@ -27,22 +27,21 @@ import COMPONENT_TEXT, {
 import COMPONENT_HTML, {
   Reservation as HTML
 } from './Html/Component.vue'
-import COMPONENT_RENDERER_IMAGE, {
-  Reservation as RENDERER_IMAGE
-} from './RendererImage/Component.vue'
-import COMPONENT_RENDERER_VIDEO, {
-  Reservation as RENDERER_VIDEO
-} from './RendererVideo/Component.vue'
+import COMPONENT_IMAGE, {
+  Reservation as IMAGE
+} from './Image/Component.vue'
+import COMPONENT_VIDEO, {
+  Reservation as VIDEO
+} from './Video/Component.vue'
+import COMPONENT_RECT, {
+  Reservation as RECT
+} from './Rect/Component.vue'
 import COMPONENT_DATASET, {
   Reservation as DATASET
 } from './Dataset/Component.vue'
-import COMPONENT_TAG, {
-  Reservation as TAG
-} from './Tag/Component.vue'
 import COMPONENT_AUDIO, {
   Reservation as AUDIO
 } from './Audio/Component.vue'
-
 
 
 const PACKAGES = [
@@ -90,27 +89,28 @@ const PACKAGES = [
   },
 
   {
-    name: (new RENDERER_IMAGE).name,
-    reservation: RENDERER_IMAGE,
-    component: COMPONENT_RENDERER_IMAGE,
+    name: (new IMAGE).name,
+    reservation: IMAGE,
+    component: COMPONENT_IMAGE,
   },
 
   {
-    name: (new RENDERER_VIDEO).name,
-    reservation: RENDERER_VIDEO,
-    component: COMPONENT_RENDERER_VIDEO,
+    name: (new VIDEO).name,
+    reservation: VIDEO,
+    component: COMPONENT_VIDEO,
+  },
+
+  {
+    name: (new RECT).name,
+    reservation: RECT,
+    component: COMPONENT_RECT,
   },
 
   {
     name: (new DATASET).name,
     reservation: DATASET,
-    component: COMPONENT_DATASET,
-  },
 
-  {
-    name: (new TAG).name,
-    reservation: TAG,
-    component: COMPONENT_TAG,
+    component: COMPONENT_DATASET,
   },
 
   {

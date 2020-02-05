@@ -15,24 +15,23 @@ class Searcher {
     return true
   }
 
-  getElementFromTag(app, v) {
+  getElementsFromTag(app, v) {
 
     if (!this.isAppReady(app)) return []
 
     let lists
-    lists = this.app.appElement.querySelectorAll(`div[we-body-tag~="${v}"]`)
+    lists = app.appElement.querySelectorAll(`div[we-body-tag~="${v}"]`)
     lists = Array.from(lists)
-    lists = lists.map(el => el.parentElement.parentElement)
     return lists
 
   }
 
   getElementFromId(app, v) {
     if (!this.isAppReady(app)) return null
-    return this.app.appElement.querySelector(`#${v}`)
+    return app.appElement.querySelector(`#${v}`)
   }
 
-  getElementFromChildren(v) {
+  getParentElementFromChildren(v) {
     const bodyClassName = 'we-body'
     if (!v instanceof HTMLElement) return null
     do v = v.parentElement

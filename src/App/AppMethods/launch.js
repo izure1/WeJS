@@ -1,22 +1,22 @@
-import View from '../../View/View'
+import Scene from '../../Scene/Scene'
 
 import Vue from 'vue'
 import App from '../App.vue'
 
 
-export default function launch(scene) {
-
-  if (!(scene instanceof View)) {
-    throw 'The scene argument must be View instance.'
-  }
+export default function launch(scenes) {
 
   this.destroy()
-  this.scene = scene
+
+  if (!Array.isArray(scenes)) scenes = [scenes]
+  for (const scene of scenes) this.addScene(scene)
+
+  
   this.app = new Vue({
     el: this.element,
-    template: '<App :scene="scene" :app="app" />',
+    template: '<App :scenes="scenes" :app="app" />',
     data: {
-      scene,
+      scenes: this.scenes,
       app: this
     },
     components: {

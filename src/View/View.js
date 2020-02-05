@@ -2,6 +2,7 @@ import Definer from '../Utils/Definer'
 import WeJSEventPlan from './WeJSEvent/WeJSEventPlan'
 import WeJSEvent from './WeJSEvent/WeJSEvent'
 
+import Arrayset from '../Utils/Arrayset'
 import ComponentList from './ComponentList/ComponentList'
 import ComponentFactory from './ComponentFactory/ComponentFactory'
 import LevelDesign from './LevelDesign/LevelDesign'
@@ -28,6 +29,7 @@ class View {
     this.id = id
     this.level = level
     this.levelDesign = levelDesign
+    this.tags = new Arrayset
     this.component = new ComponentList(component)
 
     const factory = new ComponentFactory
@@ -103,30 +105,7 @@ class View {
 
   }
 
-  /**
-   * 
-   * @param {String} e  이벤트 타입
-   * @param {Function} handler  이벤트를 처리할 핸들러 함수
-   */
-  on(e, handler) {
-    this._registHandler(e, handler, false)
-  }
-
-  /**
-   * 
-   * @param {String} e  이벤트 타입
-   * @param {Function} handler  이벤트를 처리할 핸들러 함수
-   */
-  once(e, handler) {
-    this._registHandler(e, handler, true)
-  }
-
-  /**
-   * 
-   * @param {String} e  이벤트 타입
-   * @param {Function} handler  이벤트를 처리하는 핸들러 함수
-   */
-  off(e, handler) {
+  _unregistHandler(e, handler) {
 
     if (!this._event.has(e)) return
 
@@ -139,6 +118,33 @@ class View {
       }
     }
 
+  }
+
+  /**
+   * 
+   * @param {String} e  이벤트 타입
+   * @param {Function} handler  이벤트를 처리할 핸들러 함수
+   */
+  on(e, handler) {
+    e.split(' ').forEach(e => this._registHandler(e, handler, false))
+  }
+
+  /**
+   * 
+   * @param {String} e  이벤트 타입
+   * @param {Function} handler  이벤트를 처리할 핸들러 함수
+   */
+  once(e, handler) {
+    e.split(' ').forEach(e => this._registHandler(e, handler, true))
+  }
+
+  /**
+   * 
+   * @param {String} e  이벤트 타입
+   * @param {Function} handler  이벤트를 처리하는 핸들러 함수
+   */
+  off(e, handler) {
+    e.split(' ').forEach(e => this._unregistHandler(e, handler))
   }
 
   /**

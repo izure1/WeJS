@@ -1,12 +1,16 @@
 import App from './App/App'
-import Scene from './Scene/Scene'
+import Scene2d from './Scene/Scene2d'
+import Scene3d from './Scene/Scene3d'
 import View from './View/View'
 
 import Animation from './Animation/Animation'
+import AnimationFrame from './Utils/AnimationFrame'
 import AssetLoader from './Asset/AssetLoader/AssetLoader'
 import Asset from './Asset/Asset/Asset'
+import Collider from './Collider/Collider'
 import ComponentBuilder from './View/ComponentBuilder/ComponentBuilder'
 import ComponentFactory from './View/ComponentFactory/ComponentFactory'
+import UserGestureListener from  './UserGestureListener/UserGestureListener'
 import Searcher from './Utils/Searcher'
 
 import RESERVATION, {
@@ -23,15 +27,19 @@ const VERSION = PACKAGE.version
 export default {
 
   App,
-  Scene,
+  Scene2d,
+  Scene3d,
   View,
 
   Animation,
+  AnimationFrame,
   AssetLoader,
   Asset,
+  Collider,
   ComponentBuilder,
   ComponentFactory,
   Searcher,
+  UserGestureListener,
 
   RESERVATION,
   RESERVATION_MAP,
