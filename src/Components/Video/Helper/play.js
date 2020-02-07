@@ -1,9 +1,10 @@
 export default async function play(time = 0) {
 
   // 비디오가 준비될 때 까지 대기
-  await this.waitLoading()
+  //await this.waitLoading()
+  const video = await this.vue.video
 
-  this.element.currentTime = time / 1000
-  this.element.play()
+  video.currentTime = time / 1000
+  video.play()
 
 }

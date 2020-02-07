@@ -30,16 +30,34 @@
       const object = new WeJS.View
 
       // 물리 효과를 주기 위해 물리 컴포넌트를 생성합니다
+      object.id = i
       object.component.add(factory.create(WeJS.RESERVATION.RECT))
       object.component.add(factory.create(WeJS.RESERVATION.PHYSICS))
 
-      object.component.rect.color = `rgb(${getRandomNumber(0, 255)}, ${getRandomNumber(0, 255)}, ${getRandomNumber(0, 255)})`
-      object.component.rect.width = 35
-      object.component.rect.height = 35
-      object.component.physics.static = false
-      object.component.filter.cursor = 'pointer'
-      object.component.transform.x = getRandomNumber(-300, 300)
-      object.component.transform.y = getRandomNumber(300, 500)
+      const {
+        rect,
+        physics,
+        filter,
+        transform,
+      } = object.component
+
+      rect.color = `rgb(${getRandomNumber(0, 255)}, ${getRandomNumber(0, 255)}, ${getRandomNumber(0, 255)})`
+      rect.width = 35
+      rect.height = 35
+      physics.isStatic = false
+      filter.cursor = 'pointer'
+      transform.x = getRandomNumber(-300, 300)
+      transform.y = getRandomNumber(300, 500)
+
+      // 클릭한 객체를 삭제합니다
+      object.on('click', e => {
+        scene.component.children.lists.delete(e.target)
+      })
+
+      // ground 객체와 충돌한 객체의 투명도를 낮춥니다.
+      object.on('collisionStart', e => {
+        if (e.detail.another === ground) object.component.filter.opacity = 0.1
+      })
 
       scene.component.children.lists.add(object)
 
@@ -48,10 +66,11 @@
     ground.component.add(factory.create(WeJS.RESERVATION.RECT))
     ground.component.add(factory.create(WeJS.RESERVATION.PHYSICS))
 
-    ground.component.rect.width = 800
+    ground.component.rect.width = 1600
     ground.component.rect.height = 30
     ground.component.rect.color = 'grey'
-    ground.component.physics.static = true
+
+    ground.component.physics.isStatic = true
     ground.component.transform.y = -250
 
     // 씬에 객체를 추가합니다.

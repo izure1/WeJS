@@ -6,10 +6,8 @@
   import AssetLoader from '../../Asset/AssetLoader/AssetLoader'
   import Component from '../../View/Component/Component'
 
-  import _setLoadedPromise from './Helper/_setLoadedPromise'
   import play from './Helper/play'
   import pause from './Helper/pause'
-  import waitLoading from './Helper/waitLoading'
 
   import onChangeAudioSrc from './Methods/onChangeAudioSrc'
   import reloadAudio from './Methods/reloadAudio'
@@ -30,15 +28,12 @@
 
     constructor(...args) {
       super(...args)
-      this._setLoadedPromise()
     }
 
   }
 
-  Reservation.prototype._setLoadedPromise = _setLoadedPromise
   Reservation.prototype.play = play
   Reservation.prototype.pause = pause
-  Reservation.prototype.waitLoading = waitLoading
 
   export default {
 
@@ -46,6 +41,7 @@
     data: () => ({
       loader: new AssetLoader,
       audio: null,
+      setAudio: null,
       intervalIndex: null,
     }),
     methods: {
@@ -57,14 +53,20 @@
     },
 
     created() {
+      this.body.component.audio.setVue(this)
       this.reloadAudio()
     },
     mounted() {
       this.observeAudioPosition()
     },
-    beforeDestroy() {
-      if (this.audio) this.audio.unload()
+    async beforeDestroy() {
+
       this.destroyObserve()
+      this.body.component.audio.destroy()
+
+      const audio = await this.audio
+      if (audio) audio.unload()
+
     },
 
     watch: {

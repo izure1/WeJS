@@ -1,8 +1,5 @@
-export default async function setRestitution() {
+export default function setRestitution() {
 
-  if (this.object) {
-    await this.objectReady
-    this.object.restitution = this.body.component.physics.restitution
-  }
+  this.object.restitution = this.body.component.physics.restitution
 
 }

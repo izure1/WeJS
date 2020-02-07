@@ -1,3 +1,4 @@
+import Matter from 'matter-js'
 import {
   Angler
 } from '../../../Utils/MathUtil'
@@ -5,21 +6,17 @@ import {
 
 const angler = new Angler
 
-export default async function transformObject() {
-
-  if (this.object && this.tracking) {
-
-    await this.objectReady
-
-    const {
-      x,
-      y,
-      rotateZ,
-    } = this.body.component.transform
+export default function transformObject() {
+  
+  if (this.tracking) {
     
-    this.object.position.x = x
-    this.object.position.y = -y
-    this.object.angle = angler.fromDegree(rotateZ).radian
+    const { x, y, rotateZ } = this.body.component.transform
+
+    const vector = Matter.Vector.create(x, -y)
+    const angle = angler.fromDegree(rotateZ).radian
+    
+    Matter.Body.setPosition(this.object, vector)
+    Matter.Body.setAngle(this.object, angle)
 
   }
 

@@ -48,8 +48,9 @@
     })()
 
 
-    // GUI를 표현하기 위해 버튼을 만듭니다.
+    // GUI를 표현하기 위해 객체를 만듭니다.
     const button = new WeJS.View
+    const dialog = new WeJS.View
 
     button.component.add(factory.create(WeJS.RESERVATION.TEXT))
 
@@ -62,8 +63,20 @@
     button.component.transform.x = 100
     button.component.transform.y = -50
 
+
+    dialog.component.add(factory.create(WeJS.RESERVATION.RECT))
+
+    dialog.component.rect.width = 800
+    dialog.component.rect.height = 150
+    dialog.component.rect.color = 'black'
+    dialog.component.filter.opacity = 0.1
+
+    dialog.component.transform.x = 400
+    dialog.component.transform.y = -400
+
     // 버튼을 gui 씬에 넣습니다.
     gui.component.children.lists.add(button)
+    gui.component.children.lists.add(dialog)
 
     // 앱이 부착될 element를 지정
     app.element = '#app'

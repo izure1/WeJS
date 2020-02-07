@@ -9,8 +9,8 @@ export default function calcSizeMax() {
     getBiggerNumber(this.sizeSelf[1], this.sizeChild[1]),
   ]
   this.$emit('onchangesize', this.sizeMax)
-  this.body.emit('changesize', {
-    size: this.sizeMax
-  })
+  this.body.emit('changesize', { size: this.sizeMax })
+
+  this.translate()
 
 }

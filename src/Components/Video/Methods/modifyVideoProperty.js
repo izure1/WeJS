@@ -1,13 +1,13 @@
-export default function setVideoProperty () {
+export default async function setVideoProperty () {
 
-  if (!this.element) return
+  await this.video
 
   const {
     playbackRate,
     volume,
   } = this.body.component.video
 
-  this.element.playbackRate = playbackRate
-  this.element.volume = volume
+  this.video.playbackRate = playbackRate
+  this.video.volume = volume
 
 }

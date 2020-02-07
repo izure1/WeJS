@@ -25,12 +25,12 @@ export default function observeAudioPosition() {
   const searcher = new Searcher
   searcher.app = this.app
 
-  this.intervalIndex = setInterval(() => {
+  this.intervalIndex = setInterval(async () => {
 
     const el = this.$el
     const app = this.app
 
-    if (!this.audio) return
+    const audio = await this.audio
     if (!app.appElement) return
 
     const appStyle = getComputedStyle(app.appElement)
@@ -70,9 +70,9 @@ export default function observeAudioPosition() {
     y *= HOWLER_TO_WORLD
     z *= HOWLER_TO_WORLD
 
-    this.audio.pannerAttr(CONFIG)
-    this.audio.orientation(0, 0, 1)
-    this.audio.pos(x, y, z)
+    audio.pannerAttr(CONFIG)
+    audio.orientation(0, 0, 1)
+    audio.pos(x, y, z)
 
   }, this.body.component.audio.recaching)
 

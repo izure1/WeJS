@@ -1,6 +1,6 @@
-export default function setAudioProperty () {
+export default async function setAudioProperty () {
 
-  if (!this.audio) return
+  const audio = await this.audio
 
   const {
     playbackRate,
@@ -9,9 +9,9 @@ export default function setAudioProperty () {
     muted,
   } = this.body.component.audio
 
-  this.audio.rate(playbackRate)
-  this.audio.mute(muted)
-  this.audio.loop(loop)
-  this.audio.volume(volume)
+  audio.rate(playbackRate)
+  audio.mute(muted)
+  audio.loop(loop)
+  audio.volume(volume)
 
 }

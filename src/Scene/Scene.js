@@ -57,10 +57,72 @@ class Scene extends View {
       .seal(true).hidden(true).final(true)
       .to(this)
 
+    // 물리 객체 해쉬테이블 만들기
+    Definer
+      .create('physicsTable', new Map)
+      .seal(true).hidden(true).final(true)
+      .to(this)
+
   }
+
+  /**
+   * 
+   * @param {WeakMap} table  PhysicsHashTable
+   * @param {Matter.Composite} object  Matter.js Pairs
+   * @param {View} body  WeJS.View
+   * @description  물리시뮬레이터 해쉬테이블에 물리객체와 View 객체를 키와 값의 쌍으로 삽입합니다.
+   */
+  static appendHashTable(table, object, body) {
+    table.set(object, body)
+  }
+
+  /**
+   * 
+   * @param {Arrayset|Array} lists  업데이트할 물리객체의 목록을 담은 배열이거나, 유사배열입니다.
+   */
+  static updatePhysicsRender(lists) {
+    lists.forEach(t => { if (t.component.physics) t.component.physics.vue.update() })
+  }
+
+  /**
+   * 
+   * @param {WeakMap} table  PhysicsHashTable
+   * @param {Matter.Pairs} pairs  Matter.js Pairs
+   * @description  매 물리시뮬레이터 업데이트마다 충돌하는 모든 리스트를 순회하여 collisionStart 이벤트를 발생시킵니다.
+   */
+  static onCollisionStart(table, pairs) {
+    for (const collision of pairs) {
+      const { bodyA, bodyB } = collision
+      const A = table.get(bodyA)
+      const B = table.get(bodyB)
+      A.emit('collisionStart', { another: B })
+      B.emit('collisionStart', { another: A })
+    }
+  }
+
+  /**
+   * 
+   * @param {WeakMap} table  PhysicsHashTable
+   * @param {Matter.Pairs} pairs  Matter.js Pairs
+   * @description  매 물리시뮬레이터 업데이트마다 충돌하는 모든 리스트를 순회하여 collisionEnd 이벤트를 발생시킵니다.
+   */
+  static onCollisionEnd(table, pairs) {
+    for (const collision of pairs) {
+      const { bodyA, bodyB } = collision
+      const A = table.get(bodyA)
+      const B = table.get(bodyB)
+      A.emit('collisionEnd', { another: B })
+      B.emit('collisionEnd', { another: A })
+    }
+  }
+
 
   startPhysicsSimulation() {
     Matter.Runner.run(this.physicsRunner, this.physics)
+    Matter.Events.on(this.physicsRunner, 'beforeUpdate', e => Scene.updatePhysicsRender(this.component.children.lists))
+    Matter.Events.on(this.physicsWorld, 'createPhysicsBody', e => Scene.appendHashTable(this.physicsTable, e.object, e.body))
+    Matter.Events.on(this.physics, 'collisionStart', e => Scene.onCollisionStart(this.physicsTable, e.pairs))
+    Matter.Events.on(this.physics, 'collisionEnd', e => Scene.onCollisionEnd(this.physicsTable, e.pairs))
   }
 
   stopPhysicsSimulation() {

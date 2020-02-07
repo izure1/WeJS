@@ -47,16 +47,34 @@ await loader.addFromArray([
 // loader.load() 메서드를 실행할 경우, iterator 객체가 반환됩니다.
 await loader.load() // 만일 이전에 add 메서드를 await 비동기 방식으로 사용하지 않았다면, 이것은 Promise.all 처럼 작동한다.
 
-scene.start(() => {
+scene.start(children => {
+
+  const a = new WeJS.View
+  const b = new WeJS.View
+
+  children.lists.push(a, b)
 
 })
 scene.update(() => {
 
-})
-scene.update(() => {
+  WeJS.Scene
 
 })
 scene.beforeDestroy(() => {
+
+  // 초기화하지 않으면, 씬이 다시 실행할 때 이전 씬의 정보를 그대로 가지고 시작합니다.
+  const {
+    children,
+    camera,
+  } = scene.component
+
+  children.lists.clear()
+  camera.x = 0
+  camera.y = 0
+  camera.z = 0
+  camera.rotateX = 0
+  camera.rotateY = 0
+  camera.rotateZ = 0
 
 })
 

@@ -1,10 +1,9 @@
-export default async function setFriction() {
+export default function setFriction() {
 
-  if (this.object) {
-    await this.objectReady
-    this.object.friction = this.body.component.physics.friction
-    this.object.frictionAir = this.body.component.physics.frictionAir
-    this.object.frictionStatic = this.body.component.physics.frictionStatic
-  }
+  const { friction, frictionAir, frictionStatic } = this.body.component.physics
+  
+  this.object.friction = friction
+  this.object.frictionAir = frictionAir
+  this.object.frictionStatic = frictionStatic
 
 }

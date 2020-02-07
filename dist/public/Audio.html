@@ -45,8 +45,10 @@
       scene.component.children.lists.add(audio)
 
       // 오디오 재생
-      audio.component.audio.play()
-      audio.component.audio.loop = true
+      audio.component.audio.on('load', e => {
+        e.target.play()
+        e.target.loop = true
+      })
 
     })()
 

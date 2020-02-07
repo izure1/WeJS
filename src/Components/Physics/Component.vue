@@ -12,7 +12,6 @@
   import destroyBody from './Methods/destroyBody'
   import requestCreateBody from './Methods/requestCreateBody'
   import setStatic from './Methods/setStatic'
-  import setDensity from './Methods/setDensity'
   import setFriction from './Methods/setFriction'
   import setRestitution from './Methods/setRestitution'
   import setFixedRotation from './Methods/setFixedRotation'
@@ -28,7 +27,8 @@
     frictionAir = 0.01
     frictionStatic = 0.5
     restitution = 0.3
-    static = false
+    isStatic = false
+    isSender = false
     fixedRotation = false
     colliders = new Arrayset
 
@@ -36,8 +36,8 @@
       super(...args)
     }
 
-    applyForce(x, y) {
-      Matter.Body.applyForce()
+    async applyForce(x, y) {
+      Matter.Body.applyForce(await this.vue.object, Matter.Vector.create(x, y))
     }
   }
 
@@ -49,8 +49,6 @@
       bodySize: [0, 0],
       inertia: 0,
       object: null,
-      objectReady: null,
-      setObjectReady: null,
     }),
     tracking: true,
     methods: {
@@ -58,7 +56,6 @@
       destroyBody,
       requestCreateBody,
       setStatic,
-      setDensity,
       setFriction,
       setRestitution,
       setFixedRotation,
@@ -67,19 +64,15 @@
       transformObject,
     },
     created() {
+
       this.body.on('changesize', this.onChangeSize)
-      this.objectPromise = new Promise(resolve => {
-        this.setObjectReady = resolve
-      })
-    },
-    mounted() {
-      // 매 프레임마다 물리객체 좌표를 렌더러에 반영합니다.
-      Matter.Events.on(this.scene.physicsRunner, 'afterUpdate', this.update)
+      this.body.component.physics.setVue(this)
+
     },
     beforeDestroy() {
       this.destroyBody()
+      this.body.component.physics.destroy()
       this.body.off('changesize', this.onChangeSize)
-      Matter.Events.off(this.scene.physicsRunner, 'afterUpdate', this.update)
     },
 
     watch: {
@@ -95,9 +88,6 @@
       },
       'body.component.physics.type'() {
         this.setStatic()
-      },
-      'body.component.physics.density'() {
-        this.setDensity()
       },
       'body.component.physics.friction'() {
         this.setFriction()

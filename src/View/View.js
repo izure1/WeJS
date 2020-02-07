@@ -1,6 +1,5 @@
 import Definer from '../Utils/Definer'
-import WeJSEventPlan from './WeJSEvent/WeJSEventPlan'
-import WeJSEvent from './WeJSEvent/WeJSEvent'
+import WeJSEventEmitter from '../WeJSEvent/WeJSEventEmitter'
 
 import Arrayset from '../Utils/Arrayset'
 import ComponentList from './ComponentList/ComponentList'
@@ -10,7 +9,7 @@ import LevelDesign from './LevelDesign/LevelDesign'
 import RESERVATION from '../Components/RESERVATION'
 
 
-class View {
+class View extends WeJSEventEmitter {
 
   constructor(raw = {
     id: null,
@@ -18,6 +17,8 @@ class View {
     levelDesign: new LevelDesign,
     component: new ComponentList
   }) {
+
+    super()
 
     const {
       id,
@@ -89,81 +90,6 @@ class View {
   destroy(fn) {
     this._lifecycle.destroyFns.push(fn.bind(this))
     return this
-  }
-
-  _registHandler(e, handler, once) {
-
-    if (!this._event.has(e)) {
-      this._event.set(e, new Set)
-    }
-
-    const plan = new WeJSEventPlan
-    plan.once = once
-    plan.handler = handler
-
-    this._event.get(e).add(plan)
-
-  }
-
-  _unregistHandler(e, handler) {
-
-    if (!this._event.has(e)) return
-
-    const plans = this._event.get(e)
-    if (!handler) plans.clear()
-    else {
-      for (const plan of plans) {
-        if (plan.handler !== handler) continue
-        plans.delete(plan)
-      }
-    }
-
-  }
-
-  /**
-   * 
-   * @param {String} e  이벤트 타입
-   * @param {Function} handler  이벤트를 처리할 핸들러 함수
-   */
-  on(e, handler) {
-    e.split(' ').forEach(e => this._registHandler(e, handler, false))
-  }
-
-  /**
-   * 
-   * @param {String} e  이벤트 타입
-   * @param {Function} handler  이벤트를 처리할 핸들러 함수
-   */
-  once(e, handler) {
-    e.split(' ').forEach(e => this._registHandler(e, handler, true))
-  }
-
-  /**
-   * 
-   * @param {String} e  이벤트 타입
-   * @param {Function} handler  이벤트를 처리하는 핸들러 함수
-   */
-  off(e, handler) {
-    e.split(' ').forEach(e => this._unregistHandler(e, handler))
-  }
-
-  /**
-   * 
-   * @param {String} e  이벤트 타입
-   * @param {Object} detail  이벤트의 상세 정보
-   */
-  emit(e, detail) {
-
-    if (!this._event.has(e)) return
-    for (const plan of this._event.get(e)) {
-      const event = new WeJSEvent
-      event.type = e
-      event.target = this
-      event.detail = detail
-      plan.handler(event)
-      if (plan.once) this._event.get(e).delete(plan)
-    }
-
   }
 
 }

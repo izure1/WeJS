@@ -3,15 +3,7 @@
     class="we-body" :class="{
     'scene2d': scene.type === SCENE_2D,
     'scene3d': scene.type === SCENE_3D,
-  }" :we-body-size="sizeMax" :style="{ 
-    transform: `translate3d(
-      ${centerPointX}px,
-      ${centerPointY}px,
-      ${-body.component.transform.z}px) 
-      rotateX(${body.component.transform.rotateX}deg)
-      rotateY(${-body.component.transform.rotateY}deg)
-      rotateZ(${body.component.transform.rotateZ}deg)
-      scale(${body.component.transform.scale})`,
+  }" :we-body-size="sizeMax" :style="{
     transition: `
       all
       ${body.component.transform.duration}ms
@@ -130,6 +122,7 @@
   import cycleStart from './Methods/cycleStart'
   import cycleUpdate from './Methods/cycleUpdate'
   import cycleDestroy from './Methods/cycleDestroy'
+  import translate from './Methods/translate'
   import emit from './Methods/emit'
 
   import centerPointX from './Computed/centerPointX'
@@ -173,16 +166,18 @@
       cycleStart,
       cycleUpdate,
       cycleDestroy,
+      translate,
       emit,
     },
 
     watch: {
 
-      'sizeSelf'() {
-        this.calcSizeMax()
-      },
-      'sizeChild'() {
-        this.calcSizeMax()
+      'sizeSelf'() { this.calcSizeMax() },
+      'sizeChild'() { this.calcSizeMax() },
+      // 최소한의 성능 향상을 위하여 Attribute bind 기능을 이용하지 않았습니다.
+      'body.component.transform': {
+        deep: true,
+        handler() { this.translate() }
       }
 
     },
