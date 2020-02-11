@@ -16,46 +16,58 @@
     const scene = new WeJS.Scene3d // 새로운 씬
     const factory = new WeJS.ComponentFactory // 컴포넌트를 만들어주는 인스턴스 객체
 
-
     const getRandomNumber = (start, end) => {
       const between = end - start
       return (Math.random() * between) + start
     }
 
-    const MAX_COUNT = 300 // 만들어질 객체의 개수
-    const SPACE_RADIUS = 250 // 만들어질 공간의 반지름. 이 범위 안에 객체가 생성됩니다.
+    scene.onStart(() => {
 
-    // 랜덤한 위치에 다수의 객체를 만들고 씬에 붙여넣습니다
-    for (let i = 0; i < MAX_COUNT; i++) {
+        const MAX_COUNT = 300 // 만들어질 객체의 개수
+        const SPACE_RADIUS = 250 // 만들어질 공간의 반지름. 이 범위 안에 객체가 생성됩니다.
 
-      const object = new WeJS.View
+        // 랜덤한 위치에 다수의 객체를 만들고 씬에 붙여넣습니다
+        for (let i = 0; i < MAX_COUNT; i++) {
 
-      // 랜덤한 x, y, z 좌표를 받아옵니다
-      const x = getRandomNumber(-SPACE_RADIUS, SPACE_RADIUS)
-      const y = getRandomNumber(-SPACE_RADIUS, SPACE_RADIUS)
-      const z = getRandomNumber(-SPACE_RADIUS, SPACE_RADIUS)
+            const object = new WeJS.View
 
-      object.id = `object_${i}`
-      object.component.add(factory.create(WeJS.RESERVATION.TEXT))
-      object.component.text.content = `Hello,\n${i} Object!`
-      object.component.text.color = 'black'
-      object.component.text.borderColor = 'white'
-      object.component.text.borderWidth = 3
-      object.component.text.fontSize = 20
+            // 랜덤한 x, y, z 좌표를 받아옵니다
+            const x = getRandomNumber(-SPACE_RADIUS, SPACE_RADIUS)
+            const y = getRandomNumber(-SPACE_RADIUS, SPACE_RADIUS)
+            const z = getRandomNumber(-SPACE_RADIUS, SPACE_RADIUS)
 
-      object.component.transform.x = x
-      object.component.transform.y = y
-      object.component.transform.z = z
+            object.id = `object_${i}`
+            object.component.add(factory.create(WeJS.RESERVATION.TEXT))
+            object.component.text.content = `Hello,\n${i} Object!`
+            object.component.text.color = 'black'
+            object.component.text.borderColor = 'white'
+            object.component.text.borderWidth = 3
+            object.component.text.fontSize = 20
 
-      scene.component.children.lists.add(object)
+            object.component.transform.x = x
+            object.component.transform.y = y
+            object.component.transform.z = z
 
-    }
+            scene.component.children.lists.add(object)
 
-    // 앱이 부착될 element를 지정
-    app.element = '#app'
-    app.setSize(800, 500)
+        }
 
-    app.launch(scene)
+    })
+
+    Promise.resolve().then(async () => {
+        // 앱이 부착될 element를 지정
+        app.element = '#app'
+        app.size = [800, 500]
+
+
+        const splash = new WeJS.Scene3d
+
+        splash.component.add(factory.create(WeJS.RESERVATION.TEXT))
+        splash.component.text.content = 'Building...'
+
+        await app.start(splash)
+        await app.launch(scene)
+    })
   </script>
   <script>
     function run() {

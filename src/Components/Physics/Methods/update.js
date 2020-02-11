@@ -1,3 +1,3 @@
 export default function update() {
-  this.translateObject()
+  this.translate()
 }

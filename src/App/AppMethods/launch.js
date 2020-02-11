@@ -1,29 +1,14 @@
-import Scene from '../../Scene/Scene'
+export default async function launch(...s) {
 
-import Vue from 'vue'
-import App from '../App.vue'
+    this.scenes.clear()
 
+    const scenes = [...s]
+    const scenesDones = []
+    
+    for (const scene of scenes)
+        scenesDones.push(this.addScene(scene))
 
-export default function launch(scenes) {
-
-  this.destroy()
-
-  if (!Array.isArray(scenes)) scenes = [scenes]
-  for (const scene of scenes) this.addScene(scene)
-
-  
-  this.app = new Vue({
-    el: this.element,
-    template: '<App :scenes="scenes" :app="app" />',
-    data: {
-      scenes: this.scenes,
-      app: this
-    },
-    components: {
-      App
-    }
-  })
-
-  return this.app
+    await Promise.all(scenesDones)
+    return this.app
 
 }

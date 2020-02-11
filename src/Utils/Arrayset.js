@@ -24,7 +24,7 @@ class Arrayset extends Array {
   }
 
   clear() {
-    this.length = 0
+    this.splice(0, this.length)
   }
 
   delete(v) {

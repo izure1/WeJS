@@ -1,38 +1,48 @@
 import Definer from '../../Utils/Definer'
 import WeJSEventEmitter from '../../WeJSEvent/WeJSEventEmitter'
 
+import Matter from 'matter-js'
+window.a = Matter
 
 class Component extends WeJSEventEmitter {
 
-  constructor(info) {
+    static waitAttached(component) {
+        return component.__vue_ready
+    }
 
-    super()
+    static attachVue(component, vue) {
+        component.__vue = vue
+        component.__vue_init(this)
+        return component.__vue
+    }
 
-    this.name = null
-    Object.assign(this, info)
+    constructor(info) {
 
-    Definer.create('__vue', null)
-      .seal(true).hidden(true).final(false)
-      .to(this)
+        super()
 
-  }
+        this.name = null
+        Object.assign(this, info)
 
-  get vue() {
-    return this.__vue
-  }
+        Definer
+            .create('__vue_init', null)
+            .seal(true).hidden(true).final(false)
+            .to(this)
 
-  setVue(vue) {
-    this.__vue = vue
-    return this.vue
-  }
+        Definer
+            .create('__vue_ready', new Promise(resolve => { this.__vue_init = resolve }))
+            .seal(true).hidden(true).final(true)
+            .to(this)
 
-  destroy() {
-    Object.getOwnPropertyNames(this).forEach(property => {
-      const attribute = Object.getOwnPropertyDescriptor(this, property)
-      if (attribute.writable) this[property] = null
-      if (attribute.configurable) delete this[property]
-    })
-  }
+        Definer
+            .create('__vue', null)
+            .seal(true).hidden(true).final(false)
+            .to(this)
+
+    }
+
+    get vue() {
+        return this.__vue
+    }
 
 }
 

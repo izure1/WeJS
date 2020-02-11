@@ -1,3 +1,5 @@
+import ScenePhysics from "./Scene/ScenePhysics"
+
 const app = new WeJS.App
 const scene = new WeJS.Scene
 
@@ -52,12 +54,15 @@ scene.start(children => {
   const a = new WeJS.View
   const b = new WeJS.View
 
+  scene.physics.init()
+  scene.physics.start()
+  
   children.lists.push(a, b)
 
 })
 scene.update(() => {
 
-  WeJS.Scene
+  //TODO WeJS.Scene
 
 })
 scene.beforeDestroy(() => {
@@ -68,6 +73,7 @@ scene.beforeDestroy(() => {
     camera,
   } = scene.component
 
+  scene.physics.init()
   children.lists.clear()
   camera.x = 0
   camera.y = 0

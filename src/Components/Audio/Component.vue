@@ -1,22 +1,22 @@
 <template>
-  <div></div>
+    <div></div>
 </template>
 
 <script>
-  import AssetLoader from '../../Asset/AssetLoader/AssetLoader'
-  import Component from '../../View/Component/Component'
+import AssetLoader from '../../Asset/AssetLoader/AssetLoader'
+import Component from '../../View/Component/Component'
 
-  import play from './Helper/play'
-  import pause from './Helper/pause'
+import play from './Helper/play'
+import pause from './Helper/pause'
 
-  import onChangeAudioSrc from './Methods/onChangeAudioSrc'
-  import reloadAudio from './Methods/reloadAudio'
-  import setAudioProperty from './Methods/setAudioProperty'
-  import observeAudioPosition from './Methods/observeAudioPosition'
-  import destroyObserve from './Methods/destroyObserve'
+import onChangeAudioSrc from './Methods/onChangeAudioSrc'
+import reloadAudio from './Methods/reloadAudio'
+import setAudioProperty from './Methods/setAudioProperty'
+import observeAudioPosition from './Methods/observeAudioPosition'
+import destroyObserve from './Methods/destroyObserve'
 
 
-  export class Reservation extends Component {
+export class Reservation extends Component {
 
     name = 'audio'
     src = null
@@ -27,62 +27,60 @@
     recaching = 150
 
     constructor(...args) {
-      super(...args)
+    super(...args)
     }
 
-  }
+}
 
-  Reservation.prototype.play = play
-  Reservation.prototype.pause = pause
+Reservation.prototype.play = play
+Reservation.prototype.pause = pause
 
-  export default {
+export default {
 
     props: ['body', 'app'],
     data: () => ({
-      loader: new AssetLoader,
-      audio: null,
-      setAudio: null,
-      intervalIndex: null,
+        loader: new AssetLoader,
+        audio: null,
+        setAudio: null,
+        intervalIndex: null,
     }),
     methods: {
-      onChangeAudioSrc,
-      reloadAudio,
-      setAudioProperty,
-      observeAudioPosition,
-      destroyObserve,
+        onChangeAudioSrc,
+        reloadAudio,
+        setAudioProperty,
+        observeAudioPosition,
+        destroyObserve,
     },
 
     created() {
-      this.body.component.audio.setVue(this)
-      this.reloadAudio()
+        Component.attachVue(this.body.component.audio, this)
+        this.reloadAudio()
     },
     mounted() {
-      this.observeAudioPosition()
+        this.observeAudioPosition()
     },
-    async beforeDestroy() {
-
-      this.destroyObserve()
-      this.body.component.audio.destroy()
-
-      const audio = await this.audio
-      if (audio) audio.unload()
-
+    beforeDestroy() {
+        Promise.resolve().then(async () => {
+            this.destroyObserve()
+            const audio = await this.audio
+            if (audio) audio.unload()
+        })
     },
 
     watch: {
-      audio() {
+    audio() {
         this.setAudioProperty()
-      },
-      'body.component.audio.src'() {
+    },
+    'body.component.audio.src'() {
         this.onChangeAudioSrc()
-      },
-      'body.component.audio': {
+    },
+    'body.component.audio': {
         deep: true,
         handler() {
-          this.setAudioProperty()
+            this.setAudioProperty()
+            }
         }
-      }
     }
 
-  }
+}
 </script>

@@ -18,53 +18,59 @@
     const factory = new WeJS.ComponentFactory // 컴포넌트를 만들어주는 인스턴스 객체
     const loader = new WeJS.AssetLoader // 에셋을 관리해주는 인스턴스 객체
 
-    const video = new WeJS.View
-
-    // 비디오를 보여주기 위해 렌더러 컴포넌트를 생성합니다.
-    const rendererComponent = factory.create(WeJS.RESERVATION.VIDEO)
-    video.component.add(rendererComponent);
 
     // 에셋을 비동기로 로드합니다.
-    (async () => {
+    app.onSplash(async () => {
 
-      // 로드할 에셋을 추가합니다. 추가와 동시에 비동기로 에셋을 로드하기 시작할 것입니다.
-      loader.add('assets/video/sample.mp4', 'video/mp4')
+        // 로드할 에셋을 추가합니다. 추가와 동시에 비동기로 에셋을 로드하기 시작할 것입니다.
+        loader.add('assets/video/sample.mp4', 'video/mp4')
 
-      // 에셋 로딩이 모두 완료될 때 까지 대기합니다.
-      await loader.load()
+        // 에셋 로딩이 모두 완료될 때 까지 대기합니다.
+        await loader.load()
 
-      console.log(`${loader.assets.map(t => t.uri).join(', ')} assets loaded!`)
+        console.log(`${loader.assets.map(t => t.uri).join(', ')} assets loaded!`)
 
-      // 객체에 비디오 경로를 추가합니다.
-      video.component.video.src = 'assets/video/sample.mp4'
+    })
 
-      // 객체의 비디오 넓이를 지정합니다.
-      video.component.video.width = 300
+    scene.onStart(() => {
 
-      // 비디오 재생
-      video.component.video.on('load', e => {
-        e.target.play(3000)
-      })
-
-      // 씬에 객체를 추가합니다.
-      scene.component.children.lists.add(video)
-
-    })()
+        const video = new WeJS.View
 
 
-    // 앱이 부착될 element를 지정
-    app.element = '#app'
-    app.setSize(800, 500)
+        // 비디오를 보여주기 위해 렌더러 컴포넌트를 생성합니다.
+        const rendererComponent = factory.create(WeJS.RESERVATION.VIDEO)
+        video.component.add(rendererComponent)
 
+        // 객체에 비디오 경로를 추가합니다.
+        video.component.video.src = 'assets/video/sample.mp4'
+
+        // 객체의 비디오 넓이를 지정합니다.
+        video.component.video.width = 300
+
+        // 비디오 재생
+        video.component.video.play()
+
+        // 씬에 객체를 추가합니다.
+        scene.component.children.lists.add(video)
+
+    })
+
+
+    
     // 앱에서 씬을 실행
-    app.launch(scene)
-  </script>
-  <script>
-    async function play(time) {
-      // load 메서드를 사용하거나, play 메서드를 사용할 경우 비디오가 Document에 완벽히 부착될 때 까지 비동기로 대기합니다.
-      // 비디오를 3초부터 재생합니다.
-      video.component.video.play(time)
-    }
+    Promise.resolve().then(async () => {
+        // 앱이 부착될 element를 지정
+        app.element = '#app'
+        app.size = [800, 500]
+
+        const splash = new WeJS.Scene3d
+
+        splash.component.add(factory.create(WeJS.RESERVATION.TEXT))
+        splash.component.text.content = 'Loading...'
+
+        await app.start(splash)
+        await app.launch(scene)
+    })
   </script>
 </body>
 

@@ -28,7 +28,7 @@ class AnimationFrame {
   static update() {
 
     window.requestAnimationFrame(step => {
-      if (!Animation.lastUpdate) AnimationFrame.lastUpdate = step
+      if (!AnimationFrame.lastUpdate) AnimationFrame.lastUpdate = step
       for (const callback of AnimationFrame.callback.values()) {
         callback(step, step - AnimationFrame.lastUpdate)
       }

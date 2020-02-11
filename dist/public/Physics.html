@@ -19,72 +19,109 @@
     const collider = new WeJS.Collider // 씬에 부착될 충돌기입니다. 이 규칙에 의거하여 강체 간 충돌을 결정지을 것입니다.
 
     const factory = new WeJS.ComponentFactory // 컴포넌트를 만들어주는 인스턴스 객체
-
-    const objectA = new WeJS.View
-    const objectB = new WeJS.View
-    const ground = new WeJS.View
+    const loader = new WeJS.AssetLoader
 
 
-    for (let i = 0; i < 100; i++) {
+    app.onSplash(async () => {
 
-      const object = new WeJS.View
+      loader.add('assets/audio/crash.mp3', 'audio/mp3')
+      await loader.load()
 
-      // 물리 효과를 주기 위해 물리 컴포넌트를 생성합니다
-      object.id = i
-      object.component.add(factory.create(WeJS.RESERVATION.RECT))
-      object.component.add(factory.create(WeJS.RESERVATION.PHYSICS))
+    })
 
-      const {
-        rect,
-        physics,
-        filter,
-        transform,
-      } = object.component
+    scene.onStart(() => {
 
-      rect.color = `rgb(${getRandomNumber(0, 255)}, ${getRandomNumber(0, 255)}, ${getRandomNumber(0, 255)})`
-      rect.width = 35
-      rect.height = 35
-      physics.isStatic = false
-      filter.cursor = 'pointer'
-      transform.x = getRandomNumber(-300, 300)
-      transform.y = getRandomNumber(300, 500)
+      scene.physics.init()
+      scene.physics.start()
 
-      // 클릭한 객체를 삭제합니다
-      object.on('click', e => {
-        scene.component.children.lists.delete(e.target)
-      })
+      const objectA = new WeJS.View
+      const objectB = new WeJS.View
+      const ground = new WeJS.View
 
-      // ground 객체와 충돌한 객체의 투명도를 낮춥니다.
-      object.on('collisionStart', e => {
-        if (e.detail.another === ground) object.component.filter.opacity = 0.1
-      })
 
-      scene.component.children.lists.add(object)
+      for (let i = 0; i < 50; i++) {
 
-    }
+        const object = new WeJS.View
 
-    ground.component.add(factory.create(WeJS.RESERVATION.RECT))
-    ground.component.add(factory.create(WeJS.RESERVATION.PHYSICS))
+        // 물리 효과를 주기 위해 물리 컴포넌트를 생성합니다
+        object.id = i
+        object.component.add(factory.create(WeJS.RESERVATION.RECT))
+        object.component.add(factory.create(WeJS.RESERVATION.PHYSICS))
+        object.component.add(factory.create(WeJS.RESERVATION.AUDIO))
 
-    ground.component.rect.width = 1600
-    ground.component.rect.height = 30
-    ground.component.rect.color = 'grey'
+        const {
+          rect,
+          physics,
+          audio,
+          filter,
+          transform,
+        } = object.component
 
-    ground.component.physics.isStatic = true
-    ground.component.transform.y = -250
+        rect.color = `rgb(${getRandomNumber(0, 255)}, ${getRandomNumber(0, 255)}, ${getRandomNumber(0, 255)})`
+        rect.width = 35
+        rect.height = 35
+        
+        physics.isStatic = false
+        
+        audio.src = 'assets/audio/crash.mp3'
+        filter.cursor = 'pointer'
 
-    // 씬에 객체를 추가합니다.
-    scene.component.children.lists.add(ground)
+        transform.x = getRandomNumber(-300, 300)
+        transform.y = getRandomNumber(300, 500)
 
-    // 충돌기를 설정합니다
-    //scene.physicsWorld.colliders.add( collider.setBetween(objectA, objectB).createListener() )
+        // 클릭한 객체를 삭제합니다
+        object.on('click', e => {
+            scene.component.children.lists.delete(e.target)
+          //e.target.component.physics.applyForce(0, 0.05)
+        })
 
-    // 앱이 부착될 element를 지정
-    app.element = '#app'
-    app.setSize(800, 500)
+        // ground 객체와 충돌한 객체의 투명도를 낮춥니다.
+        object.on('collisionStart collisionEnd', e => {
+            if (e.detail.another !== ground)
+                return
 
-    // 앱에서 씬을 실행0
-    app.launch(scene)
+            switch(e.type) {
+                case 'collisionStart':
+                    filter.opacity = 0.1
+                    audio.play()
+                    break
+                case 'collisionEnd':
+                    filter.opacity = 1
+                    break
+            }
+        })
+
+        scene.component.children.lists.add(object)
+
+      }
+
+      ground.component.add(factory.create(WeJS.RESERVATION.RECT))
+      ground.component.add(factory.create(WeJS.RESERVATION.PHYSICS))
+
+      ground.component.rect.width = 1600
+      ground.component.rect.height = 30
+      ground.component.rect.color = 'grey'
+
+      ground.component.physics.isStatic = true
+      ground.component.transform.y = -250
+
+      // 씬에 객체를 추가합니다.
+      scene.component.children.lists.add(ground)
+
+    }).onDestroy(scene.clear)
+
+    
+    Promise.resolve().then(async () => {
+
+        // 앱이 부착될 element를 지정
+        app.element = '#app'
+        app.size = [800, 500]
+
+        // 앱에서 씬을 실행
+        await app.start()
+        await app.launch(scene)
+
+    })
   </script>
 </body>
 

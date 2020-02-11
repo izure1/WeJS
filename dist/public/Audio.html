@@ -11,21 +11,13 @@
   <script>
     const app = new WeJS.App // 새로운 viewport 만들기
     const scene = new WeJS.Scene3d // 새로운 씬
-    const audio = new WeJS.View // 오디오 객체
-
 
     const factory = new WeJS.ComponentFactory // 컴포넌트를 만들어주는 인스턴스 객체
     const loader = new WeJS.AssetLoader // 에셋을 관리해주는 인스턴스 객체
 
-    // 오디오 컴포넌트를 생성합니다.
-    const audioComponent = factory.create(WeJS.RESERVATION.AUDIO)
-
-    // 만들어진 컴포넌트를 객체에 추가한다
-    audio.component.add(audioComponent);
-
 
     // 에셋을 비동기로 로드합니다.
-    (async () => {
+    app.onSplash(async () => {
 
       // 로드할 에셋을 추가합니다. 추가와 동시에 비동기로 에셋을 로드하기 시작할 것입니다.
       loader.add('assets/audio/sample.mp3', 'audio/mp3')
@@ -34,6 +26,18 @@
       await loader.load()
 
       console.log(`${loader.assets.map(t => t.uri).join(', ')} assets loaded!`)
+
+    })
+
+    scene.onStart(() => {
+
+      const audio = new WeJS.View // 오디오 객체
+
+      // 오디오 컴포넌트를 생성합니다.
+      const audioComponent = factory.create(WeJS.RESERVATION.AUDIO)
+
+      // 만들어진 컴포넌트를 객체에 추가한다
+      audio.component.add(audioComponent)
 
       // 객체에 비디오 경로를 추가합니다.
       audio.component.audio.src = 'assets/audio/sample.mp3'
@@ -45,19 +49,20 @@
       scene.component.children.lists.add(audio)
 
       // 오디오 재생
-      audio.component.audio.on('load', e => {
-        e.target.play()
-        e.target.loop = true
-      })
+      audio.component.audio.loop = true
+      audio.component.audio.play()
 
-    })()
+    })
 
-    // 앱이 부착될 element를 지정
-    app.element = '#app'
-    app.setSize(800, 500)
-
-    // 앱에서 씬을 실행
-    app.launch(scene)
+    Promise.resolve().then(async () => {
+      // 앱이 부착될 element를 지정
+      app.element = '#app'
+      app.size = [800, 500]
+  
+      // 앱에서 씬을 실행
+      app.start()
+      app.launch(scene)
+    })
   </script>
 </body>
 
