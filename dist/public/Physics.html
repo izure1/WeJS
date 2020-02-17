@@ -69,10 +69,13 @@
         transform.x = getRandomNumber(-300, 300)
         transform.y = getRandomNumber(300, 500)
 
-        // 클릭한 객체를 삭제합니다
+        // 클릭한 객체를 점프합니다
         object.on('click', e => {
+            e.target.component.physics.applyForce(0, 0.05)
+        })
+        // 더블클릭한 객체를 삭제합니다
+        object.on('contextmenu', e => {
             scene.component.children.lists.delete(e.target)
-          //e.target.component.physics.applyForce(0, 0.05)
         })
 
         // ground 객체와 충돌한 객체의 투명도를 낮춥니다.
@@ -117,8 +120,13 @@
         app.element = '#app'
         app.size = [800, 500]
 
+        const splash = new WeJS.Scene3d
+
+        splash.component.add(factory.create(WeJS.RESERVATION.TEXT))
+        splash.component.text.content = 'Building...'
+
         // 앱에서 씬을 실행
-        await app.start()
+        await app.start(splash)
         await app.launch(scene)
 
     })

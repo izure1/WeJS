@@ -1,6 +1,3 @@
-import Vue from 'vue'
-
-
 class ComponentList {
 
   constructor(raw = {}) {
@@ -8,7 +5,7 @@ class ComponentList {
   }
 
   add(component) {
-    this[component.name] = Vue.set(this, component.name, component)
+    this[component.name] = component
   }
 
 }

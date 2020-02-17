@@ -1,3 +1,4 @@
+import { Random } from '../Utils/MathUtil'
 import Definer from '../Utils/Definer'
 import WeJSEventEmitter from '../WeJSEvent/WeJSEventEmitter'
 
@@ -37,6 +38,13 @@ class View extends WeJSEventEmitter {
         this.component.add(factory.create(RESERVATION.CAMERA))
         this.component.add(factory.create(RESERVATION.TRANSFORM))
         this.component.add(factory.create(RESERVATION.FILTER))
+
+
+
+        Definer
+            .create('uid', Random.shortid())
+            .seal(true).hidden(true).final(true)
+            .to(this)
 
         /**
          * 

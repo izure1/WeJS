@@ -1,4 +1,4 @@
-import shortid from 'shortid'
+import { Random } from '../Utils/MathUtil'
 
 
 class AnimationFrame {
@@ -12,7 +12,7 @@ class AnimationFrame {
    * @returns {String}  콜백함수의 ID값을 반환합니다. 이후에 AnimationFrame.cancelRequest 함수의 인수로 ID값을 넘겨 제거할 수 있습니다.
    */
   static request(callback) {
-    const id = shortid.generate()
+    const id = Random.shortid()
     AnimationFrame.callback.set(id, callback)
     return id
   }

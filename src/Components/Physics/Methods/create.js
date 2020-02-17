@@ -5,7 +5,7 @@ function p(x, y) {
     return { x, y }
 }
 
-export default function requestCreateBody() {
+export default function create() {
 
     // 크기에 오류가 있을 시 바디를 만들지 않습니다.
     if (this.bodySize.filter(t => isNaN(t)).length) return
@@ -34,6 +34,7 @@ export default function requestCreateBody() {
     // 만일 fixedRotation 값을 이용하여 intertia를 Infinity로 지정하였을 때, 다시 원래대로 돌려놓기 위한 임시값을 저장해둡니다.
     // 이는 fixedRotation 값을 false로 지정할 때, 이 값이 사용됩니다.
     this.inertia = this.object.inertia
+    this.scale = this.body.component.transform.scale
     
     Matter.World.add(this.scene.physics.world, this.object)
     Matter.Events.trigger(this.scene.physics.world, 'createPhysicsBody', { object: this.object, body: this.body })

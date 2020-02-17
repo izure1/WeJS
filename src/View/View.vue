@@ -44,7 +44,7 @@
 
         <!-- 
         현재 객체를 필터 처리 합니다.
-        필터는 현재 객체의 컴포넌트 ELement만 적용됩니다.
+        필터는 현재 객체의 컴포넌트 Element만 적용됩니다.
         filter 속성이 주어질 경우, 자식 Element는 transform-origin: preserve-3d 을 사용할 수 없기 때문입니다.
         -->
         <div
@@ -68,25 +68,26 @@
             }"
         >
 
-        <!-- 
-            화면에 시각적으로 보이는 컴포넌트를 이곳에 넣습니다.
-            이 컴포넌트들은 position: static이므로, 위에서 아래로 순차대로 쌓입니다.
-        -->
-        <div class="we-components-visible">
-            <component-text v-if="     hasComponent('text')" :app="app" :scene="scene" :body="body" />
-            <component-html v-if="     hasComponent('html')" :app="app" :scene="scene" :body="body" />
-            <component-image v-if="    hasComponent('image')" :app="app" :scene="scene" :body="body" />
-            <component-video v-if="    hasComponent('video')" :app="app" :scene="scene" :body="body" />
-            <component-rect v-if="     hasComponent('rect')" :app="app" :scene="scene" :body="body" />
-        </div>
+            <!-- 
+                화면에 시각적으로 보이는 컴포넌트를 이곳에 넣습니다.
+                이 컴포넌트들은 position: static이므로, 위에서 아래로 순차대로 쌓입니다.
+            -->
+            <div class="we-components-visible">
+                <component-text v-if="     hasComponent('text')" :app="app" :scene="scene" :body="body" />
+                <component-html v-if="     hasComponent('html')" :app="app" :scene="scene" :body="body" />
+                <component-image v-if="    hasComponent('image')" :app="app" :scene="scene" :body="body" />
+                <component-video v-if="    hasComponent('video')" :app="app" :scene="scene" :body="body" />
+                <component-rect v-if="     hasComponent('rect')" :app="app" :scene="scene" :body="body" />
+            </div>
 
-        <!-- 
-            화면에 시각적으로 보이지 않는 컴포넌트를 이곳에 넣습니다.
-        -->
-        <div class="we-components-hidden">
-            <component-physics v-if="  hasComponent('physics')" :app="app" :scene="scene" :body="body" />
-            <component-audio v-if="    hasComponent('audio')" :app="app" :scene="scene" :body="body" />
-        </div>
+            <!-- 
+                화면에 시각적으로 보이지 않는 컴포넌트를 이곳에 넣습니다.
+            -->
+            <div class="we-components-hidden">
+                <component-physics v-if="  hasComponent('physics')" :app="app" :scene="scene" :body="body" />
+                <component-audio v-if="    hasComponent('audio')" :app="app" :scene="scene" :body="body" />
+                <component-particle v-if=" hasComponent('particle')" :app="app" :scene="scene" :body="body" />
+            </div>
 
         </div>
 
@@ -108,9 +109,18 @@
                     rotateZ(${-body.component.camera.rotateZ}deg)`
             }"
         >
+            <!-- 파티클을 보여줍니다. 이 기능은 물리효과를 필요로 하기 때문에, 객체의 타입이 씬일 경우에만 동작합니다. -->
+            <scene-particle
+                v-if="isScene"
+                :emitters="body.particle.emitters"
+                :app="app"
+                :scene="scene"
+                :body="body"
+            />
+            <!-- 자식 객체를 보여줍니다 -->
             <we-body
-                v-for="(children, i) in body.component.children.lists"
-                :key="i"
+                v-for="children in body.component.children.lists"
+                :key="children.uid"
                 :app="app"
                 :scene="scene"
                 :body="children"
@@ -130,6 +140,8 @@ import ComponentImage from '../Components/Image/Component'
 import ComponentVideo from '../Components/Video/Component'
 import ComponentRect from '../Components/Rect/Component'
 import ComponentAudio from '../Components/Audio/Component'
+import ComponentParticle from '../Components/Particle/Component'
+import SceneParticle from './SceneParticle.vue'
 
 import hasComponent from './Methods/hasComponent'
 import onChangeSize from './Methods/onChangeSize'
@@ -143,6 +155,7 @@ import cycleDestroy from './Methods/cycleDestroy'
 import translate from './Methods/translate'
 import emit from './Methods/emit'
 
+import isScene from './Computed/isScene'
 import centerPointX from './Computed/centerPointX'
 import centerPointY from './Computed/centerPointY'
 
@@ -158,6 +171,8 @@ export default {
         ComponentVideo,
         ComponentRect,
         ComponentAudio,
+        ComponentParticle,
+        SceneParticle,
     },
     props: ['app', 'scene', 'body', 'coords', 'requiredLevel'],
     data: () => ({
@@ -171,6 +186,7 @@ export default {
     }),
 
     computed: {
+        isScene,
         centerPointX,
         centerPointY,
     },
@@ -235,7 +251,7 @@ export default {
     height: 0;
     visibility: hidden;
     position: absolute;
-    left: 50%;
     top: 50%;
+    left: 50%;
 }
 </style>

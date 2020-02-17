@@ -1,3 +1,6 @@
+import whenDomReady from 'when-dom-ready'
+
+
 class Preloader {
 
     /**
@@ -8,14 +11,13 @@ class Preloader {
      */
     static waitPreload(preload, ...params) {
         return new Promise((resolve, reject) => {
-            const result = preload(...params)
-            result.then(resolve).catch(reject)
+            preload(...params).then(resolve).catch(reject)
         })
     }
 
     /**
      * 
-     * @param {Array} preloads  Promise를 반환하는 함수를 담은 배열입니다
+     * @param {Array<Function>} preloads  Promise를 반환하는 함수를 담은 배열입니다
      * @param  {...any} params  preloads 배열에 담긴 함수를 실행할 때 넘길 매개변수입니다
      * @returns {Promise}  프로미스를 반환합니다
      */
@@ -27,6 +29,31 @@ class Preloader {
                 results.push(result)
             }
             Promise.all(results).then(resolve).catch(reject)
+        })
+    }
+
+    /**
+     * 
+     * @param {HTMLElement} el 
+     * @returns {Promise}
+     */
+    static waitElement(el) {
+        return whenDomReady(el)
+    }
+    
+    /**
+     * 
+     * @param {Array<HTMLElement>} elements 
+     * @returns {Promise}
+     */
+    static waitElements(elements) {
+        return new Promise((resolve, reject) => {
+            const promises = []
+            for (const el of elements) {
+                const promise = Preloader.waitElement(el)
+                promises.push(promise)
+            }
+            Promise.all(promises).then(resolve).catch(reject)
         })
     }
 

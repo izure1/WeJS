@@ -9,8 +9,8 @@ import Arrayset from '../../Utils/Arrayset'
 import Component from '../../View/Component/Component'
 
 import onChangeSize from './Methods/onChangeSize'
-import destroyBody from './Methods/destroyBody'
-import requestCreateBody from './Methods/requestCreateBody'
+import destroy from './Methods/destroy'
+import create from './Methods/create'
 import setStatic from './Methods/setStatic'
 import setFriction from './Methods/setFriction'
 import setRestitution from './Methods/setRestitution'
@@ -71,17 +71,17 @@ export class Reservation extends Component {
 export default {
     props: ['scene', 'body'],
     data: () => ({
-        updateRequestId: null,
-        searcher: new Searcher,
-        bodySize: [0, 0],
-        inertia: 0,
         object: null,
+        tracking: true,
+        bodySize: [0, 0],
+        scale: 1,
+        inertia: 0,
     }),
-    tracking: true,
+
     methods: {
         onChangeSize,
-        destroyBody,
-        requestCreateBody,
+        destroy,
+        create,
         setStatic,
         setFriction,
         setRestitution,
@@ -91,11 +91,11 @@ export default {
         transform,
     },
     created() {
-        Component.attachVue(this.body.component.physics, this)
         this.body.on('changesize', this.onChangeSize)
+        Component.attachVue(this.body.component.physics, this)
     },
     beforeDestroy() {
-        this.destroyBody()
+        this.destroy()
         this.body.off('changesize', this.onChangeSize)
     },
 
@@ -108,6 +108,9 @@ export default {
             this.transform()
         },
         'body.component.transform.rotateZ'() {
+            this.transform()
+        },
+        'body.component.transform.scale'() {
             this.transform()
         },
         'body.component.physics.type'() {
@@ -129,7 +132,7 @@ export default {
             this.setFixedRotation()
         },
         'bodySize'() {
-            this.requestCreateBody()
+            this.create()
         }
     }
 

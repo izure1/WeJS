@@ -1,8 +1,6 @@
 import Definer from '../../Utils/Definer'
 import WeJSEventEmitter from '../../WeJSEvent/WeJSEventEmitter'
 
-import Matter from 'matter-js'
-window.a = Matter
 
 class Component extends WeJSEventEmitter {
 

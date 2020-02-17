@@ -1,3 +1,5 @@
+import Matter from 'matter-js'
+
 import App from './App/App'
 import Scene2d from './Scene/Scene2d'
 import Scene3d from './Scene/Scene3d'
@@ -10,6 +12,7 @@ import Asset from './Asset/Asset/Asset'
 import Collider from './Collider/Collider'
 import ComponentBuilder from './View/ComponentBuilder/ComponentBuilder'
 import ComponentFactory from './View/ComponentFactory/ComponentFactory'
+import * as MathUtil from './Utils/MathUtil'
 import Preloader from './Utils/Preloader'
 import Searcher from './Utils/Searcher'
 import Sleep from './Utils/Sleep'
@@ -25,6 +28,8 @@ const VERSION = PACKAGE.version
 
 export default {
 
+    Matter,
+
     App,
     Scene2d,
     Scene3d,
@@ -37,6 +42,7 @@ export default {
     Collider,
     ComponentBuilder,
     ComponentFactory,
+    MathUtil,
     Preloader,
     Searcher,
     Sleep,

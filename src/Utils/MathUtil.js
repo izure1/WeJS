@@ -1,10 +1,13 @@
-class Angler {
+import shortid from 'shortid'
 
-  static radToDeg(v) {
+
+class Angle {
+
+  static radianToDegree(v) {
     return v * (180 / Math.PI)
   }
 
-  static degToRad(v) {
+  static degreeToRadian(v) {
     return v * (Math.PI / 180)
   }
 
@@ -18,12 +21,12 @@ class Angler {
   }
 
   fromDegree(v) {
-    this.__radian = Angler.degToRad(v)
+    this.__radian = Angle.degreeToRadian(v)
     return this
   }
 
   get angle() {
-    return Angler.radToDeg(this.__radian)
+    return Angle.radianToDegree(this.__radian)
   }
 
   get radian() {
@@ -32,8 +35,28 @@ class Angler {
 
 }
 
+class Random {
+
+    static between(a = 0, b = 1) {
+        return Math.random() * (b - a) + a
+    }
+
+    static shortid() {
+        return shortid.generate()
+    }
+
+    static uuid() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+            let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8)
+            return v.toString(16)
+        })
+    }
+
+}
+
 
 
 export {
-  Angler
+  Angle,
+  Random,
 }

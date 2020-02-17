@@ -16,10 +16,9 @@ class ScenePhysics {
      */
     static updateRender(lists) {
         for (const body of lists) {
-            if (
-                body.component.physics &&
-                body.component.physics.vue
-            ) body.component.physics.vue.update()
+            if (body.component.physics &&
+                body.component.physics.vue)
+                body.component.physics.vue.update()
         }
     }
 
@@ -80,11 +79,13 @@ class ScenePhysics {
         this.world = this.engine.world
         this.table = new WeakMap
 
+        this.world.gravity.y = 0.98
+
     }
 
     start() {
         Matter.Runner.run(this.runner, this.engine)
-        Matter.Events.on(this.runner, 'beforeUpdate', e => ScenePhysics.updateRender(this.lists))
+        Matter.Events.on(this.runner, 'afterUpdate', e => ScenePhysics.updateRender(this.lists))
         Matter.Events.on(this.world, 'createPhysicsBody', e => ScenePhysics.addObjectToTable(this.table, e.object, e.body))
         Matter.Events.on(this.engine, 'collisionStart', e => ScenePhysics.onCollisionStart(this.table, e.pairs))
         Matter.Events.on(this.engine, 'collisionEnd', e => ScenePhysics.onCollisionEnd(this.table, e.pairs))

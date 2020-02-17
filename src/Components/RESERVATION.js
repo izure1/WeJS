@@ -42,6 +42,9 @@ import COMPONENT_DATASET, {
 import COMPONENT_AUDIO, {
   Reservation as AUDIO
 } from './Audio/Component.vue'
+import COMPONENT_PARTICLE, {
+    Reservation as PARTICLE
+} from './Particle/Component.vue'
 
 
 const PACKAGES = [
@@ -118,6 +121,12 @@ const PACKAGES = [
     reservation: AUDIO,
     component: COMPONENT_AUDIO,
   },
+
+  {
+      name: (new PARTICLE).name,
+      reservation: PARTICLE,
+      component: COMPONENT_PARTICLE,
+  }
 
 ]
 

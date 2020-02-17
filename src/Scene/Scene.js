@@ -1,9 +1,12 @@
 import Matter from 'matter-js'
+import Vue from 'vue'
+window.Vue = Vue
 
 import Arrayset from '../Utils/Arrayset'
 import Definer from '../Utils/Definer'
 import View from '../View/View'
 import ScenePhysics from './ScenePhysics'
+import SceneParticle from './SceneParticle'
 import ComponentFactory from '../View/ComponentFactory/ComponentFactory'
 
 import RESERVATION from '../Components/RESERVATION'
@@ -32,6 +35,11 @@ class Scene extends View {
 
         Definer
             .create('physics', new ScenePhysics(this.component.children.lists))
+            .seal(true).hidden(true).final(true)
+            .to(this)
+
+        Definer
+            .create('particle', new SceneParticle(this))
             .seal(true).hidden(true).final(true)
             .to(this)
 

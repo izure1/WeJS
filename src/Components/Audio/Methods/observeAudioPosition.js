@@ -22,9 +22,6 @@ function getComputedTranslateZ(obj) {
 
 export default function observeAudioPosition() {
 
-  const searcher = new Searcher
-  searcher.app = this.app
-
   this.intervalIndex = setInterval(async () => {
 
     const el = this.$el
@@ -51,7 +48,7 @@ export default function observeAudioPosition() {
     let bodys = []
     let body = el
     do {
-      body = searcher.getParentElementFromChildren(body)
+      body = Searcher.getParentElementFromChildren(body)
       if (!body) break
       bodys.push(body)
     } while (body.classList.contains('we-body'))

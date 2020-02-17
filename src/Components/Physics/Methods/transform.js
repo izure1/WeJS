@@ -1,20 +1,22 @@
 import Matter from 'matter-js'
-import { Angler } from '../../../Utils/MathUtil'
+import { Angle } from '../../../Utils/MathUtil'
 
-
-const angler = new Angler
 
 export default function transform() {
     
-    if (this.tracking) {
+    if (this.tracking && this.object) {
     
-        const { x, y, rotateZ } = this.body.component.transform
+        const { x, y, rotateZ, scale } = this.body.component.transform
 
         const vector = Matter.Vector.create(x, -y)
-        const angle = angler.fromDegree(rotateZ).radian
+        const angle = Angle.degreeToRadian(rotateZ)
+
+        const calced = scale / this.scale
+        this.scale = scale
         
         Matter.Body.setPosition(this.object, vector)
         Matter.Body.setAngle(this.object, angle)
+        Matter.Body.scale(this.object, calced, calced)
 
     }
 

@@ -2,11 +2,13 @@
 <html>
 
 <head>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 
 <body>
   <div id="app"></div>
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="../lib/WeJS.js"></script>
   <script>
     const app = new WeJS.App // 새로운 viewport 만들기
@@ -72,12 +74,11 @@
       button.component.transform.y = -50
   
   
-      dialog.component.add(factory.create(WeJS.RESERVATION.RECT))
-  
-      dialog.component.rect.width = 800
-      dialog.component.rect.height = 150
-      dialog.component.rect.color = 'black'
-      dialog.component.filter.opacity = 0.1
+      dialog.component.add(factory.create(WeJS.RESERVATION.HTML))
+      dialog.component.html.content = '<div id="dialog">Hello, World!</div>'
+      dialog.onStart(() => {
+          $('#dialog').dialog({ title: 'Title' })
+      })
   
       dialog.component.transform.x = 400
       dialog.component.transform.y = -400

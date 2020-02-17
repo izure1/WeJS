@@ -6,8 +6,6 @@ class UserGestureListener {
 
   static addListener(event, tag, handler) {
 
-    const searcher = new Searcher
-
   }
 
 }

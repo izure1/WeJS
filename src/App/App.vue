@@ -1,24 +1,31 @@
 <template>
-    <section class="we-viewport" :style="{ 
-        width: `${app.width}px`,
-        height: `${app.height}px`,
-        backgroundColor: app.backgroundColor,
-        borderColor: app.borderColor,
-        borderWidth: `${app.borderWidth}px`,
-        perspective: `${app.perspective}px`,
-    }">
-        <div class="we-screen" :style="{
+    <section class="we-viewport"
+        :style="{ 
             width: `${app.width}px`,
             height: `${app.height}px`,
-            transform: `scale(${appScale})`,
-            margin: `${-app.height / 2}px 0 0 ${-app.width / 2}px`,
-        }">
-        <we-body v-for="(scene, index) in scenes" :key="index"
-            :app="app"
-            :scene="scene"
-            :body="scene"
-            :requiredLevel="scene.levelDesign.getRequired(scene.level)"
-            :style="{ zIndex: index }" />
+            backgroundColor: app.backgroundColor,
+            borderColor: app.borderColor,
+            borderWidth: `${app.borderWidth}px`,
+            perspective: `${app.perspective}px`,
+        }"
+    >
+        <div class="we-screen"
+            :style="{
+                width: `${app.width}px`,
+                height: `${app.height}px`,
+                transform: `scale(${appScale})`,
+                margin: `${-app.height / 2}px 0 0 ${-app.width / 2}px`,
+            }"
+        >
+            <we-body
+                v-for="(scene, index) in scenes"
+                :key="index"
+                :app="app"
+                :scene="scene"
+                :body="scene"
+                :requiredLevel="scene.levelDesign.getRequired(scene.level)"
+                :style="{ zIndex: index }"
+            />
         </div>
     </section>
 </template>

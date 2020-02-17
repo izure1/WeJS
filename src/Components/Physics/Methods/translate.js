@@ -1,7 +1,5 @@
-import { Angler } from '../../../Utils/MathUtil'
+import { Angle } from '../../../Utils/MathUtil'
 
-
-const angler = new Angler
 
 export default function translate() {
     
@@ -13,7 +11,7 @@ export default function translate() {
     this.tracking = false
     transform.x = x
     transform.y = -y
-    transform.rotateZ = angler.fromRadian(this.object.angle).angle
+    transform.rotateZ = Angle.radianToDegree(this.object.angle)
     this.$nextTick(() => { this.tracking = true })
 
 }
