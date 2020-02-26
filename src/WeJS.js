@@ -6,7 +6,7 @@ import Scene3d from './Scene/Scene3d'
 import View from './View/View'
 
 import Animation from './Animation/Animation'
-import AnimationFrame from './Utils/AnimationFrame'
+import Tick from './Utils/Tick'
 import AssetLoader from './Asset/AssetLoader/AssetLoader'
 import Asset from './Asset/Asset/Asset'
 import Collider from './Collider/Collider'
@@ -36,7 +36,6 @@ export default {
     View,
 
     Animation,
-    AnimationFrame,
     AssetLoader,
     Asset,
     Collider,
@@ -46,6 +45,7 @@ export default {
     Preloader,
     Searcher,
     Sleep,
+    Tick,
     UserGestureListener,
 
     RESERVATION,

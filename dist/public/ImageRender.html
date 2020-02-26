@@ -20,7 +20,7 @@
     const loader = new WeJS.AssetLoader // 에셋을 관리해주는 인스턴스 객체
 
     // 에셋을 비동기로 로드합니다.
-    app.onSplash(async () => {
+    app.onPreload(async () => {
 
       // 로드할 에셋을 추가합니다. 추가와 동시에 비동기로 에셋을 로드하기 시작할 것입니다.
       loader.addFromArray([
@@ -48,7 +48,7 @@
       image.component.image.width = 300
 
       // 씬에 객체를 추가합니다.
-      scene.component.children.lists.add(image)
+      scene.launch(image)
 
     })
 

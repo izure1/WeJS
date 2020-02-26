@@ -17,7 +17,7 @@
 
 
     // 에셋을 비동기로 로드합니다.
-    app.onSplash(async () => {
+    app.onPreload(async () => {
 
       // 로드할 에셋을 추가합니다. 추가와 동시에 비동기로 에셋을 로드하기 시작할 것입니다.
       loader.add('assets/audio/sample.mp3', 'audio/mp3')
@@ -46,7 +46,7 @@
       audio.component.audio.width = 300
 
       // 씬에 객체를 추가합니다.
-      scene.component.children.lists.add(audio)
+      scene.launch(audio)
 
       // 오디오 재생
       audio.component.audio.loop = true
@@ -60,8 +60,8 @@
       app.size = [800, 500]
   
       // 앱에서 씬을 실행
-      app.start()
-      app.launch(scene)
+      await app.start()
+      await app.launch(scene)
     })
   </script>
 </body>

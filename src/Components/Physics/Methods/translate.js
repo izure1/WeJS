@@ -6,7 +6,7 @@ export default function translate() {
     if (!this.object) return
 
     const { x, y } = this.object.position
-    const transform = this.body.component.transform
+    const { transform } = this.body.component
   
     this.tracking = false
     transform.x = x

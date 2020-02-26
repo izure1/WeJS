@@ -1,9 +1,9 @@
-import AnimationFrame from '../../Utils/AnimationFrame'
+import Tick from '../../Utils/Tick'
 
 
 export default function cycleDestroy() {
 
-    AnimationFrame.cancelRequest(this.updateRequestId)
+    Tick.cancelRequest(this.updateRequestId)
 
     for (const fn of this.body.lifecycle.destroy)
         fn(this.body.lifecycle.dataTransfer)

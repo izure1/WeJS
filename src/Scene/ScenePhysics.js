@@ -1,14 +1,11 @@
 import Matter from 'matter-js'
 import Arrayset from '../Utils/Arrayset'
+import Definer from '../Utils/Definer'
 
 
 class ScenePhysics {
-  
-    table = null
-    runner = null
-    engine = null
-    world = null
-    lists = null
+
+    static DEFAULT_GRAVITY = { x: 0, y: 0.98 }
 
     /**
      * 
@@ -65,30 +62,44 @@ class ScenePhysics {
         }
     }
 
-    constructor(lists = new Arrayset) {
-        this.lists = lists
-    }
+    constructor(scene) {
 
-    init() {
+        Definer
+            .create('lists', scene.component.children.lists)
+            .seal(true).hidden(true).final(true)
+            .to(this)
 
-        if (this.runner)
-            Matter.Runner.stop(this.runner)
+        Definer
+            .create('runner', Matter.Runner.create())
+            .seal(true).hidden(true).final(false)
+            .to(this)
+        Definer
+            .create('engine', Matter.Engine.create())
+            .seal(true).hidden(true).final(false)
+            .to(this)
+        Definer
+            .create('world', this.engine.world)
+            .seal(true).hidden(true).final(false)
+            .to(this)
+        Definer
+            .create('table', new Map)
+            .seal(true).hidden(true).final(false)
+            .to(this)
 
-        this.runner = Matter.Runner.create()
-        this.engine = Matter.Engine.create()
-        this.world = this.engine.world
-        this.table = new WeakMap
+        // 이벤트를 핸들링합니다
+        Matter.Events.on(this.runner, 'afterUpdate', e => ScenePhysics.updateRender(this.lists))
+        Matter.Events.on(this.world, 'createPhysicsBody', e => ScenePhysics.addObjectToTable(this.table, e.object, e.body))
+        Matter.Events.on(this.engine, 'collisionStart', e => ScenePhysics.onCollisionStart(this.table, e.pairs))
+        Matter.Events.on(this.engine, 'collisionEnd', e => ScenePhysics.onCollisionEnd(this.table, e.pairs))
 
-        this.world.gravity.y = 0.98
+        // 중력을 설정합니다
+        this.engine.enableSleeping = true
+        this.world.gravity = Matter.Vector.clone(ScenePhysics.DEFAULT_GRAVITY)
 
     }
 
     start() {
         Matter.Runner.run(this.runner, this.engine)
-        Matter.Events.on(this.runner, 'afterUpdate', e => ScenePhysics.updateRender(this.lists))
-        Matter.Events.on(this.world, 'createPhysicsBody', e => ScenePhysics.addObjectToTable(this.table, e.object, e.body))
-        Matter.Events.on(this.engine, 'collisionStart', e => ScenePhysics.onCollisionStart(this.table, e.pairs))
-        Matter.Events.on(this.engine, 'collisionEnd', e => ScenePhysics.onCollisionEnd(this.table, e.pairs))
     }
 
     stop() {

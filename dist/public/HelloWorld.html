@@ -16,7 +16,7 @@
 
     scene.onStart(() => {
 
-        const objectA = new WeJS.View // 씬에 들어갈 객체A
+        const objectA = new WeJS.Scene3d // 씬에 들어갈 객체A
         const objectB = new WeJS.View // 객체A 하위에 들어갈 객체B
 
         // 객체A의 하위에 객체B를 넣어주기 위해,
@@ -27,7 +27,7 @@
         objectA.component.add(childrenComponent)
         objectA.onStart(() => {
             // 이제 실제로 객체A에 객체B를 넣어보자
-            objectA.component.children.lists.add(objectB)
+            objectA.launch(objectB)
         }).onDestroy(() => {
             objectA.component.children.lists.clear()
         })
@@ -38,7 +38,7 @@
 
         // 만들어진 컴포넌트를 객체B에 추가
         objectB.component.add(textComponent)
-
+        
         // 객체B의 출력될 텍스트를 지정
         objectB.component.text.content = 'Hello, World!'
 
@@ -49,7 +49,7 @@
 
         // 씬에 객체A를 추가한다.
         // 객체B는 이미 객체A에 속해있으니, 따로 씬에 추가하지 않아도 된다.
-        scene.component.children.lists.add(objectA)
+        scene.launch(objectA)
 
     }).onDestroy(scene.clear)
 

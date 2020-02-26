@@ -21,22 +21,21 @@
     const factory = new WeJS.ComponentFactory // 컴포넌트를 만들어주는 인스턴스 객체
     const loader = new WeJS.AssetLoader
 
+    const ground = new WeJS.View
 
-    app.onSplash(async () => {
+    app.onPreload(async () => {
 
       loader.add('assets/audio/crash.mp3', 'audio/mp3')
       await loader.load()
 
     })
 
-    scene.onStart(() => {
+    scene.onStart(async () => {
 
-      scene.physics.init()
       scene.physics.start()
 
       const objectA = new WeJS.View
       const objectB = new WeJS.View
-      const ground = new WeJS.View
 
 
       for (let i = 0; i < 50; i++) {
@@ -94,7 +93,7 @@
             }
         })
 
-        scene.component.children.lists.add(object)
+        await scene.addScene(object)
 
       }
 
@@ -109,7 +108,7 @@
       ground.component.transform.y = -250
 
       // 씬에 객체를 추가합니다.
-      scene.component.children.lists.add(ground)
+      await scene.addScene(ground)
 
     }).onDestroy(scene.clear)
 

@@ -10,6 +10,7 @@
         :we-body-tag="body.tags.join(' ')"
         :we-body-size="sizeMax"
         :style="{
+            backgroundColor: body.component.filter.backgroundColor,
             transition: `
                 all
                 ${body.component.transform.duration}ms
@@ -110,7 +111,7 @@
             }"
         >
             <!-- 파티클을 보여줍니다. 이 기능은 물리효과를 필요로 하기 때문에, 객체의 타입이 씬일 경우에만 동작합니다. -->
-            <scene-particle
+            <particle-renderer
                 v-if="isScene"
                 :emitters="body.particle.emitters"
                 :app="app"
@@ -141,7 +142,7 @@ import ComponentVideo from '../Components/Video/Component'
 import ComponentRect from '../Components/Rect/Component'
 import ComponentAudio from '../Components/Audio/Component'
 import ComponentParticle from '../Components/Particle/Component'
-import SceneParticle from './SceneParticle.vue'
+import ParticleRenderer from './ParticleRenderer.vue'
 
 import hasComponent from './Methods/hasComponent'
 import onChangeSize from './Methods/onChangeSize'
@@ -172,7 +173,7 @@ export default {
         ComponentRect,
         ComponentAudio,
         ComponentParticle,
-        SceneParticle,
+        ParticleRenderer,
     },
     props: ['app', 'scene', 'body', 'coords', 'requiredLevel'],
     data: () => ({

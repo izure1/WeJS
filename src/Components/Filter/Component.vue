@@ -14,6 +14,7 @@
     sepia = 0
     duration = 0
     delay = 0
+    backgroundColor = 'transparent'
     ease = 'linear'
     cursor = 'default'
 

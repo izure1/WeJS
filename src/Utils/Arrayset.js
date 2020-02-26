@@ -75,30 +75,11 @@ const Arrayset = function Arrayset() {
         for (const t of array) yield t
     }
 
-    Definer
-        .create('add', add)
-        .seal(true).hidden(true).final(true)
-        .to(array)
-
-    Definer
-        .create('has', has)
-        .seal(true).hidden(true).final(true)
-        .to(array)
-
-    Definer
-        .create('clear', clear)
-        .seal(true).hidden(true).final(true)
-        .to(array)
-
-    Definer
-        .create('delete', _delete)
-        .seal(true).hidden(true).final(true)
-        .to(array)
-
-    Definer
-        .create('generate', generate)
-        .seal(true).hidden(true).final(true)
-        .to(array)
+    Definer.create('add', add)          .seal(true).hidden(true).final(true).to(array)
+    Definer.create('has', has)          .seal(true).hidden(true).final(true).to(array)
+    Definer.create('clear', clear)      .seal(true).hidden(true).final(true).to(array)
+    Definer.create('delete', _delete)   .seal(true).hidden(true).final(true).to(array)
+    Definer.create('generate', generate).seal(true).hidden(true).final(true).to(array)
 
     return array
 

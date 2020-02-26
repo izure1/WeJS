@@ -10,9 +10,7 @@ class ComponentFactory {
   }
 
   createFromName(name) {
-    return this.create(() => ({
-      name
-    }))
+    return this.create(() => ({ name }))
   }
 
 }

@@ -21,7 +21,7 @@
       return (Math.random() * between) + start
     }
 
-    scene.onStart(() => {
+    scene.onStart(async () => {
 
         const MAX_COUNT = 300 // 만들어질 객체의 개수
         const SPACE_RADIUS = 250 // 만들어질 공간의 반지름. 이 범위 안에 객체가 생성됩니다.
@@ -48,7 +48,7 @@
             object.component.transform.y = y
             object.component.transform.z = z
 
-            scene.component.children.lists.add(object)
+            await scene.addScene(object)
 
         }
 

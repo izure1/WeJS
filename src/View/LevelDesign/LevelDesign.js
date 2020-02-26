@@ -2,12 +2,8 @@ class LevelDesign {
 
   static PERSISTENT_LEVEL = 'main'
 
-  constructor(raw) {
-    Object.assign(this, raw)
-  }
-
-  set(name, ...args) {
-    this[name] = [...args]
+  set(name, levels = []) {
+    this[name] = [...levels]
   }
 
   has(name) {

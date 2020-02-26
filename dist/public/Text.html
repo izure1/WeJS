@@ -33,7 +33,7 @@
       text.component.text.fontWeight = 'bold'
 
       // 씬에 객체를 추가합니다.
-      scene.component.children.lists.add(text)
+      scene.launch(text)
       transfer.set('text', text)
 
     }).onUpdate((transfer, delta) => {

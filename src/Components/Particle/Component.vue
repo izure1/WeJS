@@ -4,45 +4,50 @@
 
 <script>
 import Component from '../../View/Component/Component'
-import Emitter from '../../Particle/Emitter'
+import Arrayset from '../../Utils/Arrayset'
+import { ParticleOption } from '../../Particle/Particle'
 
-import modify from './Methods/modify'
+import generate from './Methods/generate'
+import stop from './Methods/stop'
 
 
 export class Reservation extends Component {
 
     name = 'particle'
-    start = 1
-    end = 0
-    duration = 1000
-    interval = 200
-    speed = 0.05
-    frictionAir = 0.3
     quantity = 1
 
     constructor(...args) {
         super(...args)
+        Object.assign(this, new ParticleOption)
     }
 }
 
 export default {
     props: ['scene', 'body'],
-    data: () => ({ emitter: new Emitter }),
-    methods: { modify },
+    data: () => ({
+        particles: new Arrayset,
+        intervalId: null,
+    }),
+    methods: {
+        generate,
+        stop,
+    },
+    created() {
+        this.scene.particle.emitters.add(this.particles)
+        this.generate()
+    },
+    beforeDestroy() {
+        this.scene.particle.emitters.delete(this.particles)
+        this.stop()
+    },
     watch: {
         'body.component.particle': {
             deep: true,
-            handler() { this.modify() }
+            handler() {
+                this.stop()
+                this.generate()
+            }
         }
-    },
-
-    created() {
-        this.scene.particle.emitters.add(this.emitter)
-        // this.emitter.particles.push(1, 2, 3)
-        // console.log(this)
-    },
-    beforeDestroy() {
-        //this.scene.particle.emitters.delete(this.emitter)
     }
 }
 </script>

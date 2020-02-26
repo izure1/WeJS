@@ -20,7 +20,7 @@
     
 
     // 에셋을 비동기로 로드합니다.
-    app.onSplash(async () => {
+    app.onPreload(async () => {
       
       // 로드할 에셋을 추가합니다. 추가와 동시에 비동기로 에셋을 로드하기 시작할 것입니다.
       loader.addFromArray([
@@ -51,9 +51,9 @@
       image.component.image.width = 300
   
       // 씬에 객체를 추가합니다.
-      scene.component.children.lists.add(image)
+      scene.launch(image)
       
-    })
+    }).onDestroy(scene.clear)
     
     gui.onStart(() => {
       
@@ -84,20 +84,20 @@
       dialog.component.transform.y = -400
   
       // 버튼을 gui 씬에 넣습니다.
-      gui.component.children.lists.add(button)
-      gui.component.children.lists.add(dialog)
+      gui.launch(button, dialog)
       
-    })
+    }).onDestroy(gui.clear)
 
     
     Promise.resolve().then(async () => {
       // 앱이 부착될 element를 지정
       app.element = '#app'
       app.size = [800, 500]
-      app.start()
+
+      await app.start()
       // 앱에서 씬을 실행
       // 두 가지 씬을 동시에 실행합니다. 배열의 뒤에 있을수록, 높은 zIndex 값을 갖습니다.
-      app.launch(scene, gui)
+      await app.launch(scene, gui)
     })
   </script>
   <script>

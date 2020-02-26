@@ -102,8 +102,8 @@ module.exports = {
     publicPath: '/dist/lib/',
     inline: true,
     writeToDisk: true,
-    host: '192.168.0.12',
-    port: 9001
+    host: 'localhost',
+    port: 9002
   },
   plugins: [
     new VueLoaderPlugin,

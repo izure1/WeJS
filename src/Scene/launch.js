@@ -1,6 +1,6 @@
 export default async function launch(...s) {
 
-    this.scenes.clear()
+    this.component.children.lists.clear()
 
     const scenes = [...s]
     const scenesDones = []
