@@ -1,26 +1,31 @@
-class ParticleOption {
+import EventEmitter from '../WeJSEvent/WeJSEventEmitter'
 
+
+class ParticleOption {
+    src = null
     start = 1
     end = 0
     duration = 1000
-    interval = 100
-    speed = 0.05
     frictionAir = 0.3
-
 }
 
-class Particle {
-    
-    x = 0
-    y = 0
+class EmitterOption {
+    speed = 0.01
+    interval = 100
+    quantity = 1
+}
+
+class Particle extends EventEmitter {
+
     step = 0
 
-    constructor() {
+    constructor(...args) {
+        super(...args)
         Object.assign(this, new ParticleOption)
-    }
+    } 
 
     get progress() {
-        return 1 - (this.step / this.duration)
+        return this.step / this.duration
     }
 
     get scale() {
@@ -29,11 +34,14 @@ class Particle {
     }
 
     update(deltaTime) {
-        this.step -= deltaTime
-        if (this.step < 0) this.step = 0
+        this.step += deltaTime
+        if (this.step > this.duration) {
+            this.step = 0
+            this.emit('particleLifeEnd')
+        }
     }
 
 }
 
 
-export { Particle, ParticleOption }
+export { Particle, ParticleOption, EmitterOption }

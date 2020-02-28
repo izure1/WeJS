@@ -18,6 +18,7 @@ import setFixedRotation from './Methods/setFixedRotation'
 import update from './Methods/update'
 import translate from './Methods/translate'
 import transform from './Methods/transform'
+import wakeAll from './Methods/wakeAll'
 
 
 export class Reservation extends Component {
@@ -89,6 +90,7 @@ export default {
         update,
         translate,
         transform,
+        wakeAll,
     },
     created() {
         this.body.on('changesize', this.onChangeSize)
@@ -102,13 +104,22 @@ export default {
     watch: {
         // transform을 직접 수정할 경우, 물리를 추적하지 않습니다.
         'body.component.transform.x'() {
-            this.transform()
+            if (this.tracking) {
+                this.transform()
+                this.wakeAll()
+            }
         },
         'body.component.transform.y'() {
-            this.transform()
+            if (this.tracking) {
+                this.transform()
+                this.wakeAll()
+            }
         },
         'body.component.transform.rotateZ'() {
-            this.transform()
+            if (this.tracking) {
+                this.transform()
+                this.wakeAll()
+            }
         },
         'body.component.transform.scale'() {
             this.transform()

@@ -79,9 +79,6 @@
 
         // ground 객체와 충돌한 객체의 투명도를 낮춥니다.
         object.on('collisionStart collisionEnd', e => {
-            if (e.detail.another !== ground)
-                return
-
             switch(e.type) {
                 case 'collisionStart':
                     filter.opacity = 0.1

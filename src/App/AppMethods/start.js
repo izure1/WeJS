@@ -7,19 +7,19 @@ import Scene from '../../Scene/Scene3d'
 
 export default async function start(splashScene = new Scene) {
     
+    
+    this.component.children.lists.clear()
+    this.component.children.lists.add(splashScene)
+    
     this.app = new Vue({
         el: this.element,
         components: { App },
-        template: '<App :scenes="scenes" :app="app" />',
+        template: '<App :app="app" />',
         data: {
-            scenes: this.component.children.lists,
             app: this
         }
     })
-
-    this.component.children.lists.clear()
-    this.component.children.lists.add(splashScene)
-
+    
     await Preloader.waitElement(document)
     await Preloader.waitPreloads(this.lifecycle.preload)
     await Preloader.waitPreloads(splashScene.lifecycle.preload)

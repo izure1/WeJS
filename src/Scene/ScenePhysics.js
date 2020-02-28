@@ -41,8 +41,10 @@ class ScenePhysics {
             const { bodyA, bodyB } = collision
             const A = table.get(bodyA)
             const B = table.get(bodyB)
-            A.emit('collisionStart', { another: B })
-            B.emit('collisionStart', { another: A })
+            if (A && B) {
+                A.emit('collisionStart', { another: B })
+                B.emit('collisionStart', { another: A })
+            }
         }
     }
 
@@ -57,8 +59,10 @@ class ScenePhysics {
             const { bodyA, bodyB } = collision
             const A = table.get(bodyA)
             const B = table.get(bodyB)
-            A.emit('collisionEnd', { another: B })
-            B.emit('collisionEnd', { another: A })
+            if (A && B) {
+                A.emit('collisionEnd', { another: B })
+                B.emit('collisionEnd', { another: A })
+            }
         }
     }
 

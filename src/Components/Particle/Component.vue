@@ -5,8 +5,9 @@
 <script>
 import Component from '../../View/Component/Component'
 import Arrayset from '../../Utils/Arrayset'
-import { ParticleOption } from '../../Particle/Particle'
+import { EmitterOption, ParticleOption } from '../../Particle/Particle'
 
+import add from './Methods/add'
 import generate from './Methods/generate'
 import stop from './Methods/stop'
 
@@ -14,11 +15,10 @@ import stop from './Methods/stop'
 export class Reservation extends Component {
 
     name = 'particle'
-    quantity = 1
 
     constructor(...args) {
         super(...args)
-        Object.assign(this, new ParticleOption)
+        Object.assign(this, new ParticleOption, new EmitterOption)
     }
 }
 
@@ -26,9 +26,10 @@ export default {
     props: ['scene', 'body'],
     data: () => ({
         particles: new Arrayset,
-        intervalId: null,
+        interval: null,
     }),
     methods: {
+        add,
         generate,
         stop,
     },
@@ -37,6 +38,7 @@ export default {
         this.generate()
     },
     beforeDestroy() {
+        this.particles.clear()
         this.scene.particle.emitters.delete(this.particles)
         this.stop()
     },

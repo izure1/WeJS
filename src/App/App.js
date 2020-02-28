@@ -1,5 +1,4 @@
 import Scene3d from '../Scene/Scene3d'
-import Definer from '../Utils/Definer'
 
 import start from './AppMethods/start'
 import destroy from './AppMethods/destroy'

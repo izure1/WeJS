@@ -82,22 +82,21 @@
   
       dialog.component.transform.x = 400
       dialog.component.transform.y = -400
-  
+
       // 버튼을 gui 씬에 넣습니다.
       gui.launch(button, dialog)
       
     }).onDestroy(gui.clear)
-
     
     Promise.resolve().then(async () => {
-      // 앱이 부착될 element를 지정
-      app.element = '#app'
-      app.size = [800, 500]
-
-      await app.start()
-      // 앱에서 씬을 실행
-      // 두 가지 씬을 동시에 실행합니다. 배열의 뒤에 있을수록, 높은 zIndex 값을 갖습니다.
-      await app.launch(scene, gui)
+        // 앱이 부착될 element를 지정
+        app.element = '#app'
+        app.size = [800, 500]
+        
+        // 앱에서 씬을 실행
+        await app.start()
+        // 두 가지 씬을 동시에 실행합니다. 배열의 뒤에 있을수록, 높은 zIndex 값을 갖습니다.
+        await app.launch(scene, gui)
     })
   </script>
   <script>

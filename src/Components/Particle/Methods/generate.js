@@ -1,11 +1,12 @@
 import Tick from '../../../Utils/Tick'
-import { Particle } from '../../../Particle/Particle'
 
 
 export default function generate() {
-    this.intervalId = Tick.request(() => {
-        const particle = new Particle
-        particle.duration = 
-        this.add()
-    })
+    
+    this.stop()
+    this.interval = Tick.request(() => {
+        for (let i = 0; i < this.body.component.particle.quantity; i++)
+            this.add()
+    }, this.body.component.particle.interval)
+    
 }

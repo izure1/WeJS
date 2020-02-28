@@ -7,7 +7,9 @@ import AssetLoader from '../../Asset/AssetLoader/AssetLoader'
 import Component from '../../View/Component/Component'
 
 import play from './Helper/play'
+import playLazy from './Helper/playLazy'
 import pause from './Helper/pause'
+import stop from './Helper/stop'
 
 import onChangeAudioSrc from './Methods/onChangeAudioSrc'
 import reloadAudio from './Methods/reloadAudio'
@@ -27,13 +29,15 @@ export class Reservation extends Component {
     recaching = 150
 
     constructor(...args) {
-    super(...args)
+        super(...args)
     }
 
 }
 
 Reservation.prototype.play = play
+Reservation.prototype.playLazy = playLazy
 Reservation.prototype.pause = pause
+Reservation.prototype.stop = stop
 
 export default {
 

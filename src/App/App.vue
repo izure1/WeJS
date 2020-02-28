@@ -11,8 +11,8 @@
             v-for="scene in app.component.children.lists"
             :key="scene.uid"
             :app="app"
-            :scene="scene"
-            :body="app"
+            :scene="app"
+            :body="scene"
             :requiredLevel="app.levelDesign.getRequired(app.level)"
             :style="{ perspective: `${app.perspective}px` }"
         />
@@ -24,26 +24,29 @@ import screenfull from 'screenfull'
 import WeBody from '../View/View.vue'
 import onScreenChange from './Methods/onScreenChange'
 
+
 export default {
 
     components: { WeBody },
-    props: ['scenes', 'app'],
+    props: ['app'],
     data: () => ({
+        updateRequestId: null,
         resizeObserver: null,
         appScale: 1,
     }),
-    methods: {
-        onScreenChange
-    },
+    methods: { onScreenChange },
     created() {
         this.resizeObserver = new ResizeObserver(this.onScreenChange)
     },
     mounted() {
         this.resizeObserver.observe(this.$el)
+        this.app.cycleStart()
+        this.updateRequestId = this.app.cycleUpdate()
     },
     beforeDestroy() {
         this.resizeObserver.disconnect()
         this.resizeObserver = null
+        this.app.cycleDestroy(this.updateRequestId)
     }
 
 }

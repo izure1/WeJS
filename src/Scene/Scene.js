@@ -63,43 +63,37 @@ class Scene extends View {
     /**
      * 
      * @param {View|Scene} scene  실행할 뷰 또는 씬입니다.
+     * @returns {Number}  씬이 children.lists 배열에 삽입된 오프셋입니다.
      * @description  이 씬에 하위 씬을 삽입합니다. 추가할 씬의 preload가 실행되고 나서, 현재 씬에 추가됩니다.
      */
     async addScene(scene) {
-        if (!(scene instanceof View)) throw 'The scene argument must be Scene instance.'
+        if (!(scene instanceof View)) throw 'The scene argument must be WeJS.View instance.'
         await Preloader.waitPreloads(scene.lifecycle.preload, scene.lifecycle.dataTransfer)
-        this.component.children.lists.add(scene)
+        return this.component.children.lists.add(scene)
     }
 
     /**
      * 
      * @param {View|Scene} scene  삭제할 뷰 또는 씬입니다.
+     * @returns {Boolean}  씬이 children.lists 배열에서 삭제되었는지 여부를 반환합니다. 만약 배열에 존재하지 않았다면 false를 반환합니다.
      * @description  현재 씬에서 실행 중인 씬을 삭제합니다.
      */
     async dropScene(scene) {
-        if (!(scene instanceof View)) throw 'The scene argument must be Scene instance.'
-        this.component.children.lists.delete(scene)
+        if (!(scene instanceof View)) throw 'The scene argument must be WeJS.View instance.'
+        return this.component.children.lists.delete(scene)
     }
 
     /**
      * 
-     * @param  {...View|Scene} scene  실행할 뷰 또는 씬입니다.
+     * @param  {...View|Scene} scenes  실행할 뷰 또는 씬입니다.
+     * @returns {App}
      * @description
      * addScene 메서드와의 차이점은, 현재 씬에서 실행 중인 기존의 하위 씬들을 전부 삭제하고, 실행한다는 점입니다. 또한 여러 씬을 동시에추가할 수 있습니다.
      */
-    async launch(...scene) {
-
+    async launch(...scenes) {
         this.component.children.lists.clear()
-    
-        const scenes = [...scene]
-        const scenesDones = []
-        
-        for (const scene of scenes)
-            scenesDones.push(this.addScene(scene))
-    
-        await Promise.all(scenesDones)
+        await Promise.all([...scenes].map(scene => this.addScene(scene)))
         return this.app
-    
     }
 
 }

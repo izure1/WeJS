@@ -4,7 +4,7 @@ import { Angle } from '../../../Utils/MathUtil'
 
 export default function transform() {
     
-    if (this.tracking && this.object) {
+    if (this.object) {
     
         const { x, y, rotateZ, scale } = this.body.component.transform
 

@@ -325,8 +325,9 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     WeBody: _View_View_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  props: ['scenes', 'app'],
+  props: ['app'],
   data: () => ({
+    updateRequestId: null,
     resizeObserver: null,
     appScale: 1
   }),
@@ -340,11 +341,14 @@ __webpack_require__.r(__webpack_exports__);
 
   mounted() {
     this.resizeObserver.observe(this.$el);
+    this.app.cycleStart();
+    this.updateRequestId = this.app.cycleUpdate();
   },
 
   beforeDestroy() {
     this.resizeObserver.disconnect();
     this.resizeObserver = null;
+    this.app.cycleDestroy(this.updateRequestId);
   }
 
 });
@@ -364,18 +368,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Asset_AssetLoader_AssetLoader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Asset/AssetLoader/AssetLoader */ "./src/Asset/AssetLoader/AssetLoader.js");
 /* harmony import */ var _View_Component_Component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../View/Component/Component */ "./src/View/Component/Component.js");
 /* harmony import */ var _Helper_play__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Helper/play */ "./src/Components/Audio/Helper/play.js");
-/* harmony import */ var _Helper_pause__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Helper/pause */ "./src/Components/Audio/Helper/pause.js");
-/* harmony import */ var _Methods_onChangeAudioSrc__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Methods/onChangeAudioSrc */ "./src/Components/Audio/Methods/onChangeAudioSrc.js");
-/* harmony import */ var _Methods_reloadAudio__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Methods/reloadAudio */ "./src/Components/Audio/Methods/reloadAudio.js");
-/* harmony import */ var _Methods_setAudioProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Methods/setAudioProperty */ "./src/Components/Audio/Methods/setAudioProperty.js");
-/* harmony import */ var _Methods_observeAudioPosition__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Methods/observeAudioPosition */ "./src/Components/Audio/Methods/observeAudioPosition.js");
-/* harmony import */ var _Methods_destroyObserve__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Methods/destroyObserve */ "./src/Components/Audio/Methods/destroyObserve.js");
+/* harmony import */ var _Helper_playLazy__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Helper/playLazy */ "./src/Components/Audio/Helper/playLazy.js");
+/* harmony import */ var _Helper_pause__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Helper/pause */ "./src/Components/Audio/Helper/pause.js");
+/* harmony import */ var _Helper_stop__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Helper/stop */ "./src/Components/Audio/Helper/stop.js");
+/* harmony import */ var _Methods_onChangeAudioSrc__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Methods/onChangeAudioSrc */ "./src/Components/Audio/Methods/onChangeAudioSrc.js");
+/* harmony import */ var _Methods_reloadAudio__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Methods/reloadAudio */ "./src/Components/Audio/Methods/reloadAudio.js");
+/* harmony import */ var _Methods_setAudioProperty__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Methods/setAudioProperty */ "./src/Components/Audio/Methods/setAudioProperty.js");
+/* harmony import */ var _Methods_observeAudioPosition__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Methods/observeAudioPosition */ "./src/Components/Audio/Methods/observeAudioPosition.js");
+/* harmony import */ var _Methods_destroyObserve__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Methods/destroyObserve */ "./src/Components/Audio/Methods/destroyObserve.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
 //
 //
 //
+
+
 
 
 
@@ -406,7 +414,9 @@ class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_1__
 
 }
 Reservation.prototype.play = _Helper_play__WEBPACK_IMPORTED_MODULE_2__["default"];
-Reservation.prototype.pause = _Helper_pause__WEBPACK_IMPORTED_MODULE_3__["default"];
+Reservation.prototype.playLazy = _Helper_playLazy__WEBPACK_IMPORTED_MODULE_3__["default"];
+Reservation.prototype.pause = _Helper_pause__WEBPACK_IMPORTED_MODULE_4__["default"];
+Reservation.prototype.stop = _Helper_stop__WEBPACK_IMPORTED_MODULE_5__["default"];
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['body', 'app'],
   data: () => ({
@@ -416,11 +426,11 @@ Reservation.prototype.pause = _Helper_pause__WEBPACK_IMPORTED_MODULE_3__["defaul
     intervalIndex: null
   }),
   methods: {
-    onChangeAudioSrc: _Methods_onChangeAudioSrc__WEBPACK_IMPORTED_MODULE_4__["default"],
-    reloadAudio: _Methods_reloadAudio__WEBPACK_IMPORTED_MODULE_5__["default"],
-    setAudioProperty: _Methods_setAudioProperty__WEBPACK_IMPORTED_MODULE_6__["default"],
-    observeAudioPosition: _Methods_observeAudioPosition__WEBPACK_IMPORTED_MODULE_7__["default"],
-    destroyObserve: _Methods_destroyObserve__WEBPACK_IMPORTED_MODULE_8__["default"]
+    onChangeAudioSrc: _Methods_onChangeAudioSrc__WEBPACK_IMPORTED_MODULE_6__["default"],
+    reloadAudio: _Methods_reloadAudio__WEBPACK_IMPORTED_MODULE_7__["default"],
+    setAudioProperty: _Methods_setAudioProperty__WEBPACK_IMPORTED_MODULE_8__["default"],
+    observeAudioPosition: _Methods_observeAudioPosition__WEBPACK_IMPORTED_MODULE_9__["default"],
+    destroyObserve: _Methods_destroyObserve__WEBPACK_IMPORTED_MODULE_10__["default"]
   },
 
   created() {
@@ -740,8 +750,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../View/Component/Component */ "./src/View/Component/Component.js");
 /* harmony import */ var _Utils_Arrayset__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Utils/Arrayset */ "./src/Utils/Arrayset.js");
 /* harmony import */ var _Particle_Particle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Particle/Particle */ "./src/Particle/Particle.js");
-/* harmony import */ var _Methods_generate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Methods/generate */ "./src/Components/Particle/Methods/generate.js");
-/* harmony import */ var _Methods_stop__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Methods/stop */ "./src/Components/Particle/Methods/stop.js");
+/* harmony import */ var _Methods_add__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Methods/add */ "./src/Components/Particle/Methods/add.js");
+/* harmony import */ var _Methods_generate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Methods/generate */ "./src/Components/Particle/Methods/generate.js");
+/* harmony import */ var _Methods_stop__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Methods/stop */ "./src/Components/Particle/Methods/stop.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
@@ -753,15 +764,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
   constructor(...args) {
     super(...args);
 
     _defineProperty(this, "name", 'particle');
 
-    _defineProperty(this, "quantity", 1);
-
-    Object.assign(this, new _Particle_Particle__WEBPACK_IMPORTED_MODULE_2__["ParticleOption"]());
+    Object.assign(this, new _Particle_Particle__WEBPACK_IMPORTED_MODULE_2__["ParticleOption"](), new _Particle_Particle__WEBPACK_IMPORTED_MODULE_2__["EmitterOption"]());
   }
 
 }
@@ -769,11 +779,12 @@ class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__
   props: ['scene', 'body'],
   data: () => ({
     particles: new _Utils_Arrayset__WEBPACK_IMPORTED_MODULE_1__["default"](),
-    intervalId: null
+    interval: null
   }),
   methods: {
-    generate: _Methods_generate__WEBPACK_IMPORTED_MODULE_3__["default"],
-    stop: _Methods_stop__WEBPACK_IMPORTED_MODULE_4__["default"]
+    add: _Methods_add__WEBPACK_IMPORTED_MODULE_3__["default"],
+    generate: _Methods_generate__WEBPACK_IMPORTED_MODULE_4__["default"],
+    stop: _Methods_stop__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
 
   created() {
@@ -782,6 +793,7 @@ class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__
   },
 
   beforeDestroy() {
+    this.particles.clear();
     this.scene.particle.emitters.delete(this.particles);
     this.stop();
   },
@@ -826,12 +838,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Methods_update__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Methods/update */ "./src/Components/Physics/Methods/update.js");
 /* harmony import */ var _Methods_translate__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Methods/translate */ "./src/Components/Physics/Methods/translate.js");
 /* harmony import */ var _Methods_transform__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Methods/transform */ "./src/Components/Physics/Methods/transform.js");
+/* harmony import */ var _Methods_wakeAll__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Methods/wakeAll */ "./src/Components/Physics/Methods/wakeAll.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
 //
 //
 //
+
 
 
 
@@ -921,7 +935,8 @@ class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_3__
     setFixedRotation: _Methods_setFixedRotation__WEBPACK_IMPORTED_MODULE_10__["default"],
     update: _Methods_update__WEBPACK_IMPORTED_MODULE_11__["default"],
     translate: _Methods_translate__WEBPACK_IMPORTED_MODULE_12__["default"],
-    transform: _Methods_transform__WEBPACK_IMPORTED_MODULE_13__["default"]
+    transform: _Methods_transform__WEBPACK_IMPORTED_MODULE_13__["default"],
+    wakeAll: _Methods_wakeAll__WEBPACK_IMPORTED_MODULE_14__["default"]
   },
 
   created() {
@@ -937,15 +952,24 @@ class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_3__
   watch: {
     // transform을 직접 수정할 경우, 물리를 추적하지 않습니다.
     'body.component.transform.x'() {
-      this.transform();
+      if (this.tracking) {
+        this.transform();
+        this.wakeAll();
+      }
     },
 
     'body.component.transform.y'() {
-      this.transform();
+      if (this.tracking) {
+        this.transform();
+        this.wakeAll();
+      }
     },
 
     'body.component.transform.rotateZ'() {
-      this.transform();
+      if (this.tracking) {
+        this.transform();
+        this.wakeAll();
+      }
     },
 
     'body.component.transform.scale'() {
@@ -1269,8 +1293,6 @@ Reservation.prototype.pause = _Helper_pause__WEBPACK_IMPORTED_MODULE_4__["defaul
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var matter_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! matter-js */ "./node_modules/matter-js/build/matter.js");
-/* harmony import */ var matter_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(matter_js__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -1288,7 +1310,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['emitters']
 });
@@ -1320,14 +1343,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Methods_isNeedFromScene__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Methods/isNeedFromScene */ "./src/View/Methods/isNeedFromScene.js");
 /* harmony import */ var _Methods_startResizeObserve__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Methods/startResizeObserve */ "./src/View/Methods/startResizeObserve.js");
 /* harmony import */ var _Methods_destroyResizeObserve__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./Methods/destroyResizeObserve */ "./src/View/Methods/destroyResizeObserve.js");
-/* harmony import */ var _Methods_cycleStart__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./Methods/cycleStart */ "./src/View/Methods/cycleStart.js");
-/* harmony import */ var _Methods_cycleUpdate__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./Methods/cycleUpdate */ "./src/View/Methods/cycleUpdate.js");
-/* harmony import */ var _Methods_cycleDestroy__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./Methods/cycleDestroy */ "./src/View/Methods/cycleDestroy.js");
-/* harmony import */ var _Methods_translate__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./Methods/translate */ "./src/View/Methods/translate.js");
-/* harmony import */ var _Methods_emit__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./Methods/emit */ "./src/View/Methods/emit.js");
-/* harmony import */ var _Computed_isScene__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./Computed/isScene */ "./src/View/Computed/isScene.js");
-/* harmony import */ var _Computed_centerPointX__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./Computed/centerPointX */ "./src/View/Computed/centerPointX.js");
-/* harmony import */ var _Computed_centerPointY__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./Computed/centerPointY */ "./src/View/Computed/centerPointY.js");
+/* harmony import */ var _Methods_translate__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./Methods/translate */ "./src/View/Methods/translate.js");
+/* harmony import */ var _Methods_emit__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./Methods/emit */ "./src/View/Methods/emit.js");
+/* harmony import */ var _Computed_isScene__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./Computed/isScene */ "./src/View/Computed/isScene.js");
+/* harmony import */ var _Computed_centerPointX__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./Computed/centerPointX */ "./src/View/Computed/centerPointX.js");
+/* harmony import */ var _Computed_centerPointY__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./Computed/centerPointY */ "./src/View/Computed/centerPointY.js");
 //
 //
 //
@@ -1462,9 +1482,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
-
-
 
 
 
@@ -1510,9 +1527,9 @@ __webpack_require__.r(__webpack_exports__);
     SCENE_3D: _Scene_Vars_TYPE__WEBPACK_IMPORTED_MODULE_0__["SCENE_3D"]
   }),
   computed: {
-    isScene: _Computed_isScene__WEBPACK_IMPORTED_MODULE_21__["default"],
-    centerPointX: _Computed_centerPointX__WEBPACK_IMPORTED_MODULE_22__["default"],
-    centerPointY: _Computed_centerPointY__WEBPACK_IMPORTED_MODULE_23__["default"]
+    isScene: _Computed_isScene__WEBPACK_IMPORTED_MODULE_18__["default"],
+    centerPointX: _Computed_centerPointX__WEBPACK_IMPORTED_MODULE_19__["default"],
+    centerPointY: _Computed_centerPointY__WEBPACK_IMPORTED_MODULE_20__["default"]
   },
   methods: {
     hasComponent: _Methods_hasComponent__WEBPACK_IMPORTED_MODULE_10__["default"],
@@ -1521,11 +1538,8 @@ __webpack_require__.r(__webpack_exports__);
     isNeedFromScene: _Methods_isNeedFromScene__WEBPACK_IMPORTED_MODULE_13__["default"],
     startResizeObserve: _Methods_startResizeObserve__WEBPACK_IMPORTED_MODULE_14__["default"],
     destroyResizeObserve: _Methods_destroyResizeObserve__WEBPACK_IMPORTED_MODULE_15__["default"],
-    cycleStart: _Methods_cycleStart__WEBPACK_IMPORTED_MODULE_16__["default"],
-    cycleUpdate: _Methods_cycleUpdate__WEBPACK_IMPORTED_MODULE_17__["default"],
-    cycleDestroy: _Methods_cycleDestroy__WEBPACK_IMPORTED_MODULE_18__["default"],
-    translate: _Methods_translate__WEBPACK_IMPORTED_MODULE_19__["default"],
-    emit: _Methods_emit__WEBPACK_IMPORTED_MODULE_20__["default"]
+    translate: _Methods_translate__WEBPACK_IMPORTED_MODULE_16__["default"],
+    emit: _Methods_emit__WEBPACK_IMPORTED_MODULE_17__["default"]
   },
   watch: {
     'sizeSelf'() {
@@ -1549,13 +1563,13 @@ __webpack_require__.r(__webpack_exports__);
 
   mounted() {
     this.startResizeObserve();
-    this.cycleStart();
-    this.cycleUpdate();
+    this.body.cycleStart();
+    this.updateRequestId = this.body.cycleUpdate();
   },
 
   beforeDestroy() {
     this.destroyResizeObserve();
-    this.cycleDestroy();
+    this.body.cycleDestroy(this.updateRequestId);
   }
 
 });
@@ -1574,6 +1588,24 @@ var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
 exports.push([module.i, ".wejs-app[data-v-242a27aa] {\n  position: relative;\n  overflow: hidden;\n  user-select: none;\n}\n", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js?!./src/View/ParticleRenderer.vue?vue&type=style&index=0&id=679de40a&lang=scss&scoped=true&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./src/View/ParticleRenderer.vue?vue&type=style&index=0&id=679de40a&lang=scss&scoped=true& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, ".particle-renderer[data-v-679de40a] {\n  width: 0;\n  height: 0;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -25337,8 +25369,8 @@ var render = function() {
         style: { perspective: _vm.app.perspective + "px" },
         attrs: {
           app: _vm.app,
-          scene: scene,
-          body: _vm.app,
+          scene: _vm.app,
+          body: scene,
           requiredLevel: _vm.app.levelDesign.getRequired(_vm.app.level)
         }
       })
@@ -25621,10 +25653,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/View/ParticleRenderer.vue?vue&type=template&id=679de40a&":
-/*!****************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/View/ParticleRenderer.vue?vue&type=template&id=679de40a& ***!
-  \****************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/View/ParticleRenderer.vue?vue&type=template&id=679de40a&scoped=true&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/View/ParticleRenderer.vue?vue&type=template&id=679de40a&scoped=true& ***!
+  \****************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -25638,25 +25670,35 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "particle-renderer" },
     _vm._l(_vm.emitters, function(emitter, i) {
       return _c(
         "div",
         { key: "emitter_" + i },
-        [
-          _vm._v("\n        1\n        "),
-          _vm._l(emitter.particles, function(particle, i) {
-            return _c("div", { key: "particle_" + i }, [
-              _vm._v(
-                "2\n            " +
-                  _vm._s(particle.x) +
-                  " , " +
-                  _vm._s(particle.y) +
-                  "\n        "
-              )
-            ])
-          })
-        ],
-        2
+        _vm._l(emitter, function(info) {
+          return _c("div", { key: "particle_" + info.id }, [
+            _c(
+              "div",
+              {
+                style: {
+                  transform:
+                    "\n                    translate3d(\n                        " +
+                    info.object.position.x +
+                    "px,\n                        " +
+                    info.object.position.y +
+                    "px,\n                        " +
+                    0 +
+                    "px\n                    )\n                    scale(" +
+                    info.particle.scale +
+                    ")",
+                  position: "absolute"
+                }
+              },
+              [_vm._v("★")]
+            )
+          ])
+        }),
+        0
       )
     }),
     0
@@ -25909,7 +25951,7 @@ var render = function() {
                       key: children.uid,
                       attrs: {
                         app: _vm.app,
-                        scene: _vm.scene,
+                        scene: _vm.body,
                         body: children,
                         requiredLevel: _vm.body.levelDesign.getRequired(
                           _vm.body.level
@@ -26056,6 +26098,27 @@ if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = __webpack_require__(/*! ../../node_modules/vue-style-loader/lib/addStylesClient.js */ "./node_modules/vue-style-loader/lib/addStylesClient.js").default
 var update = add("5e50cfee", content, false, {});
+// Hot Module Replacement
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js?!./src/View/ParticleRenderer.vue?vue&type=style&index=0&id=679de40a&lang=scss&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-style-loader!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./src/View/ParticleRenderer.vue?vue&type=style&index=0&id=679de40a&lang=scss&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../node_modules/sass-loader/dist/cjs.js!../../node_modules/vue-loader/lib??vue-loader-options!./ParticleRenderer.vue?vue&type=style&index=0&id=679de40a&lang=scss&scoped=true& */ "./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js?!./src/View/ParticleRenderer.vue?vue&type=style&index=0&id=679de40a&lang=scss&scoped=true&");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = __webpack_require__(/*! ../../node_modules/vue-style-loader/lib/addStylesClient.js */ "./node_modules/vue-style-loader/lib/addStylesClient.js").default
+var update = add("c53534aa", content, false, {});
 // Hot Module Replacement
 if(false) {}
 
@@ -39527,12 +39590,10 @@ class Animation {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Scene_Scene3d__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Scene/Scene3d */ "./src/Scene/Scene3d.js");
-/* harmony import */ var _Utils_Definer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Utils/Definer */ "./src/Utils/Definer.js");
-/* harmony import */ var _AppMethods_start__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AppMethods/start */ "./src/App/AppMethods/start.js");
-/* harmony import */ var _AppMethods_destroy__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AppMethods/destroy */ "./src/App/AppMethods/destroy.js");
-/* harmony import */ var _AppMethods_fullscreen__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./AppMethods/fullscreen */ "./src/App/AppMethods/fullscreen.js");
-/* harmony import */ var _AppMethods_existFullscreen__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./AppMethods/existFullscreen */ "./src/App/AppMethods/existFullscreen.js");
-
+/* harmony import */ var _AppMethods_start__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AppMethods/start */ "./src/App/AppMethods/start.js");
+/* harmony import */ var _AppMethods_destroy__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AppMethods/destroy */ "./src/App/AppMethods/destroy.js");
+/* harmony import */ var _AppMethods_fullscreen__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AppMethods/fullscreen */ "./src/App/AppMethods/fullscreen.js");
+/* harmony import */ var _AppMethods_existFullscreen__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./AppMethods/existFullscreen */ "./src/App/AppMethods/existFullscreen.js");
 
 
 
@@ -39578,10 +39639,10 @@ class App extends _Scene_Scene3d__WEBPACK_IMPORTED_MODULE_0__["default"] {
 
 }
 
-App.prototype.start = _AppMethods_start__WEBPACK_IMPORTED_MODULE_2__["default"];
-App.prototype.destroy = _AppMethods_destroy__WEBPACK_IMPORTED_MODULE_3__["default"];
-App.prototype.fullscreen = _AppMethods_fullscreen__WEBPACK_IMPORTED_MODULE_4__["default"];
-App.prototype.exitFullscreen = _AppMethods_existFullscreen__WEBPACK_IMPORTED_MODULE_5__["default"];
+App.prototype.start = _AppMethods_start__WEBPACK_IMPORTED_MODULE_1__["default"];
+App.prototype.destroy = _AppMethods_destroy__WEBPACK_IMPORTED_MODULE_2__["default"];
+App.prototype.fullscreen = _AppMethods_fullscreen__WEBPACK_IMPORTED_MODULE_3__["default"];
+App.prototype.exitFullscreen = _AppMethods_existFullscreen__WEBPACK_IMPORTED_MODULE_4__["default"];
 /* harmony default export */ __webpack_exports__["default"] = (App);
 
 /***/ }),
@@ -39753,19 +39814,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 async function start(splashScene = new _Scene_Scene3d__WEBPACK_IMPORTED_MODULE_4__["default"]()) {
+  this.component.children.lists.clear();
+  this.component.children.lists.add(splashScene);
   this.app = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
     el: this.element,
     components: {
       App: _App_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
     },
-    template: '<App :scenes="scenes" :app="app" />',
+    template: '<App :app="app" />',
     data: {
-      scenes: this.component.children.lists,
       app: this
     }
   });
-  this.component.children.lists.clear();
-  this.component.children.lists.add(splashScene);
   await _Utils_Preloader__WEBPACK_IMPORTED_MODULE_1__["default"].waitElement(document);
   await _Utils_Preloader__WEBPACK_IMPORTED_MODULE_1__["default"].waitPreloads(this.lifecycle.preload);
   await _Utils_Preloader__WEBPACK_IMPORTED_MODULE_1__["default"].waitPreloads(splashScene.lifecycle.preload);
@@ -40108,8 +40168,10 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return pause; });
+/* harmony import */ var _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../View/Component/Component */ "./src/View/Component/Component.js");
+
 async function pause() {
-  await this.vueReady;
+  await _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"].waitAttached(this);
   const audio = await this.vue.audio;
   audio.pause();
 }
@@ -40126,13 +40188,56 @@ async function pause() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return play; });
+/* harmony import */ var _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../View/Component/Component */ "./src/View/Component/Component.js");
+
 async function play(time = 0) {
   // 오디오가 로드되는 것을 기다립니다.
-  await this.vueReady;
+  await _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"].waitAttached(this);
   const audio = await this.vue.audio;
   audio.stop();
   audio.play();
   audio.seek(time / 1000);
+}
+
+/***/ }),
+
+/***/ "./src/Components/Audio/Helper/playLazy.js":
+/*!*************************************************!*\
+  !*** ./src/Components/Audio/Helper/playLazy.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return playLazy; });
+/* harmony import */ var _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../View/Component/Component */ "./src/View/Component/Component.js");
+
+async function playLazy(time = 0) {
+  // 오디오가 로드되는 것을 기다립니다.
+  await _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"].waitAttached(this);
+  const audio = await this.vue.audio;
+  if (!audio.playing()) this.play(time);
+}
+
+/***/ }),
+
+/***/ "./src/Components/Audio/Helper/stop.js":
+/*!*********************************************!*\
+  !*** ./src/Components/Audio/Helper/stop.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return pause; });
+/* harmony import */ var _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../View/Component/Component */ "./src/View/Component/Component.js");
+
+async function pause() {
+  await _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"].waitAttached(this);
+  const audio = await this.vue.audio;
+  audio.stop();
 }
 
 /***/ }),
@@ -40778,6 +40883,57 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/Components/Particle/Methods/add.js":
+/*!************************************************!*\
+  !*** ./src/Components/Particle/Methods/add.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return add; });
+/* harmony import */ var _Particle_Particle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../Particle/Particle */ "./src/Particle/Particle.js");
+/* harmony import */ var _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Utils/MathUtil */ "./src/Utils/MathUtil.js");
+/* harmony import */ var _Utils_ObjectExtra__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../Utils/ObjectExtra */ "./src/Utils/ObjectExtra.js");
+/* harmony import */ var matter_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! matter-js */ "./node_modules/matter-js/build/matter.js");
+/* harmony import */ var matter_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(matter_js__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+function add() {
+  const option = new _Particle_Particle__WEBPACK_IMPORTED_MODULE_0__["ParticleOption"]();
+  const setting = _Utils_ObjectExtra__WEBPACK_IMPORTED_MODULE_2__["default"].overwrite(option, this.body.component.particle);
+  const particle = _Utils_ObjectExtra__WEBPACK_IMPORTED_MODULE_2__["default"].overwrite(new _Particle_Particle__WEBPACK_IMPORTED_MODULE_0__["Particle"](), setting);
+  const id = _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_1__["Random"].shortid();
+  const {
+    x,
+    y
+  } = this.body.component.transform;
+  const {
+    speed
+  } = this.body.component.particle;
+  const forceX = _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_1__["Random"].plusMinus() * _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_1__["Random"].between(0, speed);
+  const forceY = _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_1__["Random"].plusMinus() * _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_1__["Random"].between(0, speed);
+  const object = matter_js__WEBPACK_IMPORTED_MODULE_3___default.a.Bodies.rectangle(x, y, 10, 10);
+  const info = {
+    id,
+    particle,
+    object
+  };
+  matter_js__WEBPACK_IMPORTED_MODULE_3___default.a.Events.on(this.scene.physics.runner, 'afterUpdate', () => particle.update(16));
+  matter_js__WEBPACK_IMPORTED_MODULE_3___default.a.World.add(this.scene.physics.world, object);
+  matter_js__WEBPACK_IMPORTED_MODULE_3___default.a.Body.applyForce(object, matter_js__WEBPACK_IMPORTED_MODULE_3___default.a.Vector.create(x, y), matter_js__WEBPACK_IMPORTED_MODULE_3___default.a.Vector.create(forceX, forceY));
+  particle.on('particleLifeEnd', () => {
+    matter_js__WEBPACK_IMPORTED_MODULE_3___default.a.World.remove(this.scene.physics.world, object);
+    this.particles.delete(info);
+  });
+  this.particles.add(info);
+}
+
+/***/ }),
+
 /***/ "./src/Components/Particle/Methods/generate.js":
 /*!*****************************************************!*\
   !*** ./src/Components/Particle/Methods/generate.js ***!
@@ -40789,14 +40945,12 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return generate; });
 /* harmony import */ var _Utils_Tick__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../Utils/Tick */ "./src/Utils/Tick.js");
-/* harmony import */ var _Particle_Particle__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Particle/Particle */ "./src/Particle/Particle.js");
-
 
 function generate() {
-  this.intervalId = _Utils_Tick__WEBPACK_IMPORTED_MODULE_0__["default"].request(() => {
-    const particle = new _Particle_Particle__WEBPACK_IMPORTED_MODULE_1__["Particle"]();
-    particle.duration = this.add();
-  });
+  this.stop();
+  this.interval = _Utils_Tick__WEBPACK_IMPORTED_MODULE_0__["default"].request(() => {
+    for (let i = 0; i < this.body.component.particle.quantity; i++) this.add();
+  }, this.body.component.particle.interval);
 }
 
 /***/ }),
@@ -40814,7 +40968,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Utils_Tick__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../Utils/Tick */ "./src/Utils/Tick.js");
 
 function stop() {
-  _Utils_Tick__WEBPACK_IMPORTED_MODULE_0__["default"].cancelRequest(this.intervalId);
+  _Utils_Tick__WEBPACK_IMPORTED_MODULE_0__["default"].cancelRequest(this.interval);
 }
 
 /***/ }),
@@ -41087,7 +41241,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function transform() {
-  if (this.tracking && this.object) {
+  if (this.object) {
     const {
       x,
       y,
@@ -41150,6 +41304,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return update; });
 function update() {
   this.translate();
+}
+
+/***/ }),
+
+/***/ "./src/Components/Physics/Methods/wakeAll.js":
+/*!***************************************************!*\
+  !*** ./src/Components/Physics/Methods/wakeAll.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return wakeAll; });
+/* harmony import */ var matter_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! matter-js */ "./node_modules/matter-js/build/matter.js");
+/* harmony import */ var matter_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(matter_js__WEBPACK_IMPORTED_MODULE_0__);
+
+function wakeAll() {
+  for (const body of this.scene.physics.world.bodies) matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Sleeping.set(body, false);
 }
 
 /***/ }),
@@ -41607,8 +41780,10 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return pause; });
+/* harmony import */ var _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../View/Component/Component */ "./src/View/Component/Component.js");
+
 async function pause() {
-  await this.vueReady;
+  await _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"].waitAttached(this);
   const video = await this.vue.video;
   return video.pause();
 }
@@ -41625,9 +41800,11 @@ async function pause() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return play; });
+/* harmony import */ var _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../View/Component/Component */ "./src/View/Component/Component.js");
+
 async function play(time = 0) {
   // 비디오가 준비될 때 까지 대기
-  await this.vueReady;
+  await _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"].waitAttached(this);
   const video = await this.vue.video;
   video.currentTime = time / 1000;
   video.play();
@@ -41679,37 +41856,48 @@ async function onChangeVideoSrc() {
 /*!**********************************!*\
   !*** ./src/Particle/Particle.js ***!
   \**********************************/
-/*! exports provided: Particle, ParticleOption */
+/*! exports provided: Particle, ParticleOption, EmitterOption */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Particle", function() { return Particle; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ParticleOption", function() { return ParticleOption; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EmitterOption", function() { return EmitterOption; });
+/* harmony import */ var _WeJSEvent_WeJSEventEmitter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../WeJSEvent/WeJSEventEmitter */ "./src/WeJSEvent/WeJSEventEmitter.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 
 class ParticleOption {
   constructor() {
+    _defineProperty(this, "src", null);
+
     _defineProperty(this, "start", 1);
 
     _defineProperty(this, "end", 0);
 
     _defineProperty(this, "duration", 1000);
 
-    _defineProperty(this, "interval", 100);
-
-    _defineProperty(this, "speed", 0.05);
-
     _defineProperty(this, "frictionAir", 0.3);
   }
 
 }
 
-class Particle {
+class EmitterOption {
   constructor() {
-    _defineProperty(this, "x", 0);
+    _defineProperty(this, "speed", 0.01);
 
-    _defineProperty(this, "y", 0);
+    _defineProperty(this, "interval", 100);
+
+    _defineProperty(this, "quantity", 1);
+  }
+
+}
+
+class Particle extends _WeJSEvent_WeJSEventEmitter__WEBPACK_IMPORTED_MODULE_0__["default"] {
+  constructor(...args) {
+    super(...args);
 
     _defineProperty(this, "step", 0);
 
@@ -41717,7 +41905,7 @@ class Particle {
   }
 
   get progress() {
-    return 1 - this.step / this.duration;
+    return this.step / this.duration;
   }
 
   get scale() {
@@ -41730,8 +41918,12 @@ class Particle {
   }
 
   update(deltaTime) {
-    this.step -= deltaTime;
-    if (this.step < 0) this.step = 0;
+    this.step += deltaTime;
+
+    if (this.step > this.duration) {
+      this.step = 0;
+      this.emit('particleLifeEnd');
+    }
   }
 
 }
@@ -41832,42 +42024,40 @@ class Scene extends _View_View__WEBPACK_IMPORTED_MODULE_4__["default"] {
   /**
    * 
    * @param {View|Scene} scene  실행할 뷰 또는 씬입니다.
+   * @returns {Number}  씬이 children.lists 배열에 삽입된 오프셋입니다.
    * @description  이 씬에 하위 씬을 삽입합니다. 추가할 씬의 preload가 실행되고 나서, 현재 씬에 추가됩니다.
    */
 
 
   async addScene(scene) {
-    if (!(scene instanceof _View_View__WEBPACK_IMPORTED_MODULE_4__["default"])) throw 'The scene argument must be Scene instance.';
+    if (!(scene instanceof _View_View__WEBPACK_IMPORTED_MODULE_4__["default"])) throw 'The scene argument must be WeJS.View instance.';
     await _Utils_Preloader__WEBPACK_IMPORTED_MODULE_3__["default"].waitPreloads(scene.lifecycle.preload, scene.lifecycle.dataTransfer);
-    this.component.children.lists.add(scene);
+    return this.component.children.lists.add(scene);
   }
   /**
    * 
    * @param {View|Scene} scene  삭제할 뷰 또는 씬입니다.
+   * @returns {Boolean}  씬이 children.lists 배열에서 삭제되었는지 여부를 반환합니다. 만약 배열에 존재하지 않았다면 false를 반환합니다.
    * @description  현재 씬에서 실행 중인 씬을 삭제합니다.
    */
 
 
   async dropScene(scene) {
-    if (!(scene instanceof _View_View__WEBPACK_IMPORTED_MODULE_4__["default"])) throw 'The scene argument must be Scene instance.';
-    this.component.children.lists.delete(scene);
+    if (!(scene instanceof _View_View__WEBPACK_IMPORTED_MODULE_4__["default"])) throw 'The scene argument must be WeJS.View instance.';
+    return this.component.children.lists.delete(scene);
   }
   /**
    * 
-   * @param  {...View|Scene} scene  실행할 뷰 또는 씬입니다.
+   * @param  {...View|Scene} scenes  실행할 뷰 또는 씬입니다.
+   * @returns {App}
    * @description
    * addScene 메서드와의 차이점은, 현재 씬에서 실행 중인 기존의 하위 씬들을 전부 삭제하고, 실행한다는 점입니다. 또한 여러 씬을 동시에추가할 수 있습니다.
    */
 
 
-  async launch(...scene) {
+  async launch(...scenes) {
     this.component.children.lists.clear();
-    const scenes = [...scene];
-    const scenesDones = [];
-
-    for (const scene of scenes) scenesDones.push(this.addScene(scene));
-
-    await Promise.all(scenesDones);
+    await Promise.all([...scenes].map(scene => this.addScene(scene)));
     return this.app;
   }
 
@@ -42016,12 +42206,15 @@ class ScenePhysics {
       } = collision;
       const A = table.get(bodyA);
       const B = table.get(bodyB);
-      A.emit('collisionStart', {
-        another: B
-      });
-      B.emit('collisionStart', {
-        another: A
-      });
+
+      if (A && B) {
+        A.emit('collisionStart', {
+          another: B
+        });
+        B.emit('collisionStart', {
+          another: A
+        });
+      }
     }
   }
   /**
@@ -42040,12 +42233,15 @@ class ScenePhysics {
       } = collision;
       const A = table.get(bodyA);
       const B = table.get(bodyB);
-      A.emit('collisionEnd', {
-        another: B
-      });
-      B.emit('collisionEnd', {
-        another: A
-      });
+
+      if (A && B) {
+        A.emit('collisionEnd', {
+          another: B
+        });
+        B.emit('collisionEnd', {
+          another: A
+        });
+      }
     }
   }
 
@@ -42342,6 +42538,10 @@ class Angle {
 }
 
 class Random {
+  static plusMinus() {
+    return Math.random() > 0.5 ? 1 : -1;
+  }
+
   static between(a = 0, b = 1) {
     return Math.random() * (b - a) + a;
   }
@@ -42361,6 +42561,46 @@ class Random {
 }
 
 
+
+/***/ }),
+
+/***/ "./src/Utils/ObjectExtra.js":
+/*!**********************************!*\
+  !*** ./src/Utils/ObjectExtra.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+class ObjectExtra extends Object {
+  constructor(...args) {
+    super(...args);
+  }
+
+}
+/**
+ * 
+ * @param {Object} target  target object
+ * @param  {...Object} sources  sources
+ */
+
+
+ObjectExtra.overwrite = function overwrite(target, ...sources) {
+  const keys = Object.keys(target);
+  const result = target;
+
+  for (const source of sources) {
+    for (const prop of Object.keys(source)) {
+      if (keys.indexOf(prop) === -1) continue;
+      target[prop] = source[prop];
+    }
+  }
+
+  return result;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ObjectExtra);
 
 /***/ }),
 
@@ -43151,62 +43391,6 @@ function calcSizeMax() {
 
 /***/ }),
 
-/***/ "./src/View/Methods/cycleDestroy.js":
-/*!******************************************!*\
-  !*** ./src/View/Methods/cycleDestroy.js ***!
-  \******************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return cycleDestroy; });
-/* harmony import */ var _Utils_Tick__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Utils/Tick */ "./src/Utils/Tick.js");
-
-function cycleDestroy() {
-  _Utils_Tick__WEBPACK_IMPORTED_MODULE_0__["default"].cancelRequest(this.updateRequestId);
-
-  for (const fn of this.body.lifecycle.destroy) fn(this.body.lifecycle.dataTransfer);
-}
-
-/***/ }),
-
-/***/ "./src/View/Methods/cycleStart.js":
-/*!****************************************!*\
-  !*** ./src/View/Methods/cycleStart.js ***!
-  \****************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return cycleStart; });
-function cycleStart() {
-  for (const fn of this.body.lifecycle.start) fn(this.body.lifecycle.dataTransfer);
-}
-
-/***/ }),
-
-/***/ "./src/View/Methods/cycleUpdate.js":
-/*!*****************************************!*\
-  !*** ./src/View/Methods/cycleUpdate.js ***!
-  \*****************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return cycleUpdate; });
-/* harmony import */ var _Utils_Tick__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Utils/Tick */ "./src/Utils/Tick.js");
-
-function cycleUpdate() {
-  this.updateRequestId = _Utils_Tick__WEBPACK_IMPORTED_MODULE_0__["default"].request((step, deltaTime) => {
-    for (const fn of this.body.lifecycle.update) fn(this.body.lifecycle.dataTransfer, deltaTime);
-  });
-}
-
-/***/ }),
-
 /***/ "./src/View/Methods/destroyResizeObserve.js":
 /*!**************************************************!*\
   !*** ./src/View/Methods/destroyResizeObserve.js ***!
@@ -43347,9 +43531,11 @@ function translate() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ParticleRenderer_vue_vue_type_template_id_679de40a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ParticleRenderer.vue?vue&type=template&id=679de40a& */ "./src/View/ParticleRenderer.vue?vue&type=template&id=679de40a&");
+/* harmony import */ var _ParticleRenderer_vue_vue_type_template_id_679de40a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ParticleRenderer.vue?vue&type=template&id=679de40a&scoped=true& */ "./src/View/ParticleRenderer.vue?vue&type=template&id=679de40a&scoped=true&");
 /* harmony import */ var _ParticleRenderer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ParticleRenderer.vue?vue&type=script&lang=js& */ "./src/View/ParticleRenderer.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _ParticleRenderer_vue_vue_type_style_index_0_id_679de40a_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ParticleRenderer.vue?vue&type=style&index=0&id=679de40a&lang=scss&scoped=true& */ "./src/View/ParticleRenderer.vue?vue&type=style&index=0&id=679de40a&lang=scss&scoped=true&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -43357,13 +43543,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _ParticleRenderer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ParticleRenderer_vue_vue_type_template_id_679de40a___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ParticleRenderer_vue_vue_type_template_id_679de40a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _ParticleRenderer_vue_vue_type_template_id_679de40a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ParticleRenderer_vue_vue_type_template_id_679de40a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  null,
+  "679de40a",
   null
   
 )
@@ -43389,19 +43575,35 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/View/ParticleRenderer.vue?vue&type=template&id=679de40a&":
-/*!**********************************************************************!*\
-  !*** ./src/View/ParticleRenderer.vue?vue&type=template&id=679de40a& ***!
-  \**********************************************************************/
+/***/ "./src/View/ParticleRenderer.vue?vue&type=style&index=0&id=679de40a&lang=scss&scoped=true&":
+/*!*************************************************************************************************!*\
+  !*** ./src/View/ParticleRenderer.vue?vue&type=style&index=0&id=679de40a&lang=scss&scoped=true& ***!
+  \*************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_sass_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_ParticleRenderer_vue_vue_type_style_index_0_id_679de40a_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/vue-style-loader!../../node_modules/css-loader/dist/cjs.js!../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../node_modules/sass-loader/dist/cjs.js!../../node_modules/vue-loader/lib??vue-loader-options!./ParticleRenderer.vue?vue&type=style&index=0&id=679de40a&lang=scss&scoped=true& */ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js?!./src/View/ParticleRenderer.vue?vue&type=style&index=0&id=679de40a&lang=scss&scoped=true&");
+/* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_sass_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_ParticleRenderer_vue_vue_type_style_index_0_id_679de40a_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_sass_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_ParticleRenderer_vue_vue_type_style_index_0_id_679de40a_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_sass_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_ParticleRenderer_vue_vue_type_style_index_0_id_679de40a_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_sass_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_ParticleRenderer_vue_vue_type_style_index_0_id_679de40a_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_sass_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_ParticleRenderer_vue_vue_type_style_index_0_id_679de40a_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./src/View/ParticleRenderer.vue?vue&type=template&id=679de40a&scoped=true&":
+/*!**********************************************************************************!*\
+  !*** ./src/View/ParticleRenderer.vue?vue&type=template&id=679de40a&scoped=true& ***!
+  \**********************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ParticleRenderer_vue_vue_type_template_id_679de40a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../node_modules/vue-loader/lib??vue-loader-options!./ParticleRenderer.vue?vue&type=template&id=679de40a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/View/ParticleRenderer.vue?vue&type=template&id=679de40a&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ParticleRenderer_vue_vue_type_template_id_679de40a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ParticleRenderer_vue_vue_type_template_id_679de40a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../node_modules/vue-loader/lib??vue-loader-options!./ParticleRenderer.vue?vue&type=template&id=679de40a&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/View/ParticleRenderer.vue?vue&type=template&id=679de40a&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ParticleRenderer_vue_vue_type_template_id_679de40a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ParticleRenderer_vue_vue_type_template_id_679de40a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ParticleRenderer_vue_vue_type_template_id_679de40a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -43418,12 +43620,13 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Utils/MathUtil */ "./src/Utils/MathUtil.js");
 /* harmony import */ var _Utils_Definer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Utils/Definer */ "./src/Utils/Definer.js");
-/* harmony import */ var _WeJSEvent_WeJSEventEmitter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../WeJSEvent/WeJSEventEmitter */ "./src/WeJSEvent/WeJSEventEmitter.js");
-/* harmony import */ var _Utils_Arrayset__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Utils/Arrayset */ "./src/Utils/Arrayset.js");
-/* harmony import */ var _ComponentList_ComponentList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ComponentList/ComponentList */ "./src/View/ComponentList/ComponentList.js");
-/* harmony import */ var _ComponentFactory_ComponentFactory__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ComponentFactory/ComponentFactory */ "./src/View/ComponentFactory/ComponentFactory.js");
-/* harmony import */ var _LevelDesign_LevelDesign__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./LevelDesign/LevelDesign */ "./src/View/LevelDesign/LevelDesign.js");
-/* harmony import */ var _Components_RESERVATION__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Components/RESERVATION */ "./src/Components/RESERVATION.js");
+/* harmony import */ var _Utils_Tick__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Utils/Tick */ "./src/Utils/Tick.js");
+/* harmony import */ var _WeJSEvent_WeJSEventEmitter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../WeJSEvent/WeJSEventEmitter */ "./src/WeJSEvent/WeJSEventEmitter.js");
+/* harmony import */ var _Utils_Arrayset__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Utils/Arrayset */ "./src/Utils/Arrayset.js");
+/* harmony import */ var _ComponentList_ComponentList__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ComponentList/ComponentList */ "./src/View/ComponentList/ComponentList.js");
+/* harmony import */ var _ComponentFactory_ComponentFactory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ComponentFactory/ComponentFactory */ "./src/View/ComponentFactory/ComponentFactory.js");
+/* harmony import */ var _LevelDesign_LevelDesign__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./LevelDesign/LevelDesign */ "./src/View/LevelDesign/LevelDesign.js");
+/* harmony import */ var _Components_RESERVATION__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../Components/RESERVATION */ "./src/Components/RESERVATION.js");
 
 
 
@@ -43433,12 +43636,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-class View extends _WeJSEvent_WeJSEventEmitter__WEBPACK_IMPORTED_MODULE_2__["default"] {
+
+class View extends _WeJSEvent_WeJSEventEmitter__WEBPACK_IMPORTED_MODULE_3__["default"] {
   constructor(raw = {
     id: null,
-    level: _LevelDesign_LevelDesign__WEBPACK_IMPORTED_MODULE_6__["default"].PERSISTENT_LEVEL,
-    levelDesign: new _LevelDesign_LevelDesign__WEBPACK_IMPORTED_MODULE_6__["default"](),
-    component: new _ComponentList_ComponentList__WEBPACK_IMPORTED_MODULE_4__["default"]()
+    level: _LevelDesign_LevelDesign__WEBPACK_IMPORTED_MODULE_7__["default"].PERSISTENT_LEVEL,
+    levelDesign: new _LevelDesign_LevelDesign__WEBPACK_IMPORTED_MODULE_7__["default"](),
+    component: new _ComponentList_ComponentList__WEBPACK_IMPORTED_MODULE_5__["default"]()
   }) {
     super();
     const {
@@ -43450,12 +43654,12 @@ class View extends _WeJSEvent_WeJSEventEmitter__WEBPACK_IMPORTED_MODULE_2__["def
     this.id = id;
     this.level = level;
     this.levelDesign = levelDesign;
-    this.tags = new _Utils_Arrayset__WEBPACK_IMPORTED_MODULE_3__["default"]();
-    this.component = new _ComponentList_ComponentList__WEBPACK_IMPORTED_MODULE_4__["default"](component);
-    const factory = new _ComponentFactory_ComponentFactory__WEBPACK_IMPORTED_MODULE_5__["default"]();
-    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_7__["default"].CAMERA));
-    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_7__["default"].TRANSFORM));
-    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_7__["default"].FILTER));
+    this.tags = new _Utils_Arrayset__WEBPACK_IMPORTED_MODULE_4__["default"]();
+    this.component = new _ComponentList_ComponentList__WEBPACK_IMPORTED_MODULE_5__["default"](component);
+    const factory = new _ComponentFactory_ComponentFactory__WEBPACK_IMPORTED_MODULE_6__["default"]();
+    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_8__["default"].CAMERA));
+    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_8__["default"].TRANSFORM));
+    this.component.add(factory.create(_Components_RESERVATION__WEBPACK_IMPORTED_MODULE_8__["default"].FILTER));
     _Utils_Definer__WEBPACK_IMPORTED_MODULE_1__["default"].create('uid', _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_0__["Random"].shortid()).seal(true).hidden(true).final(true).to(this);
     /**
      * 
@@ -43483,27 +43687,38 @@ class View extends _WeJSEvent_WeJSEventEmitter__WEBPACK_IMPORTED_MODULE_2__["def
   }
 
   onPreload(fn) {
-    this.__lifecycle.preloadFns.push(fn.bind(this));
-
+    this.lifecycle.preload.push(fn.bind(this));
     return this;
   }
 
   onStart(fn) {
-    this.__lifecycle.startFns.push(fn.bind(this));
-
+    this.lifecycle.start.push(fn.bind(this));
     return this;
   }
 
   onUpdate(fn) {
-    this.__lifecycle.updateFns.push(fn.bind(this));
-
+    this.lifecycle.update.push(fn.bind(this));
     return this;
   }
 
   onDestroy(fn) {
-    this.__lifecycle.destroyFns.push(fn.bind(this));
-
+    this.lifecycle.destroy.push(fn.bind(this));
     return this;
+  }
+
+  cycleStart() {
+    this.lifecycle.start.forEach(fn => fn(this.lifecycle.dataTransfer));
+  }
+
+  cycleUpdate() {
+    return _Utils_Tick__WEBPACK_IMPORTED_MODULE_2__["default"].request((step, deltaTime) => {
+      this.lifecycle.update.forEach(fn => fn(this.lifecycle.dataTransfer, deltaTime));
+    });
+  }
+
+  cycleDestroy(tick) {
+    _Utils_Tick__WEBPACK_IMPORTED_MODULE_2__["default"].cancelRequest(tick);
+    this.lifecycle.destroy.forEach(fn => fn(this.lifecycle.dataTransfer));
   }
 
 }

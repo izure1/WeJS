@@ -1,5 +1,6 @@
 import { Random } from '../Utils/MathUtil'
 import Definer from '../Utils/Definer'
+import Tick from '../Utils/Tick'
 import WeJSEventEmitter from '../WeJSEvent/WeJSEventEmitter'
 
 import Arrayset from '../Utils/Arrayset'
@@ -76,20 +77,33 @@ class View extends WeJSEventEmitter {
     }
 
     onPreload(fn) {
-        this.__lifecycle.preloadFns.push(fn.bind(this))
+        this.lifecycle.preload.push(fn.bind(this))
         return this
     }
     onStart(fn) {
-        this.__lifecycle.startFns.push(fn.bind(this))
+        this.lifecycle.start.push(fn.bind(this))
         return this
     }
     onUpdate(fn) {
-        this.__lifecycle.updateFns.push(fn.bind(this))
+        this.lifecycle.update.push(fn.bind(this))
         return this
     }
     onDestroy(fn) {
-        this.__lifecycle.destroyFns.push(fn.bind(this))
+        this.lifecycle.destroy.push(fn.bind(this))
         return this
+    }
+
+    cycleStart() {
+        this.lifecycle.start.forEach(fn => fn(this.lifecycle.dataTransfer))
+    }
+    cycleUpdate() {
+        return Tick.request((step, deltaTime) => {
+            this.lifecycle.update.forEach(fn => fn(this.lifecycle.dataTransfer, deltaTime))
+        })
+    }
+    cycleDestroy(tick) {
+        Tick.cancelRequest(tick)
+        this.lifecycle.destroy.forEach(fn => fn(this.lifecycle.dataTransfer))
     }
 
 }

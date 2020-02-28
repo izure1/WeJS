@@ -123,7 +123,7 @@
                 v-for="children in body.component.children.lists"
                 :key="children.uid"
                 :app="app"
-                :scene="scene"
+                :scene="body"
                 :body="children"
                 :requiredLevel="body.levelDesign.getRequired(body.level)"
                 @onchangesize="onChangeSize" />
@@ -150,9 +150,6 @@ import calcSizeMax from './Methods/calcSizeMax'
 import isNeedFromScene from './Methods/isNeedFromScene'
 import startResizeObserve from './Methods/startResizeObserve'
 import destroyResizeObserve from './Methods/destroyResizeObserve'
-import cycleStart from './Methods/cycleStart'
-import cycleUpdate from './Methods/cycleUpdate'
-import cycleDestroy from './Methods/cycleDestroy'
 import translate from './Methods/translate'
 import emit from './Methods/emit'
 
@@ -198,15 +195,11 @@ export default {
         isNeedFromScene,
         startResizeObserve,
         destroyResizeObserve,
-        cycleStart,
-        cycleUpdate,
-        cycleDestroy,
         translate,
         emit,
     },
 
     watch: {
-
         'sizeSelf'() { this.calcSizeMax() },
         'sizeChild'() { this.calcSizeMax() },
         // 최소한의 성능 향상을 위하여 Attribute bind 기능을 이용하지 않았습니다.
@@ -214,18 +207,17 @@ export default {
             deep: true,
             handler() { this.translate() }
         }
-
     },
 
     mounted() {
         this.startResizeObserve()
-        this.cycleStart()
-        this.cycleUpdate()
+        this.body.cycleStart()
+        this.updateRequestId = this.body.cycleUpdate()
     },
 
     beforeDestroy() {
         this.destroyResizeObserve()
-        this.cycleDestroy()
+        this.body.cycleDestroy(this.updateRequestId)
     }
 
 }
