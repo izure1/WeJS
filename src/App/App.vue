@@ -5,17 +5,13 @@
             width: `${app.width}px`,
             height: `${app.height}px`,
             transform: `scale(${appScale})`
-        }"
-    >
+        }">
         <we-body
-            v-for="scene in app.component.children.lists"
-            :key="scene.uid"
             :app="app"
             :scene="app"
-            :body="scene"
+            :body="app"
             :requiredLevel="app.levelDesign.getRequired(app.level)"
-            :style="{ perspective: `${app.perspective}px` }"
-        />
+            :style="{ perspective: `${app.perspective}px` }" />
     </section>
 </template>
 
@@ -30,7 +26,6 @@ export default {
     components: { WeBody },
     props: ['app'],
     data: () => ({
-        updateRequestId: null,
         resizeObserver: null,
         appScale: 1,
     }),
@@ -40,13 +35,10 @@ export default {
     },
     mounted() {
         this.resizeObserver.observe(this.$el)
-        this.app.cycleStart()
-        this.updateRequestId = this.app.cycleUpdate()
     },
     beforeDestroy() {
         this.resizeObserver.disconnect()
         this.resizeObserver = null
-        this.app.cycleDestroy(this.updateRequestId)
     }
 
 }

@@ -85,6 +85,8 @@
 
       // 버튼을 gui 씬에 넣습니다.
       gui.launch(button, dialog)
+
+      console.log(11)
       
     }).onDestroy(gui.clear)
     
@@ -92,6 +94,10 @@
         // 앱이 부착될 element를 지정
         app.element = '#app'
         app.size = [800, 500]
+        
+        app.onStart(() => {
+            console.log(2)
+        })
         
         // 앱에서 씬을 실행
         await app.start()

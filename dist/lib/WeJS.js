@@ -314,10 +314,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -327,7 +323,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: ['app'],
   data: () => ({
-    updateRequestId: null,
     resizeObserver: null,
     appScale: 1
   }),
@@ -341,14 +336,11 @@ __webpack_require__.r(__webpack_exports__);
 
   mounted() {
     this.resizeObserver.observe(this.$el);
-    this.app.cycleStart();
-    this.updateRequestId = this.app.cycleUpdate();
   },
 
   beforeDestroy() {
     this.resizeObserver.disconnect();
     this.resizeObserver = null;
-    this.app.cycleDestroy(this.updateRequestId);
   }
 
 });
@@ -1293,6 +1285,7 @@ Reservation.prototype.pause = _Helper_pause__WEBPACK_IMPORTED_MODULE_4__["defaul
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Asset_AssetLoader_AssetLoader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Asset/AssetLoader/AssetLoader */ "./src/Asset/AssetLoader/AssetLoader.js");
 //
 //
 //
@@ -1312,8 +1305,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['emitters']
+  props: ['body', 'emitters'],
+  data: () => ({
+    loader: new _Asset_AssetLoader_AssetLoader__WEBPACK_IMPORTED_MODULE_0__["default"]()
+  })
 });
 
 /***/ }),
@@ -1605,7 +1603,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".particle-renderer[data-v-679de40a] {\n  width: 0;\n  height: 0;\n}\n", ""]);
+exports.push([module.i, ".particle-renderer[data-v-679de40a] {\n  width: 0;\n  height: 0;\n  transform-style: preserve-3d;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -25363,18 +25361,17 @@ var render = function() {
         transform: "scale(" + _vm.appScale + ")"
       }
     },
-    _vm._l(_vm.app.component.children.lists, function(scene) {
-      return _c("we-body", {
-        key: scene.uid,
+    [
+      _c("we-body", {
         style: { perspective: _vm.app.perspective + "px" },
         attrs: {
           app: _vm.app,
           scene: _vm.app,
-          body: scene,
+          body: _vm.app,
           requiredLevel: _vm.app.levelDesign.getRequired(_vm.app.level)
         }
       })
-    }),
+    ],
     1
   )
 }
@@ -25681,20 +25678,24 @@ var render = function() {
               "div",
               {
                 style: {
+                  position: "absolute",
                   transform:
                     "\n                    translate3d(\n                        " +
                     info.object.position.x +
                     "px,\n                        " +
                     info.object.position.y +
-                    "px,\n                        " +
-                    0 +
-                    "px\n                    )\n                    scale(" +
+                    "px,\n                        0px)\n                    scale(" +
                     info.particle.scale +
-                    ")",
-                  position: "absolute"
+                    ")"
                 }
               },
-              [_vm._v("★")]
+              [
+                _c("img", {
+                  staticClass: "particle-item",
+                  style: { mixBlendMode: info.particle.blend },
+                  attrs: { src: _vm.loader.getUri(info.particle.src) }
+                })
+              ]
             )
           ])
         }),
@@ -40903,28 +40904,40 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function add() {
+  // TODO
+  // 1. component.transform.z 값에 따라서 파티클 객체의 z좌표 역시 달라져야함
+  // 2. 파티클이 particle.scale 값에 따라서 실제 물리객체의 크기가 달라져야함. 이건 (초기 크기값) * particle.progress 로 얻을 수 있음
+  // 3. 파티클 이미지의 크기에 따라 물리객체의 초기 크기값이 정해져야함.
+  // 4. 물리 객체에 콜라이더 설정을 해야함. 콜라이더는 WeJS.View의 tag 컴포넌트를 이용하도록 함. 파티클 객체는 tag 컴포넌트의 값을 상속받음.
+  const {
+    x,
+    y,
+    z
+  } = this.body.component.transform;
+  const {
+    speed,
+    frictionAir
+  } = this.body.component.particle;
   const option = new _Particle_Particle__WEBPACK_IMPORTED_MODULE_0__["ParticleOption"]();
   const setting = _Utils_ObjectExtra__WEBPACK_IMPORTED_MODULE_2__["default"].overwrite(option, this.body.component.particle);
   const particle = _Utils_ObjectExtra__WEBPACK_IMPORTED_MODULE_2__["default"].overwrite(new _Particle_Particle__WEBPACK_IMPORTED_MODULE_0__["Particle"](), setting);
   const id = _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_1__["Random"].shortid();
-  const {
-    x,
-    y
-  } = this.body.component.transform;
-  const {
-    speed
-  } = this.body.component.particle;
   const forceX = _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_1__["Random"].plusMinus() * _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_1__["Random"].between(0, speed);
   const forceY = _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_1__["Random"].plusMinus() * _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_1__["Random"].between(0, speed);
-  const object = matter_js__WEBPACK_IMPORTED_MODULE_3___default.a.Bodies.rectangle(x, y, 10, 10);
+  const object = matter_js__WEBPACK_IMPORTED_MODULE_3___default.a.Bodies.rectangle(x, -y, 10, 10);
   const info = {
     id,
     particle,
     object
-  };
+  }; // 파티클 물리 객체에 이벤트를 추가하고 월드에 적용합니다.
+  // 이후 힘을 가합니다.
+
   matter_js__WEBPACK_IMPORTED_MODULE_3___default.a.Events.on(this.scene.physics.runner, 'afterUpdate', () => particle.update(16));
   matter_js__WEBPACK_IMPORTED_MODULE_3___default.a.World.add(this.scene.physics.world, object);
-  matter_js__WEBPACK_IMPORTED_MODULE_3___default.a.Body.applyForce(object, matter_js__WEBPACK_IMPORTED_MODULE_3___default.a.Vector.create(x, y), matter_js__WEBPACK_IMPORTED_MODULE_3___default.a.Vector.create(forceX, forceY));
+  matter_js__WEBPACK_IMPORTED_MODULE_3___default.a.Body.applyForce(object, matter_js__WEBPACK_IMPORTED_MODULE_3___default.a.Vector.create(x, y), matter_js__WEBPACK_IMPORTED_MODULE_3___default.a.Vector.create(forceX, forceY)); // 객체 설정 (크기, 마찰력 등)
+
+  object.frictionAir = frictionAir; // particle.duration 기간이 지나면 파티클을 월드에서 삭제합니다.
+
   particle.on('particleLifeEnd', () => {
     matter_js__WEBPACK_IMPORTED_MODULE_3___default.a.World.remove(this.scene.physics.world, object);
     this.particles.delete(info);
@@ -41075,7 +41088,7 @@ function create() {
   if (this.object) {
     const width = this.bodySize[0] / 2;
     const height = this.bodySize[1] / 2;
-    const vertices = matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Vertices.create([p(-width, -height), p(width, -height), p(width, height), p(-width, height)], object);
+    const vertices = matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Vertices.create([p(-width, -height), p(width, -height), p(width, height), p(-width, height)], this.object);
     matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Body.setVertices(this.object, vertices);
     return;
   }
@@ -41879,7 +41892,9 @@ class ParticleOption {
 
     _defineProperty(this, "duration", 1000);
 
-    _defineProperty(this, "frictionAir", 0.3);
+    _defineProperty(this, "frictionAir", 0.05);
+
+    _defineProperty(this, "blend", 'normal');
   }
 
 }
@@ -41896,8 +41911,8 @@ class EmitterOption {
 }
 
 class Particle extends _WeJSEvent_WeJSEventEmitter__WEBPACK_IMPORTED_MODULE_0__["default"] {
-  constructor(...args) {
-    super(...args);
+  constructor() {
+    super();
 
     _defineProperty(this, "step", 0);
 
@@ -42018,6 +42033,7 @@ class Scene extends _View_View__WEBPACK_IMPORTED_MODULE_4__["default"] {
   clear() {
     this.component.children.lists.clear();
     this.lifecycle.dataTransfer.clear();
+    this.particle.emitters.clear();
     this.physics.stop();
     return this;
   }

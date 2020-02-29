@@ -6,7 +6,8 @@ class ParticleOption {
     start = 1
     end = 0
     duration = 1000
-    frictionAir = 0.3
+    frictionAir = 0.05
+    blend = 'normal'
 }
 
 class EmitterOption {
@@ -19,8 +20,8 @@ class Particle extends EventEmitter {
 
     step = 0
 
-    constructor(...args) {
-        super(...args)
+    constructor() {
+        super()
         Object.assign(this, new ParticleOption)
     } 
 

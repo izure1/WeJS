@@ -17,7 +17,7 @@ export default function create() {
         const width = this.bodySize[0] / 2
         const height = this.bodySize[1] / 2
 
-        const vertices = Matter.Vertices.create([p(-width, -height), p(width, -height), p(width, height), p(-width, height)], object)
+        const vertices = Matter.Vertices.create([p(-width, -height), p(width, -height), p(width, height), p(-width, height)], this.object)
         Matter.Body.setVertices(this.object, vertices)
 
         return

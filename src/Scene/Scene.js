@@ -56,6 +56,7 @@ class Scene extends View {
     clear() {
         this.component.children.lists.clear()
         this.lifecycle.dataTransfer.clear()
+        this.particle.emitters.clear()
         this.physics.stop()
         return this
     }
