@@ -771,7 +771,7 @@ class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__
   props: ['scene', 'body'],
   data: () => ({
     particles: new _Utils_Arrayset__WEBPACK_IMPORTED_MODULE_1__["default"](),
-    interval: null
+    updateIntervalId: null
   }),
   methods: {
     add: _Methods_add__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -1305,13 +1305,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['body', 'emitters'],
+  props: ['emitters'],
   data: () => ({
     loader: new _Asset_AssetLoader_AssetLoader__WEBPACK_IMPORTED_MODULE_0__["default"]()
-  })
+  }),
+  methods: {
+    centerPointX(info) {
+      return info.object.position.x - info.particle.width / 2;
+    },
+
+    centerPointY(info) {
+      return info.object.position.y - info.particle.height / 2;
+    },
+
+    centerPointZ(info) {
+      return info.particle.z;
+    }
+
+  }
 });
 
 /***/ }),
@@ -1603,7 +1616,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".particle-renderer[data-v-679de40a] {\n  width: 0;\n  height: 0;\n  transform-style: preserve-3d;\n}\n", ""]);
+exports.push([module.i, ".particle-renderer[data-v-679de40a] {\n  width: 0;\n  height: 0;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -25674,29 +25687,24 @@ var render = function() {
         { key: "emitter_" + i },
         _vm._l(emitter, function(info) {
           return _c("div", { key: "particle_" + info.id }, [
-            _c(
-              "div",
-              {
-                style: {
-                  position: "absolute",
-                  transform:
-                    "\n                    translate3d(\n                        " +
-                    info.object.position.x +
-                    "px,\n                        " +
-                    info.object.position.y +
-                    "px,\n                        0px)\n                    scale(" +
-                    info.particle.scale +
-                    ")"
-                }
+            _c("img", {
+              staticClass: "particle-item",
+              style: {
+                mixBlendMode: info.particle.blend,
+                position: "absolute",
+                transform:
+                  "\n                    translate3d(\n                        " +
+                  _vm.centerPointX(info) +
+                  "px,\n                        " +
+                  _vm.centerPointY(info) +
+                  "px,\n                        " +
+                  _vm.centerPointZ(info) +
+                  "px)\n                    scale(" +
+                  info.particle.scale +
+                  ")"
               },
-              [
-                _c("img", {
-                  staticClass: "particle-item",
-                  style: { mixBlendMode: info.particle.blend },
-                  attrs: { src: _vm.loader.getUri(info.particle.src) }
-                })
-              ]
-            )
+              attrs: { src: _vm.loader.getUri(info.particle.src) }
+            })
           ])
         }),
         0
@@ -39934,6 +39942,11 @@ class AssetLoader {
     return AssetLoader._queue;
   }
 
+  static getUri(uri) {
+    const asset = AssetLoader.list.get(uri);
+    return asset ? asset.uri : uri;
+  }
+
   get list() {
     return AssetLoader.list;
   }
@@ -39947,8 +39960,7 @@ class AssetLoader {
   }
 
   getUri(uri) {
-    const asset = this.list.get(uri);
-    return asset ? asset.uri : uri;
+    return AssetLoader.getUri(uri);
   }
 
 }
@@ -40894,20 +40906,24 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return add; });
-/* harmony import */ var _Particle_Particle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../Particle/Particle */ "./src/Particle/Particle.js");
-/* harmony import */ var _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Utils/MathUtil */ "./src/Utils/MathUtil.js");
-/* harmony import */ var _Utils_ObjectExtra__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../Utils/ObjectExtra */ "./src/Utils/ObjectExtra.js");
-/* harmony import */ var matter_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! matter-js */ "./node_modules/matter-js/build/matter.js");
-/* harmony import */ var matter_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(matter_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var matter_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! matter-js */ "./node_modules/matter-js/build/matter.js");
+/* harmony import */ var matter_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(matter_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Utils_Matter_extra__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Utils/Matter-extra */ "./src/Utils/Matter-extra.js");
+/* harmony import */ var _Particle_Particle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../Particle/Particle */ "./src/Particle/Particle.js");
+/* harmony import */ var _Utils_SizeCalculator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../Utils/SizeCalculator */ "./src/Utils/SizeCalculator.js");
+/* harmony import */ var _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../Utils/MathUtil */ "./src/Utils/MathUtil.js");
+/* harmony import */ var _Asset_AssetLoader_AssetLoader__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../Asset/AssetLoader/AssetLoader */ "./src/Asset/AssetLoader/AssetLoader.js");
+/* harmony import */ var _Utils_ObjectExtra__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../Utils/ObjectExtra */ "./src/Utils/ObjectExtra.js");
 
 
 
 
-function add() {
+
+
+
+async function add() {
   // TODO
   // 1. component.transform.z 값에 따라서 파티클 객체의 z좌표 역시 달라져야함
-  // 2. 파티클이 particle.scale 값에 따라서 실제 물리객체의 크기가 달라져야함. 이건 (초기 크기값) * particle.progress 로 얻을 수 있음
-  // 3. 파티클 이미지의 크기에 따라 물리객체의 초기 크기값이 정해져야함.
   // 4. 물리 객체에 콜라이더 설정을 해야함. 콜라이더는 WeJS.View의 tag 컴포넌트를 이용하도록 함. 파티클 객체는 tag 컴포넌트의 값을 상속받음.
   const {
     x,
@@ -40915,31 +40931,45 @@ function add() {
     z
   } = this.body.component.transform;
   const {
+    src,
     speed,
     frictionAir
   } = this.body.component.particle;
-  const option = new _Particle_Particle__WEBPACK_IMPORTED_MODULE_0__["ParticleOption"]();
-  const setting = _Utils_ObjectExtra__WEBPACK_IMPORTED_MODULE_2__["default"].overwrite(option, this.body.component.particle);
-  const particle = _Utils_ObjectExtra__WEBPACK_IMPORTED_MODULE_2__["default"].overwrite(new _Particle_Particle__WEBPACK_IMPORTED_MODULE_0__["Particle"](), setting);
-  const id = _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_1__["Random"].shortid();
-  const forceX = _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_1__["Random"].plusMinus() * _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_1__["Random"].between(0, speed);
-  const forceY = _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_1__["Random"].plusMinus() * _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_1__["Random"].between(0, speed);
-  const object = matter_js__WEBPACK_IMPORTED_MODULE_3___default.a.Bodies.rectangle(x, -y, 10, 10);
+  const {
+    width,
+    height
+  } = await _Utils_SizeCalculator__WEBPACK_IMPORTED_MODULE_3__["ImageSize"].calc(_Asset_AssetLoader_AssetLoader__WEBPACK_IMPORTED_MODULE_5__["default"].getUri(src));
+  const option = new _Particle_Particle__WEBPACK_IMPORTED_MODULE_2__["ParticleOption"]();
+  const setting = _Utils_ObjectExtra__WEBPACK_IMPORTED_MODULE_6__["default"].overwrite(option, this.body.component.particle);
+  const particle = _Utils_ObjectExtra__WEBPACK_IMPORTED_MODULE_6__["default"].overwrite(new _Particle_Particle__WEBPACK_IMPORTED_MODULE_2__["Particle"](width, height, z), setting);
+  const id = _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_4__["Random"].shortid();
+  const forceX = _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_4__["Random"].plusMinus() * _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_4__["Random"].between(0, speed);
+  const forceY = _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_4__["Random"].plusMinus() * _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_4__["Random"].between(0, speed);
+  const object = matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Bodies.rectangle(x, -y, width, height);
   const info = {
     id,
     particle,
     object
+  }; // 매 프레임 파티클을 업데이트합니다.
+
+  const update = () => {
+    particle.update(16);
+    _Utils_Matter_extra__WEBPACK_IMPORTED_MODULE_1__["default"].Body.changeSize(particle.scale * width, particle.scale * height, object);
   }; // 파티클 물리 객체에 이벤트를 추가하고 월드에 적용합니다.
   // 이후 힘을 가합니다.
 
-  matter_js__WEBPACK_IMPORTED_MODULE_3___default.a.Events.on(this.scene.physics.runner, 'afterUpdate', () => particle.update(16));
-  matter_js__WEBPACK_IMPORTED_MODULE_3___default.a.World.add(this.scene.physics.world, object);
-  matter_js__WEBPACK_IMPORTED_MODULE_3___default.a.Body.applyForce(object, matter_js__WEBPACK_IMPORTED_MODULE_3___default.a.Vector.create(x, y), matter_js__WEBPACK_IMPORTED_MODULE_3___default.a.Vector.create(forceX, forceY)); // 객체 설정 (크기, 마찰력 등)
 
-  object.frictionAir = frictionAir; // particle.duration 기간이 지나면 파티클을 월드에서 삭제합니다.
+  matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Events.on(this.scene.physics.runner, 'afterUpdate', update);
+  matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.World.add(this.scene.physics.world, object);
+  matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Body.applyForce(object, matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Vector.create(x, y), matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Vector.create(forceX, forceY)); // 객체 설정 (크기, 마찰력 등)
+
+  matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Body.setInertia(object, Infinity);
+  object.frictionAir = frictionAir;
+  object.collisionFilter.group = -1; // particle.duration 기간이 지나면 파티클을 월드에서 삭제합니다.
 
   particle.on('particleLifeEnd', () => {
-    matter_js__WEBPACK_IMPORTED_MODULE_3___default.a.World.remove(this.scene.physics.world, object);
+    matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Events.off(this.scene.physics.runner, 'afterUpdate', update);
+    matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.World.remove(this.scene.physics.world, object);
     this.particles.delete(info);
   });
   this.particles.add(info);
@@ -40961,7 +40991,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function generate() {
   this.stop();
-  this.interval = _Utils_Tick__WEBPACK_IMPORTED_MODULE_0__["default"].request(() => {
+  this.updateIntervalId = _Utils_Tick__WEBPACK_IMPORTED_MODULE_0__["default"].request(() => {
     for (let i = 0; i < this.body.component.particle.quantity; i++) this.add();
   }, this.body.component.particle.interval);
 }
@@ -40981,7 +41011,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Utils_Tick__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../Utils/Tick */ "./src/Utils/Tick.js");
 
 function stop() {
-  _Utils_Tick__WEBPACK_IMPORTED_MODULE_0__["default"].cancelRequest(this.interval);
+  _Utils_Tick__WEBPACK_IMPORTED_MODULE_0__["default"].cancelRequest(this.updateIntervalId);
 }
 
 /***/ }),
@@ -41071,6 +41101,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return create; });
 /* harmony import */ var matter_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! matter-js */ "./node_modules/matter-js/build/matter.js");
 /* harmony import */ var matter_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(matter_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Utils_Matter_extra__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Utils/Matter-extra */ "./src/Utils/Matter-extra.js");
+
 
 
 function p(x, y) {
@@ -41086,10 +41118,7 @@ function create() {
   // 대신 크기 조절만 합니다.
 
   if (this.object) {
-    const width = this.bodySize[0] / 2;
-    const height = this.bodySize[1] / 2;
-    const vertices = matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Vertices.create([p(-width, -height), p(width, -height), p(width, height), p(-width, height)], this.object);
-    matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Body.setVertices(this.object, vertices);
+    _Utils_Matter_extra__WEBPACK_IMPORTED_MODULE_1__["default"].Body.changeSize(this.bodySize[0], this.bodySize[1], this.object);
     return;
   }
 
@@ -41154,6 +41183,7 @@ __webpack_require__.r(__webpack_exports__);
 function onChangeSize(e) {
   // 객체의 크기를 수정합니다.
   this.bodySize = e.detail.size;
+  this.wakeAll();
 }
 
 /***/ }),
@@ -41895,6 +41925,8 @@ class ParticleOption {
     _defineProperty(this, "frictionAir", 0.05);
 
     _defineProperty(this, "blend", 'normal');
+
+    _defineProperty(this, "z", 0);
   }
 
 }
@@ -41911,11 +41943,20 @@ class EmitterOption {
 }
 
 class Particle extends _WeJSEvent_WeJSEventEmitter__WEBPACK_IMPORTED_MODULE_0__["default"] {
-  constructor() {
+  constructor(width, height, z) {
     super();
+
+    _defineProperty(this, "__width", 0);
+
+    _defineProperty(this, "__height", 0);
 
     _defineProperty(this, "step", 0);
 
+    _defineProperty(this, "_", void 0);
+
+    this.__width = width;
+    this.__height = height;
+    this.z = z;
     Object.assign(this, new ParticleOption());
   }
 
@@ -41930,6 +41971,14 @@ class Particle extends _WeJSEvent_WeJSEventEmitter__WEBPACK_IMPORTED_MODULE_0__[
       progress
     } = this;
     return start - progress * (start - end);
+  }
+
+  get width() {
+    return this.__width * this.scale;
+  }
+
+  get height() {
+    return this.__height * this.scale;
   }
 
   update(deltaTime) {
@@ -41992,8 +42041,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-window.Vue = vue__WEBPACK_IMPORTED_MODULE_1__["default"];
-window.Matter = matter_js__WEBPACK_IMPORTED_MODULE_0___default.a;
 
 class Scene extends _View_View__WEBPACK_IMPORTED_MODULE_4__["default"] {
   constructor() {
@@ -42580,6 +42627,52 @@ class Random {
 
 /***/ }),
 
+/***/ "./src/Utils/Matter-extra.js":
+/*!***********************************!*\
+  !*** ./src/Utils/Matter-extra.js ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var matter_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! matter-js */ "./node_modules/matter-js/build/matter.js");
+/* harmony import */ var matter_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(matter_js__WEBPACK_IMPORTED_MODULE_0__);
+
+const MatterExtra = {
+  Vertices: {},
+  Body: {}
+};
+/**
+ * 
+ * @param {Number} width 
+ * @param {Number} height 
+ * @param {Matter.Body} object 
+ */
+
+MatterExtra.Vertices.rectangle = function rectangle(width, height, object) {
+  width /= 2;
+  height /= 2;
+  return matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Vertices.create([matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Vector.create(-width, -height), matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Vector.create(width, -height), matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Vector.create(width, height), matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Vector.create(-width, height)], object);
+};
+/**
+ * 
+ * @param {Number} width 
+ * @param {Number} height 
+ * @param {Matter.Body} object 
+ */
+
+
+MatterExtra.Body.changeSize = function changeSize(width, height, object) {
+  matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Body.setVertices(object, MatterExtra.Vertices.rectangle(width, height, object));
+};
+
+for (const namespace in MatterExtra) Object.assign(MatterExtra[namespace], matter_js__WEBPACK_IMPORTED_MODULE_0___default.a[namespace]);
+
+/* harmony default export */ __webpack_exports__["default"] = (MatterExtra);
+
+/***/ }),
+
 /***/ "./src/Utils/ObjectExtra.js":
 /*!**********************************!*\
   !*** ./src/Utils/ObjectExtra.js ***!
@@ -42762,6 +42855,93 @@ class Searcher {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Searcher);
+
+/***/ }),
+
+/***/ "./src/Utils/SizeCalculator.js":
+/*!*************************************!*\
+  !*** ./src/Utils/SizeCalculator.js ***!
+  \*************************************/
+/*! exports provided: ImageSize, VideoSize */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ImageSize", function() { return ImageSize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VideoSize", function() { return VideoSize; });
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+class Vector {
+  static create(width, height) {
+    const x = width;
+    const y = height;
+    return {
+      width,
+      height,
+      x,
+      y
+    };
+  }
+
+}
+
+class ElementSize {
+  static getSize(src, tag, x, y) {
+    return new Promise((resolve, reject) => {
+      const el = document.createElement(tag);
+      el.src = src;
+
+      el.onload = () => {
+        x = el[x];
+        y = el[y];
+        resolve(Vector.create(x, y));
+      };
+
+      el.onerror = el.onabort = () => {
+        reject(Vector.create(0, 0));
+      };
+    });
+  }
+
+}
+
+class ImageSize {
+  static async calc(src) {
+    const {
+      el,
+      x,
+      y
+    } = ImageSize;
+    return await ElementSize.getSize(src, el, x, y);
+  }
+
+}
+
+_defineProperty(ImageSize, "x", 'naturalWidth');
+
+_defineProperty(ImageSize, "y", 'naturalHeight');
+
+_defineProperty(ImageSize, "el", 'img');
+
+class VideoSize {
+  static async calc(src) {
+    const {
+      el,
+      x,
+      y
+    } = VideoSize;
+    return await ElementSize.getSize(src, el, x, y);
+  }
+
+}
+
+_defineProperty(VideoSize, "x", 'videoWidth');
+
+_defineProperty(VideoSize, "y", 'videoHeight');
+
+_defineProperty(VideoSize, "el", 'video');
+
+
 
 /***/ }),
 

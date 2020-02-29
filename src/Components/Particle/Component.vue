@@ -26,7 +26,7 @@ export default {
     props: ['scene', 'body'],
     data: () => ({
         particles: new Arrayset,
-        interval: null,
+        updateIntervalId: null,
     }),
     methods: {
         add,

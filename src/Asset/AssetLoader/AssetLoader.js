@@ -22,6 +22,10 @@ class AssetLoader {
   static get queue() {
     return AssetLoader._queue
   }
+  static getUri(uri) {
+      const asset = AssetLoader.list.get(uri)
+      return asset ? asset.uri : uri
+  }
 
   get list() {
     return AssetLoader.list
@@ -34,8 +38,7 @@ class AssetLoader {
   }
 
   getUri(uri) {
-    const asset = this.list.get(uri)
-    return asset ? asset.uri : uri
+      return AssetLoader.getUri(uri)
   }
 
 }

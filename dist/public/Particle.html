@@ -47,7 +47,8 @@
         // 비디오를 보여주기 위해 렌더러 컴포넌트를 생성합니다.
         particle.component.add(factory.create(WeJS.RESERVATION.PARTICLE))
         particle.component.particle.src = 'assets/image/particle_star.png'
-        particle.component.particle.blend = 'hue'
+        particle.component.particle.speed = 1
+        particle.component.particle.blend = 'normal'
 
         // 씬에 객체를 추가합니다.
         scene.launch(bg, particle)

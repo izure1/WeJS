@@ -11,8 +11,6 @@ import ComponentFactory from '../View/ComponentFactory/ComponentFactory'
 
 import RESERVATION from '../Components/RESERVATION'
 
-window.Vue = Vue
-window.Matter = Matter
 
 class Scene extends View {
 

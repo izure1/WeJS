@@ -6,16 +6,12 @@
 
 <body>
   <div id="app"></div>
-  <div>
-    <button onclick="change()">Change</button>
-  </div>
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <script src="../lib/WeJS.js"></script>
   <script>
     const app = new WeJS.App // 새로운 viewport 만들기
     const scene = new WeJS.Scene3d // 새로운 씬
 
-    const image = new WeJS.View
     const factory = new WeJS.ComponentFactory // 컴포넌트를 만들어주는 인스턴스 객체
     const loader = new WeJS.AssetLoader // 에셋을 관리해주는 인스턴스 객체
 
@@ -23,10 +19,7 @@
     app.onPreload(async () => {
 
       // 로드할 에셋을 추가합니다. 추가와 동시에 비동기로 에셋을 로드하기 시작할 것입니다.
-      loader.addFromArray([
-        ['assets/image/transition_before.png', 'image/png'],
-        ['assets/image/transition_after.png', 'image/png']
-      ])
+      loader.add('assets/image/logo.png', 'image/png')
 
       // 에셋 로딩이 모두 완료될 때 까지 대기합니다.
       await loader.load()
@@ -37,18 +30,19 @@
 
     scene.onStart(() => {
 
-      // 이미지를 보여주기 위해 렌더러 컴포넌트를 생성합니다.
-      const rendererComponent = factory.create(WeJS.RESERVATION.IMAGE)
-      image.component.add(rendererComponent)
+        const image = new WeJS.View
+        // 이미지를 보여주기 위해 렌더러 컴포넌트를 생성합니다.
+        const rendererComponent = factory.create(WeJS.RESERVATION.IMAGE)
+        image.component.add(rendererComponent)
 
-      // 객체에 이미지 경로를 추가합니다.
-      image.component.image.src = 'assets/image/transition_before.png'
+        // 객체에 이미지 경로를 추가합니다.
+        image.component.image.src = 'assets/image/logo.png'
 
-      // 객체의 이미지 넓이를 지정합니다.
-      image.component.image.width = 300
+        // 객체의 이미지 넓이를 지정합니다.
+        image.component.image.width = 400
 
-      // 씬에 객체를 추가합니다.
-      scene.launch(image)
+        // 씬에 객체를 추가합니다.
+        scene.launch(image)
 
     })
 
@@ -66,13 +60,6 @@
         await app.start(splash)
         await app.launch(scene)
     })
-  </script>
-  <script>
-    function change() {
-      // 이미지의 변경 속도를 지정합니다. 지정된 속도만큼 천천히 트렌지션되며 변경됩니다.
-      image.component.image.duration = 1000
-      image.component.image.src = 'assets/image/transition_after.png'
-    }
   </script>
 </body>
 

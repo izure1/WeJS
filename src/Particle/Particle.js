@@ -8,6 +8,7 @@ class ParticleOption {
     duration = 1000
     frictionAir = 0.05
     blend = 'normal'
+    z = 0
 }
 
 class EmitterOption {
@@ -18,10 +19,15 @@ class EmitterOption {
 
 class Particle extends EventEmitter {
 
+    __width = 0
+    __height = 0
     step = 0
 
-    constructor() {
+    constructor(width, height, z) {
         super()
+        this.__width = width
+        this.__height = height
+        this.z = z
         Object.assign(this, new ParticleOption)
     } 
 
@@ -34,6 +40,9 @@ class Particle extends EventEmitter {
         return start - (progress * (start - end))
     }
 
+    get width() { return this.__width * this.scale }
+    get height() { return this.__height * this.scale }
+_
     update(deltaTime) {
         this.step += deltaTime
         if (this.step > this.duration) {

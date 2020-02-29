@@ -1,4 +1,5 @@
 import Matter from 'matter-js'
+import MatterExtra from '../../../Utils/Matter-extra'
 
 
 function p(x, y) {
@@ -13,15 +14,8 @@ export default function create() {
     // 물리객체가 생성되어 있다면 생성하지 않습니다.
     // 대신 크기 조절만 합니다.
     if (this.object) {
-
-        const width = this.bodySize[0] / 2
-        const height = this.bodySize[1] / 2
-
-        const vertices = Matter.Vertices.create([p(-width, -height), p(width, -height), p(width, height), p(-width, height)], this.object)
-        Matter.Body.setVertices(this.object, vertices)
-
+        MatterExtra.Body.changeSize(this.bodySize[0], this.bodySize[1], this.object)
         return
-
     }
 
 
