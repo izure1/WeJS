@@ -1,6 +1,7 @@
 import Matter from 'matter-js'
 import Arrayset from '../Utils/Arrayset'
 import Definer from '../Utils/Definer'
+import CollisionDetector from '../Collision/CollisionDetector'
 
 
 class ScenePhysics {
@@ -89,6 +90,9 @@ class ScenePhysics {
             .create('table', new Map)
             .seal(true).hidden(true).final(false)
             .to(this)
+
+
+        this.collision = new CollisionDetector
 
         // 이벤트를 핸들링합니다
         Matter.Events.on(this.runner, 'afterUpdate', e => ScenePhysics.updateRender(this.lists))

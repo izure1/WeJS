@@ -9,7 +9,6 @@ import Animation from './Animation/Animation'
 import Tick from './Utils/Tick'
 import AssetLoader from './Asset/AssetLoader/AssetLoader'
 import Asset from './Asset/Asset/Asset'
-import Collider from './Collider/Collider'
 import ComponentBuilder from './View/ComponentBuilder/ComponentBuilder'
 import ComponentFactory from './View/ComponentFactory/ComponentFactory'
 import * as MathUtil from './Utils/MathUtil'
@@ -38,7 +37,6 @@ export default {
     Animation,
     AssetLoader,
     Asset,
-    Collider,
     ComponentBuilder,
     ComponentFactory,
     MathUtil,

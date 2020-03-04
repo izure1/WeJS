@@ -741,10 +741,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Reservation", function() { return Reservation; });
 /* harmony import */ var _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../View/Component/Component */ "./src/View/Component/Component.js");
 /* harmony import */ var _Utils_Arrayset__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Utils/Arrayset */ "./src/Utils/Arrayset.js");
-/* harmony import */ var _Particle_Particle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Particle/Particle */ "./src/Particle/Particle.js");
-/* harmony import */ var _Methods_add__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Methods/add */ "./src/Components/Particle/Methods/add.js");
-/* harmony import */ var _Methods_generate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Methods/generate */ "./src/Components/Particle/Methods/generate.js");
-/* harmony import */ var _Methods_stop__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Methods/stop */ "./src/Components/Particle/Methods/stop.js");
+/* harmony import */ var _Particle_ParticleOption__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Particle/ParticleOption */ "./src/Particle/ParticleOption.js");
+/* harmony import */ var _Particle_EmitterOption__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Particle/EmitterOption */ "./src/Particle/EmitterOption.js");
+/* harmony import */ var _Methods_add__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Methods/add */ "./src/Components/Particle/Methods/add.js");
+/* harmony import */ var _Methods_generate__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Methods/generate */ "./src/Components/Particle/Methods/generate.js");
+/* harmony import */ var _Methods_stop__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Methods/stop */ "./src/Components/Particle/Methods/stop.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
@@ -757,13 +758,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
   constructor(...args) {
     super(...args);
 
     _defineProperty(this, "name", 'particle');
 
-    Object.assign(this, new _Particle_Particle__WEBPACK_IMPORTED_MODULE_2__["ParticleOption"](), new _Particle_Particle__WEBPACK_IMPORTED_MODULE_2__["EmitterOption"]());
+    Object.assign(this, new _Particle_ParticleOption__WEBPACK_IMPORTED_MODULE_2__["default"](), new _Particle_EmitterOption__WEBPACK_IMPORTED_MODULE_3__["default"]());
   }
 
 }
@@ -774,9 +776,9 @@ class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__
     updateIntervalId: null
   }),
   methods: {
-    add: _Methods_add__WEBPACK_IMPORTED_MODULE_3__["default"],
-    generate: _Methods_generate__WEBPACK_IMPORTED_MODULE_4__["default"],
-    stop: _Methods_stop__WEBPACK_IMPORTED_MODULE_5__["default"]
+    add: _Methods_add__WEBPACK_IMPORTED_MODULE_4__["default"],
+    generate: _Methods_generate__WEBPACK_IMPORTED_MODULE_5__["default"],
+    stop: _Methods_stop__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
 
   created() {
@@ -821,22 +823,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Utils_Arrayset__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Utils/Arrayset */ "./src/Utils/Arrayset.js");
 /* harmony import */ var _View_Component_Component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../View/Component/Component */ "./src/View/Component/Component.js");
 /* harmony import */ var _Methods_onChangeSize__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Methods/onChangeSize */ "./src/Components/Physics/Methods/onChangeSize.js");
-/* harmony import */ var _Methods_destroy__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Methods/destroy */ "./src/Components/Physics/Methods/destroy.js");
-/* harmony import */ var _Methods_create__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Methods/create */ "./src/Components/Physics/Methods/create.js");
-/* harmony import */ var _Methods_setStatic__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Methods/setStatic */ "./src/Components/Physics/Methods/setStatic.js");
-/* harmony import */ var _Methods_setFriction__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Methods/setFriction */ "./src/Components/Physics/Methods/setFriction.js");
-/* harmony import */ var _Methods_setRestitution__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Methods/setRestitution */ "./src/Components/Physics/Methods/setRestitution.js");
-/* harmony import */ var _Methods_setFixedRotation__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Methods/setFixedRotation */ "./src/Components/Physics/Methods/setFixedRotation.js");
-/* harmony import */ var _Methods_update__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Methods/update */ "./src/Components/Physics/Methods/update.js");
-/* harmony import */ var _Methods_translate__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Methods/translate */ "./src/Components/Physics/Methods/translate.js");
-/* harmony import */ var _Methods_transform__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Methods/transform */ "./src/Components/Physics/Methods/transform.js");
-/* harmony import */ var _Methods_wakeAll__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Methods/wakeAll */ "./src/Components/Physics/Methods/wakeAll.js");
+/* harmony import */ var _Methods_onChangeCollision__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Methods/onChangeCollision */ "./src/Components/Physics/Methods/onChangeCollision.js");
+/* harmony import */ var _Methods_destroy__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Methods/destroy */ "./src/Components/Physics/Methods/destroy.js");
+/* harmony import */ var _Methods_create__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Methods/create */ "./src/Components/Physics/Methods/create.js");
+/* harmony import */ var _Methods_setStatic__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Methods/setStatic */ "./src/Components/Physics/Methods/setStatic.js");
+/* harmony import */ var _Methods_setFriction__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Methods/setFriction */ "./src/Components/Physics/Methods/setFriction.js");
+/* harmony import */ var _Methods_setRestitution__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Methods/setRestitution */ "./src/Components/Physics/Methods/setRestitution.js");
+/* harmony import */ var _Methods_setFixedRotation__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Methods/setFixedRotation */ "./src/Components/Physics/Methods/setFixedRotation.js");
+/* harmony import */ var _Methods_setCollider__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Methods/setCollider */ "./src/Components/Physics/Methods/setCollider.js");
+/* harmony import */ var _Methods_update__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Methods/update */ "./src/Components/Physics/Methods/update.js");
+/* harmony import */ var _Methods_translate__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Methods/translate */ "./src/Components/Physics/Methods/translate.js");
+/* harmony import */ var _Methods_transform__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./Methods/transform */ "./src/Components/Physics/Methods/transform.js");
+/* harmony import */ var _Methods_wakeAll__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./Methods/wakeAll */ "./src/Components/Physics/Methods/wakeAll.js");
+/* harmony import */ var _Collision_CollisionDetector__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../Collision/CollisionDetector */ "./src/Collision/CollisionDetector.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
 //
 //
 //
+
+
+
 
 
 
@@ -915,30 +923,34 @@ class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_3__
     tracking: true,
     bodySize: [0, 0],
     scale: 1,
-    inertia: 0
+    inertia: 0,
+    category: 0
   }),
   methods: {
     onChangeSize: _Methods_onChangeSize__WEBPACK_IMPORTED_MODULE_4__["default"],
-    destroy: _Methods_destroy__WEBPACK_IMPORTED_MODULE_5__["default"],
-    create: _Methods_create__WEBPACK_IMPORTED_MODULE_6__["default"],
-    setStatic: _Methods_setStatic__WEBPACK_IMPORTED_MODULE_7__["default"],
-    setFriction: _Methods_setFriction__WEBPACK_IMPORTED_MODULE_8__["default"],
-    setRestitution: _Methods_setRestitution__WEBPACK_IMPORTED_MODULE_9__["default"],
-    setFixedRotation: _Methods_setFixedRotation__WEBPACK_IMPORTED_MODULE_10__["default"],
-    update: _Methods_update__WEBPACK_IMPORTED_MODULE_11__["default"],
-    translate: _Methods_translate__WEBPACK_IMPORTED_MODULE_12__["default"],
-    transform: _Methods_transform__WEBPACK_IMPORTED_MODULE_13__["default"],
-    wakeAll: _Methods_wakeAll__WEBPACK_IMPORTED_MODULE_14__["default"]
+    onChangeCollision: _Methods_onChangeCollision__WEBPACK_IMPORTED_MODULE_5__["default"],
+    destroy: _Methods_destroy__WEBPACK_IMPORTED_MODULE_6__["default"],
+    create: _Methods_create__WEBPACK_IMPORTED_MODULE_7__["default"],
+    setStatic: _Methods_setStatic__WEBPACK_IMPORTED_MODULE_8__["default"],
+    setFriction: _Methods_setFriction__WEBPACK_IMPORTED_MODULE_9__["default"],
+    setRestitution: _Methods_setRestitution__WEBPACK_IMPORTED_MODULE_10__["default"],
+    setFixedRotation: _Methods_setFixedRotation__WEBPACK_IMPORTED_MODULE_11__["default"],
+    setCollider: _Methods_setCollider__WEBPACK_IMPORTED_MODULE_12__["default"],
+    update: _Methods_update__WEBPACK_IMPORTED_MODULE_13__["default"],
+    translate: _Methods_translate__WEBPACK_IMPORTED_MODULE_14__["default"],
+    transform: _Methods_transform__WEBPACK_IMPORTED_MODULE_15__["default"],
+    wakeAll: _Methods_wakeAll__WEBPACK_IMPORTED_MODULE_16__["default"]
   },
 
   created() {
-    this.body.on('changesize', this.onChangeSize);
+    this.body.on('body-size-update', this.onChangeSize);
+    this.body.on('physics-collision-update', this.onChangeCollision);
     _View_Component_Component__WEBPACK_IMPORTED_MODULE_3__["default"].attachVue(this.body.component.physics, this);
   },
 
   beforeDestroy() {
     this.destroy();
-    this.body.off('changesize', this.onChangeSize);
+    this.body.off('body-size-update', this.onChangeSize);
   },
 
   watch: {
@@ -990,6 +1002,10 @@ class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_3__
 
     'body.component.physics.fixedRotation'() {
       this.setFixedRotation();
+    },
+
+    'body.component.physics.colliders'() {
+      this.setCollider();
     },
 
     'bodySize'() {
@@ -1354,11 +1370,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Methods_isNeedFromScene__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Methods/isNeedFromScene */ "./src/View/Methods/isNeedFromScene.js");
 /* harmony import */ var _Methods_startResizeObserve__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Methods/startResizeObserve */ "./src/View/Methods/startResizeObserve.js");
 /* harmony import */ var _Methods_destroyResizeObserve__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./Methods/destroyResizeObserve */ "./src/View/Methods/destroyResizeObserve.js");
-/* harmony import */ var _Methods_translate__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./Methods/translate */ "./src/View/Methods/translate.js");
-/* harmony import */ var _Methods_emit__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./Methods/emit */ "./src/View/Methods/emit.js");
-/* harmony import */ var _Computed_isScene__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./Computed/isScene */ "./src/View/Computed/isScene.js");
-/* harmony import */ var _Computed_centerPointX__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./Computed/centerPointX */ "./src/View/Computed/centerPointX.js");
-/* harmony import */ var _Computed_centerPointY__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./Computed/centerPointY */ "./src/View/Computed/centerPointY.js");
+/* harmony import */ var _Methods_updateChildrenCollision__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./Methods/updateChildrenCollision */ "./src/View/Methods/updateChildrenCollision.js");
+/* harmony import */ var _Methods_translate__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./Methods/translate */ "./src/View/Methods/translate.js");
+/* harmony import */ var _Methods_emit__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./Methods/emit */ "./src/View/Methods/emit.js");
+/* harmony import */ var _Computed_isScene__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./Computed/isScene */ "./src/View/Computed/isScene.js");
+/* harmony import */ var _Computed_centerPointX__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./Computed/centerPointX */ "./src/View/Computed/centerPointX.js");
+/* harmony import */ var _Computed_centerPointY__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./Computed/centerPointY */ "./src/View/Computed/centerPointY.js");
 //
 //
 //
@@ -1493,6 +1510,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 
@@ -1538,9 +1556,9 @@ __webpack_require__.r(__webpack_exports__);
     SCENE_3D: _Scene_Vars_TYPE__WEBPACK_IMPORTED_MODULE_0__["SCENE_3D"]
   }),
   computed: {
-    isScene: _Computed_isScene__WEBPACK_IMPORTED_MODULE_18__["default"],
-    centerPointX: _Computed_centerPointX__WEBPACK_IMPORTED_MODULE_19__["default"],
-    centerPointY: _Computed_centerPointY__WEBPACK_IMPORTED_MODULE_20__["default"]
+    isScene: _Computed_isScene__WEBPACK_IMPORTED_MODULE_19__["default"],
+    centerPointX: _Computed_centerPointX__WEBPACK_IMPORTED_MODULE_20__["default"],
+    centerPointY: _Computed_centerPointY__WEBPACK_IMPORTED_MODULE_21__["default"]
   },
   methods: {
     hasComponent: _Methods_hasComponent__WEBPACK_IMPORTED_MODULE_10__["default"],
@@ -1549,8 +1567,9 @@ __webpack_require__.r(__webpack_exports__);
     isNeedFromScene: _Methods_isNeedFromScene__WEBPACK_IMPORTED_MODULE_13__["default"],
     startResizeObserve: _Methods_startResizeObserve__WEBPACK_IMPORTED_MODULE_14__["default"],
     destroyResizeObserve: _Methods_destroyResizeObserve__WEBPACK_IMPORTED_MODULE_15__["default"],
-    translate: _Methods_translate__WEBPACK_IMPORTED_MODULE_16__["default"],
-    emit: _Methods_emit__WEBPACK_IMPORTED_MODULE_17__["default"]
+    updateChildrenCollision: _Methods_updateChildrenCollision__WEBPACK_IMPORTED_MODULE_16__["default"],
+    translate: _Methods_translate__WEBPACK_IMPORTED_MODULE_17__["default"],
+    emit: _Methods_emit__WEBPACK_IMPORTED_MODULE_18__["default"]
   },
   watch: {
     'sizeSelf'() {
@@ -1567,6 +1586,18 @@ __webpack_require__.r(__webpack_exports__);
 
       handler() {
         this.translate();
+      }
+
+    },
+    'body.physics.collision.collisions': {
+      deep: true,
+
+      handler(v) {
+        const {
+          collisions
+        } = this.body.physics.collision;
+        const updated = collisions[collisions.length - 1];
+        this.updateChildrenCollision(updated);
       }
 
     }
@@ -38591,10 +38622,10 @@ function (_BaseClient) {
 
 /***/ }),
 
-/***/ "./node_modules/webpack-dev-server/client/index.js?http://localhost:9002":
-/*!*********************************************************!*\
-  !*** (webpack)-dev-server/client?http://localhost:9002 ***!
-  \*********************************************************/
+/***/ "./node_modules/webpack-dev-server/client/index.js?http://192.168.0.12:9002":
+/*!************************************************************!*\
+  !*** (webpack)-dev-server/client?http://192.168.0.12:9002 ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -38775,7 +38806,7 @@ var onSocketMessage = {
   }
 };
 socket(socketUrl, onSocketMessage);
-/* WEBPACK VAR INJECTION */}.call(this, "?http://localhost:9002"))
+/* WEBPACK VAR INJECTION */}.call(this, "?http://192.168.0.12:9002"))
 
 /***/ }),
 
@@ -40071,30 +40102,66 @@ async function load() {
 
 /***/ }),
 
-/***/ "./src/Collider/Collider.js":
-/*!**********************************!*\
-  !*** ./src/Collider/Collider.js ***!
-  \**********************************/
+/***/ "./src/Collision/CollisionDetector.js":
+/*!********************************************!*\
+  !*** ./src/Collision/CollisionDetector.js ***!
+  \********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-class Collider {
+/* harmony import */ var _Utils_Arrayset__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Utils/Arrayset */ "./src/Utils/Arrayset.js");
+/* harmony import */ var _Utils_Pairs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Utils/Pairs */ "./src/Utils/Pairs.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+class CollisionDetector {
   constructor() {
-    this.a = null;
-    this.b = null;
+    _defineProperty(this, "collisions", new _Utils_Pairs__WEBPACK_IMPORTED_MODULE_1__["default"]());
+
+    _defineProperty(this, "colliders", new _Utils_Arrayset__WEBPACK_IMPORTED_MODULE_0__["default"]());
+
+    this.colliders.add(CollisionDetector.DEFAULT_COLLIDER);
   }
 
-  setBetween(a, b) {
-    this.a = a;
-    this.b = b;
-    return this;
+  getCollisionFilter(collider) {
+    const i = this.colliders.indexOf(collider);
+    return i !== -1 ? Math.pow(2, i) : 0;
+  }
+
+  addCollider(collider) {
+    if (this.colliders.length > 32) throw 'Collider there are up to 32 available';
+    this.colliders.add(collider);
+    return this.getCollisionFilter(collider);
+  }
+
+  addCollision(...collider) {
+    const colliders = [...collider];
+
+    for (const t of colliders) this.addCollider(t);
+
+    this.collisions.add(...collider);
+  }
+
+  deleteCollision(...collider) {
+    const colliders = [...collider];
+
+    for (const t of colliders) this.collisions.delete(t);
+  }
+
+  between(...collider) {
+    const colliders = [...collider];
+    return colliders.map(collider => this.addCollider(collider)).reduce((a, b) => a | b, colliders || []);
   }
 
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (Collider);
+_defineProperty(CollisionDetector, "DEFAULT_COLLIDER", 'default');
+
+/* harmony default export */ __webpack_exports__["default"] = (CollisionDetector);
 
 /***/ }),
 
@@ -40910,10 +40977,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var matter_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(matter_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Utils_Matter_extra__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Utils/Matter-extra */ "./src/Utils/Matter-extra.js");
 /* harmony import */ var _Particle_Particle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../Particle/Particle */ "./src/Particle/Particle.js");
-/* harmony import */ var _Utils_SizeCalculator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../Utils/SizeCalculator */ "./src/Utils/SizeCalculator.js");
-/* harmony import */ var _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../Utils/MathUtil */ "./src/Utils/MathUtil.js");
-/* harmony import */ var _Asset_AssetLoader_AssetLoader__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../Asset/AssetLoader/AssetLoader */ "./src/Asset/AssetLoader/AssetLoader.js");
-/* harmony import */ var _Utils_ObjectExtra__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../Utils/ObjectExtra */ "./src/Utils/ObjectExtra.js");
+/* harmony import */ var _Particle_ParticleOption__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../Particle/ParticleOption */ "./src/Particle/ParticleOption.js");
+/* harmony import */ var _Utils_SizeCalculator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../Utils/SizeCalculator */ "./src/Utils/SizeCalculator.js");
+/* harmony import */ var _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../Utils/MathUtil */ "./src/Utils/MathUtil.js");
+/* harmony import */ var _Asset_AssetLoader_AssetLoader__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../Asset/AssetLoader/AssetLoader */ "./src/Asset/AssetLoader/AssetLoader.js");
+/* harmony import */ var _Utils_ObjectExtra__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../Utils/ObjectExtra */ "./src/Utils/ObjectExtra.js");
+
 
 
 
@@ -40938,13 +41007,13 @@ async function add() {
   const {
     width,
     height
-  } = await _Utils_SizeCalculator__WEBPACK_IMPORTED_MODULE_3__["ImageSize"].calc(_Asset_AssetLoader_AssetLoader__WEBPACK_IMPORTED_MODULE_5__["default"].getUri(src));
-  const option = new _Particle_Particle__WEBPACK_IMPORTED_MODULE_2__["ParticleOption"]();
-  const setting = _Utils_ObjectExtra__WEBPACK_IMPORTED_MODULE_6__["default"].overwrite(option, this.body.component.particle);
-  const particle = _Utils_ObjectExtra__WEBPACK_IMPORTED_MODULE_6__["default"].overwrite(new _Particle_Particle__WEBPACK_IMPORTED_MODULE_2__["Particle"](width, height, z), setting);
-  const id = _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_4__["Random"].shortid();
-  const forceX = _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_4__["Random"].plusMinus() * _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_4__["Random"].between(0, speed);
-  const forceY = _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_4__["Random"].plusMinus() * _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_4__["Random"].between(0, speed);
+  } = await _Utils_SizeCalculator__WEBPACK_IMPORTED_MODULE_4__["ImageSize"].calc(_Asset_AssetLoader_AssetLoader__WEBPACK_IMPORTED_MODULE_6__["default"].getUri(src));
+  const option = new _Particle_ParticleOption__WEBPACK_IMPORTED_MODULE_3__["default"]();
+  const setting = _Utils_ObjectExtra__WEBPACK_IMPORTED_MODULE_7__["default"].overwrite(option, this.body.component.particle);
+  const particle = _Utils_ObjectExtra__WEBPACK_IMPORTED_MODULE_7__["default"].overwrite(new _Particle_Particle__WEBPACK_IMPORTED_MODULE_2__["default"](width, height, z), setting);
+  const id = _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_5__["Random"].shortid();
+  const forceX = _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_5__["Random"].plusMinus() * _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_5__["Random"].between(0, speed);
+  const forceY = _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_5__["Random"].plusMinus() * _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_5__["Random"].between(0, speed);
   const object = matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Bodies.rectangle(x, -y, width, height);
   const info = {
     id,
@@ -40963,11 +41032,11 @@ async function add() {
   matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.World.add(this.scene.physics.world, object);
   matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Body.applyForce(object, matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Vector.create(x, y), matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Vector.create(forceX, forceY)); // 객체 설정 (크기, 마찰력 등)
 
-  matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Body.setInertia(object, Infinity);
+  matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Body.setInertia(object, Number.POSITIVE_INFINITY);
   object.frictionAir = frictionAir;
   object.collisionFilter.group = -1; // particle.duration 기간이 지나면 파티클을 월드에서 삭제합니다.
 
-  particle.on('particleLifeEnd', () => {
+  particle.on('particle-life-end', () => {
     matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Events.off(this.scene.physics.runner, 'afterUpdate', update);
     matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.World.remove(this.scene.physics.world, object);
     this.particles.delete(info);
@@ -41146,6 +41215,7 @@ function create() {
   this.setFriction();
   this.setRestitution();
   this.setFixedRotation();
+  this.setCollider();
 }
 
 /***/ }),
@@ -41170,6 +41240,25 @@ function destroy() {
 
 /***/ }),
 
+/***/ "./src/Components/Physics/Methods/onChangeCollision.js":
+/*!*************************************************************!*\
+  !*** ./src/Components/Physics/Methods/onChangeCollision.js ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return onChangeCollision; });
+function onChangeCollision(e) {
+  const {
+    pairs
+  } = e.detail;
+  if (this.body.component.physics.colliders.has()) this.setCollider();
+}
+
+/***/ }),
+
 /***/ "./src/Components/Physics/Methods/onChangeSize.js":
 /*!********************************************************!*\
   !*** ./src/Components/Physics/Methods/onChangeSize.js ***!
@@ -41183,6 +41272,36 @@ __webpack_require__.r(__webpack_exports__);
 function onChangeSize(e) {
   // 객체의 크기를 수정합니다.
   this.bodySize = e.detail.size;
+  this.wakeAll();
+}
+
+/***/ }),
+
+/***/ "./src/Components/Physics/Methods/setCollider.js":
+/*!*******************************************************!*\
+  !*** ./src/Components/Physics/Methods/setCollider.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return setCollider; });
+/* harmony import */ var _Utils_Arrayset__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../Utils/Arrayset */ "./src/Utils/Arrayset.js");
+
+function setCollider() {
+  // 자신의 콜라이더들과 연관된 모든 콜라이더를 배열로 받아와서,
+  // collisions.between 으로 계산을 해야합니다.
+  if (!this.object) return;
+  const {
+    colliders
+  } = this.body.component.physics; // 모든 콜라이더를 추가
+
+  this.scene.physics.collision.between(...colliders); // 등록된 콜라이더를 순회하며 관련있는 모든 콜라이더를 받아옵니다.
+
+  const all = this.scene.physics.collision.collisions.OR(...colliders); // 관련있는 모든 콜라이더로부터 충돌필터값을 계산합니다.
+
+  this.object.collisionFilter.category = this.scene.physics.collision.between(...all);
   this.wakeAll();
 }
 
@@ -41204,7 +41323,7 @@ __webpack_require__.r(__webpack_exports__);
 function setFixedRotation() {
   if (this.body.component.physics.fixedRotation) {
     this.inertia = this.object.inertia;
-    matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Body.setInertia(this.object, Infinity);
+    matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Body.setInertia(this.object, Number.POSITIVE_INFINITY);
   } else matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Body.setInertia(this.object, this.inertia);
 }
 
@@ -41895,41 +42014,16 @@ async function onChangeVideoSrc() {
 
 /***/ }),
 
-/***/ "./src/Particle/Particle.js":
-/*!**********************************!*\
-  !*** ./src/Particle/Particle.js ***!
-  \**********************************/
-/*! exports provided: Particle, ParticleOption, EmitterOption */
+/***/ "./src/Particle/EmitterOption.js":
+/*!***************************************!*\
+  !*** ./src/Particle/EmitterOption.js ***!
+  \***************************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Particle", function() { return Particle; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ParticleOption", function() { return ParticleOption; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EmitterOption", function() { return EmitterOption; });
-/* harmony import */ var _WeJSEvent_WeJSEventEmitter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../WeJSEvent/WeJSEventEmitter */ "./src/WeJSEvent/WeJSEventEmitter.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-class ParticleOption {
-  constructor() {
-    _defineProperty(this, "src", null);
-
-    _defineProperty(this, "start", 1);
-
-    _defineProperty(this, "end", 0);
-
-    _defineProperty(this, "duration", 1000);
-
-    _defineProperty(this, "frictionAir", 0.05);
-
-    _defineProperty(this, "blend", 'normal');
-
-    _defineProperty(this, "z", 0);
-  }
-
-}
 
 class EmitterOption {
   constructor() {
@@ -41941,6 +42035,26 @@ class EmitterOption {
   }
 
 }
+
+/* harmony default export */ __webpack_exports__["default"] = (EmitterOption);
+
+/***/ }),
+
+/***/ "./src/Particle/Particle.js":
+/*!**********************************!*\
+  !*** ./src/Particle/Particle.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _WeJSEvent_WeJSEventEmitter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../WeJSEvent/WeJSEventEmitter */ "./src/WeJSEvent/WeJSEventEmitter.js");
+/* harmony import */ var _ParticleOption__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ParticleOption */ "./src/Particle/ParticleOption.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
 
 class Particle extends _WeJSEvent_WeJSEventEmitter__WEBPACK_IMPORTED_MODULE_0__["default"] {
   constructor(width, height, z) {
@@ -41957,7 +42071,7 @@ class Particle extends _WeJSEvent_WeJSEventEmitter__WEBPACK_IMPORTED_MODULE_0__[
     this.__width = width;
     this.__height = height;
     this.z = z;
-    Object.assign(this, new ParticleOption());
+    Object.assign(this, new _ParticleOption__WEBPACK_IMPORTED_MODULE_1__["default"]());
   }
 
   get progress() {
@@ -41986,13 +42100,47 @@ class Particle extends _WeJSEvent_WeJSEventEmitter__WEBPACK_IMPORTED_MODULE_0__[
 
     if (this.step > this.duration) {
       this.step = 0;
-      this.emit('particleLifeEnd');
+      this.emit('particle-life-end');
     }
   }
 
 }
 
+/* harmony default export */ __webpack_exports__["default"] = (Particle);
 
+/***/ }),
+
+/***/ "./src/Particle/ParticleOption.js":
+/*!****************************************!*\
+  !*** ./src/Particle/ParticleOption.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+class ParticleOption {
+  constructor() {
+    _defineProperty(this, "src", null);
+
+    _defineProperty(this, "start", 1);
+
+    _defineProperty(this, "end", 0);
+
+    _defineProperty(this, "duration", 1000);
+
+    _defineProperty(this, "frictionAir", 0.05);
+
+    _defineProperty(this, "blend", 'normal');
+
+    _defineProperty(this, "z", 0);
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (ParticleOption);
 
 /***/ }),
 
@@ -42056,7 +42204,6 @@ class Scene extends _View_View__WEBPACK_IMPORTED_MODULE_4__["default"] {
      * 
      */
 
-    this.colliders = new _Utils_Arrayset__WEBPACK_IMPORTED_MODULE_2__["default"]();
     this.physics = new _ScenePhysics__WEBPACK_IMPORTED_MODULE_5__["default"](this);
     this.particle = new _SceneParticle__WEBPACK_IMPORTED_MODULE_6__["default"](this);
   }
@@ -42225,7 +42372,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var matter_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(matter_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Utils_Arrayset__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Utils/Arrayset */ "./src/Utils/Arrayset.js");
 /* harmony import */ var _Utils_Definer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Utils/Definer */ "./src/Utils/Definer.js");
+/* harmony import */ var _Collision_CollisionDetector__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Collision/CollisionDetector */ "./src/Collision/CollisionDetector.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -42313,7 +42462,8 @@ class ScenePhysics {
     _Utils_Definer__WEBPACK_IMPORTED_MODULE_2__["default"].create('runner', matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Runner.create()).seal(true).hidden(true).final(false).to(this);
     _Utils_Definer__WEBPACK_IMPORTED_MODULE_2__["default"].create('engine', matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Engine.create()).seal(true).hidden(true).final(false).to(this);
     _Utils_Definer__WEBPACK_IMPORTED_MODULE_2__["default"].create('world', this.engine.world).seal(true).hidden(true).final(false).to(this);
-    _Utils_Definer__WEBPACK_IMPORTED_MODULE_2__["default"].create('table', new Map()).seal(true).hidden(true).final(false).to(this); // 이벤트를 핸들링합니다
+    _Utils_Definer__WEBPACK_IMPORTED_MODULE_2__["default"].create('table', new Map()).seal(true).hidden(true).final(false).to(this);
+    this.collision = new _Collision_CollisionDetector__WEBPACK_IMPORTED_MODULE_3__["default"](); // 이벤트를 핸들링합니다
 
     matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Events.on(this.runner, 'afterUpdate', e => ScenePhysics.updateRender(this.lists));
     matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Events.on(this.world, 'createPhysicsBody', e => ScenePhysics.addObjectToTable(this.table, e.object, e.body));
@@ -42436,13 +42586,15 @@ __webpack_require__.r(__webpack_exports__);
 //     }
 // }
 
-const Arrayset = function Arrayset() {
-  const array = [];
+const Arrayset = function Arrayset(...lists) {
+  const array = [...lists];
 
-  const add = function add(v) {
-    const i = array.indexOf(v);
-    if (i !== -1) return i;
-    return array.push(v);
+  const add = function add(...list) {
+    for (const v of [...list]) {
+      if (array.indexOf(v) !== -1) continue;else array.push(v);
+    }
+
+    return array;
   };
 
   const has = function has(v) {
@@ -42710,6 +42862,139 @@ ObjectExtra.overwrite = function overwrite(target, ...sources) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ObjectExtra);
+
+/***/ }),
+
+/***/ "./src/Utils/Pairs.js":
+/*!****************************!*\
+  !*** ./src/Utils/Pairs.js ***!
+  \****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function Pairs(...inits) {
+  const pairs = [...inits];
+
+  const seal = (target, property, value) => {
+    Object.defineProperty(target, property, {
+      value
+    });
+  };
+
+  const add = function (...key) {
+    const keys = new Set([...key]);
+    const lists = new Set();
+    const prevPair = new Set(); // 새로 받은 key를 보유하고 있는 모든 페어 배열을 받아와 lists 변수에 담습니다.
+
+    for (const key of keys) {
+      for (const pair of pairs) {
+        if (pair.indexOf(key) !== -1) lists.add(pair);
+      }
+    } // lists 변수에 담긴 페어 배열을 pairs 배열에서 삭제합니다.
+    // 이후 삭제된 pair 배열의 내용물을 prevPair 변수에 담습니다.
+
+
+    for (const pair of lists) {
+      let i = pairs.length;
+
+      while (i--) {
+        if (pairs[i] === pair) {
+          pairs.splice(i, 1);
+
+          for (const key of pair) prevPair.add(key);
+        }
+      }
+    } // 새로운 페어배열을 만듭니다.
+    // 이 배열에는 이전에 prevPair에 있던 모든 내용을 중복없이 하나로 합쳤습니다.
+
+
+    const newPair = Array.from(Array.from(keys).reduce((prevPair, key) => prevPair.add(key), prevPair));
+    pairs.push(newPair);
+    return newPair;
+  };
+
+  const all = function (u) {
+    const lists = [];
+
+    for (const pair of pairs) lists.push(...pair);
+
+    return Array.from(new Set(lists));
+  };
+
+  const has = function (u) {
+    return !!get(u);
+  };
+
+  const _delete = function (u) {
+    const t = get(u);
+    if (!t) return null;else {
+      const i = t.indexOf(u);
+      t.splice(i, 1);
+      return t;
+    }
+  };
+
+  const drop = function (u) {
+    let i = pairs.length;
+
+    while (i--) {
+      if (pairs[i].indexOf(u) !== -1) pairs.splice(i, 1);
+    }
+  };
+
+  const clear = function () {
+    pairs.splice(0, pairs.length);
+  };
+
+  const get = function (u) {
+    for (const pair of pairs) {
+      if (pair.indexOf(u) === -1) continue;
+      return pair;
+    }
+
+    return [];
+  };
+
+  const AND = function (...list) {
+    const result = new Set();
+
+    for (const u of [...list]) {
+      const keys = get(u);
+      if (keys.length) for (const key of keys) result.add(key);else {
+        result.clear();
+        break;
+      }
+    }
+
+    return Array.from(result);
+  };
+
+  const OR = function (...list) {
+    const result = new Set();
+
+    for (const u of [...list]) {
+      const keys = get(u);
+
+      for (const key of keys) result.add(key);
+    }
+
+    return Array.from(result);
+  };
+
+  seal(pairs, 'all', all);
+  seal(pairs, 'add', add);
+  seal(pairs, 'has', has);
+  seal(pairs, 'AND', AND);
+  seal(pairs, 'OR', OR);
+  seal(pairs, 'delete', _delete);
+  seal(pairs, 'drop', drop);
+  seal(pairs, 'clear', clear);
+  return pairs;
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Pairs);
 
 /***/ }),
 
@@ -43579,7 +43864,7 @@ function getBiggerNumber(a, b) {
 function calcSizeMax() {
   this.sizeMax = [getBiggerNumber(this.sizeSelf[0], this.sizeChild[0]), getBiggerNumber(this.sizeSelf[1], this.sizeChild[1])];
   this.$emit('onchangesize', this.sizeMax);
-  this.body.emit('changesize', {
+  this.body.emit('body-size-update', {
     size: this.sizeMax
   });
   this.translate();
@@ -43714,6 +43999,24 @@ function translate() {
     rotateY(${-this.body.component.transform.rotateY}deg)
     rotateZ(${this.body.component.transform.rotateZ}deg)
     scale(${this.body.component.transform.scale})`;
+}
+
+/***/ }),
+
+/***/ "./src/View/Methods/updateChildrenCollision.js":
+/*!*****************************************************!*\
+  !*** ./src/View/Methods/updateChildrenCollision.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return updateChildrenCollision; });
+function updateChildrenCollision(pairs) {
+  for (const t of this.body.component.children.lists) t.emit('physics-collision-update', {
+    pairs
+  });
 }
 
 /***/ }),
@@ -44029,17 +44332,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Utils_Tick__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Utils/Tick */ "./src/Utils/Tick.js");
 /* harmony import */ var _Asset_AssetLoader_AssetLoader__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Asset/AssetLoader/AssetLoader */ "./src/Asset/AssetLoader/AssetLoader.js");
 /* harmony import */ var _Asset_Asset_Asset__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Asset/Asset/Asset */ "./src/Asset/Asset/Asset.js");
-/* harmony import */ var _Collider_Collider__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Collider/Collider */ "./src/Collider/Collider.js");
-/* harmony import */ var _View_ComponentBuilder_ComponentBuilder__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./View/ComponentBuilder/ComponentBuilder */ "./src/View/ComponentBuilder/ComponentBuilder.js");
-/* harmony import */ var _View_ComponentFactory_ComponentFactory__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./View/ComponentFactory/ComponentFactory */ "./src/View/ComponentFactory/ComponentFactory.js");
-/* harmony import */ var _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Utils/MathUtil */ "./src/Utils/MathUtil.js");
-/* harmony import */ var _Utils_Preloader__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Utils/Preloader */ "./src/Utils/Preloader.js");
-/* harmony import */ var _Utils_Searcher__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Utils/Searcher */ "./src/Utils/Searcher.js");
-/* harmony import */ var _Utils_Sleep__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./Utils/Sleep */ "./src/Utils/Sleep.js");
-/* harmony import */ var _UserGestureListener_UserGestureListener__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./UserGestureListener/UserGestureListener */ "./src/UserGestureListener/UserGestureListener.js");
-/* harmony import */ var _Components_RESERVATION__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./Components/RESERVATION */ "./src/Components/RESERVATION.js");
-/* harmony import */ var _package_json__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../package.json */ "./package.json");
-var _package_json__WEBPACK_IMPORTED_MODULE_18___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../package.json */ "./package.json", 1);
+/* harmony import */ var _View_ComponentBuilder_ComponentBuilder__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./View/ComponentBuilder/ComponentBuilder */ "./src/View/ComponentBuilder/ComponentBuilder.js");
+/* harmony import */ var _View_ComponentFactory_ComponentFactory__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./View/ComponentFactory/ComponentFactory */ "./src/View/ComponentFactory/ComponentFactory.js");
+/* harmony import */ var _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Utils/MathUtil */ "./src/Utils/MathUtil.js");
+/* harmony import */ var _Utils_Preloader__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Utils/Preloader */ "./src/Utils/Preloader.js");
+/* harmony import */ var _Utils_Searcher__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Utils/Searcher */ "./src/Utils/Searcher.js");
+/* harmony import */ var _Utils_Sleep__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Utils/Sleep */ "./src/Utils/Sleep.js");
+/* harmony import */ var _UserGestureListener_UserGestureListener__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./UserGestureListener/UserGestureListener */ "./src/UserGestureListener/UserGestureListener.js");
+/* harmony import */ var _Components_RESERVATION__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./Components/RESERVATION */ "./src/Components/RESERVATION.js");
+/* harmony import */ var _package_json__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../package.json */ "./package.json");
+var _package_json__WEBPACK_IMPORTED_MODULE_17___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../package.json */ "./package.json", 1);
 
 
 
@@ -44058,8 +44360,7 @@ var _package_json__WEBPACK_IMPORTED_MODULE_18___namespace = /*#__PURE__*/__webpa
 
 
 
-
-const VERSION = _package_json__WEBPACK_IMPORTED_MODULE_18__.version;
+const VERSION = _package_json__WEBPACK_IMPORTED_MODULE_17__.version;
 /* harmony default export */ __webpack_exports__["default"] = ({
   Matter: (matter_js__WEBPACK_IMPORTED_MODULE_0___default()),
   App: _App_App__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -44069,18 +44370,17 @@ const VERSION = _package_json__WEBPACK_IMPORTED_MODULE_18__.version;
   Animation: _Animation_Animation__WEBPACK_IMPORTED_MODULE_5__["default"],
   AssetLoader: _Asset_AssetLoader_AssetLoader__WEBPACK_IMPORTED_MODULE_7__["default"],
   Asset: _Asset_Asset_Asset__WEBPACK_IMPORTED_MODULE_8__["default"],
-  Collider: _Collider_Collider__WEBPACK_IMPORTED_MODULE_9__["default"],
-  ComponentBuilder: _View_ComponentBuilder_ComponentBuilder__WEBPACK_IMPORTED_MODULE_10__["default"],
-  ComponentFactory: _View_ComponentFactory_ComponentFactory__WEBPACK_IMPORTED_MODULE_11__["default"],
-  MathUtil: _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_12__,
-  Preloader: _Utils_Preloader__WEBPACK_IMPORTED_MODULE_13__["default"],
-  Searcher: _Utils_Searcher__WEBPACK_IMPORTED_MODULE_14__["default"],
-  Sleep: _Utils_Sleep__WEBPACK_IMPORTED_MODULE_15__["default"],
+  ComponentBuilder: _View_ComponentBuilder_ComponentBuilder__WEBPACK_IMPORTED_MODULE_9__["default"],
+  ComponentFactory: _View_ComponentFactory_ComponentFactory__WEBPACK_IMPORTED_MODULE_10__["default"],
+  MathUtil: _Utils_MathUtil__WEBPACK_IMPORTED_MODULE_11__,
+  Preloader: _Utils_Preloader__WEBPACK_IMPORTED_MODULE_12__["default"],
+  Searcher: _Utils_Searcher__WEBPACK_IMPORTED_MODULE_13__["default"],
+  Sleep: _Utils_Sleep__WEBPACK_IMPORTED_MODULE_14__["default"],
   Tick: _Utils_Tick__WEBPACK_IMPORTED_MODULE_6__["default"],
-  UserGestureListener: _UserGestureListener_UserGestureListener__WEBPACK_IMPORTED_MODULE_16__["default"],
-  RESERVATION: _Components_RESERVATION__WEBPACK_IMPORTED_MODULE_17__["default"],
-  RESERVATION_MAP: _Components_RESERVATION__WEBPACK_IMPORTED_MODULE_17__["RESERVATION_MAP"],
-  COMPONENT_MAP: _Components_RESERVATION__WEBPACK_IMPORTED_MODULE_17__["COMPONENT_MAP"],
+  UserGestureListener: _UserGestureListener_UserGestureListener__WEBPACK_IMPORTED_MODULE_15__["default"],
+  RESERVATION: _Components_RESERVATION__WEBPACK_IMPORTED_MODULE_16__["default"],
+  RESERVATION_MAP: _Components_RESERVATION__WEBPACK_IMPORTED_MODULE_16__["RESERVATION_MAP"],
+  COMPONENT_MAP: _Components_RESERVATION__WEBPACK_IMPORTED_MODULE_16__["COMPONENT_MAP"],
   VERSION
 });
 
@@ -44263,13 +44563,13 @@ Object(_Plugins_vue__WEBPACK_IMPORTED_MODULE_1__["default"])();
 /***/ }),
 
 /***/ 0:
-/*!*****************************************************************************!*\
-  !*** multi (webpack)-dev-server/client?http://localhost:9002 ./src/core.js ***!
-  \*****************************************************************************/
+/*!********************************************************************************!*\
+  !*** multi (webpack)-dev-server/client?http://192.168.0.12:9002 ./src/core.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\My WorkSpace\Programming\Project\WeJS\node_modules\webpack-dev-server\client\index.js?http://localhost:9002 */"./node_modules/webpack-dev-server/client/index.js?http://localhost:9002");
+__webpack_require__(/*! D:\My WorkSpace\Programming\Project\WeJS\node_modules\webpack-dev-server\client\index.js?http://192.168.0.12:9002 */"./node_modules/webpack-dev-server/client/index.js?http://192.168.0.12:9002");
 module.exports = __webpack_require__(/*! D:\My WorkSpace\Programming\Project\WeJS\src\core.js */"./src/core.js");
 
 

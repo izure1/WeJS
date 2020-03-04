@@ -36,5 +36,6 @@ export default function create() {
     this.setFriction()
     this.setRestitution()
     this.setFixedRotation()
+    this.setCollider()
   
 }

@@ -51,13 +51,15 @@ import Definer from './Definer'
 
 // }
 
-const Arrayset = function Arrayset() {
+const Arrayset = function Arrayset(...lists) {
 
-    const array = []
-    const add = function add(v) {
-        const i = array.indexOf(v)
-        if (i !== -1) return i
-        return array.push(v)
+    const array = [...lists]
+    const add = function add(...list) {
+        for (const v of [...list]) {
+            if (array.indexOf(v) !== -1) continue
+            else array.push(v)
+        }
+        return array
     }
     const has = function has(v) {
         return array.indexOf(v) !== -1

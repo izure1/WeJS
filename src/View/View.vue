@@ -150,6 +150,7 @@ import calcSizeMax from './Methods/calcSizeMax'
 import isNeedFromScene from './Methods/isNeedFromScene'
 import startResizeObserve from './Methods/startResizeObserve'
 import destroyResizeObserve from './Methods/destroyResizeObserve'
+import updateChildrenCollision from './Methods/updateChildrenCollision'
 import translate from './Methods/translate'
 import emit from './Methods/emit'
 
@@ -195,6 +196,7 @@ export default {
         isNeedFromScene,
         startResizeObserve,
         destroyResizeObserve,
+        updateChildrenCollision,
         translate,
         emit,
     },
@@ -206,6 +208,14 @@ export default {
         'body.component.transform': {
             deep: true,
             handler() { this.translate() }
+        },
+        'body.physics.collision.collisions': {
+            deep: true,
+            handler(v) {
+                const { collisions } = this.body.physics.collision
+                const updated = collisions[collisions.length - 1]
+                this.updateChildrenCollision(updated)
+            }
         }
     },
 

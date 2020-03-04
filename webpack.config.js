@@ -102,7 +102,7 @@ module.exports = {
     publicPath: '/dist/lib/',
     inline: true,
     writeToDisk: true,
-    host: 'localhost',
+    host: '192.168.0.12',
     port: 9002
   },
   plugins: [

@@ -1,7 +1,8 @@
 import Matter from 'matter-js'
 import MatterExtra from '../../../Utils/Matter-extra'
 
-import { Particle, ParticleOption } from '../../../Particle/Particle'
+import Particle from '../../../Particle/Particle'
+import ParticleOption from '../../../Particle/ParticleOption'
 import { ImageSize } from '../../../Utils/SizeCalculator'
 import { Random } from '../../../Utils/MathUtil'
 import AssetLoader from '../../../Asset/AssetLoader/AssetLoader'
@@ -49,13 +50,13 @@ export default async function add() {
 
 
     // 객체 설정 (크기, 마찰력 등)
-    Matter.Body.setInertia(object, Infinity)
+    Matter.Body.setInertia(object, Number.POSITIVE_INFINITY)
 
     object.frictionAir = frictionAir
     object.collisionFilter.group = -1
 
     // particle.duration 기간이 지나면 파티클을 월드에서 삭제합니다.
-    particle.on('particleLifeEnd', () => { 
+    particle.on('particle-life-end', () => { 
         Matter.Events.off(this.scene.physics.runner, 'afterUpdate', update)
         Matter.World.remove(this.scene.physics.world, object)
         this.particles.delete(info)

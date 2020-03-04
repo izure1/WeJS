@@ -9,16 +9,19 @@ import Arrayset from '../../Utils/Arrayset'
 import Component from '../../View/Component/Component'
 
 import onChangeSize from './Methods/onChangeSize'
+import onChangeCollision from './Methods/onChangeCollision'
 import destroy from './Methods/destroy'
 import create from './Methods/create'
 import setStatic from './Methods/setStatic'
 import setFriction from './Methods/setFriction'
 import setRestitution from './Methods/setRestitution'
 import setFixedRotation from './Methods/setFixedRotation'
+import setCollider from './Methods/setCollider'
 import update from './Methods/update'
 import translate from './Methods/translate'
 import transform from './Methods/transform'
 import wakeAll from './Methods/wakeAll'
+import CollisionDetector from '../../Collision/CollisionDetector'
 
 
 export class Reservation extends Component {
@@ -77,28 +80,32 @@ export default {
         bodySize: [0, 0],
         scale: 1,
         inertia: 0,
+        category: 0,
     }),
 
     methods: {
         onChangeSize,
+        onChangeCollision,
         destroy,
         create,
         setStatic,
         setFriction,
         setRestitution,
         setFixedRotation,
+        setCollider,
         update,
         translate,
         transform,
         wakeAll,
     },
     created() {
-        this.body.on('changesize', this.onChangeSize)
+        this.body.on('body-size-update', this.onChangeSize)
+        this.body.on('physics-collision-update', this.onChangeCollision)
         Component.attachVue(this.body.component.physics, this)
     },
     beforeDestroy() {
         this.destroy()
-        this.body.off('changesize', this.onChangeSize)
+        this.body.off('body-size-update', this.onChangeSize)
     },
 
     watch: {
@@ -141,6 +148,9 @@ export default {
         },
         'body.component.physics.fixedRotation'() {
             this.setFixedRotation()
+        },
+        'body.component.physics.colliders'() {
+            this.setCollider()
         },
         'bodySize'() {
             this.create()

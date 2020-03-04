@@ -30,7 +30,6 @@ class Scene extends View {
          *  씬의 물리세계는 수정하거나 파괴할 수 없습니다.
          * 
          */
-        this.colliders = new Arrayset
         this.physics = new ScenePhysics(this)
         this.particle = new SceneParticle(this)
 

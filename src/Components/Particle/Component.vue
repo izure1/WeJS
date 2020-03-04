@@ -5,7 +5,8 @@
 <script>
 import Component from '../../View/Component/Component'
 import Arrayset from '../../Utils/Arrayset'
-import { EmitterOption, ParticleOption } from '../../Particle/Particle'
+import ParticleOption from '../../Particle/ParticleOption'
+import EmitterOption from '../../Particle/EmitterOption'
 
 import add from './Methods/add'
 import generate from './Methods/generate'

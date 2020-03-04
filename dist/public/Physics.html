@@ -16,7 +16,7 @@
   <script>
     const app = new WeJS.App // 새로운 viewport 만들기
     const scene = new WeJS.Scene3d // 새로운 씬
-    const collider = new WeJS.Collider // 씬에 부착될 충돌기입니다. 이 규칙에 의거하여 강체 간 충돌을 결정지을 것입니다.
+    //const collider = new WeJS.Collider // 씬에 부착될 충돌기입니다. 이 규칙에 의거하여 강체 간 충돌을 결정지을 것입니다.
 
     const factory = new WeJS.ComponentFactory // 컴포넌트를 만들어주는 인스턴스 객체
     const loader = new WeJS.AssetLoader
@@ -61,6 +61,7 @@
         rect.height = 35
         
         physics.isStatic = false
+        physics.colliders.add('square')
         
         audio.src = 'assets/audio/crash.mp3'
         filter.cursor = 'pointer'
@@ -102,10 +103,15 @@
       ground.component.rect.color = 'grey'
 
       ground.component.physics.isStatic = true
+      ground.component.physics.colliders.add('ground')
       ground.component.transform.y = -250
 
       // 씬에 객체를 추가합니다.
       await scene.addScene(ground)
+
+      // 충돌 관계를 지정합니다
+      // 이 경우, square콜라이더와 ground를 콜라이더로 가지는 객체끼리 충돌할 것입니다.
+      scene.physics.collision.addCollision('square', 'ground')
 
     }).onDestroy(scene.clear)
 

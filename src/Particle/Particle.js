@@ -1,21 +1,6 @@
 import EventEmitter from '../WeJSEvent/WeJSEventEmitter'
+import ParticleOption from './ParticleOption'
 
-
-class ParticleOption {
-    src = null
-    start = 1
-    end = 0
-    duration = 1000
-    frictionAir = 0.05
-    blend = 'normal'
-    z = 0
-}
-
-class EmitterOption {
-    speed = 0.01
-    interval = 100
-    quantity = 1
-}
 
 class Particle extends EventEmitter {
 
@@ -47,11 +32,11 @@ _
         this.step += deltaTime
         if (this.step > this.duration) {
             this.step = 0
-            this.emit('particleLifeEnd')
+            this.emit('particle-life-end')
         }
     }
 
 }
 
 
-export { Particle, ParticleOption, EmitterOption }
+export default Particle
