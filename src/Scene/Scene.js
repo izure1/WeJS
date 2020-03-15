@@ -41,9 +41,9 @@ class Scene extends View {
      * @param {Object} detail  이벤트의 상세 정보
      * @description  emit 메서드와 사용방법은 똑같지만, 이 씬에 소속된 모든 객체에게 이벤트가 발생합니다.
      */
-    broadcast(e, detail) {
+    broadcast(e, detail, ...params) {
         for (const children of this.component.children.lists)
-            children.emit(e, detail)
+            children.emit(e, detail, ...params)
     }
 
     /**

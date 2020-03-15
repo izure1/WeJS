@@ -7,8 +7,8 @@
     name = 'children'
     lists = new Arrayset
 
-    constructor(...args) {
-      super(...args)
+    constructor(...params) {
+      super(...params)
     }
   }
 

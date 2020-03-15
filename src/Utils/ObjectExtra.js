@@ -1,6 +1,6 @@
 class ObjectExtra extends Object {
-    constructor(...args) {
-        super(...args)
+    constructor(...params) {
+        super(...params)
     }
 }
 

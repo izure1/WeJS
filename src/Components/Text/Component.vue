@@ -37,8 +37,8 @@ export class Reservation extends Component {
     borderColor = 'transparent'
     color = 'black'
 
-    constructor(...args) {
-        super(...args)
+    constructor(...params) {
+        super(...params)
     }
 }
 

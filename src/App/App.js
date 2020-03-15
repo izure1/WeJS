@@ -15,9 +15,9 @@ class App extends Scene3d {
         return null
     }
 
-    constructor(...args) {
+    constructor(...params) {
 
-        super(...args)
+        super(...params)
 
         this.width = 800
         this.height = 450

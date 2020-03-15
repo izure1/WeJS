@@ -1,6 +1,7 @@
 <template>
     <div
         class="we-body"
+        tabindex="0"
         v-if="isNeedFromScene(requiredLevel, body.level)" 
         :id="body.id" 
         :class="{
@@ -150,7 +151,6 @@ import calcSizeMax from './Methods/calcSizeMax'
 import isNeedFromScene from './Methods/isNeedFromScene'
 import startResizeObserve from './Methods/startResizeObserve'
 import destroyResizeObserve from './Methods/destroyResizeObserve'
-import updateChildrenCollision from './Methods/updateChildrenCollision'
 import translate from './Methods/translate'
 import emit from './Methods/emit'
 
@@ -196,7 +196,6 @@ export default {
         isNeedFromScene,
         startResizeObserve,
         destroyResizeObserve,
-        updateChildrenCollision,
         translate,
         emit,
     },
@@ -213,8 +212,8 @@ export default {
             deep: true,
             handler(v) {
                 const { collisions } = this.body.physics.collision
-                const updated = collisions[collisions.length - 1]
-                this.updateChildrenCollision(updated)
+                const updatedPairs = collisions[collisions.length - 1]
+                this.body.physics.collision.emit('collision-update', null, updatedPairs)
             }
         }
     },
@@ -237,6 +236,7 @@ export default {
 .we-camera,
 .we-body {
     position: absolute;
+    outline: none;
 
     &.scene3d {
         top: 50%;

@@ -9,7 +9,6 @@ import Arrayset from '../../Utils/Arrayset'
 import Component from '../../View/Component/Component'
 
 import onChangeSize from './Methods/onChangeSize'
-import onChangeCollision from './Methods/onChangeCollision'
 import destroy from './Methods/destroy'
 import create from './Methods/create'
 import setStatic from './Methods/setStatic'
@@ -20,8 +19,6 @@ import setCollider from './Methods/setCollider'
 import update from './Methods/update'
 import translate from './Methods/translate'
 import transform from './Methods/transform'
-import wakeAll from './Methods/wakeAll'
-import CollisionDetector from '../../Collision/CollisionDetector'
 
 
 export class Reservation extends Component {
@@ -36,8 +33,8 @@ export class Reservation extends Component {
     fixedRotation = false
     colliders = new Arrayset
 
-    constructor(...args) {
-        super(...args)
+    constructor(...params) {
+        super(...params)
     }
 
     /**
@@ -85,7 +82,6 @@ export default {
 
     methods: {
         onChangeSize,
-        onChangeCollision,
         destroy,
         create,
         setStatic,
@@ -96,15 +92,15 @@ export default {
         update,
         translate,
         transform,
-        wakeAll,
     },
     created() {
+        this.scene.physics.collision.on('collision-update', this.setCollider)
         this.body.on('body-size-update', this.onChangeSize)
-        this.body.on('physics-collision-update', this.onChangeCollision)
         Component.attachVue(this.body.component.physics, this)
     },
     beforeDestroy() {
         this.destroy()
+        this.scene.physics.collision.off('collision-update', this.setCollider)
         this.body.off('body-size-update', this.onChangeSize)
     },
 
@@ -113,19 +109,16 @@ export default {
         'body.component.transform.x'() {
             if (this.tracking) {
                 this.transform()
-                this.wakeAll()
             }
         },
         'body.component.transform.y'() {
             if (this.tracking) {
                 this.transform()
-                this.wakeAll()
             }
         },
         'body.component.transform.rotateZ'() {
             if (this.tracking) {
                 this.transform()
-                this.wakeAll()
             }
         },
         'body.component.transform.scale'() {

@@ -1,11 +1,37 @@
 <template>
     <section
         class="wejs-app"
+        tabindex="0"
         :style="{
             width: `${app.width}px`,
             height: `${app.height}px`,
             transform: `scale(${appScale})`
-        }">
+        }"
+        
+        @keydown="emit"
+        @keypress="emit"
+        @keyup="emit"
+        @mousedown="emit"
+        @mouseenter="emit"
+        @mouseleave="emit"
+        @mousemove="emit"
+        @mouseout="emit"
+        @mouseover="emit"
+        @mouseup="emit"
+        @mousewheel="emit"
+        @click="emit"
+        @contextmenu="emit"
+        @dblclick="emit"
+        @drag="emit"
+        @dragend="emit"
+        @dragenter="emit"
+        @dragleave="emit"
+        @dragover="emit"
+        @dragstart="emit"
+        @drop="emit"
+        @focus="emit"
+
+    >
         <we-body
             :app="app"
             :scene="app"
@@ -19,6 +45,7 @@
 import screenfull from 'screenfull'
 import WeBody from '../View/View.vue'
 import onScreenChange from './Methods/onScreenChange'
+import emit from './Methods/emit'
 
 
 export default {
@@ -29,7 +56,10 @@ export default {
         resizeObserver: null,
         appScale: 1,
     }),
-    methods: { onScreenChange },
+    methods: {
+        onScreenChange,
+        emit,
+    },
     created() {
         this.resizeObserver = new ResizeObserver(this.onScreenChange)
     },
@@ -49,5 +79,6 @@ export default {
     position: relative;
     overflow: hidden;
     user-select: none;
+    outline: none;
 }
 </style>

@@ -10,8 +10,8 @@
     name = 'html'
     content = ''
 
-    constructor(...args) {
-      super(...args)
+    constructor(...params) {
+      super(...params)
     }
   }
 

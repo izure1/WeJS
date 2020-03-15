@@ -32,8 +32,8 @@
     delay = 0
     ease = 'linear'
 
-    constructor(...args) {
-      super(...args)
+    constructor(...params) {
+      super(...params)
     }
   }
 

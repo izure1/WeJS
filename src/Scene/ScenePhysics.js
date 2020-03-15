@@ -1,7 +1,7 @@
 import Matter from 'matter-js'
 import Arrayset from '../Utils/Arrayset'
 import Definer from '../Utils/Definer'
-import CollisionDetector from '../Collision/CollisionDetector'
+import ScenePhysicsCollision from './ScenePhysicsCollision'
 
 
 class ScenePhysics {
@@ -92,7 +92,7 @@ class ScenePhysics {
             .to(this)
 
 
-        this.collision = new CollisionDetector
+        this.collision = new ScenePhysicsCollision
 
         // 이벤트를 핸들링합니다
         Matter.Events.on(this.runner, 'afterUpdate', e => ScenePhysics.updateRender(this.lists))
@@ -101,7 +101,7 @@ class ScenePhysics {
         Matter.Events.on(this.engine, 'collisionEnd', e => ScenePhysics.onCollisionEnd(this.table, e.pairs))
 
         // 중력을 설정합니다
-        this.engine.enableSleeping = true
+        this.engine.enableSleeping = false
         this.world.gravity = Matter.Vector.clone(ScenePhysics.DEFAULT_GRAVITY)
 
     }

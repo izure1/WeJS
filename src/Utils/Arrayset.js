@@ -19,8 +19,8 @@ import Definer from './Definer'
 //         })
 //     }
 
-//     constructor(...args) {
-//         super(...args)
+//     constructor(...params) {
+//         super(...params)
 //         Arrayset.makeReactive(this)
 //     }
 
@@ -55,14 +55,40 @@ const Arrayset = function Arrayset(...lists) {
 
     const array = [...lists]
     const add = function add(...list) {
-        for (const v of [...list]) {
-            if (array.indexOf(v) !== -1) continue
-            else array.push(v)
+        for (const t of [...list]) {
+            if (array.indexOf(t) !== -1) continue
+            else array.push(t)
         }
         return array
     }
-    const has = function has(v) {
-        return array.indexOf(v) !== -1
+    const has = function has(t) {
+        return array.indexOf(t) !== -1
+    }
+    const hasAll = function hasAll(...list) {
+        let passed = true
+        for (const t of [...list]) {
+            if (!has(t)) {
+                passed = false
+                break
+            }
+        }
+        return passed
+    }
+    const hasAtLeast = function hasAtLeast(...list) {
+        let passed = false
+        for (const t of [...list]) {
+            if (has(t)) {
+                passed = true
+                break
+            }
+        }
+        return passed
+    }
+    const duplicate = function duplicate(...list) {
+        return [...list].filter(t => has(t))
+    }
+    const notDuplicate = function notDuplicate(...list) {
+        return [...list].filter(t => !has(t))
     }
     const clear = function clear() {
         array.splice(0, array.length)
@@ -79,6 +105,10 @@ const Arrayset = function Arrayset(...lists) {
 
     Definer.create('add', add)          .seal(true).hidden(true).final(true).to(array)
     Definer.create('has', has)          .seal(true).hidden(true).final(true).to(array)
+    Definer.create('hasAll', hasAll)   .seal(true).hidden(true).final(true).to(array)
+    Definer.create('hasAtLeast', hasAtLeast)   .seal(true).hidden(true).final(true).to(array)
+    Definer.create('duplicate', duplicate)   .seal(true).hidden(true).final(true).to(array)
+    Definer.create('notDuplicate', notDuplicate)   .seal(true).hidden(true).final(true).to(array)
     Definer.create('clear', clear)      .seal(true).hidden(true).final(true).to(array)
     Definer.create('delete', _delete)   .seal(true).hidden(true).final(true).to(array)
     Definer.create('generate', generate).seal(true).hidden(true).final(true).to(array)

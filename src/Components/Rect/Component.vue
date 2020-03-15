@@ -21,8 +21,8 @@
     borderColor = 'black'
     color = 'red'
 
-    constructor(...args) {
-      super(...args)
+    constructor(...params) {
+      super(...params)
     }
   }
   export default {

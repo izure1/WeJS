@@ -31,8 +31,8 @@ export class Reservation extends Component {
     playbackRate = 1
     volume = 1
 
-    constructor(...args) {
-        super(...args)
+    constructor(...params) {
+        super(...params)
     }
 }
 

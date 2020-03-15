@@ -297,6 +297,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var screenfull__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(screenfull__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _View_View_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../View/View.vue */ "./src/View/View.vue");
 /* harmony import */ var _Methods_onScreenChange__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Methods/onScreenChange */ "./src/App/Methods/onScreenChange.js");
+/* harmony import */ var _Methods_emit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Methods/emit */ "./src/App/Methods/emit.js");
 //
 //
 //
@@ -314,6 +315,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -327,7 +355,8 @@ __webpack_require__.r(__webpack_exports__);
     appScale: 1
   }),
   methods: {
-    onScreenChange: _Methods_onScreenChange__WEBPACK_IMPORTED_MODULE_2__["default"]
+    onScreenChange: _Methods_onScreenChange__WEBPACK_IMPORTED_MODULE_2__["default"],
+    emit: _Methods_emit__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
 
   created() {
@@ -386,8 +415,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_1__["default"] {
-  constructor(...args) {
-    super(...args);
+  constructor(...params) {
+    super(...params);
 
     _defineProperty(this, "name", 'audio');
 
@@ -479,8 +508,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
-  constructor(...args) {
-    super(...args);
+  constructor(...params) {
+    super(...params);
 
     _defineProperty(this, "name", 'camera');
 
@@ -527,8 +556,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
-  constructor(...args) {
-    super(...args);
+  constructor(...params) {
+    super(...params);
 
     _defineProperty(this, "name", 'children');
 
@@ -559,8 +588,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
-  constructor(...args) {
-    super(...args);
+  constructor(...params) {
+    super(...params);
 
     _defineProperty(this, "name", 'dataset');
 
@@ -587,8 +616,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
-  constructor(...args) {
-    super(...args);
+  constructor(...params) {
+    super(...params);
 
     _defineProperty(this, "name", 'filter');
 
@@ -645,8 +674,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
-  constructor(...args) {
-    super(...args);
+  constructor(...params) {
+    super(...params);
 
     _defineProperty(this, "name", 'html');
 
@@ -698,8 +727,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_1__["default"] {
-  constructor(...args) {
-    super(...args);
+  constructor(...params) {
+    super(...params);
 
     _defineProperty(this, "name", 'image');
 
@@ -746,6 +775,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Methods_add__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Methods/add */ "./src/Components/Particle/Methods/add.js");
 /* harmony import */ var _Methods_generate__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Methods/generate */ "./src/Components/Particle/Methods/generate.js");
 /* harmony import */ var _Methods_stop__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Methods/stop */ "./src/Components/Particle/Methods/stop.js");
+/* harmony import */ var _Methods_setCollider__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Methods/setCollider */ "./src/Components/Particle/Methods/setCollider.js");
+/* harmony import */ var _Methods_updateCollision__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Methods/updateCollision */ "./src/Components/Particle/Methods/updateCollision.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
@@ -759,11 +790,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
+
 class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
-  constructor(...args) {
-    super(...args);
+  constructor(...params) {
+    super(...params);
 
     _defineProperty(this, "name", 'particle');
+
+    _defineProperty(this, "colliders", new _Utils_Arrayset__WEBPACK_IMPORTED_MODULE_1__["default"]());
 
     Object.assign(this, new _Particle_ParticleOption__WEBPACK_IMPORTED_MODULE_2__["default"](), new _Particle_EmitterOption__WEBPACK_IMPORTED_MODULE_3__["default"]());
   }
@@ -773,21 +808,27 @@ class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__
   props: ['scene', 'body'],
   data: () => ({
     particles: new _Utils_Arrayset__WEBPACK_IMPORTED_MODULE_1__["default"](),
-    updateIntervalId: null
+    updateIntervalId: null,
+    collision: 0
   }),
   methods: {
     add: _Methods_add__WEBPACK_IMPORTED_MODULE_4__["default"],
     generate: _Methods_generate__WEBPACK_IMPORTED_MODULE_5__["default"],
-    stop: _Methods_stop__WEBPACK_IMPORTED_MODULE_6__["default"]
+    stop: _Methods_stop__WEBPACK_IMPORTED_MODULE_6__["default"],
+    setCollider: _Methods_setCollider__WEBPACK_IMPORTED_MODULE_7__["default"],
+    updateCollision: _Methods_updateCollision__WEBPACK_IMPORTED_MODULE_8__["default"]
   },
 
   created() {
     this.scene.particle.emitters.add(this.particles);
+    this.scene.physics.collision.on('collision-update', this.setCollider);
     this.generate();
+    this.setCollider();
   },
 
   beforeDestroy() {
     this.particles.clear();
+    this.scene.physics.collision.off('collision-update', this.setCollider);
     this.scene.particle.emitters.delete(this.particles);
     this.stop();
   },
@@ -799,6 +840,13 @@ class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__
       handler() {
         this.stop();
         this.generate();
+        this.setCollider();
+      }
+
+    },
+    'collision': {
+      handler() {
+        this.updateCollision();
       }
 
     }
@@ -823,19 +871,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Utils_Arrayset__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Utils/Arrayset */ "./src/Utils/Arrayset.js");
 /* harmony import */ var _View_Component_Component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../View/Component/Component */ "./src/View/Component/Component.js");
 /* harmony import */ var _Methods_onChangeSize__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Methods/onChangeSize */ "./src/Components/Physics/Methods/onChangeSize.js");
-/* harmony import */ var _Methods_onChangeCollision__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Methods/onChangeCollision */ "./src/Components/Physics/Methods/onChangeCollision.js");
-/* harmony import */ var _Methods_destroy__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Methods/destroy */ "./src/Components/Physics/Methods/destroy.js");
-/* harmony import */ var _Methods_create__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Methods/create */ "./src/Components/Physics/Methods/create.js");
-/* harmony import */ var _Methods_setStatic__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Methods/setStatic */ "./src/Components/Physics/Methods/setStatic.js");
-/* harmony import */ var _Methods_setFriction__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Methods/setFriction */ "./src/Components/Physics/Methods/setFriction.js");
-/* harmony import */ var _Methods_setRestitution__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Methods/setRestitution */ "./src/Components/Physics/Methods/setRestitution.js");
-/* harmony import */ var _Methods_setFixedRotation__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Methods/setFixedRotation */ "./src/Components/Physics/Methods/setFixedRotation.js");
-/* harmony import */ var _Methods_setCollider__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Methods/setCollider */ "./src/Components/Physics/Methods/setCollider.js");
-/* harmony import */ var _Methods_update__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Methods/update */ "./src/Components/Physics/Methods/update.js");
-/* harmony import */ var _Methods_translate__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Methods/translate */ "./src/Components/Physics/Methods/translate.js");
-/* harmony import */ var _Methods_transform__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./Methods/transform */ "./src/Components/Physics/Methods/transform.js");
-/* harmony import */ var _Methods_wakeAll__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./Methods/wakeAll */ "./src/Components/Physics/Methods/wakeAll.js");
-/* harmony import */ var _Collision_CollisionDetector__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../Collision/CollisionDetector */ "./src/Collision/CollisionDetector.js");
+/* harmony import */ var _Methods_destroy__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Methods/destroy */ "./src/Components/Physics/Methods/destroy.js");
+/* harmony import */ var _Methods_create__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Methods/create */ "./src/Components/Physics/Methods/create.js");
+/* harmony import */ var _Methods_setStatic__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Methods/setStatic */ "./src/Components/Physics/Methods/setStatic.js");
+/* harmony import */ var _Methods_setFriction__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Methods/setFriction */ "./src/Components/Physics/Methods/setFriction.js");
+/* harmony import */ var _Methods_setRestitution__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Methods/setRestitution */ "./src/Components/Physics/Methods/setRestitution.js");
+/* harmony import */ var _Methods_setFixedRotation__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Methods/setFixedRotation */ "./src/Components/Physics/Methods/setFixedRotation.js");
+/* harmony import */ var _Methods_setCollider__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Methods/setCollider */ "./src/Components/Physics/Methods/setCollider.js");
+/* harmony import */ var _Methods_update__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Methods/update */ "./src/Components/Physics/Methods/update.js");
+/* harmony import */ var _Methods_translate__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Methods/translate */ "./src/Components/Physics/Methods/translate.js");
+/* harmony import */ var _Methods_transform__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Methods/transform */ "./src/Components/Physics/Methods/transform.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
@@ -857,12 +902,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
-
-
 class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_3__["default"] {
-  constructor(...args) {
-    super(...args);
+  constructor(...params) {
+    super(...params);
 
     _defineProperty(this, "name", 'physics');
 
@@ -928,28 +970,27 @@ class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_3__
   }),
   methods: {
     onChangeSize: _Methods_onChangeSize__WEBPACK_IMPORTED_MODULE_4__["default"],
-    onChangeCollision: _Methods_onChangeCollision__WEBPACK_IMPORTED_MODULE_5__["default"],
-    destroy: _Methods_destroy__WEBPACK_IMPORTED_MODULE_6__["default"],
-    create: _Methods_create__WEBPACK_IMPORTED_MODULE_7__["default"],
-    setStatic: _Methods_setStatic__WEBPACK_IMPORTED_MODULE_8__["default"],
-    setFriction: _Methods_setFriction__WEBPACK_IMPORTED_MODULE_9__["default"],
-    setRestitution: _Methods_setRestitution__WEBPACK_IMPORTED_MODULE_10__["default"],
-    setFixedRotation: _Methods_setFixedRotation__WEBPACK_IMPORTED_MODULE_11__["default"],
-    setCollider: _Methods_setCollider__WEBPACK_IMPORTED_MODULE_12__["default"],
-    update: _Methods_update__WEBPACK_IMPORTED_MODULE_13__["default"],
-    translate: _Methods_translate__WEBPACK_IMPORTED_MODULE_14__["default"],
-    transform: _Methods_transform__WEBPACK_IMPORTED_MODULE_15__["default"],
-    wakeAll: _Methods_wakeAll__WEBPACK_IMPORTED_MODULE_16__["default"]
+    destroy: _Methods_destroy__WEBPACK_IMPORTED_MODULE_5__["default"],
+    create: _Methods_create__WEBPACK_IMPORTED_MODULE_6__["default"],
+    setStatic: _Methods_setStatic__WEBPACK_IMPORTED_MODULE_7__["default"],
+    setFriction: _Methods_setFriction__WEBPACK_IMPORTED_MODULE_8__["default"],
+    setRestitution: _Methods_setRestitution__WEBPACK_IMPORTED_MODULE_9__["default"],
+    setFixedRotation: _Methods_setFixedRotation__WEBPACK_IMPORTED_MODULE_10__["default"],
+    setCollider: _Methods_setCollider__WEBPACK_IMPORTED_MODULE_11__["default"],
+    update: _Methods_update__WEBPACK_IMPORTED_MODULE_12__["default"],
+    translate: _Methods_translate__WEBPACK_IMPORTED_MODULE_13__["default"],
+    transform: _Methods_transform__WEBPACK_IMPORTED_MODULE_14__["default"]
   },
 
   created() {
+    this.scene.physics.collision.on('collision-update', this.setCollider);
     this.body.on('body-size-update', this.onChangeSize);
-    this.body.on('physics-collision-update', this.onChangeCollision);
     _View_Component_Component__WEBPACK_IMPORTED_MODULE_3__["default"].attachVue(this.body.component.physics, this);
   },
 
   beforeDestroy() {
     this.destroy();
+    this.scene.physics.collision.off('collision-update', this.setCollider);
     this.body.off('body-size-update', this.onChangeSize);
   },
 
@@ -958,21 +999,18 @@ class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_3__
     'body.component.transform.x'() {
       if (this.tracking) {
         this.transform();
-        this.wakeAll();
       }
     },
 
     'body.component.transform.y'() {
       if (this.tracking) {
         this.transform();
-        this.wakeAll();
       }
     },
 
     'body.component.transform.rotateZ'() {
       if (this.tracking) {
         this.transform();
-        this.wakeAll();
       }
     },
 
@@ -1042,8 +1080,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
-  constructor(...args) {
-    super(...args);
+  constructor(...params) {
+    super(...params);
 
     _defineProperty(this, "name", 'rect');
 
@@ -1099,8 +1137,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
-  constructor(...args) {
-    super(...args);
+  constructor(...params) {
+    super(...params);
 
     _defineProperty(this, "name", 'text');
 
@@ -1156,8 +1194,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_0__["default"] {
-  constructor(...args) {
-    super(...args);
+  constructor(...params) {
+    super(...params);
 
     _defineProperty(this, "name", 'transform');
 
@@ -1222,8 +1260,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 class Reservation extends _View_Component_Component__WEBPACK_IMPORTED_MODULE_1__["default"] {
-  constructor(...args) {
-    super(...args);
+  constructor(...params) {
+    super(...params);
 
     _defineProperty(this, "name", 'video');
 
@@ -1370,12 +1408,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Methods_isNeedFromScene__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Methods/isNeedFromScene */ "./src/View/Methods/isNeedFromScene.js");
 /* harmony import */ var _Methods_startResizeObserve__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Methods/startResizeObserve */ "./src/View/Methods/startResizeObserve.js");
 /* harmony import */ var _Methods_destroyResizeObserve__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./Methods/destroyResizeObserve */ "./src/View/Methods/destroyResizeObserve.js");
-/* harmony import */ var _Methods_updateChildrenCollision__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./Methods/updateChildrenCollision */ "./src/View/Methods/updateChildrenCollision.js");
-/* harmony import */ var _Methods_translate__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./Methods/translate */ "./src/View/Methods/translate.js");
-/* harmony import */ var _Methods_emit__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./Methods/emit */ "./src/View/Methods/emit.js");
-/* harmony import */ var _Computed_isScene__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./Computed/isScene */ "./src/View/Computed/isScene.js");
-/* harmony import */ var _Computed_centerPointX__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./Computed/centerPointX */ "./src/View/Computed/centerPointX.js");
-/* harmony import */ var _Computed_centerPointY__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./Computed/centerPointY */ "./src/View/Computed/centerPointY.js");
+/* harmony import */ var _Methods_translate__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./Methods/translate */ "./src/View/Methods/translate.js");
+/* harmony import */ var _Methods_emit__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./Methods/emit */ "./src/View/Methods/emit.js");
+/* harmony import */ var _Computed_isScene__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./Computed/isScene */ "./src/View/Computed/isScene.js");
+/* harmony import */ var _Computed_centerPointX__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./Computed/centerPointX */ "./src/View/Computed/centerPointX.js");
+/* harmony import */ var _Computed_centerPointY__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./Computed/centerPointY */ "./src/View/Computed/centerPointY.js");
 //
 //
 //
@@ -1510,7 +1547,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//
 
 
 
@@ -1556,9 +1593,9 @@ __webpack_require__.r(__webpack_exports__);
     SCENE_3D: _Scene_Vars_TYPE__WEBPACK_IMPORTED_MODULE_0__["SCENE_3D"]
   }),
   computed: {
-    isScene: _Computed_isScene__WEBPACK_IMPORTED_MODULE_19__["default"],
-    centerPointX: _Computed_centerPointX__WEBPACK_IMPORTED_MODULE_20__["default"],
-    centerPointY: _Computed_centerPointY__WEBPACK_IMPORTED_MODULE_21__["default"]
+    isScene: _Computed_isScene__WEBPACK_IMPORTED_MODULE_18__["default"],
+    centerPointX: _Computed_centerPointX__WEBPACK_IMPORTED_MODULE_19__["default"],
+    centerPointY: _Computed_centerPointY__WEBPACK_IMPORTED_MODULE_20__["default"]
   },
   methods: {
     hasComponent: _Methods_hasComponent__WEBPACK_IMPORTED_MODULE_10__["default"],
@@ -1567,9 +1604,8 @@ __webpack_require__.r(__webpack_exports__);
     isNeedFromScene: _Methods_isNeedFromScene__WEBPACK_IMPORTED_MODULE_13__["default"],
     startResizeObserve: _Methods_startResizeObserve__WEBPACK_IMPORTED_MODULE_14__["default"],
     destroyResizeObserve: _Methods_destroyResizeObserve__WEBPACK_IMPORTED_MODULE_15__["default"],
-    updateChildrenCollision: _Methods_updateChildrenCollision__WEBPACK_IMPORTED_MODULE_16__["default"],
-    translate: _Methods_translate__WEBPACK_IMPORTED_MODULE_17__["default"],
-    emit: _Methods_emit__WEBPACK_IMPORTED_MODULE_18__["default"]
+    translate: _Methods_translate__WEBPACK_IMPORTED_MODULE_16__["default"],
+    emit: _Methods_emit__WEBPACK_IMPORTED_MODULE_17__["default"]
   },
   watch: {
     'sizeSelf'() {
@@ -1596,8 +1632,8 @@ __webpack_require__.r(__webpack_exports__);
         const {
           collisions
         } = this.body.physics.collision;
-        const updated = collisions[collisions.length - 1];
-        this.updateChildrenCollision(updated);
+        const updatedPairs = collisions[collisions.length - 1];
+        this.body.physics.collision.emit('collision-update', null, updatedPairs);
       }
 
     }
@@ -1629,7 +1665,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".wejs-app[data-v-242a27aa] {\n  position: relative;\n  overflow: hidden;\n  user-select: none;\n}\n", ""]);
+exports.push([module.i, ".wejs-app[data-v-242a27aa] {\n  position: relative;\n  overflow: hidden;\n  user-select: none;\n  outline: none;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -1665,7 +1701,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".we-camera[data-v-5dc5b8c6],\n.we-body[data-v-5dc5b8c6] {\n  position: absolute;\n}\n.we-camera.scene3d[data-v-5dc5b8c6],\n  .we-body.scene3d[data-v-5dc5b8c6] {\n    top: 50%;\n    left: 50%;\n    transform-style: preserve-3d;\n}\n.we-components[data-v-5dc5b8c6] {\n  position: relative;\n}\n.we-components-hidden[data-v-5dc5b8c6] {\n  width: 0;\n  height: 0;\n  visibility: hidden;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n}\n", ""]);
+exports.push([module.i, ".we-camera[data-v-5dc5b8c6],\n.we-body[data-v-5dc5b8c6] {\n  position: absolute;\n  outline: none;\n}\n.we-camera.scene3d[data-v-5dc5b8c6],\n  .we-body.scene3d[data-v-5dc5b8c6] {\n    top: 50%;\n    left: 50%;\n    transform-style: preserve-3d;\n}\n.we-components[data-v-5dc5b8c6] {\n  position: relative;\n}\n.we-components-hidden[data-v-5dc5b8c6] {\n  width: 0;\n  height: 0;\n  visibility: hidden;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -25403,6 +25439,31 @@ var render = function() {
         width: _vm.app.width + "px",
         height: _vm.app.height + "px",
         transform: "scale(" + _vm.appScale + ")"
+      },
+      attrs: { tabindex: "0" },
+      on: {
+        keydown: _vm.emit,
+        keypress: _vm.emit,
+        keyup: _vm.emit,
+        mousedown: _vm.emit,
+        mouseenter: _vm.emit,
+        mouseleave: _vm.emit,
+        mousemove: _vm.emit,
+        mouseout: _vm.emit,
+        mouseover: _vm.emit,
+        mouseup: _vm.emit,
+        mousewheel: _vm.emit,
+        click: _vm.emit,
+        contextmenu: _vm.emit,
+        dblclick: _vm.emit,
+        drag: _vm.emit,
+        dragend: _vm.emit,
+        dragenter: _vm.emit,
+        dragleave: _vm.emit,
+        dragover: _vm.emit,
+        dragstart: _vm.emit,
+        drop: _vm.emit,
+        focus: _vm.emit
       }
     },
     [
@@ -25787,6 +25848,7 @@ var render = function() {
               "ms"
           },
           attrs: {
+            tabindex: "0",
             id: _vm.body.id,
             "we-body-tag": _vm.body.tags.join(" "),
             "we-body-size": _vm.sizeMax
@@ -38622,10 +38684,10 @@ function (_BaseClient) {
 
 /***/ }),
 
-/***/ "./node_modules/webpack-dev-server/client/index.js?http://192.168.0.12:9002":
-/*!************************************************************!*\
-  !*** (webpack)-dev-server/client?http://192.168.0.12:9002 ***!
-  \************************************************************/
+/***/ "./node_modules/webpack-dev-server/client/index.js?http://localhost:9002":
+/*!*********************************************************!*\
+  !*** (webpack)-dev-server/client?http://localhost:9002 ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -38806,7 +38868,7 @@ var onSocketMessage = {
   }
 };
 socket(socketUrl, onSocketMessage);
-/* WEBPACK VAR INJECTION */}.call(this, "?http://192.168.0.12:9002"))
+/* WEBPACK VAR INJECTION */}.call(this, "?http://localhost:9002"))
 
 /***/ }),
 
@@ -39648,8 +39710,8 @@ class App extends _Scene_Scene3d__WEBPACK_IMPORTED_MODULE_0__["default"] {
     return null;
   }
 
-  constructor(...args) {
-    super(...args);
+  constructor(...params) {
+    super(...params);
     this.width = 800;
     this.height = 450;
     this.perspective = 100;
@@ -39872,6 +39934,22 @@ async function start(splashScene = new _Scene_Scene3d__WEBPACK_IMPORTED_MODULE_4
   await _Utils_Sleep__WEBPACK_IMPORTED_MODULE_2__["default"].wait(100); // app이 Document에 마운트되기를 대기합니다.
 
   return this.app;
+}
+
+/***/ }),
+
+/***/ "./src/App/Methods/emit.js":
+/*!*********************************!*\
+  !*** ./src/App/Methods/emit.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return emit; });
+function emit(e) {
+  this.app.emit(e.type);
 }
 
 /***/ }),
@@ -40099,69 +40177,6 @@ async function load() {
 
   return this.assets;
 }
-
-/***/ }),
-
-/***/ "./src/Collision/CollisionDetector.js":
-/*!********************************************!*\
-  !*** ./src/Collision/CollisionDetector.js ***!
-  \********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Utils_Arrayset__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Utils/Arrayset */ "./src/Utils/Arrayset.js");
-/* harmony import */ var _Utils_Pairs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Utils/Pairs */ "./src/Utils/Pairs.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-
-class CollisionDetector {
-  constructor() {
-    _defineProperty(this, "collisions", new _Utils_Pairs__WEBPACK_IMPORTED_MODULE_1__["default"]());
-
-    _defineProperty(this, "colliders", new _Utils_Arrayset__WEBPACK_IMPORTED_MODULE_0__["default"]());
-
-    this.colliders.add(CollisionDetector.DEFAULT_COLLIDER);
-  }
-
-  getCollisionFilter(collider) {
-    const i = this.colliders.indexOf(collider);
-    return i !== -1 ? Math.pow(2, i) : 0;
-  }
-
-  addCollider(collider) {
-    if (this.colliders.length > 32) throw 'Collider there are up to 32 available';
-    this.colliders.add(collider);
-    return this.getCollisionFilter(collider);
-  }
-
-  addCollision(...collider) {
-    const colliders = [...collider];
-
-    for (const t of colliders) this.addCollider(t);
-
-    this.collisions.add(...collider);
-  }
-
-  deleteCollision(...collider) {
-    const colliders = [...collider];
-
-    for (const t of colliders) this.collisions.delete(t);
-  }
-
-  between(...collider) {
-    const colliders = [...collider];
-    return colliders.map(collider => this.addCollider(collider)).reduce((a, b) => a | b, colliders || []);
-  }
-
-}
-
-_defineProperty(CollisionDetector, "DEFAULT_COLLIDER", 'default');
-
-/* harmony default export */ __webpack_exports__["default"] = (CollisionDetector);
 
 /***/ }),
 
@@ -41034,7 +41049,7 @@ async function add() {
 
   matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Body.setInertia(object, Number.POSITIVE_INFINITY);
   object.frictionAir = frictionAir;
-  object.collisionFilter.group = -1; // particle.duration 기간이 지나면 파티클을 월드에서 삭제합니다.
+  object.collisionFilter.category = this.collision; // particle.duration 기간이 지나면 파티클을 월드에서 삭제합니다.
 
   particle.on('particle-life-end', () => {
     matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Events.off(this.scene.physics.runner, 'afterUpdate', update);
@@ -41067,6 +41082,30 @@ function generate() {
 
 /***/ }),
 
+/***/ "./src/Components/Particle/Methods/setCollider.js":
+/*!********************************************************!*\
+  !*** ./src/Components/Particle/Methods/setCollider.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return setCollider; });
+function setCollider() {
+  // 모든 콜라이더를 추가
+  const {
+    colliders
+  } = this.body.component.particle;
+  this.scene.physics.collision.between(...colliders); // 등록된 콜라이더를 순회하며 관련있는 모든 콜라이더를 받아옵니다.
+
+  const all = this.scene.physics.collision.collisions.OR(...colliders); // 관련있는 모든 콜라이더로부터 충돌필터값을 계산합니다.
+
+  this.collision = this.scene.physics.collision.between(...all);
+}
+
+/***/ }),
+
 /***/ "./src/Components/Particle/Methods/stop.js":
 /*!*************************************************!*\
   !*** ./src/Components/Particle/Methods/stop.js ***!
@@ -41081,6 +41120,24 @@ __webpack_require__.r(__webpack_exports__);
 
 function stop() {
   _Utils_Tick__WEBPACK_IMPORTED_MODULE_0__["default"].cancelRequest(this.updateIntervalId);
+}
+
+/***/ }),
+
+/***/ "./src/Components/Particle/Methods/updateCollision.js":
+/*!************************************************************!*\
+  !*** ./src/Components/Particle/Methods/updateCollision.js ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return updateCollision; });
+function updateCollision() {
+  for (const {
+    object
+  } of this.particles) object.collisionFilter.category = this.collision;
 }
 
 /***/ }),
@@ -41240,25 +41297,6 @@ function destroy() {
 
 /***/ }),
 
-/***/ "./src/Components/Physics/Methods/onChangeCollision.js":
-/*!*************************************************************!*\
-  !*** ./src/Components/Physics/Methods/onChangeCollision.js ***!
-  \*************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return onChangeCollision; });
-function onChangeCollision(e) {
-  const {
-    pairs
-  } = e.detail;
-  if (this.body.component.physics.colliders.has()) this.setCollider();
-}
-
-/***/ }),
-
 /***/ "./src/Components/Physics/Methods/onChangeSize.js":
 /*!********************************************************!*\
   !*** ./src/Components/Physics/Methods/onChangeSize.js ***!
@@ -41272,7 +41310,6 @@ __webpack_require__.r(__webpack_exports__);
 function onChangeSize(e) {
   // 객체의 크기를 수정합니다.
   this.bodySize = e.detail.size;
-  this.wakeAll();
 }
 
 /***/ }),
@@ -41287,8 +41324,6 @@ function onChangeSize(e) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return setCollider; });
-/* harmony import */ var _Utils_Arrayset__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../Utils/Arrayset */ "./src/Utils/Arrayset.js");
-
 function setCollider() {
   // 자신의 콜라이더들과 연관된 모든 콜라이더를 배열로 받아와서,
   // collisions.between 으로 계산을 해야합니다.
@@ -41302,7 +41337,6 @@ function setCollider() {
   const all = this.scene.physics.collision.collisions.OR(...colliders); // 관련있는 모든 콜라이더로부터 충돌필터값을 계산합니다.
 
   this.object.collisionFilter.category = this.scene.physics.collision.between(...all);
-  this.wakeAll();
 }
 
 /***/ }),
@@ -41466,25 +41500,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return update; });
 function update() {
   this.translate();
-}
-
-/***/ }),
-
-/***/ "./src/Components/Physics/Methods/wakeAll.js":
-/*!***************************************************!*\
-  !*** ./src/Components/Physics/Methods/wakeAll.js ***!
-  \***************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return wakeAll; });
-/* harmony import */ var matter_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! matter-js */ "./node_modules/matter-js/build/matter.js");
-/* harmony import */ var matter_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(matter_js__WEBPACK_IMPORTED_MODULE_0__);
-
-function wakeAll() {
-  for (const body of this.scene.physics.world.bodies) matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Sleeping.set(body, false);
 }
 
 /***/ }),
@@ -42215,8 +42230,8 @@ class Scene extends _View_View__WEBPACK_IMPORTED_MODULE_4__["default"] {
    */
 
 
-  broadcast(e, detail) {
-    for (const children of this.component.children.lists) children.emit(e, detail);
+  broadcast(e, detail, ...params) {
+    for (const children of this.component.children.lists) children.emit(e, detail, ...params);
   }
   /**
    * @description  씬의 모든 내용을 초기화합니다.
@@ -42294,8 +42309,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class Scene2d extends _Scene__WEBPACK_IMPORTED_MODULE_1__["default"] {
-  constructor(...args) {
-    super(...args);
+  constructor(...params) {
+    super(...params);
     _Utils_Definer__WEBPACK_IMPORTED_MODULE_0__["default"].create('type', _Vars_TYPE__WEBPACK_IMPORTED_MODULE_2__["SCENE_2D"]).seal(true).hidden(false).final(true).to(this);
   }
 
@@ -42322,8 +42337,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class Scene3d extends _Scene__WEBPACK_IMPORTED_MODULE_1__["default"] {
-  constructor(...args) {
-    super(...args);
+  constructor(...params) {
+    super(...params);
     _Utils_Definer__WEBPACK_IMPORTED_MODULE_0__["default"].create('type', _Vars_TYPE__WEBPACK_IMPORTED_MODULE_2__["SCENE_3D"]).seal(true).hidden(false).final(true).to(this);
   }
 
@@ -42372,7 +42387,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var matter_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(matter_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Utils_Arrayset__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Utils/Arrayset */ "./src/Utils/Arrayset.js");
 /* harmony import */ var _Utils_Definer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Utils/Definer */ "./src/Utils/Definer.js");
-/* harmony import */ var _Collision_CollisionDetector__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Collision/CollisionDetector */ "./src/Collision/CollisionDetector.js");
+/* harmony import */ var _ScenePhysicsCollision__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ScenePhysicsCollision */ "./src/Scene/ScenePhysicsCollision.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
@@ -42463,14 +42478,14 @@ class ScenePhysics {
     _Utils_Definer__WEBPACK_IMPORTED_MODULE_2__["default"].create('engine', matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Engine.create()).seal(true).hidden(true).final(false).to(this);
     _Utils_Definer__WEBPACK_IMPORTED_MODULE_2__["default"].create('world', this.engine.world).seal(true).hidden(true).final(false).to(this);
     _Utils_Definer__WEBPACK_IMPORTED_MODULE_2__["default"].create('table', new Map()).seal(true).hidden(true).final(false).to(this);
-    this.collision = new _Collision_CollisionDetector__WEBPACK_IMPORTED_MODULE_3__["default"](); // 이벤트를 핸들링합니다
+    this.collision = new _ScenePhysicsCollision__WEBPACK_IMPORTED_MODULE_3__["default"](); // 이벤트를 핸들링합니다
 
     matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Events.on(this.runner, 'afterUpdate', e => ScenePhysics.updateRender(this.lists));
     matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Events.on(this.world, 'createPhysicsBody', e => ScenePhysics.addObjectToTable(this.table, e.object, e.body));
     matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Events.on(this.engine, 'collisionStart', e => ScenePhysics.onCollisionStart(this.table, e.pairs));
     matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Events.on(this.engine, 'collisionEnd', e => ScenePhysics.onCollisionEnd(this.table, e.pairs)); // 중력을 설정합니다
 
-    this.engine.enableSleeping = true;
+    this.engine.enableSleeping = false;
     this.world.gravity = matter_js__WEBPACK_IMPORTED_MODULE_0___default.a.Vector.clone(ScenePhysics.DEFAULT_GRAVITY);
   }
 
@@ -42490,6 +42505,77 @@ _defineProperty(ScenePhysics, "DEFAULT_GRAVITY", {
 });
 
 /* harmony default export */ __webpack_exports__["default"] = (ScenePhysics);
+
+/***/ }),
+
+/***/ "./src/Scene/ScenePhysicsCollision.js":
+/*!********************************************!*\
+  !*** ./src/Scene/ScenePhysicsCollision.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _WeJSEvent_WeJSEventEmitter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../WeJSEvent/WeJSEventEmitter */ "./src/WeJSEvent/WeJSEventEmitter.js");
+/* harmony import */ var _Utils_Arrayset__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Utils/Arrayset */ "./src/Utils/Arrayset.js");
+/* harmony import */ var _Utils_Pairs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Utils/Pairs */ "./src/Utils/Pairs.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+class PhysicsCollision extends _WeJSEvent_WeJSEventEmitter__WEBPACK_IMPORTED_MODULE_0__["default"] {
+  constructor() {
+    super();
+
+    _defineProperty(this, "collisions", new _Utils_Pairs__WEBPACK_IMPORTED_MODULE_2__["default"]());
+
+    _defineProperty(this, "colliders", new _Utils_Arrayset__WEBPACK_IMPORTED_MODULE_1__["default"]());
+
+    this.colliders.add(PhysicsCollision.DEFAULT_COLLIDER);
+  }
+
+  getCollisionFilter(collider) {
+    const i = this.colliders.indexOf(collider);
+    return i !== -1 ? Math.pow(2, i) : 0;
+  }
+
+  addCollider(collider) {
+    if (this.colliders.length > 32) throw 'Collider there are up to 32 available';
+    this.colliders.add(collider);
+    this.emit('add-collider');
+    return this.getCollisionFilter(collider);
+  }
+
+  addCollision(...collider) {
+    const colliders = [...collider];
+
+    for (const t of colliders) this.addCollider(t);
+
+    this.collisions.add(...collider);
+    this.emit('add-collision');
+  }
+
+  deleteCollision(...collider) {
+    const colliders = [...collider];
+
+    for (const t of colliders) this.collisions.delete(t);
+
+    this.emit('delete-collision');
+  }
+
+  between(...collider) {
+    const colliders = [...collider];
+    return colliders.map(collider => this.addCollider(collider)).reduce((a, b) => a | b, colliders || []);
+  }
+
+}
+
+_defineProperty(PhysicsCollision, "DEFAULT_COLLIDER", 'default');
+
+/* harmony default export */ __webpack_exports__["default"] = (PhysicsCollision);
 
 /***/ }),
 
@@ -42560,8 +42646,8 @@ __webpack_require__.r(__webpack_exports__);
 //             set(v) { proto.__proto__ = v }
 //         })
 //     }
-//     constructor(...args) {
-//         super(...args)
+//     constructor(...params) {
+//         super(...params)
 //         Arrayset.makeReactive(this)
 //     }
 //     add(v) {
@@ -42590,15 +42676,49 @@ const Arrayset = function Arrayset(...lists) {
   const array = [...lists];
 
   const add = function add(...list) {
-    for (const v of [...list]) {
-      if (array.indexOf(v) !== -1) continue;else array.push(v);
+    for (const t of [...list]) {
+      if (array.indexOf(t) !== -1) continue;else array.push(t);
     }
 
     return array;
   };
 
-  const has = function has(v) {
-    return array.indexOf(v) !== -1;
+  const has = function has(t) {
+    return array.indexOf(t) !== -1;
+  };
+
+  const hasAll = function hasAll(...list) {
+    let passed = true;
+
+    for (const t of [...list]) {
+      if (!has(t)) {
+        passed = false;
+        break;
+      }
+    }
+
+    return passed;
+  };
+
+  const hasAtLeast = function hasAtLeast(...list) {
+    let passed = false;
+
+    for (const t of [...list]) {
+      if (has(t)) {
+        passed = true;
+        break;
+      }
+    }
+
+    return passed;
+  };
+
+  const duplicate = function duplicate(...list) {
+    return [...list].filter(t => has(t));
+  };
+
+  const notDuplicate = function notDuplicate(...list) {
+    return [...list].filter(t => !has(t));
   };
 
   const clear = function clear() {
@@ -42618,6 +42738,10 @@ const Arrayset = function Arrayset(...lists) {
 
   _Definer__WEBPACK_IMPORTED_MODULE_0__["default"].create('add', add).seal(true).hidden(true).final(true).to(array);
   _Definer__WEBPACK_IMPORTED_MODULE_0__["default"].create('has', has).seal(true).hidden(true).final(true).to(array);
+  _Definer__WEBPACK_IMPORTED_MODULE_0__["default"].create('hasAll', hasAll).seal(true).hidden(true).final(true).to(array);
+  _Definer__WEBPACK_IMPORTED_MODULE_0__["default"].create('hasAtLeast', hasAtLeast).seal(true).hidden(true).final(true).to(array);
+  _Definer__WEBPACK_IMPORTED_MODULE_0__["default"].create('duplicate', duplicate).seal(true).hidden(true).final(true).to(array);
+  _Definer__WEBPACK_IMPORTED_MODULE_0__["default"].create('notDuplicate', notDuplicate).seal(true).hidden(true).final(true).to(array);
   _Definer__WEBPACK_IMPORTED_MODULE_0__["default"].create('clear', clear).seal(true).hidden(true).final(true).to(array);
   _Definer__WEBPACK_IMPORTED_MODULE_0__["default"].create('delete', _delete).seal(true).hidden(true).final(true).to(array);
   _Definer__WEBPACK_IMPORTED_MODULE_0__["default"].create('generate', generate).seal(true).hidden(true).final(true).to(array);
@@ -42835,8 +42959,8 @@ for (const namespace in MatterExtra) Object.assign(MatterExtra[namespace], matte
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 class ObjectExtra extends Object {
-  constructor(...args) {
-    super(...args);
+  constructor(...params) {
+    super(...params);
   }
 
 }
@@ -44003,24 +44127,6 @@ function translate() {
 
 /***/ }),
 
-/***/ "./src/View/Methods/updateChildrenCollision.js":
-/*!*****************************************************!*\
-  !*** ./src/View/Methods/updateChildrenCollision.js ***!
-  \*****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return updateChildrenCollision; });
-function updateChildrenCollision(pairs) {
-  for (const t of this.body.component.children.lists) t.emit('physics-collision-update', {
-    pairs
-  });
-}
-
-/***/ }),
-
 /***/ "./src/View/ParticleRenderer.vue":
 /*!***************************************!*\
   !*** ./src/View/ParticleRenderer.vue ***!
@@ -44451,7 +44557,7 @@ class EventEmitter {
     }
   }
 
-  static runEventHandler(map, target, e, detail) {
+  static runEventHandler(map, target, e, detail, ...params) {
     if (!map.has(e)) return;
 
     for (const plan of map.get(e)) {
@@ -44459,7 +44565,7 @@ class EventEmitter {
       event.type = e;
       event.target = target;
       event.detail = detail;
-      plan.handler(event);
+      plan.handler(event, ...params);
       if (plan.once) map.get(e).delete(plan);
     }
   }
@@ -44504,8 +44610,8 @@ class EventEmitter {
    */
 
 
-  emit(e, detail = null) {
-    EventEmitter.runEventHandler(this.__event, this, e, detail);
+  emit(e, detail = null, ...params) {
+    EventEmitter.runEventHandler(this.__event, this, e, detail, ...params);
   }
 
 }
@@ -44563,13 +44669,13 @@ Object(_Plugins_vue__WEBPACK_IMPORTED_MODULE_1__["default"])();
 /***/ }),
 
 /***/ 0:
-/*!********************************************************************************!*\
-  !*** multi (webpack)-dev-server/client?http://192.168.0.12:9002 ./src/core.js ***!
-  \********************************************************************************/
+/*!*****************************************************************************!*\
+  !*** multi (webpack)-dev-server/client?http://localhost:9002 ./src/core.js ***!
+  \*****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\My WorkSpace\Programming\Project\WeJS\node_modules\webpack-dev-server\client\index.js?http://192.168.0.12:9002 */"./node_modules/webpack-dev-server/client/index.js?http://192.168.0.12:9002");
+__webpack_require__(/*! D:\My WorkSpace\Programming\Project\WeJS\node_modules\webpack-dev-server\client\index.js?http://localhost:9002 */"./node_modules/webpack-dev-server/client/index.js?http://localhost:9002");
 module.exports = __webpack_require__(/*! D:\My WorkSpace\Programming\Project\WeJS\src\core.js */"./src/core.js");
 
 

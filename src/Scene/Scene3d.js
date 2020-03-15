@@ -5,8 +5,8 @@ import { SCENE_3D } from './Vars/TYPE'
 
 class Scene3d extends Scene {
 
-    constructor(...args) {
-        super(...args)
+    constructor(...params) {
+        super(...params)
         Definer
             .create('type', SCENE_3D)
             .seal(true).hidden(false).final(true)

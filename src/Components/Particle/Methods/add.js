@@ -53,7 +53,7 @@ export default async function add() {
     Matter.Body.setInertia(object, Number.POSITIVE_INFINITY)
 
     object.frictionAir = frictionAir
-    object.collisionFilter.group = -1
+    object.collisionFilter.category = this.collision
 
     // particle.duration 기간이 지나면 파티클을 월드에서 삭제합니다.
     particle.on('particle-life-end', () => { 

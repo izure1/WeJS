@@ -34,7 +34,7 @@ class EventEmitter {
 
   }
 
-  static runEventHandler(map, target, e, detail) {
+  static runEventHandler(map, target, e, detail, ...params) {
 
     if (!map.has(e)) return
     for (const plan of map.get(e)) {
@@ -42,7 +42,7 @@ class EventEmitter {
       event.type = e
       event.target = target
       event.detail = detail
-      plan.handler(event)
+      plan.handler(event, ...params)
       if (plan.once) map.get(e).delete(plan)
     }
 
@@ -89,8 +89,8 @@ class EventEmitter {
    * @param {String} e  이벤트 타입
    * @param {Object} detail  이벤트의 상세 정보
    */
-  emit(e, detail = null) {
-    EventEmitter.runEventHandler(this.__event, this, e, detail)
+  emit(e, detail = null, ...params) {
+    EventEmitter.runEventHandler(this.__event, this, e, detail, ...params)
   }
 
 }

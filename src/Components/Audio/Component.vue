@@ -28,8 +28,8 @@ export class Reservation extends Component {
     volume = 1
     recaching = 150
 
-    constructor(...args) {
-        super(...args)
+    constructor(...params) {
+        super(...params)
     }
 
 }

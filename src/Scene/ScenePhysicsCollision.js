@@ -1,8 +1,10 @@
+import WeJSEventEmitter from '../WeJSEvent/WeJSEventEmitter'
+
 import Arrayset from '../Utils/Arrayset'
 import Pairs from '../Utils/Pairs'
 
 
-class CollisionDetector {
+class PhysicsCollision extends WeJSEventEmitter {
     
     static DEFAULT_COLLIDER = 'default'
 
@@ -10,7 +12,8 @@ class CollisionDetector {
     colliders = new Arrayset
 
     constructor() {
-        this.colliders.add(CollisionDetector.DEFAULT_COLLIDER)
+        super()
+        this.colliders.add(PhysicsCollision.DEFAULT_COLLIDER)
     }
 
     getCollisionFilter(collider) {
@@ -24,6 +27,8 @@ class CollisionDetector {
             throw 'Collider there are up to 32 available'
 
         this.colliders.add(collider)
+        this.emit('add-collider')
+
         return this.getCollisionFilter(collider)
 
     }
@@ -36,6 +41,7 @@ class CollisionDetector {
             this.addCollider(t)
             
         this.collisions.add(...collider)
+        this.emit('add-collision')
 
     }
 
@@ -45,6 +51,8 @@ class CollisionDetector {
 
         for (const t of colliders)
             this.collisions.delete(t)
+
+        this.emit('delete-collision')
 
     }
 
@@ -58,4 +66,4 @@ class CollisionDetector {
 }
 
 
-export default CollisionDetector
+export default PhysicsCollision

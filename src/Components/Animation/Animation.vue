@@ -14,8 +14,8 @@
     bind(component, target) {}
     start(after, duration, ease) {}
 
-    constructor(...args) {
-      super(...args)
+    constructor(...params) {
+      super(...params)
     }
   }
 
