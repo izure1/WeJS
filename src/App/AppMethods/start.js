@@ -10,7 +10,7 @@ export default async function start(splashScene = new Scene) {
     
     this.component.children.lists.clear()
     this.component.children.lists.add(splashScene)
-    
+
     this.app = new Vue({
         el: this.element,
         components: { App },

@@ -38,7 +38,7 @@ module.exports = {
           path.resolve(__dirname, 'node_modules')
         ],
         loader: 'babel-loader',
-        query: {
+        options: {
           presets: [
             ["@babel/env", {
               "targets": {
@@ -72,7 +72,7 @@ module.exports = {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         use: {
           loader: 'url-loader',
-          query: {
+          options: {
             limit: 10000,
             name: 'imgs/[name]--[folder].[ext]'
           }
@@ -82,7 +82,7 @@ module.exports = {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         use: {
           loader: 'url-loader',
-          query: {
+          options: {
             limit: 10000,
             name: 'imgs/[name]--[folder].[ext]'
           }
@@ -94,16 +94,25 @@ module.exports = {
     alias: {
       vue$: 'vue/dist/vue.esm.js'
     },
-    extensions: ['.json', '.js', '.jsx', '.vue']
+    extensions: ['.json', '.js', '.jsx', '.vue'],
+    fallback: {
+      path: require.resolve('path-browserify')
+    }
   },
   devtool: 'source-map',
   devServer: {
-    contentBase: path.join(__dirname, '/dist/'),
-    publicPath: '/dist/lib/',
-    inline: true,
-    writeToDisk: true,
+    // contentBase: path.join(__dirname, '/dist/'),
+    // publicPath: '',
+    // inline: true,
+    // writeToDisk: true,
     host: 'localhost',
-    port: 9002
+    port: 9002,
+    static: {
+      directory: path.join(__dirname, '/dist/'),
+      // directory: path.join(__dirname, '/dist/lib/'),
+    },
+    compress: true,
+    port: 9000,
   },
   plugins: [
     new VueLoaderPlugin,
@@ -121,7 +130,7 @@ module.exports = {
       cwd: process.cwd(),
     }),
   ],
-  node: {
-    fs: 'empty'
-  }
+  // node: {
+  //   fs: 'empty'
+  // }
 }
