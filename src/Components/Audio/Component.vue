@@ -72,16 +72,16 @@ export default {
     },
 
     watch: {
-    audio() {
-        this.setAudioProperty()
-    },
-    'body.component.audio.src'() {
-        this.onChangeAudioSrc()
-    },
-    'body.component.audio': {
-        deep: true,
-        handler() {
+        audio() {
             this.setAudioProperty()
+        },
+        'body.component.audio.src'() {
+            this.onChangeAudioSrc()
+        },
+        'body.component.audio': {
+            deep: true,
+            handler() {
+                this.setAudioProperty()
             }
         }
     }

@@ -86,7 +86,7 @@ class Scene extends View {
      * @param  {...View|Scene} scenes  실행할 뷰 또는 씬입니다.
      * @returns {App}
      * @description
-     * addScene 메서드와의 차이점은, 현재 씬에서 실행 중인 기존의 하위 씬들을 전부 삭제하고, 실행한다는 점입니다. 또한 여러 씬을 동시에추가할 수 있습니다.
+     * addScene 메서드와의 차이점은, 현재 씬에서 실행 중인 기존의 하위 씬들을 전부 삭제하고, 실행한다는 점입니다. 또한 여러 씬을 동시에 추가할 수 있습니다.
      */
     async launch(...scenes) {
         this.component.children.lists.clear()
